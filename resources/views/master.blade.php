@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>@yield('title')</title>
+  <title>@yield('title-bar')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -22,6 +22,8 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  @yield('add-css')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -177,12 +179,13 @@
         <li class="active">@yield('right_title')</li>
       </ol>
     </section>
-  </div>
+  
 <!-- ./wrapper -->
 
   <section class="content">
     @yield('content')
   </section>
+</div>
 
 <!-- jQuery 3 -->
 <script src="{{url('assets/bower_components/jquery/dist/jquery.min.js')}}"></script>
@@ -205,6 +208,6 @@
 <script src="{{url('assets/dist/js/pages/dashboard2.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('assets/dist/js/demo.js')}}"></script>
-
+@yield('add-script')
 </body>
 </html>

@@ -1,5 +1,8 @@
 @extends('master')
 
+@section('title-bar')
+    Dashboard
+@endsection
 @section('title')
     Dashboard
 @endsection

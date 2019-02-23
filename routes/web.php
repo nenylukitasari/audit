@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*Route::get('/makan_lembur_rapat', function () {
+    return view('makan_lembur_rapat');
+});*/
+
+Route::get('/makan_lembur_rapat','MakanController@index');
+
