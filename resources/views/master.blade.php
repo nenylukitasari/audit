@@ -187,6 +187,8 @@
   </section>
 </div>
 
+  @yield('footer')
+
 <!-- jQuery 3 -->
 <script src="{{url('assets/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
