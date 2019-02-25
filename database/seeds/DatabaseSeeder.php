@@ -12,7 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-    		makan_lembur_rapat_seeder::class,
+    		MakanLemburSeeder::class,
+            KategoriMakanSeeder::class,
         ]);
     }
 }

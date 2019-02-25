@@ -35,7 +35,7 @@
                <tbody>
                     @foreach ($makan_lembur as $x)
                     <tr>
-                      <td>{{ $x->kategori_kegiatan}}</td>
+                      <td>{{ $x->kategori_makan}}</td>
                       <td>{{ $x->uraian_kegiatan}}</td>
                       <td>{{ $x->satuan}}</td>
                       <td>{{number_format($x->bruto)}}</td>

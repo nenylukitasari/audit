@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Makan;
+use App\MakanLembur;
 
-class makan_lembur_rapat_seeder extends Seeder
+class MakanLemburSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,52 +12,64 @@ class makan_lembur_rapat_seeder extends Seeder
      */
     public function run()
     {
-        Makan::create([
-    		'kategori_kegiatan'		=> 'Satuan Biaya Uang Makan Pegawai Tetap',
+        MakanLembur::create([
+    		'id_kategori_makan'		=> '1',
     		'uraian_kegiatan'		=> 'Golongan IV/Setara',
     		'satuan'				=> 'Orang/Hari',
     		'bruto'					=> '41000',
     	]);
 
-        Makan::create([
-    		'kategori_kegiatan'		=> 'Satuan Biaya Uang Makan Pegawai Tetap',
+        MakanLembur::create([
+    		'id_kategori_makan'		=> '1',
     		'uraian_kegiatan'		=> 'Golongan III/Setara',
     		'satuan'				=> 'Orang/Hari',
     		'bruto'					=> '37000',
     	]);
 
-    	Makan::create([
-    		'kategori_kegiatan'		=> 'Satuan Biaya Uang Makan Pegawai Tetap',
+    	MakanLembur::create([
+    		'id_kategori_makan'		=> '1',
     		'uraian_kegiatan'		=> 'Golongan II dan I/Setara',
     		'satuan'				=> 'Orang/Hari',
     		'bruto'					=> '35000',
     	]);
 
-    	 Makan::create([
-    		'kategori_kegiatan'		=> 'Satuan Biaya Lembur',
+    	 MakanLembur::create([
+    		'id_kategori_makan'		=> '2',
     		'uraian_kegiatan'		=> 'Golongan IV/Setara',
     		'satuan'				=> 'Orang/Hari',
     		'bruto'					=> '25000',
     	]);
 
-        Makan::create([
-    		'kategori_kegiatan'		=> 'Satuan Biaya Lembur',
+        MakanLembur::create([
+    		'id_kategori_makan'		=> '2',
     		'uraian_kegiatan'		=> 'Golongan III/Setara',
     		'satuan'				=> 'Orang/Jam',
     		'bruto'					=> '20000',
     	]);
 
-    	Makan::create([
-    		'kategori_kegiatan'		=> 'Satuan Biaya Lembur',
+    	MakanLembur::create([
+    		'id_kategori_makan'		=> '2',
     		'uraian_kegiatan'		=> 'Golongan II/Setara',
     		'satuan'				=> 'Orang/Jam',
     		'bruto'					=> '17000',
     	]);
-    	Makan::create([
-    		'kategori_kegiatan'		=> 'Satuan Biaya Lembur',
+    	MakanLembur::create([
+    		'id_kategori_makan'		=> '2',
     		'uraian_kegiatan'		=> 'Golongan I/Setara',
     		'satuan'				=> 'Orang/Jam',
     		'bruto'					=> '13000',
+    	]);
+
+
+    	MakanLembur::create([
+    		'id_kategori_makan'		=> '3',
+    		'uraian_kegiatan'		=> 'Rapat Koordinasi/Workshop/Seminar/FGD/Kegiatan Sejenis',
+    		
+    	]);
+    	MakanLembur::create([
+    		'id_kategori_makan'		=> '3',
+    		'uraian_kegiatan'		=> 'Rapat/Kegiatan Mengundang Pejabat Tingkat Menteri/Eselon I/Setara',
+    		
     	]);
     }
 }
