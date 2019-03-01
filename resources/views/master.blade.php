@@ -132,18 +132,21 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>Charts</span>
+            <span>Standar Biaya Institut</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
+          
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-          </ul> 
-        </li>
+            <?php
+            $jenis_kegiatan=DB::table('jenis_kegiatan')->get();
+        ?>
+            @foreach ($jenis_kegiatan as $x)
+            <li><a href="{{ $x->link_jenis_kegiatan}}"><i class="fa fa-circle-o"></i>{{$x->jenis_kegiatan}} </a></li>  
+            @endforeach
+            </ul>
+            </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>

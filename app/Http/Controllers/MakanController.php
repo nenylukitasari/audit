@@ -4,25 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MakanLembur;
+use App\KategoriMakan;
 use DB;
 
 class MakanController extends Controller
 {
-     public function index()
+    public function index()
     {
         $makan_lembur=DB::table('makan_lembur')
-        ->join('kategori_makan', 'kategori_makan.id_kategori_makan','=','makan_lembur.id_kategori_makan')
-        ->select('kategori_makan.kategori_makan','makan_lembur.uraian_kegiatan','makan_lembur.satuan','makan_lembur.bruto')
-        /*->select('kategori_kegiatan','uraian_kegiatan','satuan','bruto')*/
-        /*->where('id','>',0)*/
-        ->groupBy('kategori_makan.kategori_makan')
-        /*->orderBy('id_makan_lembur', 'ASC')*/
-        /*->having('kategori_kegiatan','>',0)*/
-        ->get()
-        ->toArray();
+        ->join('kategori_makan', function ($join){
+            $join->on('kategori_makan.id_kategori_makan', '=', 'makan_lembur.id_kategori_makan')
+                 ->where('kategori_makan.id_kategori_makan', '=', 1);
+        })->get();
 
-        /*return $makan_lembur;*/
-		
-		return view('makan_lembur',compact('makan_lembur'));
+        /*->join('kategori_makan', 'kategori_makan.id_kategori_makan','=','makan_lembur.id_kategori_makan')
+        ->select('kategori_makan.kategori_makan','makan_lembur.uraian_kegiatan','makan_lembur.satuan','makan_lembur.bruto')
+        ->get();*/
+
+        $kategori_makan=DB::table('kategori_makan')->get();
+		return view('makan_lembur',compact('kategori_makan','makan_lembur'));
     }
 }

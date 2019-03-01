@@ -1,11 +1,9 @@
 @extends('master')
 
 @section('title-bar')
-    SATUAN BIAYA UANG MAKAN, LEMBUR, DAN KONSUMSI RAPAT
+    Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat
 @endsection
-@section('title')
-    SATUAN BIAYA UANG MAKAN, LEMBUR, DAN KONSUMSI RAPAT
-@endsection
+
 @section('right_title')
     SATUAN BIAYA UANG MAKAN, LEMBUR, DAN KONSUMSI RAPAT
 @endsection
@@ -15,6 +13,7 @@
    <link rel="stylesheet" href="{{url('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 @endsection
 @section('content')
+<br/>
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -33,13 +32,22 @@
                 </tr>
                 </thead>
                <tbody>
-                    @foreach ($makan_lembur as $x)
+                    @foreach ($kategori_makan as $kategori)
                     <tr>
-                      <td>{{ $x->kategori_makan}}</td>
-                      <td>{{ $x->uraian_kegiatan}}</td>
-                      <td>{{ $x->satuan}}</td>
-                      <td>{{number_format($x->bruto)}}</td>
+                      <td>
+                        {{ $kategori->kategori_makan}}</td>
+                        
+                          @foreach ($makan_lembur as $x)
+                            <td>{{ $x->uraian_kegiatan}}</td>
+                            <td>{{ $x->satuan}}</td>
+                            @if($x->bruto == null)
+                                    <td></td>
+                                  @else
+                            <td>{{number_format($x->bruto)}}</td>
+                            @endif
+
                     </tr>
+                        @endforeach
                     @endforeach
                   </tfoot>
                 

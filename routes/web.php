@@ -18,6 +18,8 @@ Route::get('/', function () {
 /*Route::get('/makan_lembur_rapat', function () {
     return view('makan_lembur_rapat');
 });*/
-
+/*Route::get('/','JenisKegiatanController@index');*/
 Route::get('/makan_lembur_rapat','MakanController@index');
+Route::get('/lampiranI','LampiranController@lampiranI');
+Route::get('/lampiranII','LampiranController@lampiranII');
 
