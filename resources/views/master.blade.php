@@ -139,12 +139,8 @@
           </a>
           
           <ul class="treeview-menu">
-            <?php
-            $jenis_kegiatan=DB::table('jenis_kegiatan')->get();
-        ?>
-            @foreach ($jenis_kegiatan as $x)
-            <li><a href="{{ $x->link_jenis_kegiatan}}"><i class="fa fa-circle-o"></i>{{$x->jenis_kegiatan}} </a></li>  
-            @endforeach
+            <li><a href="/lampiranI"><i class="fa fa-circle-o"></i>Batas Tertinggi</a></li>
+            <li><a href="/lampiranII"><i class="fa fa-circle-o"></i>Estimasi untuk Perencanaan Anggaran</a></li>  
             </ul>
             </li>
         <li class="treeview">

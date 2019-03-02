@@ -20,6 +20,12 @@ Route::get('/', function () {
 });*/
 /*Route::get('/','JenisKegiatanController@index');*/
 Route::get('/makan_lembur_rapat','MakanController@index');
-Route::get('/lampiranI','LampiranController@lampiranI');
+Route::get('/lampiranI', function () {
+    return view('lampiranI');
+});
+Route::get('/lampiranII', function () {
+    return view('lampiranII');
+});
+/*Route::get('/lampiranI','LampiranController@lampiranI');
 Route::get('/lampiranII','LampiranController@lampiranII');
-
+*/

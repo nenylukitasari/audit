@@ -17,9 +17,8 @@
             <!-- /.box-header -->
             <div class="box-body">
 			<ol>
-			   @foreach ($lampiranII as $x)
-								<li>{{ $x->nama_kegiatan }}</li>
-							@endforeach
+			    <li>Standar Biaya Perencanaan Perjalanan Dinas</li>
+          <li>Standar Biaya Keperluan Operasional</li>
 			           </ol>
             </div>
             <!-- /.box-body -->
