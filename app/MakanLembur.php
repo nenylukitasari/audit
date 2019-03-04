@@ -13,5 +13,10 @@ class MakanLembur extends Model
     {
     	return $this->belongsTo(KategoriMakan::class,'kategori_makan_id');
     }
+
+    public function biaya_konsumsi()
+    {
+    	return $this->hasMany(BiayaKonsumsi::class);
+    }
     
 }

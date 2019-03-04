@@ -86,22 +86,28 @@
                     </tr>
                     <tr>
                     @foreach ($makan_3 as $makan3)
-                      <td>
+                      <th>
                           {{ $makan3->uraian_kegiatan}}
-                      </td>
-                      
+                      </th>
+                      </tr>
+                  @endforeach 
+                        @foreach ($submakan_8 as $sub_8)
+                      <tr>
                       <td>
-                          {{ $makan3->satuan}}
+                          {{ $sub_8->uraian_kegiatan}}
                       </td>
-                      @if($makan3->bruto == null)
+                      <td>
+                          {{ $sub_8->satuan}}
+                      </td>
+                      @if($sub_8->bruto == null)
                       <td>
                       </td>
                       @else
                       <td>
-                      {{number_format($makan3->bruto)}}</td>
+                      {{number_format($sub_8->bruto)}}</td>
                       @endif 
+                      @endforeach
                   </tr>
-                  @endforeach 
                
                   </tfoot>
                 

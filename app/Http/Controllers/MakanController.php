@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MakanLembur;
-use App\KategoriMakan;
+use App\BiayaKonsumsi;
 use DB;
 
 class MakanController extends Controller
@@ -38,8 +38,12 @@ class MakanController extends Controller
         ->where('kategori_makan.kategori_makan_id', '=', 2);
         $makan_3 = MakanLembur::all() 
         ->where('kategori_makan.kategori_makan_id', '=', 3);
+        $submakan_8 = BiayaKonsumsi::all() 
+        ->where('makan_lembur.makan_lembur_id', '=', 8);
+        $submakan_9 = BiayaKonsumsi::all() 
+        ->where('makan_lembur.makan_lembur_id', '=', 9);
         /*$kategori_makan=DB::table('kategori_makan')->get();*/
 
-    return view('makan_lembur', compact('makan_1','makan_2','makan_3'));
+    return view('makan_lembur', compact('makan_1','makan_2','makan_3','submakan_8','submakan_9'));
     }
 }
