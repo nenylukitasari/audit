@@ -14,7 +14,7 @@ class CreateKategoriMakanTable extends Migration
     public function up()
     {
         Schema::create('kategori_makan', function (Blueprint $table) {
-            $table->increments('id_kategori_makan');
+            $table->increments('kategori_makan_id')->unsigned();
             $table->text('kategori_makan');
             $table->timestamps();
         });

@@ -25,30 +25,84 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Kategori Kegiatan</th> 
                   <th>Uraian Kegiatan</th>
                   <th>Satuan</th>
                   <th>Besaran Bruto Maksimum (Rp)</th>
                 </tr>
                 </thead>
                <tbody>
-                    @foreach ($kategori_makan as $kategori)
                     <tr>
-                      <td>
-                        {{ $kategori->kategori_makan}}</td>
-                        
-                          @foreach ($makan_lembur as $x)
-                            <td>{{ $x->uraian_kegiatan}}</td>
-                            <td>{{ $x->satuan}}</td>
-                            @if($x->bruto == null)
-                                    <td></td>
-                                  @else
-                            <td>{{number_format($x->bruto)}}</td>
-                            @endif
-
+                    <th>
+                    Satuan Biaya Uang Makan Pegawai Tetap
+                    </th>
                     </tr>
-                        @endforeach
-                    @endforeach
+                    <tr>
+                    @foreach ($makan_1 as $makan1)
+                      <td>
+                          {{ $makan1->uraian_kegiatan}}
+                      </td>
+                      
+                      <td>
+                          {{ $makan1->satuan}}
+                      </td>
+                      @if($makan1->bruto == null)
+                      <td>
+                      </td>
+                      @else
+                      <td>
+                      {{number_format($makan1->bruto)}}</td>
+                      @endif 
+                  </tr>
+                  @endforeach 
+
+                  <tr>
+                    <th>
+                    Satuan Biaya Lembur
+                    </th>
+                    </tr>
+                    <tr>
+                    @foreach ($makan_2 as $makan2)
+                      <td>
+                          {{ $makan2->uraian_kegiatan}}
+                      </td>
+                      
+                      <td>
+                          {{ $makan2->satuan}}
+                      </td>
+                      @if($makan2->bruto == null)
+                      <td>
+                      </td>
+                      @else
+                      <td>
+                      {{number_format($makan2->bruto)}}</td>
+                      @endif 
+                  </tr>
+                  @endforeach 
+
+                  <tr>
+                    <th>
+                    Satuan Biaya Konsumsi Penyelenggaraan Rapat atau Pertemuan Lain
+                    </th>
+                    </tr>
+                    <tr>
+                    @foreach ($makan_3 as $makan3)
+                      <td>
+                          {{ $makan3->uraian_kegiatan}}
+                      </td>
+                      
+                      <td>
+                          {{ $makan3->satuan}}
+                      </td>
+                      @if($makan3->bruto == null)
+                      <td>
+                      </td>
+                      @else
+                      <td>
+                      {{number_format($makan3->bruto)}}</td>
+                      @endif 
+                  </tr>
+                  @endforeach 
+               
                   </tfoot>
                 
               </table>

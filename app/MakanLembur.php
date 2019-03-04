@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class MakanLembur extends Model
 {
     protected $table = 'makan_lembur';
-
- 	public function kategori_makan()
+    protected $primaryKey = 'makan_lembur_id';
+    
+ 	public function kategori_makan()	
     {
-    	return $this->belongsTo('App\KategoriMakan');
+    	return $this->belongsTo(KategoriMakan::class,'kategori_makan_id');
     }
     
 }
