@@ -20,11 +20,11 @@ Route::get('/', function () {
 });*/
 /*Route::get('/','JenisKegiatanController@index');*/
 Route::get('/makan_lembur_rapat','MakanController@index');
-Route::get('/lampiranI', function () {
-    return view('lampiranI');
+Route::get('/dokumen', function () {
+    return view('dokumen');
 });
-Route::get('/lampiranII', function () {
-    return view('lampiranII');
+Route::get('/add-sbi', function () {
+    return view('tambahsbi');
 });
 /*Route::get('/lampiranI','LampiranController@lampiranI');
 Route::get('/lampiranII','LampiranController@lampiranII');

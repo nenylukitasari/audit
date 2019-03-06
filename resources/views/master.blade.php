@@ -23,6 +23,7 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
+
   @yield('add-css')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -139,8 +140,8 @@
           </a>
           
           <ul class="treeview-menu">
-            <li><a href="/lampiranI"><i class="fa fa-circle-o"></i>Batas Tertinggi</a></li>
-            <li><a href="/lampiranII"><i class="fa fa-circle-o"></i>Estimasi untuk Perencanaan Anggaran</a></li>  
+            <li><a href="/dokumen"><i class="fa fa-circle-o"></i>Dokumen</a></li>
+            <li><a href="/add-sbi"><i class="fa fa-circle-o"></i>Tambah SBI</a></li>  
             </ul>
             </li>
         <li class="treeview">

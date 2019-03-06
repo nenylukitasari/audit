@@ -31,85 +31,51 @@
                 </tr>
                 </thead>
                <tbody>
+                  @foreach ($kategori_makans as $kategori_makan)
                     <tr>
-                    <th>
-                    Satuan Biaya Uang Makan Pegawai Tetap
-                    </th>
-                    </tr>
-                    <tr>
-                    @foreach ($makan_1 as $makan1)
-                      <td>
-                          {{ $makan1->uraian_kegiatan}}
-                      </td>
-                      
-                      <td>
-                          {{ $makan1->satuan}}
-                      </td>
-                      @if($makan1->bruto == null)
-                      <td>
-                      </td>
-                      @else
-                      <td>
-                      {{number_format($makan1->bruto)}}</td>
-                      @endif 
-                  </tr>
-                  @endforeach 
-
-                  <tr>
-                    <th>
-                    Satuan Biaya Lembur
-                    </th>
-                    </tr>
-                    <tr>
-                    @foreach ($makan_2 as $makan2)
-                      <td>
-                          {{ $makan2->uraian_kegiatan}}
-                      </td>
-                      
-                      <td>
-                          {{ $makan2->satuan}}
-                      </td>
-                      @if($makan2->bruto == null)
-                      <td>
-                      </td>
-                      @else
-                      <td>
-                      {{number_format($makan2->bruto)}}</td>
-                      @endif 
-                  </tr>
-                  @endforeach 
-
-                  <tr>
-                    <th>
-                    Satuan Biaya Konsumsi Penyelenggaraan Rapat atau Pertemuan Lain
-                    </th>
-                    </tr>
-                    <tr>
-                    @foreach ($makan_3 as $makan3)
                       <th>
-                          {{ $makan3->uraian_kegiatan}}
+                        {{ $kategori_makan->kategori_makan}}
                       </th>
-                      </tr>
-                  @endforeach 
-                        @foreach ($submakan_8 as $sub_8)
-                      <tr>
+                    </tr>
+                    <tr>
+                    @foreach ($kategori_makan->makan_lembur as $makan)
                       <td>
-                          {{ $sub_8->uraian_kegiatan}}
+                          {{ $makan->uraian_kegiatan}}
                       </td>
+                      
                       <td>
-                          {{ $sub_8->satuan}}
+                          {{ $makan->satuan}}
                       </td>
-                      @if($sub_8->bruto == null)
+                      @if($makan->bruto == null)
                       <td>
                       </td>
                       @else
                       <td>
-                      {{number_format($sub_8->bruto)}}</td>
+                      {{number_format($makan->bruto)}}</td>
                       @endif 
+                    </tr>
+                      @foreach ($makan->biaya_konsumsi as $biaya)
+                        <td>
+                          {{ $biaya->uraian_kegiatan}}
+                        </td>
+                        
+                        <td>
+                            {{ $biaya->satuan}}
+                        </td>
+                        @if($biaya->bruto == null)
+                        <td>
+                        </td>
+                        @else
+                        <td>
+                          {{number_format($biaya->bruto)}}</td>
+                        @endif 
+                        <tr>
                       @endforeach
-                  </tr>
-               
-                  </tfoot>
+                    @endforeach
+                  @endforeach
+
+                  
+                </tfoot>
                 
               </table>
             <!-- /.box-body -->
