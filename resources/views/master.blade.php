@@ -141,7 +141,7 @@
           
           <ul class="treeview-menu">
             <li><a href="/dokumen"><i class="fa fa-circle-o"></i>Dokumen</a></li>
-            <li><a href="/add-sbi"><i class="fa fa-circle-o"></i>Tambah SBI</a></li>  
+            <li><a href="/tambahsbi"><i class="fa fa-circle-o"></i>Tambah SBI</a></li>  
             </ul>
             </li>
         <li class="treeview">

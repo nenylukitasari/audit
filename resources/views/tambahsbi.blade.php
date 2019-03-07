@@ -1,75 +1,68 @@
-@extends('master')
+<!-- AJAX CRUD operations -->
+    <script type="text/javascript">
+        // add a new post
+        $('.modal-footer').on('click', '.add', function() {
+            $.ajax({
+                type: 'POST',
+                url: 'posts',
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'title': $('#title_add').val(),
+                    'satuan': $('#satuan_add').val(),
+                    'bruto': $('#bruto_add').val()
+                },
+                success: function(data) {
+                    $('.errorTitle').addClass('hidden');
+                    $('.errorSatuan').addClass('hidden');
+                    $('.errorBruto').addClass('hidden');
 
-@section('title-bar')
-    Dokumen SBI
-@endsection
-@section('right_title')
-  Standar Biaya Institut
-@endsection
-@section('add-css')
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="{{url('css/bootstrap-select.min.css')}}" rel="stylesheet" />
-@endsection
+                    if ((data.errors)) {
+                        setTimeout(function () {
+                            $('#addModal').modal('show');
+                            toastr.error('Validation error!', 'Error Alert', {timeOut: 5000});
+                        }, 500);
 
-@section('content')
-<div class="container">
-			<br />
-			<h2 align="center">Ajax Live Data Search using Multi Select Dropdown in PHP</h2><br />
-			
-			<select name="multi_search_filter" id="multi_search_filter" multiple class="form-control selectpicker">
-			<?php
-			foreach($result as $row)
-			{
-				echo '<option value="'.$row["Country"].'">'.$row["Country"].'</option>';	
-			}
-			?>
-			</select>
-			<input type="hidden" name="hidden_country" id="hidden_country" />
-			<div style="clear:both"></div>
-			<br />
-			<div class="table-responsive">
-				<table class="table table-striped table-bordered">
-					<thead>
-						<tr>
-							<th>Kategori</th>
-							<th>Uraian Kegiatan</th>
-							<th>Satuan</th>
-							<th>Besaran Bruto Maksimum</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
-			</div>
-			<br />
-			<br />
-			<br />
-		</div>
-
-@endsection
-
-
-@section('add-script')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{{url('js/bootstrap-select.min.js')}}"></script>
-    <script>
-    $(document).ready(function(){
-
-	load_data();
-	
-	function load_data(query='')
-	{
-		$.ajax({
-			url:"fetch.php",
-			method:"POST",
-			data:{query:query},
-			success:function(data)
-			{
-				$('tbody').html(data);
-			}
-		})
-		}
-	});
-</script>
-@endsection
+                        if (data.errors.title) {
+                            $('.errorTitle').removeClass('hidden');
+                            $('.errorTitle').text(data.errors.title);
+                        }
+                        if (data.errors.satuan) {
+                            $('.errorSatuan').removeClass('hidden');
+                            $('.errorSatuan').text(data.errors.satuan);
+                        }
+                        if (data.errors.bruto) {
+                            $('.errorBruto').removeClass('hidden');
+                            $('.errorBruto').text(data.errors.bruto);
+                        }
+                    } else {
+                        toastr.success('Data berhasil ditambahkan', 'Success Alert', {timeOut: 5000});
+                        $('#postTable').prepend("<tr class='item" + data.id + "'><td class='col1'>" + data.id + "</td><td>" + data.title + "</td><td>" + data.content + "</td><td class='text-center'><input type='checkbox' class='new_published' data-id='" + data.id + " '></td><td>Just now!</td><td><button class='show-modal btn btn-success' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal btn btn-info' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+                        $('.new_published').iCheck({
+                            checkboxClass: 'icheckbox_square-yellow',
+                            radioClass: 'iradio_square-yellow',
+                            increaseArea: '20%'
+                        });
+                        $('.new_published').on('ifToggled', function(event){
+                            $(this).closest('tr').toggleClass('warning');
+                        });
+                        $('.new_published').on('ifChanged', function(event){
+                            id = $(this).data('id');
+                            $.ajax({
+                                type: 'POST',
+                                url: "{{ URL::route('changeStatus') }}",
+                                data: {
+                                    '_token': $('input[name=_token]').val(),
+                                    'id': id
+                                },
+                                success: function(data) {
+                                    // empty
+                                },
+                            });
+                        });
+                        $('.col1').each(function (index) {
+                            $(this).html(index+1);
+                        });
+                    }
+                },
+            });
+        });

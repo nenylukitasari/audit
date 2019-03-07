@@ -14,7 +14,7 @@ class CreateBiayaKonsumsiTable extends Migration
     public function up()
     {
        Schema::create('biaya_konsumsi', function (Blueprint $table) {
-            $table->increments('biaya_konsumsi_id')->unsigned();
+            $table->increments('id')->unsigned();
             $table->integer('makan_lembur_id')->unsigned();
             $table->foreign('makan_lembur_id')->references('makan_lembur_id')
             ->on('makan_lembur');

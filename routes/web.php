@@ -15,17 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*Route::get('/makan_lembur_rapat', function () {
-    return view('makan_lembur_rapat');
-});*/
-/*Route::get('/','JenisKegiatanController@index');*/
 Route::get('/makan_lembur_rapat','MakanController@index');
+Route::get('/makan_lembur_rapat_fetch','MakanController@fetch');
+
+Route::resource('posts','MakanController');
+Route::get("tambah","MakanController@tambah_makan");
+Route::post("tambah","MakanController@tambah_makan");
 Route::get('/dokumen', function () {
     return view('dokumen');
 });
-Route::get('/add-sbi', function () {
+Route::get('/tambahsbi', function () {
     return view('tambahsbi');
 });
-/*Route::get('/lampiranI','LampiranController@lampiranI');
-Route::get('/lampiranII','LampiranController@lampiranII');
-*/
+

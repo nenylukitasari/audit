@@ -14,7 +14,7 @@ class CreateMakanLemburTable extends Migration
     public function up()
     {
         Schema::create('makan_lembur', function (Blueprint $table) {
-            $table->increments('makan_lembur_id')->unsigned();
+            $table->increments('id')->unsigned();
             $table->integer('kategori_makan_id')->unsigned();
             $table->foreign('kategori_makan_id')->references('kategori_makan_id')->on('kategori_makan');
             $table->text('uraian_kegiatan');

@@ -23,7 +23,7 @@
 
             <div class="box-body" style="">
       			<ol>
-      			  	<li>Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat</li>
+      			  	<a href="/makan_lembur_rapat"><li>Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat</a></li>
                 <li>Standar Biaya Perjalanan Dinas</li>
                 <li>Standar Biaya Honorarium</li>
                 <li>Standar Biaya Honorarium Tidak Tetap</li>
