@@ -9,58 +9,47 @@ use App\KategoriMakan;
 use App\BiayaKonsumsi;
 use DB;
 use Validator;
-use Response;
-use View;
 
 class MakanController extends Controller
 {
-    
-    protected $rules =
-    [
-        'title' => 'required',
-        'satuan' => 'required|regex:/^[a-z ,.\'-]+$/i',
-        'bruto' => 'required|numeric|regex:/^[a-z ,.\'-]+$/i'
-    ];
-
     public function index() {
         $kategori_makans = KategoriMakan::with('makan_lembur_biaya_konsumsi')->get();
         // dd($kategori_makans);
+        $kategoris=DB::table('kategori_makan')->get();
 
-        return view('makan_lembur', compact('kategori_makans'));
+        return view('makan_lembur', compact('kategori_makans','kategoris'));
     }
 
-    public function fetch(Request $request)
+    public function tambah_makan(Request $request)
     {
-        $data = [];
-        if($request->has('q')){
-            $search = $request->q;
-            $data = DB::table("kategori_makan")
-                    ->select("id","kategori_makan")
-                    ->where('kategori_makan','LIKE',"%$search%")
-                    ->get();
+        $input = $request->all();
+
+            //print_r($input);
+        $rules = [];
+
+
+        foreach($request->input('uraian_kegiatan') as $key => $value) {
+            $rules["uraian_kegiatan.{$key}"] = 'required';
+            $rules["satuan.{$key}"] = 'required';
+            $rules["bruto.{$key}"] = 'required|numeric';
         }
-        else {
-            $data = DB::table("kategori_makan")
-                    ->select("id","kategori_makan")
-                    ->get();
+
+
+        $validator = Validator::make($request->all(), $rules);
+
+
+        if ($validator->passes())
+        {
+            $makan_lembur= new makan_lembur;
+            $makan_lembur->kategori_makan_id = $input['kategori_makan'][0];
+            $makan_lembur->uraian_kegiatan = $input['uraian_kegiatan'][0];
+            $makan_lembur->satuan = $input['satuan'][0];
+            $makan_lembur->bruto = $input['bruto'][0];
+            $makan_lembur->save();
+            
+            //return print_r($input);
+            return response()->json(['success'=>'done']);            
         }
-        return response()->json($data);
+        return response()->json(['error'=>$validator->errors()->all()]);
     }
-
-    public function store(Request $request)
-    {
-        $validator = Validator::make(Input::all(), $this->rules);
-        if ($validator->fails()) {
-            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
-        } else {
-            $kategori_makans = new Kategori_makan();
-            $kategori_makans->title = $request->title;
-            $kategori_makans->satuan = $request->satuan;
-            $kategori_makans->bruto = $request->bruto;
-            $kategori_makans->save();
-            return response()->json($kategori_makans);
-        }
-    }
-
-
 }

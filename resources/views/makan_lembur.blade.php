@@ -13,12 +13,9 @@
    <link rel="stylesheet" href="{{url('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
    <!-- Form -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-  <!-- CSFR token for ajax call -->
-    <meta name="_token" content="{{ csrf_token() }}"/>
-      <!-- toastr notifications -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- CSRF token for ajax call -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
 @endsection
 @section('content')
 <br/>
@@ -41,51 +38,38 @@
                 <h4 class="modal-title">Tambah Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat</h4>
               </div>
               <div class="modal-body">
-                 <select class="itemName form-control" style="width:500px;" name="itemName">
-                 </select>
-                 <br/><br/>
-
-                  <form class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="title">Uraian Kegiatan:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="title_add" autofocus>
-                                <p class="errorTitle text-center alert alert-danger hidden"></p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="satuan">Satuan:</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" id="satuan_add"></textarea>
-                                <p class="errorSatuan text-center alert alert-danger hidden"></p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="bruto">Bruto:</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" id="bruto_add"></textarea>
-                                <p class="errorBruto text-center alert alert-danger hidden"></p>
-                            </div>
-                        </div>
-                    </form>
-                 {{-- 
-                 <select name="kategori" id="kategori" class="form-control dynamic" data-dependent="sub-kategori">
-                 <option value="">Pilih Kategori</option>
-                 @foreach($kategori_makans as $kategori_makan)
-                 <option value="{{ $kategori_makan->id}}">{{ $kategori_makan->kategori_makan }}</option>
-                 @endforeach
-                  </select>
-                 <br/>
-               {{ csrf_field() }} --}}
+                <form name="add_makan" id="add_makan">  
+                    <div class="alert alert-danger print-error-msg" style="display:none">
+                      <ul></ul>
+                    </div>
+                    <div class="alert alert-success print-success-msg" style="display:none">
+                      <ul></ul>
+                    </div>
+                    <div class="form-group">
+                      <select class="form-control select2" style="width:500px;" name="kategori_makan[]">
+                        <option></option>
+                        @foreach($kategoris as $kategori)
+                        <option value="{{$kategori->id}}">{{$kategori->kategori_makan}}</option>
+                        @endforeach
+                      </select>  
+                    </div>
+                    <div class="table-responsive">  
+                    <table class="table table-bordered" id="dynamic_field">  
+                      <tr>  
+                        <td><input type="text" name="uraian_kegiatan[]" placeholder="Uraian Kegiatan" class="form-control name_list" /></td>  
+                        <td><input type="text" name="satuan[]" placeholder="Satuan" class="form-control name_list" /></td>  
+                        <td><input type="text" name="bruto[]" placeholder="Bruto" class="form-control name_list" /></td>  
+                      </tr>  
+                    </table>  
+                <input type="button" name="submit" id="submit" class="btn btn-info" value="Tambah" />  
+                  </div>
+                </form>
                
             </div>
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                 {{-- <input type="button" class="btn btn-primary" name="submit" id="submit" class="btn btn-info" value="Tambah" /> --}}  
-                <button type="button" class="btn btn-success add" data-dismiss="modal">
-                          <span id="" class='glyphicon glyphicon-check'></span> Add
-                      </button>
                 {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
               </div>
             </div>
@@ -97,7 +81,7 @@
 
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="postTable" class="table table-bordered table-hover">
+              <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>Uraian Kegiatan</th>
@@ -114,7 +98,7 @@
                     </tr>
                     <tr>
                     @foreach ($kategori_makan->makan_lembur as $makan)
-                      <td class="col1">
+                      <td>
                           {{ $makan->uraian_kegiatan}}
                       </td>
                       
@@ -172,7 +156,7 @@
 <script>
   $(function () {
     $('#example1').DataTable()
-    $('#postTable').DataTable({
+    $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': false,
       'searching'   : false,
@@ -184,95 +168,65 @@
 </script>
 
 <!-- form -->
-<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 
-
-    <!-- Bootstrap JavaScript -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.1/js/bootstrap.min.js"></script>
-
-    <!-- toastr notifications -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-    <!-- Delay table load until everything else is loaded -->
-    <script>
-        $(window).load(function(){
-            $('#postTable').removeAttr('style');
-        })
-    </script>
 
 <script type="text/javascript">
-      $('.itemName').select2({
-        placeholder: 'Pilih Kategori',
-        ajax: {
-          url: '/makan_lembur_rapat_fetch',
-          dataType: 'json',
-          // delay: 250,
-          processResults: function (data) {
-            return {
-              results:  $.map(data, function (item) {
-                    return {
-                        text: item.kategori_makan,
-                        id: item.id
-                    }
-                })
-            };
-          },
-          cache: true
+  $(document).ready(function(){      
+    var postURL = "<?php echo url('tambah'); ?>";
+    var i=1;  
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $('#submit').click(function(){            
+     $.ajax({  
+      url:postURL,  
+      method:"POST",  
+      data:$('#add_makan').serialize(),
+      type:'json',
+      success:function(data)  
+      {
+        if(data.error){
+          printErrorMsg(data.error);
+        }else{
+          i=1;
+          $('.dynamic-added').remove();
+          $('#add_makan')[0].reset();
+          $(".print-success-msg").find("ul").html('');
+          $(".print-success-msg").css('display','block');
+          $(".print-error-msg").css('display','none');
+          $(".print-success-msg").find("ul").append('<li>Data berhasil ditambahkan.</li>');
         }
-      });
+      }  
+    });  
+   });  
+
+    function printErrorMsg (msg) {
+     $(".print-error-msg").find("ul").html('');
+     $(".print-error-msg").css('display','block');
+     $(".print-success-msg").css('display','none');
+     $.each( msg, function( key, value ) {
+      $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+    });
+   }
+ });  
 </script>
 
-<!-- AJAX CRUD operations -->
-    <script type="text/javascript">
-        // add a new post
-        $('.modal-footer').on('click', '.add', function() {
-            $.ajax({
-                type: 'POST',
-                url: 'posts',
-                data: {
-                    '_token': $('input[name=_token]').val(),
-                    'title': $('#title_add').val(),
-                    'satuan': $('#satuan_add').val(),
-                    'bruto': $('#bruto_add').val()
-                },
-                success: function(data) {
-                    $('.errorTitle').addClass('hidden');
-                    $('.errorSatuan').addClass('hidden');
-                    $('.errorBruto').addClass('hidden');
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2(
+    {
+      placeholder: "Pilih Kategori",
+      allowClear: true
+    })
 
-                    if ((data.errors)) {
-                        setTimeout(function () {
-                            $('#addModal').modal('show');
-                            toastr.error('Validation error!', 'Error Alert', {timeOut: 5000});
-                        }, 500);
-
-                        if (data.errors.title) {
-                            $('.errorTitle').removeClass('hidden');
-                            $('.errorTitle').text(data.errors.title);
-                        }
-                        if (data.errors.satuan) {
-                            $('.errorSatuan').removeClass('hidden');
-                            $('.errorSatuan').text(data.errors.satuan);
-                        }
-                        if (data.errors.bruto) {
-                            $('.errorBruto').removeClass('hidden');
-                            $('.errorBruto').text(data.errors.bruto);
-                        }
-                    } else {
-                        toastr.success('Data berhasil ditambahkan', 'Success Alert', {timeOut: 5000});
-                          $('#postTable').prepend("<td class='col1'>" + data.title + "</td><td>" + data.satuan + "</td><td>" + data.bruto </td>");
-                    }
-                },
-            });
-        });
-
-  </script>
-        
-
-
-
-
+  })
+</script>
 @endsection

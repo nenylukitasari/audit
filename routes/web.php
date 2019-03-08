@@ -16,10 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('/makan_lembur_rapat','MakanController@index');
-Route::get('/makan_lembur_rapat_fetch','MakanController@fetch');
-
-Route::resource('posts','MakanController');
-Route::get("tambah","MakanController@tambah_makan");
 Route::post("tambah","MakanController@tambah_makan");
 Route::get('/dokumen', function () {
     return view('dokumen');
