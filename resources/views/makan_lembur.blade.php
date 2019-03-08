@@ -17,6 +17,8 @@
     <meta name="_token" content="{{ csrf_token() }}"/>
       <!-- toastr notifications -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('content')
 <br/>
@@ -48,7 +50,6 @@
                             <label class="control-label col-sm-2" for="title">Uraian Kegiatan:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="title_add" autofocus>
-                                <small>Min: 1</small>
                                 <p class="errorTitle text-center alert alert-danger hidden"></p>
                             </div>
                         </div>
@@ -56,7 +57,6 @@
                             <label class="control-label col-sm-2" for="satuan">Satuan:</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" id="satuan_add"></textarea>
-                                <small>Min: 1, only text</small>
                                 <p class="errorSatuan text-center alert alert-danger hidden"></p>
                             </div>
                         </div>
@@ -64,7 +64,6 @@
                             <label class="control-label col-sm-2" for="bruto">Bruto:</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" id="bruto_add"></textarea>
-                                <small>Min: 1, only number</small>
                                 <p class="errorBruto text-center alert alert-danger hidden"></p>
                             </div>
                         </div>
@@ -85,7 +84,7 @@
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                 {{-- <input type="button" class="btn btn-primary" name="submit" id="submit" class="btn btn-info" value="Tambah" /> --}}  
                 <button type="button" class="btn btn-success add" data-dismiss="modal">
-                          <span id="" class='glyphicon glyphicon-check'></span> Tambah
+                          <span id="" class='glyphicon glyphicon-check'></span> Add
                       </button>
                 {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
               </div>
@@ -108,14 +107,14 @@
                 </thead>
                <tbody>
                   @foreach ($kategori_makans as $kategori_makan)
-                    <tr class="item">
+                    <tr>
                       <th>
                         {{ $kategori_makan->kategori_makan}}
                       </th>
                     </tr>
                     <tr>
                     @foreach ($kategori_makan->makan_lembur as $makan)
-                      <td>
+                      <td class="col1">
                           {{ $makan->uraian_kegiatan}}
                       </td>
                       
@@ -185,6 +184,7 @@
 </script>
 
 <!-- form -->
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -263,15 +263,15 @@
                         }
                     } else {
                         toastr.success('Data berhasil ditambahkan', 'Success Alert', {timeOut: 5000});
-                        /*$('#postTable').prepend("<tr class='item" + data.id + "'><td class='col1'>" + data.id + "</td><td>" + data.title + "</td><td>" + data.content + "</td></tr>");
-                        
-                        $('.col1').each(function (index) {
-                            $(this).html(index+1);
-                        });*/
+                          $('#postTable').prepend("<td class='col1'>" + data.title + "</td><td>" + data.satuan + "</td><td>" + data.bruto </td>");
                     }
                 },
             });
         });
+
+  </script>
+        
+
 
 
 
