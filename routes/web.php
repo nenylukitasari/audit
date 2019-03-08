@@ -16,11 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('/makan_lembur_rapat','MakanController@index');
-Route::post("tambah","MakanController@tambah_makan");
+Route::post('/sbi/update','MakanController@tambah_makan');
 Route::get('/dokumen', function () {
     return view('dokumen');
 });
-Route::get('/tambahsbi', function () {
-    return view('tambahsbi');
-});
 
+Route::get('/perjalanan_dinas','MakanController@perjalanan_dinas');

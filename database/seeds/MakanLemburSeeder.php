@@ -60,16 +60,23 @@ class MakanLemburSeeder extends Seeder
     		'bruto'					=> '13000',
     	]);
 
-
     	MakanLembur::create([
     		'kategori_makan_id'		=> '3',
     		'uraian_kegiatan'		=> 'Rapat Koordinasi/Workshop/Seminar/FGD/Kegiatan Sejenis',
-    		
     	]);
+
     	MakanLembur::create([
     		'kategori_makan_id'		=> '3',
-    		'uraian_kegiatan'		=> 'Rapat/Kegiatan Mengundang Pejabat Tingkat Menteri/Eselon I/Setara',
-    		
+    		'uraian_kegiatan'		=> 'Rapat/Kegiatan Mengundang Pejabat Tingkat Menteri/Eselon I/Setara',	
     	]);
+
+        MakanLembur::create([
+            'kategori_makan_id'     => '4',
+            'uraian_kegiatan'       => 'Aceh',
+            'satuan'                => 'OH',
+            'bruto'                 => '360000',
+            'dalam_kota'            => '140000',
+            'diklat'                => '110000',
+        ]);
     }
 }

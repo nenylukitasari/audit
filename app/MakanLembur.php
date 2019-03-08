@@ -8,7 +8,7 @@ class MakanLembur extends Model
 {
     protected $table = 'makan_lembur';
     protected $primaryKey = 'id';
-    protected $fillable = ['uraian_kegiatan', 'satuan', 'bruto'];
+    protected $fillable = ['uraian_kegiatan', 'satuan', 'bruto','luar_kota','diklat','A','B','C','D'];
     
  	public function kategori_makan()	
     {

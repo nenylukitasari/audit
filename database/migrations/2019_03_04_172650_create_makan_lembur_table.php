@@ -16,10 +16,16 @@ class CreateMakanLemburTable extends Migration
         Schema::create('makan_lembur', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('kategori_makan_id')->unsigned();
-            $table->foreign('kategori_makan_id')->references('kategori_makan_id')->on('kategori_makan');
+            $table->foreign('kategori_makan_id')->references('id')->on('kategori_makan');
             $table->text('uraian_kegiatan');
             $table->string('satuan')->nullable();
             $table->integer('bruto')->nullable();
+            $table->integer('dalam_kota')->nullable();
+            $table->integer('diklat')->nullable();
+            $table->integer('A')->nullable();
+            $table->integer('B')->nullable();
+            $table->integer('C')->nullable();
+            $table->integer('D')->nullable();
             $table->timestamps();   
         });
     }

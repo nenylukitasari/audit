@@ -1,11 +1,11 @@
 @extends('master')
 
 @section('title-bar')
-    Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat
+    Standar Biaya Perjalanan Dinas
 @endsection
 
 @section('right_title')
-    SATUAN BIAYA UANG MAKAN, LEMBUR, DAN KONSUMSI RAPAT
+    STANDAR BIAYA PERJALANAN DINAS
 @endsection
 
 @section('add-css')
@@ -14,7 +14,7 @@
    <!-- Form -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
   <!-- CSRF token for ajax call -->
-    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
 @endsection
 @section('content')
@@ -23,7 +23,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">SATUAN BIAYA UANG MAKAN, LEMBUR, DAN KONSUMSI RAPAT</h3>
+              <h3 class="box-title">Standar Biaya Perjalanan Dinas</h3>
               <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Tambah
           </button>
             </div>
@@ -35,13 +35,18 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Tambah Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat</h4>
+                <h4 class="modal-title">Tambah Standar Biaya Perjalanan Dinas</h4>
               </div>
               <div class="modal-body">
-                <form action="{{url('/sbi/update')}}" method="POST" name="add_makan" id="add_makan">
-                  {{csrf_field()}}
+                <form name="add_makan" id="add_makan">  
+                    <div class="alert alert-danger print-error-msg" style="display:none">
+                      <ul></ul>
+                    </div>
+                    <div class="alert alert-success print-success-msg" style="display:none">
+                      <ul></ul>
+                    </div>
                     <div class="form-group">
-                      <select class="form-control select2" style="width:500px;" name="kategori_makan">
+                      <select class="form-control select2" style="width:500px;" name="kategori_makan[]">
                         <option></option>
                         @foreach($kategoris as $kategori)
                         <option value="{{$kategori->id}}">{{$kategori->kategori_makan}}</option>
@@ -51,12 +56,14 @@
                     <div class="table-responsive">  
                     <table class="table table-bordered" id="dynamic_field">  
                       <tr>  
-                        <td><input type="text" name="uraian_kegiatan" placeholder="Uraian Kegiatan" class="form-control name_list" /></td>  
-                        <td><input type="text" name="satuan" placeholder="Satuan" class="form-control name_list" /></td>  
-                        <td><input type="text" name="bruto" placeholder="Bruto" class="form-control name_list" /></td>  
+                        <td><input type="text" name="uraian_kegiatan[]" placeholder="Provinsi" class="form-control name_list" /></td>  
+                        <td><input type="text" name="satuan[]" placeholder="Satuan" class="form-control name_list" /></td>  
+                        <td><input type="text" name="bruto[]" placeholder="Luar Kota (Rp)" class="form-control name_list" /></td>  
+                        <td><input type="text" name="dalam_kota[]" placeholder="Dalam Kota Lebih dari 8 jam (Rp)" class="form-control name_list" /></td>  
+                        <td><input type="text" name="diklat[]" placeholder="Diklat (Rp)" class="form-control name_list" /></td>  
                       </tr>  
                     </table>  
-                <input type="submit" name="submit" id="submit" class="btn btn-info" value="Tambah" />  
+                <input type="button" name="submit" id="submit" class="btn btn-info" value="Tambah" />  
                   </div>
                 </form>
                
@@ -79,9 +86,11 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th>Uraian Kegiatan</th>
+                  <th>Provinsi</th>
                   <th>Satuan</th>
-                  <th>Besaran Bruto Maksimum (Rp)</th>
+                  <th>Luar Kota (Rp)</th>
+                  <th>Dalam Kota Lebih dari 8 Jam (Rp)</th>
+                  <th>Diklat (Rp)</th>
                 </tr>
                 </thead>
                <tbody>
@@ -108,23 +117,8 @@
                       {{number_format($makan->bruto)}}</td>
                       @endif 
                     </tr>
-                      @foreach ($makan->biaya_konsumsi as $biaya)
-                        <td>
-                          {{ $biaya->uraian_kegiatan}}
-                        </td>
-                        
-                        <td>
-                            {{ $biaya->satuan}}
-                        </td>
-                        @if($biaya->bruto == null)
-                        <td>
-                        </td>
-                        @else
-                        <td>
-                          {{number_format($biaya->bruto)}}</td>
-                        @endif 
-                        <tr>
-                      @endforeach
+                      
+                      
                     @endforeach
                   @endforeach 
                 </tfoot>
@@ -168,14 +162,6 @@
 <script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 
 
-<script type="text/javascript">
-  $(document).ready(function(){      
-    submitForm = function()
-    {
-      $('$add_makan').submit();
-    }
-  }
-</script>
 <script type="text/javascript">
   $(document).ready(function(){      
     var postURL = "<?php echo url('tambah'); ?>";

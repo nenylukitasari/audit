@@ -23,5 +23,37 @@ class KategoriMakanSeeder extends Seeder
       	KategoriMakan::create([
     		'kategori_makan'		=> 'Satuan Biaya Konsumsi Penyelenggaraan Rapat atau Pertemuan Lain',
     	]);
+
+        KategoriMakan::create([
+            'kategori_makan'        => 'Satuan Uang Harian Perjalanan Dinas Dalam Negeri',
+        ]);
+
+        KategoriMakan::create([
+            'kategori_makan'        => 'Satuan Uang Representasi',
+        ]);
+
+        KategoriMakan::create([
+            'kategori_makan'        => 'Satuan Uang Harian Perjalanan Dinas Luar Negeri (Dalam US$)',
+        ]);
+
+        KategoriMakan::create([
+            'kategori_makan'        => 'Satuan Biaya Rapat/Pertemuan di Luar Kantor',
+        ]);
+
+        KategoriMakan::create([
+            'kategori_makan'        => 'Satuan Biaya Transportasi Kegiatan Dalam Kota',
+        ]);
+
+        KategoriMakan::create([
+            'kategori_makan'        => 'Satuan Biaya Perjalanan Dinas Bagi Mahasiswa',
+        ]);
+
+        KategoriMakan::create([
+            'kategori_makan'        => 'Satuan Biaya Taksi Perjalanan Dinas Dalam Negeri',
+        ]);
+
+        
+
+
     }
 }
