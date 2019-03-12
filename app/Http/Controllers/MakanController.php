@@ -20,7 +20,7 @@ class MakanController extends Controller
         return view('makan_lembur', compact('kategori_makans','kategoris'));
     }
 
-    public function perjalanan_dinas() {
+    /*public function perjalanan_dinas() {
         $kategori_makans = KategoriMakan::with('makan_lembur_biaya_konsumsi')
         ->where('kategori_makan.id','>',3)
         ->where('kategori_makan.id','<=',20)->get();
@@ -29,7 +29,7 @@ class MakanController extends Controller
         ->where('kategori_makan.id','>',3)->get();
 
         return view('makan_lembur', compact('kategori_makans','kategoris'));
-    }
+    }*/
 
     public function store(Request $r)
     {
@@ -40,9 +40,6 @@ class MakanController extends Controller
             'satuan' => 'required',
         ]);
 
-        // $validator = Validator::make($request->all(), $rules);
-
-
         if ($validator->passes())
         {
             $makan_lembur= new MakanLembur;
@@ -51,34 +48,15 @@ class MakanController extends Controller
             $makan_lembur->satuan = $r->satuan;
             $makan_lembur->bruto = $r->bruto;
             $makan_lembur->save();
-            
             return redirect('/makan_lembur_rapat');
-            //return response()->json(['success'=>'Record is successfully added']);
-           //return response()->json(['success'=>'Added new records.']);
-           // return response()->json(['success'=>'done']);
-            
-             //return redirect('register')->withErrors($validator);
-            // return response()->json(['success'=>'done']); 
         }
         
         else{
-                        // get the error messages from the validator
+              // get the error messages from the validator
               $messages = $validator->messages();
 
               // redirect our user back to the form with the errors from the validator
-              return redirect('/makan_lembur_rapat')
-               ->withErrors($validator);
-
+              return redirect('/makan_lembur_rapat')->withErrors($validator);
         }
-        //return response()->json(['error'=>$validator->errors()->all()]);
-        
-             // return response()->json(['errors'=>$validator->errors()->all()]);
-
-        // // else {
-        //  return redirect('/makan_lembur_rapat')->withErrors($validator);
-             // return redirect()->back()->withErrors($validator->errors());
-        // }
-        
-
     }
 }

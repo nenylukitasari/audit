@@ -41,20 +41,22 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Tambah Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat</h4>
+                <h4 class="modal-title">Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat</h4>
               </div>
               <div class="modal-body">
                 <form action="{{url('/makan_lembur_rapat')}}" method="POST" name="add_makan" id="add_makan"> 
               {{-- <form name="add_makan" id="add_makan">  --}}
                   @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
+
+              
                 {{-- <div class="alert alert-danger print-error-msg" style="display:none">
                   <ul></ul>
                 </div>  --}}
@@ -124,7 +126,10 @@
                       </th>
                       <td></td>
                       <td></td>
-                      <td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-edit">Edit
+                      <td> 
+                        <i class="fa fa-eye" data-toggle="modal" data-target="#show-modal"> | 
+                          <i class="fa fa-pencil" data-toggle="modal" data-target="#edit-modal"> 
+                        {{-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-edit">Edit --}}
                           </button></td>
                     </tr>
                     <tr>
@@ -144,8 +149,9 @@
                       {{number_format($makan->bruto)}}</td>
                       @endif 
                       <td>
-                          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-edit">Edit
-                          </button></td>
+                          <i class="fa fa-eye" data-toggle="modal" data-target="#show-modal"> | 
+                          <i class="fa fa-pencil" data-toggle="modal" data-target="#edit-modal"> 
+                          </td>
                     </tr>
                       @foreach ($makan->biaya_konsumsi as $biaya)
                         <td>
@@ -163,8 +169,8 @@
                           {{number_format($biaya->bruto)}}</td>
                         @endif 
                         <td>
-                          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-edit">Edit
-                          </button></td>
+                          <i class="fa fa-eye" data-toggle="modal" data-target="#show-modal"> | 
+                          <i class="fa fa-pencil" data-toggle="modal" data-target="#edit-modal"> </td>
                         <tr>
                       @endforeach
                     @endforeach
