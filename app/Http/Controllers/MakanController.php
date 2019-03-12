@@ -61,7 +61,16 @@ class MakanController extends Controller
             // return response()->json(['success'=>'done']); 
         }
         
-        return response()->json(['error'=>$validator->errors()->all()]);
+        else{
+                        // get the error messages from the validator
+              $messages = $validator->messages();
+
+              // redirect our user back to the form with the errors from the validator
+              return redirect('/makan_lembur_rapat')
+               ->withErrors($validator);
+
+        }
+        //return response()->json(['error'=>$validator->errors()->all()]);
         
              // return response()->json(['errors'=>$validator->errors()->all()]);
 

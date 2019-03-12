@@ -13,12 +13,14 @@
    <link rel="stylesheet" href="{{url('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
    <!-- Form -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
   <!-- CSRF token for ajax call -->
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  
+  {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
+  {{-- 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --}}
+
 
 @endsection
 @section('content')
@@ -42,11 +44,20 @@
                 <h4 class="modal-title">Tambah Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat</h4>
               </div>
               <div class="modal-body">
-                {{-- <form action="{{url('/makan_lembur_rapat')}}" method="POST" name="add_makan" id="add_makan">  --}}
-              <form name="add_makan" id="add_makan"> 
-                <div class="alert alert-danger print-error-msg" style="display:none">
+                <form action="{{url('/makan_lembur_rapat')}}" method="POST" name="add_makan" id="add_makan"> 
+              {{-- <form name="add_makan" id="add_makan">  --}}
+                  @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+                {{-- <div class="alert alert-danger print-error-msg" style="display:none">
                   <ul></ul>
-                </div> 
+                </div>  --}}
                   {{csrf_field()}} 
                     <div class="form-group">
                       <select class="form-control select2" style="width:500px;" name="kategori_makan">
@@ -219,43 +230,6 @@
 
 <!-- form -->
 <script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>        
-
-<script type="text/javascript">
-  $(document).ready(function(){      
-    var postURL = "<?php echo url('/makan_lembur_rapat'); ?>";
-    var i=1;  
-
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-
-    $('#submit').click(function(){            
-     $.ajax({  
-      url:postURL,  
-      method:"POST",  
-      data:$('#add_makan').serialize(),
-      type:'json',
-      success:function(data)  
-      {
-        if(data.error){
-          printErrorMsg(data.error);
-        }
-      }  
-    });  
-   });  
-
-    function printErrorMsg (msg) {
-     $(".print-error-msg").find("ul").html('');
-     $(".print-error-msg").css('display','block');
-     $(".print-success-msg").css('display','none');
-     $.each( msg, function( key, value ) {
-      $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
-    });
-   }
- });  
-</script>
 
 
 <script>
