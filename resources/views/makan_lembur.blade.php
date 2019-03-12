@@ -5,7 +5,7 @@
 @endsection
 
 @section('right_title')
-    SATUAN BIAYA UANG MAKAN, LEMBUR, DAN KONSUMSI RAPAT
+    Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat
 @endsection
 
 @section('add-css')
@@ -14,8 +14,12 @@
    <!-- Form -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
   <!-- CSRF token for ajax call -->
-    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 @endsection
 @section('content')
 <br/>
@@ -38,8 +42,12 @@
                 <h4 class="modal-title">Tambah Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat</h4>
               </div>
               <div class="modal-body">
-                <form action="{{url('/sbi/update')}}" method="POST" name="add_makan" id="add_makan">
-                  {{csrf_field()}}
+                {{-- <form action="{{url('/makan_lembur_rapat')}}" method="POST" name="add_makan" id="add_makan">  --}}
+              <form name="add_makan" id="add_makan"> 
+                <div class="alert alert-danger print-error-msg" style="display:none">
+                  <ul></ul>
+                </div> 
+                  {{csrf_field()}} 
                     <div class="form-group">
                       <select class="form-control select2" style="width:500px;" name="kategori_makan">
                         <option></option>
@@ -48,26 +56,38 @@
                         @endforeach
                       </select>  
                     </div>
-                    <div class="table-responsive">  
-                    <table class="table table-bordered" id="dynamic_field">  
-                      <tr>  
-                        <td><input type="text" name="uraian_kegiatan" placeholder="Uraian Kegiatan" class="form-control name_list" /></td>  
-                        <td><input type="text" name="satuan" placeholder="Satuan" class="form-control name_list" /></td>  
-                        <td><input type="text" name="bruto" placeholder="Bruto" class="form-control name_list" /></td>  
-                      </tr>  
-                    </table>  
-                <input type="submit" name="submit" id="submit" class="btn btn-info" value="Tambah" />  
-                  </div>
-                </form>
-               
-            </div>
 
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                {{-- <input type="button" class="btn btn-primary" name="submit" id="submit" class="btn btn-info" value="Tambah" /> --}}  
-                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+            <form class="form-horizontal">
+              <div class="box-body">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Uraian</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="uraian_kegiatan" placeholder="Uraian Kegiatan" class="form-control" />
+                  </div>
+                </div>
+                <br/><br/>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Satuan</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="satuan" placeholder="Satuan" class="form-control" />
+                  </div>
+                </div>
+                <br/><br/>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Bruto</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="bruto" placeholder="Besaran Bruto Maksimum (Rp)" class="form-control" />
+                  </div>
+                </div>
               </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>                
+                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Tambah" />  
+                {{-- <button class="btn btn-success btn-submit">Submit</button> --}}
+              </div>
+            </form>
+          </div>
             <!-- /.modal-content -->
           </div>
           <!-- /.modal-dialog -->
@@ -82,6 +102,7 @@
                   <th>Uraian Kegiatan</th>
                   <th>Satuan</th>
                   <th>Besaran Bruto Maksimum (Rp)</th>
+                  <th>Aksi</th>
                 </tr>
                 </thead>
                <tbody>
@@ -90,6 +111,10 @@
                       <th>
                         {{ $kategori_makan->kategori_makan}}
                       </th>
+                      <td></td>
+                      <td></td>
+                      <td> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-edit">Edit
+                          </button></td>
                     </tr>
                     <tr>
                     @foreach ($kategori_makan->makan_lembur as $makan)
@@ -107,6 +132,9 @@
                       <td>
                       {{number_format($makan->bruto)}}</td>
                       @endif 
+                      <td>
+                          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-edit">Edit
+                          </button></td>
                     </tr>
                       @foreach ($makan->biaya_konsumsi as $biaya)
                         <td>
@@ -123,6 +151,9 @@
                         <td>
                           {{number_format($biaya->bruto)}}</td>
                         @endif 
+                        <td>
+                          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-edit">Edit
+                          </button></td>
                         <tr>
                       @endforeach
                     @endforeach
@@ -137,6 +168,30 @@
       </div>
       <!-- /.row -->
       </div>
+
+      <!-- Edit Modal -->
+   <div class="modal modal-info fade" id="modal-edit">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Info Modal</h4>
+              </div>
+              <div class="modal-body">
+                <p>One fine body&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline">Save changes</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
 @endsection
 
 @section('add-script')
@@ -163,22 +218,11 @@
 </script>
 
 <!-- form -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-
+<script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>        
 
 <script type="text/javascript">
   $(document).ready(function(){      
-    submitForm = function()
-    {
-      $('$add_makan').submit();
-    }
-  }
-</script>
-<script type="text/javascript">
-  $(document).ready(function(){      
-    var postURL = "<?php echo url('tambah'); ?>";
+    var postURL = "<?php echo url('/makan_lembur_rapat'); ?>";
     var i=1;  
 
     $.ajaxSetup({
@@ -197,14 +241,6 @@
       {
         if(data.error){
           printErrorMsg(data.error);
-        }else{
-          i=1;
-          $('.dynamic-added').remove();
-          $('#add_makan')[0].reset();
-          $(".print-success-msg").find("ul").html('');
-          $(".print-success-msg").css('display','block');
-          $(".print-error-msg").css('display','none');
-          $(".print-success-msg").find("ul").append('<li>Data berhasil ditambahkan.</li>');
         }
       }  
     });  
@@ -220,6 +256,7 @@
    }
  });  
 </script>
+
 
 <script>
   $(function () {

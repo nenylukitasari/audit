@@ -70,13 +70,13 @@ class MakanLemburSeeder extends Seeder
     		'uraian_kegiatan'		=> 'Rapat/Kegiatan Mengundang Pejabat Tingkat Menteri/Eselon I/Setara',	
     	]);
 
-        MakanLembur::create([
-            'kategori_makan_id'     => '4',
-            'uraian_kegiatan'       => 'Aceh',
-            'satuan'                => 'OH',
-            'bruto'                 => '360000',
-            'dalam_kota'            => '140000',
-            'diklat'                => '110000',
-        ]);
+        // MakanLembur::create([
+        //     'kategori_makan_id'     => '4',
+        //     'uraian_kegiatan'       => 'Aceh',
+        //     'satuan'                => 'OH',
+        //     'bruto'                 => '360000',
+        //     'dalam_kota'            => '140000',
+        //     'diklat'                => '110000',
+        // ]);
     }
 }

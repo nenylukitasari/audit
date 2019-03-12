@@ -20,12 +20,12 @@ class CreateMakanLemburTable extends Migration
             $table->text('uraian_kegiatan');
             $table->string('satuan')->nullable();
             $table->integer('bruto')->nullable();
-            $table->integer('dalam_kota')->nullable();
-            $table->integer('diklat')->nullable();
-            $table->integer('A')->nullable();
-            $table->integer('B')->nullable();
-            $table->integer('C')->nullable();
-            $table->integer('D')->nullable();
+            // $table->integer('dalam_kota')->nullable();
+            // $table->integer('diklat')->nullable();
+            // $table->integer('A')->nullable();
+            // $table->integer('B')->nullable();
+            // $table->integer('C')->nullable();
+            // $table->integer('D')->nullable();
             $table->timestamps();   
         });
     }

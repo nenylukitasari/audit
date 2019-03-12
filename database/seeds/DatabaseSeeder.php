@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
             KategoriMakanSeeder::class,
             MakanLemburSeeder::class,
             BiayaKonsumsiSeeder::class,
+            KategoriKegiatanSeeder::class,
+            KegiatanSeeder::class,
         ]);
     }
 }
