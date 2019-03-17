@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('/makan_lembur_rapat','MakanController@index');
 Route::post('/makan_lembur_rapat','MakanController@store');
+Route::get('/data/makan','MakanController@getData');
 // Route::post('/makan_lembur/update','MakanController@store');
 
 Route::get('/dokumen', 'KegiatanController@index');

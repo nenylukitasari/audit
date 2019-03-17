@@ -16,6 +16,7 @@ class MakanController extends Controller
         $kategori_makans = KategoriMakan::with('makan_lembur_biaya_konsumsi')->get();
         // dd($kategori_makans);
         $kategoris=DB::table('kategori_makan')->get();
+        //dd ($kategori_makans);
 
         return view('makan_lembur', compact('kategori_makans','kategoris'));
     }
@@ -58,5 +59,12 @@ class MakanController extends Controller
               // redirect our user back to the form with the errors from the validator
               return redirect('/makan_lembur_rapat')->withErrors($validator);
         }
+    }
+
+    public function getData(Request $request)
+    {
+        $id = $request->input('id');
+        $data = MakanLembur::find($id);
+        return response()->json($data);
     }
 }

@@ -66,7 +66,7 @@
                       {{number_format($makan->bruto)}}</td>
                       @endif 
                       <td>
-                          <i class="fa fa-eye" data-toggle="modal" data-target="#show-modal"> | </i> 
+                          <i class="fa fa-eye" data-toggle="modal"  onclick="viewdata('{{ $makan->id }}')" data-target="#show-modal"> | </i> 
                           <i class="fa fa-pencil" data-toggle="modal" data-target="#edit-modal"> </i>
                           </td>
                     </tr>
@@ -86,7 +86,7 @@
                           {{number_format($biaya->bruto)}}</td>
                         @endif 
                         <td>
-                          <i class="fa fa-eye" data-toggle="modal" data-target="#show-modal"> | </i>
+                          <i class="fa fa-eye" data-toggle="modal"  data-target="#show-modal"> | </i>
                           <i class="fa fa-pencil" data-toggle="modal" data-target="#edit-modal"> </i>
                         </td>
                         <tr>
@@ -187,27 +187,27 @@
                   <tr>
                     <th class="col-sm-9 control-label">ID</th>
                     <td style="width: 10px">:</td>
-                    <td>lalala</td>
+                    <td> <input type="text" id="id" name="id"> </td>
                   </tr>
                   <tr>
                     <th class="col-sm-9 control-label">Kategori</th>
                     <td style="width: 10px">:</td>
-                    <td>wakkaka</td>
+                    <td><input type="text" id="kategori" name="kategori"></td>
                   </tr>
                   <tr>
                     <th class="col-sm-9 control-label">Uraian Kegiatan</th>
                     <td style="width: 10px">:</td>
-                    <td>wakkaka</td>
+                    <td> <input type="text" id="uraian" name="uraian"> </td>
                   </tr>
                   <tr>
                     <th class="col-sm-9 control-label">Satuan</th>
                     <td style="width: 10px">:</td>
-                    <td>wakkaka</td>
+                    <td><input type="text" id="satuan" name="satuan"> </td>
                   </tr>
                   <tr>
                     <th class="col-sm-9 control-label">Bruto</th>
                     <td style="width: 10px">:</td>
-                    <td>wakkaka</td>
+                    <td> <input type="text" id="bruto" name="bruto"> </td>
                   </tr>
                 </table>
               </div>              
@@ -328,5 +328,31 @@
     })
 
   })
+</script>
+<script>
+  $(document).ready(function(){
+
+    viewdata = function(id){
+      $.ajax({
+        url: '/data/makan',
+        type: 'GET',
+        data: {
+          'id' : id
+        },
+        error: function() {
+          console.log('Error');
+        },
+        dataType: 'json',
+        success: function(data) {
+          console.log(data);
+          $('#id').val(data.id);
+          $('#kategori').val(data.kategori_makan_id);
+          $('#uraian').val(data.uraian_kegiatan);
+          $('#satuan').val(data.satuan);
+          $('#bruto').val(data.bruto);
+        }
+      });
+    }
+  });
 </script>
 @endsection
