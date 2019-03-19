@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\BiayaKonsumsi;
+use App\Sub1;
 
-class BiayaKonsumsiSeeder extends Seeder
+class Sub1Seeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,29 +12,29 @@ class BiayaKonsumsiSeeder extends Seeder
      */
     public function run()
     {
-        BiayaKonsumsi::create([
-    		'makan_lembur_id'		=> '8',
+        Sub1::create([
+    		'uraian_id'				=> '8',
     		'uraian_kegiatan'		=> 'Makan',
     		'satuan'				=> 'Orang/Kali',
     		'bruto'					=> '44000',
     	]);
-    	BiayaKonsumsi::create([
-    		'makan_lembur_id'		=> '8',
+    	Sub1::create([
+    		'uraian_id'				=> '8',
     		'uraian_kegiatan'		=> 'Kudapan',
     		'satuan'				=> 'Orang/Kali',
     		'bruto'					=> '23000',
     	]);
 
 
-    	BiayaKonsumsi::create([
-    		'makan_lembur_id'		=> '9',
+    	Sub1::create([
+    		'uraian_id'				=> '9',
     		'uraian_kegiatan'		=> 'Makan',
     		'satuan'				=> 'Orang/Kali',
     		'bruto'					=> '110000',
     		
     	]);
-    	BiayaKonsumsi::create([
-    		'makan_lembur_id'		=> '9',
+    	Sub1::create([
+    		'uraian_id'				=> '9',
     		'uraian_kegiatan'		=> 'Kudapan',
     		'satuan'				=> 'Orang/Kali',
     		'bruto'					=> '49000',

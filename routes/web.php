@@ -20,7 +20,8 @@ Route::post('/makan_lembur_rapat','MakanController@store');
 Route::get('/data/makan','MakanController@getData');
 // Route::post('/makan_lembur/update','MakanController@store');
 
-Route::get('/dokumen', 'KegiatanController@index');
+// Route::get('/dokumen', 'JenisKegiatanController@index');
+Route::resource('dokumen','JenisKegiatanController');
 Route::post('tambah_kegiatan','KegiatanController@tambah_kegiatan');
 
 Route::get('/perjalanan_dinas','MakanController@perjalanan_dinas');

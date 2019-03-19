@@ -13,60 +13,60 @@ class KegiatanSeeder extends Seeder
     public function run()
     {
         Kegiatan::create([
-    		  'kegiatan'	       			=> 'Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Perjalanan Dinas',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Perjalanan Dinas',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Honorarium',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Honorarium',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Honorarium Tidak Tetap',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Honorarium Tidak Tetap',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Pengembangan Kompetensi',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Pengembangan Kompetensi',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Honorarium Penelitian/Perekayasaan',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Honorarium Penelitian/Perekayasaan',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Insentif Publikasi',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Insentif Publikasi',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Penulisan Buku',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Penulisan Buku',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Penghargaan, Program Kewirausahaan, dan Kepesertaan Kegiatan Bagi Mahasiswa',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Penghargaan, Program Kewirausahaan, dan Kepesertaan Kegiatan Bagi Mahasiswa',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Layanan Kerjasama Profesional',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Layanan Kerjasama Profesional',
        	]);
    		Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Penghargaan Pelaksanaan SPMI (Sistem Penjaminan Mutu Internal)',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Penghargaan Pelaksanaan SPMI (Sistem Penjaminan Mutu Internal)',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Seragam Dinas/Kegiatan',
-		      'kategori_kegiatan_id'	=> '1',
+		      'jenis_kegiatan_id'			=> '1',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Seragam Dinas/Kegiatan',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Perencanaan Perjalanan Dinas',
-		      'kategori_kegiatan_id'	=> '2',
+		      'jenis_kegiatan_id'			=> '2',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Perencanaan Perjalanan Dinas',
        	]);
        	Kegiatan::create([
-    		  'kegiatan'	       			=> 'Standar Biaya Keperluan Operasional',
-		      'kategori_kegiatan_id'	=> '2',
+		      'jenis_kegiatan_id'			=> '2',
+    		  'nama_kegiatan'      			=> 'Standar Biaya Keperluan Operasional',
        	]);
     }
 }

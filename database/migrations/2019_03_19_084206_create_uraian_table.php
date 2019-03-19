@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBiayaKonsumsiTable extends Migration
+class CreateUraianTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateBiayaKonsumsiTable extends Migration
      */
     public function up()
     {
-       Schema::create('biaya_konsumsi', function (Blueprint $table) {
+        Schema::create('uraian', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('makan_lembur_id')->unsigned();
-            $table->foreign('makan_lembur_id')->references('id')->on('makan_lembur');
+            $table->integer('kategori_id')->unsigned();
+            $table->foreign('kategori_id')->references('id')->on('kategori');
             $table->text('uraian_kegiatan');
             $table->string('satuan')->nullable();
             $table->integer('bruto')->nullable();
-            $table->timestamps();   
+            $table->timestamps();
         });
-   }
+    }
 
     /**
      * Reverse the migrations.
@@ -31,6 +31,6 @@ class CreateBiayaKonsumsiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('biaya_konsumsi');
+        Schema::dropIfExists('uraian');
     }
 }
