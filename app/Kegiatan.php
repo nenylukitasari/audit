@@ -8,6 +8,7 @@ class Kegiatan extends Model
 {
     protected $table = 'kegiatan';
     protected $primaryKey = 'id';
+    
 
     public function jenis_kegiatan()
     {
@@ -19,6 +20,6 @@ class Kegiatan extends Model
     }
     public function uraian()
     {
-    	return $this->hasManyThrough('App\Uraian','App\Kategori');
+    	return $this->hasManyThrough(Uraian::class,Kategori::class);
     }
 }

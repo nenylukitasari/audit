@@ -18,8 +18,11 @@ class CreateSub1Table extends Migration
             $table->integer('uraian_id')->unsigned();
             $table->foreign('uraian_id')->references('id')->on('uraian');
             $table->text('uraian_kegiatan');
-            $table->string('satuan')->nullable();
-            $table->integer('bruto')->nullable();
+            $table->string('satuan');
+            $table->integer('var1');
+            $table->integer('var2');
+            $table->integer('var3');
+            $table->integer('var4');
             $table->timestamps();
         });
     }

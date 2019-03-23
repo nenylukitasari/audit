@@ -19,6 +19,18 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{url('assets/dist/css/skins/_all-skins.min.css')}}">
+  <style type="text/css">
+  .styled-select {
+   height: 29px;
+   overflow: hidden;
+   width: 240px;
+  }
+  .semi-square {
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+  }
+  </style>
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -141,7 +153,7 @@
           
           <ul class="treeview-menu">
             <li><a href="/dokumen"><i class="fa fa-circle-o"></i>Dokumen</a></li>
-            <li><a href="/tambahsbi"><i class="fa fa-circle-o"></i>Tambah SBI</a></li>  
+            <li><a href="/logperubahan"><i class="fa fa-circle-o"></i>Log Perubahan</a></li>  
             </ul>
             </li>
         <li class="treeview">

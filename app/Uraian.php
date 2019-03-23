@@ -15,5 +15,9 @@ class Uraian extends Model
     public function sub1()
     {
     	return $this->hasMany(Sub1::class,'uraian_id','id');
-    }	
+    }
+    // public function provinsi()
+    // {
+    // 	return $this->belongsTo(Provinsi::class,'provinsi_id','id');
+    // }
 }
