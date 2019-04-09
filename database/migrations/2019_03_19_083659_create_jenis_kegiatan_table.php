@@ -17,6 +17,7 @@ class CreateJenisKegiatanTable extends Migration
             $table->increments('id')->unsigned();
             $table->text('jenis_kegiatan');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

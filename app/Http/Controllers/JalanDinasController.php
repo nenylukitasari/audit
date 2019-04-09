@@ -20,6 +20,14 @@ class JalanDinasController extends Controller
        	return view('jalan_dinas', compact('kategoris'/*,'provinsis'*/));
     }
 
+    public function index2() {
+        $kategoris = Kegiatan::where('id', 2)->get();
+        // $provinsis = DB::table('provinsi')->leftjoin('uraian','provinsi.id','=','uraian.provinsi_id')->orderBy('provinsi.id')->get();
+        // $provinsis = Provinsi::all();
+        // dd($kategoris);
+        return view('jalan_dinas2', compact('kategoris'/*,'provinsis'*/));
+    }
+
     public function store(Request $request)
     {
         $jalan_dinas= new Uraian;

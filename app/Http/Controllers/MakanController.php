@@ -51,8 +51,14 @@ class MakanController extends Controller
         $kategori->save();
         return redirect('/1');
     }
+    
+    public function getUraian($id) {
+        $list_uraian_kegiatan = Uraian::where('kategori_id',$id)->get();
+        return response()->json($list_uraian_kegiatan);
+    }
     public function storeSub1(Request $request)
     {
+        // dd ($request->list_uraian_kegiatan);
         $sub1= new Sub1;
         $sub1->uraian_id = $request->list_uraian_kegiatan;
         $sub1->uraian_kegiatan = $request->uraian_kegiatan;

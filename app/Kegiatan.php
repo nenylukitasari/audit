@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Kegiatan extends Model
 {
     protected $table = 'kegiatan';
     protected $primaryKey = 'id';
+    use SoftDeletes;
+    protected $dates =['deleted_at'];
     
 
     public function jenis_kegiatan()

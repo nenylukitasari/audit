@@ -35,6 +35,7 @@
               <table id="example1" class="table table-bordered table-hover">
                 <thead>
                 <tr>
+                  <th width="10">No.</th>
                   <th>Uraian Kegiatan</th>
                   <th>Satuan</th>
                   <th>Besaran Bruto Maksimum (Rp)</th>
@@ -43,11 +44,12 @@
                 </thead>
                <tbody>
                 @foreach ($kategoris as $kategoria)
-                @foreach ($kategoria->kategori as $kategori)
+                @foreach ($kategoria->kategori as $key => $kategori) 
                     <tr>
-                      <th>
-                        {{ $kategori->kategori_kegiatan}}
-                      </th>
+                      <td>
+                        {{$key+1}}. 
+                      </td>
+                    <th>{{ $kategori->kategori_kegiatan}}</th>
                       <td></td>
                       <td></td>
                       <td> 
@@ -55,12 +57,15 @@
                           <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate1('{{ $kategori->id }}')" data-target="#edit-modal1"> </i>
                         </td>
                     </tr>
+                    @foreach ($kategori->uraian as $key2 => $uraian)
                     <tr>
-                    @foreach ($kategori->uraian as $uraian)
+                      <td></td>
                       <td>
-                          {{ $uraian->uraian_kegiatan}}
+                        @php
+                          $i = chr($key2+97);
+                        @endphp
+                        &emsp;&ensp;{{$i}}. {{ $uraian->uraian_kegiatan}}
                       </td>
-                      
                       <td>
                           {{ $uraian->satuan}}
                       </td>
@@ -74,12 +79,13 @@
                       <td>
                           <i class="fa fa-eye" data-toggle="modal" onclick="viewdata2('{{ $uraian->id }}')" data-target="#show-modal2"> | </i> 
                           <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate2('{{ $uraian->id }}')" data-target="#edit-modal2"> </i>
-                          </td>
+                      </td>
                     </tr>
-                    <tr>
-                      @foreach ($uraian->sub1 as $sub1)
+                    @foreach ($uraian->sub1 as $sub1)
+                      <tr> 
+                        <td></td>
                         <td>
-                          {{ $sub1->uraian_kegiatan}}
+                          &emsp;&emsp;&emsp;&emsp;{{ $sub1->uraian_kegiatan}}
                         </td>
                         
                         <td>
@@ -98,10 +104,19 @@
                         </td>
                       </tr>
                         @endforeach
-                        @endforeach
+                        @endforeach 
                       @endforeach
                     @endforeach
                 </tbody>
+                <tfoot>
+                <tr>
+                  <th width="10">No.</th>
+                  <th>Uraian Kegiatan</th>
+                  <th>Satuan</th>
+                  <th>Besaran Bruto Maksimum (Rp)</th>
+                  <th></th>
+                </tr>
+              </tfoot>
               </table>
             <!-- /.box-body -->
           </div>
@@ -173,7 +188,6 @@
           </form>
           </div>
 
-
           <div class="form-group" id="form-kategori">
                   <br/>
                 <form action="{{url('/makan_lembur/kategori')}}" method="POST"> 
@@ -199,18 +213,23 @@
           <br/>
         <form action="{{url('/makan_lembur/sub1')}}" method="POST"> 
           {{csrf_field()}} 
-            <div class="form-group">
-              <select class="form-control select2" style="width:500px" name="list_uraian_kegiatan" required>
-                <option></option>
-                @foreach($kategoris as $kategoria)
+          <div class="form-group">
+            <select name="list_kategori_kegiatan" class="form-control select2"  style="width:500px" id="list_kategori_kegiatan">
+              <option value=""></option>
+              @foreach($kategoris as $kategoria)
                 @foreach($kategoria->kategori as $kategori)
-                @foreach ($kategori->uraian as $uraian)
-                    <option value="{{$uraian->id}}">{{$uraian->uraian_kegiatan}}</option>
-                @endforeach
-                @endforeach
-                @endforeach
+                    {{-- <option value="{{$kategori->id}}">{{ucfirst ($kategori->kategori_kegiatan) }}</option> --}}
+                    <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
+                @endforeach 
+              @endforeach
+            </select>
+          </div>
+            <div class="form-group">  
+            <select class="form-control selecturaian" name="list_uraian_kegiatan" style="width:500px" id="list_uraian_kegiatan">
+              {{-- <option value="1">yeyeyey</option>--}}
               </select>  
             </div>
+          <div class="form-group" id="form-detail-sub1">
             <form class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
@@ -238,13 +257,10 @@
               </div>
             </div>
             </form>
+          </div>
           </form>
           </div>
 
-        
-
-            
-            
           </div>
             <!-- /.modal-content -->
           </div>
@@ -276,15 +292,6 @@
                     <td width="10">:</td>
                     <td><input type="text" size="50" id="kategori" name="kategori" disabled></td>
                   </tr>
-                  {{-- @if( == null)
-                        <tr></tr>
-                        @else
-                  <tr>
-                    <th class="col-sm-3 control-label">Uraian Kegiatan</th>
-                    <td width="10">:</td>
-                    <td><input type="text" size="50" id="uraian" name="uraian" disabled></td>
-                  </tr>   
-                  @endif  --}}
                 </table>
               </div>              
               </div>
@@ -529,26 +536,55 @@
 
 @section('add-script')
 <!-- DataTables -->
-{{-- <script src="{{url('assets/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script> --}}
+<script src="{{url('assets/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{url('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 
 <!-- FastClick -->
 <script src="{{url('assets/bower_components/fastclick/lib/fastclick.js')}}"></script>
 
-<!-- page script -->
 <script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
+  $(document).ready(function (){
+    $('#example1').DataTable({
+      'ordering'    :false
+    });  
+});
 </script>
+
+
+{{-- dependent dropdown --}}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
+{{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
+     <script>
+             $(document).ready(function() {
+            $('#list_kategori_kegiatan').on('change', function() {
+                var getKategoriId = $(this).val();
+                if(getKategoriId) {
+                    $.ajax({
+                        url: '/getUraian/'+getKategoriId,
+                        type: "GET",
+                        data : {"_token":"{{ csrf_token() }}"},
+                        dataType: "json",
+                        success:function(data) {
+                            // console.log(data);
+                          if(data){
+                            $('#list_uraian_kegiatan').empty();
+                            $('#list_uraian_kegiatan').focus;
+                            $('#list_uraian_kegiatan').append('<option value=""></option>'); 
+                            $.each(data, function(key, value){
+                            $('select[name="list_uraian_kegiatan"]').append('<option value="'+ value.id +'">' + value.uraian_kegiatan+ '</option>');
+                        });
+                      }else{
+                        $('#list_uraian_kegiatan').empty();
+                      }
+                      }
+                    });
+                }else{
+                  $('#list_uraian_kegiatan').empty();
+                }
+            });
+        });
+        </script>
 
 <!-- form -->
 <script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>        
@@ -559,6 +595,11 @@
     $('.select2').select2(
     {
       placeholder: "Pilih Kategori",
+      allowClear: true
+    })
+    $('.selecturaian').select2(
+    {
+      placeholder: "Pilih Uraian",
       allowClear: true
     })
 

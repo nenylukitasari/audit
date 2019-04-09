@@ -15,12 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/makan_lembur_rapat','MakanController@index');
-
-// Route::post('/makan_lembur/update','MakanController@store');
-
 Route::get('/dokumen', 'JenisKegiatanController@index');
 Route::post('/dokumen','JenisKegiatanController@store');
+Route::delete('/dokumen/delete/{id}', 'JenisKegiatanController@destroy');
+Route::delete('/dokumen/delete2/{id}', 'JenisKegiatanController@destroy2');
+Route::post('/search_month','JenisKegiatanController@search_month');
+
+// belum fix
+Route::get('/dokumen/restore/{id}','JenisKegiatanController@restore');
+Route::get('/dokumen/restore2/{id}','JenisKegiatanController@restore2');
+
+//
+
 Route::post('/dokumen/jenis-kegiatan','JenisKegiatanController@storejenis');
 Route::get('/data/kegiatan','JenisKegiatanController@getData');
 Route::post('/data/edit-kegiatan','JenisKegiatanController@getData');
@@ -41,5 +47,8 @@ Route::post('/makan_lembur/update3','MakanController@update3');
 Route::post('/data/edit-makan1','MakanController@getData1');
 Route::post('/data/edit-makan2','MakanController@getData2');
 Route::post('/data/edit-makan3','MakanController@getData3');
+Route::get('getUraian/{id}','MakanController@getUraian');
+
 
 Route::get('/2','JalanDinasController@index');
+Route::get('/2old','JalanDinasController@index2');

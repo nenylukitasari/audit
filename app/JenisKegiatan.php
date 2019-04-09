@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class JenisKegiatan extends Model
 {
@@ -10,6 +11,8 @@ class JenisKegiatan extends Model
 
     protected $table = 'jenis_kegiatan';
     protected $primaryKey = 'id';
+    use SoftDeletes;
+    protected $dates =['deleted_at'];
 
     // public function sub1(){
     // 	return $this->hasManyDeep(
@@ -35,6 +38,7 @@ class JenisKegiatan extends Model
     }
     public function kategori()
     {
-    	return $this->hasManyThrough('App\Kategori','App\Kegiatan');
+    	// $kegiatan = Kegiatan::whereMonth('updated_at', $bln)->whereYear('updated_at', $thn)->get();
+        return $this->hasManyThrough('App\Kategori','App\Kegiatan');
     }
 }
