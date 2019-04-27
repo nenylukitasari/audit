@@ -1,15 +1,12 @@
 @extends('master')
 
 @section('title-bar')
-    @foreach ($kegiatans as $kegiatan)
-       {{$kegiatan->nama_kegiatan}}
-    @endforeach
+    Satuan Biaya Perjalanan Dinas
 @endsection
 
 @section('right_title')
-@foreach ($kegiatans as $kegiatan)
-     <li class="active">{{$kegiatan->nama_kegiatan}}</li>
-    @endforeach
+    <li class="active"><a href="/2">Satuan Biaya Perjalanan Dinas</a></li>
+    <li class="active">Satuan Uang Harian Perjalanan Dinas Dalam Negeri</a></li>
 @endsection
 @section('add-css')
 <!-- DataTables -->
@@ -26,15 +23,17 @@
            <div class="box box-default">
             <div class="box-header with-border" style="margin: 1em 0 0 1em;">
               <strong class="box-title" >
-                @foreach ($kegiatans as $kegiatan)
-                    {{strtoupper($kegiatan->nama_kegiatan)}}
+                @foreach ($uraians as $uraian)
+                    {{strtoupper($uraian->uraian_kegiatan)}}
                 @endforeach
               </strong><br/>
               {{-- <strong class="card-title">Data version {{$month}}</strong> --}}
               <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&emsp;Add
           </button>
             </div>
+
             <br/>
+
           <table border="0" style="width: 67%; margin: 0 auto 2em auto;">
                   <thead>
                       <tr>
@@ -47,7 +46,7 @@
                       <tr>
                           <td>Version</td>
                           <td>
-                            <form class="search-form" method="POST" action="{{url('search_month/jalan_dinas')}}">
+                            <form class="search-form" method="POST" action="{{url('search_month3')}}">
                             {{csrf_field()}}
                                 <input class="form-control" style="width:200px" type="month" name="month_year" id="month_year"required/>
                               <td>
@@ -70,8 +69,8 @@
               </tr>
               </thead>
              <tbody>
-              @foreach ($kegiatans as $kegiatan)
-              @foreach ($kegiatan->kategori as $key => $kategori)
+              {{-- @foreach ($kategoris as $kategoria) --}}
+             {{--  @foreach ($uraians as $key => $uraian)
                   <tr>
                     <td>
                         {{$key+1}}. 
@@ -84,7 +83,7 @@
                       <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate('{{ $kategori->id }}')" data-target="#edit-modal">  </i>
                     </tr>
                 @endforeach
-              @endforeach
+              @endforeach --}}
             </tbody>
             <tfoot>
               <tr>
@@ -98,7 +97,7 @@
       </div>
     </div>
   </div>
-
+{{-- 
 <!--Add Modal-->
         <div id="addModal" class="modal fade">
           <div class="modal-dialog">
@@ -111,18 +110,17 @@
               <div class="modal-body">
                 <div class="form-group" id="form-jenis-kegiatan">
                   <br/>
-                <form action="{{url('/jalan_dinas/kategori_kegiatan')}}" method="POST"> 
+                <form action="{{url('/jalan_dinas/kategori-kegiatan')}}" method="POST"> 
                   {{csrf_field()}} 
             <form class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Kategori</label>
+                  <label class="col-sm-2 control-label">Kategori Kegiatan</label>
                   <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" id="kategori_kegiatan" name="kategori_kegiatan" placeholder="Kategori Kegiatan" required></textarea>
+                    <input type="text" name="kategori_kegiatan" placeholder="Kategori Kegiatan" class="form-control" required />
                   </div>
                 </div>
                 <br/><br/>
-              </div>
               <div class="modal-footer">  
                 <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
               </div>
@@ -131,12 +129,13 @@
           </form>
           </div>
         </div>
+            <!-- /.modal-content -->
           </div>
+          <!-- /.modal-dialog -->
         </div>
+        <!-- /.modal -->
       </div>
     </div>
-
-
 
 <!-- Show Modal -->
   <div class="modal fade" id="show-modal">
@@ -156,9 +155,10 @@
                     <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id" name="id" disabled> </td>
                   </tr>
                   <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Kategori</th>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Kategori Kegiatan</th>
                     <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="kategori" name="kategori" disabled></textarea></td>
+                    <td>
+                      <textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="kategori" name="kategori" disabled></textarea>
                   </tr>
                 </table>
               </div>              
@@ -185,12 +185,15 @@
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input class="form-control" type="text" size="50" id="edit-id" name="edit-id"> </td>
+                    <td><input type="text" class="form-control" id="id_kategori" name="id_kategori" required></td>
                   </tr>
+                  <br/>
                   <tr>
-                    <th class="col-sm-3 control-label">Kategori</th>
+                    <th class="col-sm-3 control-label">Kategori Kegiatan</th>
                     <td width="10">:</td>
-                    <td><textarea class="form-control" rows="3" id="edit-kategori" name="edit-kategori"></textarea></td>
+                    <td>
+                    <textarea class="form-control" rows="3" id="kategori_kegiatan" name="kategori_kegiatan" value="{{old('kategori_kegiatan')}}"></textarea>
+                  </td>
                   </tr>
                 </table>
               </div>              
@@ -203,6 +206,55 @@
           </div>
         </div>
     </div>
+ --}}
+{{-- 
+TABEL SATU
+           <div class="box-body" id="1">
+            <table id="example1" class="table table-bordered table-hover">
+              <thead>
+              <tr>
+                <th width="10">No.</th>
+                <th width="400">Provinsi</th>
+                <th width="80">Satuan</th>
+                <th width="80">Luar Kota (Rp)</th>
+                <th width="120">Dalam Kota Lebih dari 8 Jam (Rp)</th>
+                <th width="80">Diklat (Rp)</th>
+              </tr>
+              </thead>
+             <tbody>
+              @foreach ($uraians as $key => $uraian)
+                  <tr>
+                    <td>
+                        {{$key+1}}. 
+                    </td>
+                    <td>{{ $uraian->uraian_kegiatan}}</td>
+                    <td>{{ $uraian->satuan}}</td>
+                    <td>{{ number_format($uraian->var1)}}</td>
+                    <td>{{ number_format($uraian->var2)}}</td>
+                    <td>{{ number_format($uraian->var3)}}</td>
+                    </tr>
+              @endforeach
+            </tbody>
+            <tfoot>
+              <tr>
+                <th width="10">No.</th>
+                <th width="400">Provinsi</th>
+                <th width="80">Satuan</th>
+                <th width="80">Luar Kota (Rp)</th>
+                <th width="120">Dalam Kota Lebih dari 8 Jam (Rp)</th>
+                <th width="80">Diklat (Rp)</th>
+              </tr>
+            </tfoot>
+        </table>
+        <br/>
+      </div>
+    </div>
+  </div> --}}
+
+ 
+
+
+
 @endsection
 
 @section('add-script')
@@ -234,7 +286,7 @@
 
     viewdata = function(id){
       $.ajax({
-        url: '/data/jalan_dinas',
+        url: '/data/jalan',
         type: 'GET',
         data: {
           'id' : id
@@ -246,13 +298,13 @@
         success: function(data) {
           console.log(data);
           $('#id').val(data.id);
-          $('#kategori').val(data.kategori_kegiatan); 
-          }
+          $('#kategori').val(data.kategori_kegiatan);
+        }
       });
     }
     submitUpdate = function(id){
       $.ajax({
-        url: '/data/edit-jalan_dinas',
+        url: '/data/edit-jalan',
         type: 'POST',
         data: {
           '_token': "{{ csrf_token() }}",
@@ -264,9 +316,9 @@
         dataType: 'json',
         success: function(data) {
           console.log(data);
-          $('#edit-id').val(data.id);
-          $('#edit-kategori').val(data.kategori_kegiatan); 
-          }
+          $('#id_kategori').val(data.id);
+          $('#kategori_kegiatan').val(data.kategori_kegiatan);
+        }
       });
     }
   });
@@ -279,6 +331,8 @@
       placeholder: "Pilih Kategori",
       allowClear: true
     })
+    
+
   })
 </script>
 

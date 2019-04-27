@@ -25,8 +25,8 @@ class JenisKegiatanController extends Controller
         // $kegiatans = Kegiatan::whereMonth('updated_at', $bln)->whereYear('updated_at', $thn)->get();
         $jenis_kegiatans = JenisKegiatan::with('kegiatan')->where(function($query) use ($thn,$bln)
         {
-            $query->whereMonth('updated_at','=', $bln);
-            $query->whereYear('updated_at','=', $thn);
+            $query->whereMonth('updated_at', $bln);
+            $query->whereYear('updated_at', $thn);
         })->get();
         return view('docs', compact('jenis_kegiatans','month'));
     }
@@ -53,23 +53,22 @@ class JenisKegiatanController extends Controller
 
     public function storejenis(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+       /* $validator = Validator::make($request->all(), [
             'jenis_kegiatan'  => 'required',
         ]);
 
         if ($validator->passes())
-        {
+        {*/
             $jeniskegiatan= new JenisKegiatan;
             $jeniskegiatan->jenis_kegiatan = $request->jenis_kegiatan;
             $jeniskegiatan->save();
             return redirect('/dokumen');
-        }
-        else{
+        // }
+        /*else{
           	$messages = $validator->messages();
     	    return redirect('/dokumen')->withErrors($validator);
-        }
+        }*/
     }
-
     public function getData(Request $request)
     {
         $id = $request->input('id');
@@ -166,7 +165,7 @@ class JenisKegiatanController extends Controller
 
         $jenis_kegiatans = JenisKegiatan::whereMonth('updated_at', $bln)->whereYear('updated_at', $thn)->get();
        
-        return view('dokumen', compact('jenis_kegiatans','month'));
+        return view('docs', compact('jenis_kegiatans','month'));
     }
 
 }

@@ -7,7 +7,7 @@
     Dashboard
 @endsection
 @section('right_title')
-  Dashboard
+  <li class="active">Dashboard</li>
 @endsection
 @section('footer')
     <footer class="main-footer">

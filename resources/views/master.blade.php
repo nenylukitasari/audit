@@ -30,6 +30,8 @@
    -moz-border-radius: 5px;
    border-radius: 5px;
   }
+  input[type="text"]:disabled{background-color:white;}
+  textarea[class="form-control"]:disabled{background-color:white;}
   </style>
 
   <!-- Google Font -->
@@ -188,7 +190,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">@yield('right_title')</li>
+        @yield('right_title')
       </ol>
     </section>
   

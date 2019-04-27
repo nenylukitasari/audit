@@ -25,10 +25,9 @@ Route::post('/search_month','JenisKegiatanController@search_month');
 Route::get('/dokumen/restore/{id}','JenisKegiatanController@restore');
 Route::get('/dokumen/restore2/{id}','JenisKegiatanController@restore2');
 
-//
-
 Route::post('/dokumen/jenis-kegiatan','JenisKegiatanController@storejenis');
 Route::get('/data/kegiatan','JenisKegiatanController@getData');
+Route::get('/data/kegiatan2','JenisKegiatanController@getData2');
 Route::post('/data/edit-kegiatan','JenisKegiatanController@getData');
 Route::post('/data/edit-kegiatan2','JenisKegiatanController@getData2');
 Route::post('/dokumen/update','JenisKegiatanController@update');
@@ -51,4 +50,20 @@ Route::get('getUraian/{id}','MakanController@getUraian');
 
 
 Route::get('/2','JalanDinasController@index');
+Route::get('/data/jalan_dinas','JalanDinasController@getData');
+Route::post('/data/edit-jalan_dinas','JalanDinasController@getData');
+Route::post('/jalan_dinas/update','JalanDinasController@update');
+Route::post('/jalan_dinas/kategori_kegiatan','JalanDinasController@store');
+Route::post('/search_month/jalan_dinas','JalanDinasController@search_month');
+
+Route::get('/2/1','JalanDinasController@index_1');
+
+Route::get('/2/2','JalanDinasController@index_2');
+Route::post('/search_month/jalan_dinas_2','JalanDinasController@search_month2');
+Route::post('/jalan_dinas/uraian','JalanDinasController@store2');
+Route::get('/data/uraian','JalanDinasController@getData2');
+Route::post('/jalan_dinas/update/uraian','JalanDinasController@update2');
+Route::post('/data/edit-uraian','JalanDinasController@getData2');
+
 Route::get('/2old','JalanDinasController@index2');
+

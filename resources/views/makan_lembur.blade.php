@@ -1,11 +1,15 @@
 @extends('master')
 
 @section('title-bar')
-    Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat
+    @foreach ($kategoris as $kegiatan)
+       {{$kegiatan->nama_kegiatan}}
+    @endforeach
 @endsection
 
 @section('right_title')
-    Satuan Biaya Uang Makan, Lembur, dan Konsumsi Rapat
+@foreach ($kategoris as $kegiatan)
+    <li class="active">{{$kegiatan->nama_kegiatan}}</li>
+@endforeach
 @endsection
 
 @section('add-css')
@@ -17,20 +21,46 @@
  @endsection
 @section('content')
 <br/>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-                {{-- <h3 class="box-title">SATUAN BIAYA UANG MAKAN, LEMBUR, DAN BIAYA KONSUMSI RAPAT</h3> --}}
-                <h3 class="box-title">
-                  @foreach ($kategoris as $kegiatan)
-                    {{$kegiatan->nama_kegiatan}}
-                  @endforeach
-                </h3>
-              <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Add
-          </button>
-            </div>
-            <!-- /.box-header -->
+  <div class="col-md-13">
+       <div class="box box-default">
+        <div class="box-header with-border" style="margin: 1em 0 0 1em;">
+          <strong class="box-title" >
+            @foreach ($kategoris as $kegiatan)
+                {{strtoupper($kegiatan->nama_kegiatan)}}
+            @endforeach
+          </strong><br/>
+          <strong class="card-title">Data version {{-- {{$month}} --}}</strong>
+          <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&emsp;Add
+      </button>
+        </div>
+
+         <br/> 
+
+            <table border="0" style="width: 67%; margin: 0 auto 2em auto;">
+                  <thead>
+                      <tr>
+                          <th width="100">Target</th>
+                          <th width="80">Search</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>Version</td>
+                          <td>
+                            <form class="search-form" method="POST" action="{{url('search_month1')}}">
+                            {{csrf_field()}}
+                                <input class="form-control" style="width:200px" type="month" name="month_year" id="month_year"required/>
+                              <td>
+                                &ensp;
+                                <button class="btn btn-danger btn-sm" type="submit" value="submit"><i class="fa fa-search"></i></button>
+                              </td>
+                            </form>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+
             <div class="box-body">
               <table id="example1" class="table table-bordered table-hover">
                 <thead>
@@ -118,13 +148,9 @@
                 </tr>
               </tfoot>
               </table>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+          </br/>
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
       </div>
 
  <!--Add Modal-->
@@ -260,13 +286,9 @@
           </div>
           </form>
           </div>
-
           </div>
-            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
       </div>
     </div>
 
@@ -285,22 +307,19 @@
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input type="text" size="50" id="id" name="id" disabled> </td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id" name="id" disabled> </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Kategori</th>
                     <td width="10">:</td>
-                    <td><input type="text" size="50" id="kategori" name="kategori" disabled></td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="kategori" name="kategori" disabled></td>
                   </tr>
                 </table>
               </div>              
               </div>
             </div>
-            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
     </div>
 
 <div class="modal fade" id="show-modal2">
@@ -317,37 +336,34 @@
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input type="text" size="50" id="id2" name="id2" disabled> </td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id2" name="id2" disabled> </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Kategori</th>
                     <td width="10">:</td>
-                    <td><input type="text" size="50" id="kategori2" name="kategori2" disabled></td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="kategori2" name="kategori2" disabled></td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Uraian Kegiatan</th>
                     <td width="10">:</td>
-                    <td><input type="text" size="50" id="uraian" name="uraian" disabled></td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="uraian" name="uraian" disabled></td>
                   </tr>   
                   <tr>
                     <th class="col-sm-3 control-label">Satuan</th>
                     <td width="10">:</td>
-                    <td><input type="text" size="50" id="satuan" name="satuan" disabled></td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="satuan" name="satuan" disabled></td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Bruto</th>
                     <td width="10">:</td>
-                    <td><input type="text" size="50" id="var1" name="var1" disabled></td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="var1" name="var1" disabled></td>
                   </tr>
                 </table>
               </div>              
               </div>
             </div>
-            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
     </div>
 
 <!-- Edit Modal -->
@@ -385,11 +401,8 @@
               </div>
             </form>
             </div>
-            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
     </div>
 
      <div class="modal fade" id="edit-modal2">
@@ -456,11 +469,8 @@
               </div>
             </form>
             </div>
-            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
     </div>
 
     <div class="modal fade" id="edit-modal3">
@@ -525,11 +535,8 @@
               </div>
             </form>
             </div>
-            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
     </div>
 
 @endsection
