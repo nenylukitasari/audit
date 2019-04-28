@@ -77,4 +77,33 @@ Route::get('/hak', function () { return view('hak');});
 
 Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::get('/dokumen', 'JenisKegiatanController@index');
+	Route::get('/buatkda', 'KdaController@buatkda');
+	Route::get('/kda', 'KdaController@index');
+	Route::post("tambahkda1","KdaController@tambahkda1");
+	Route::post("tambahkda2","KdaController@tambahkda2");
+	Route::post("tambahkda3","KdaController@tambahkda3");
+	Route::post('/kda/data', 'KdaController@getkda');
+	Route::post('/kda/kelengkapan', 'KdaController@getkelengkapan');
+	Route::get('/kda/kelengkapan/update', 'KdaController@updatekelengkapan');
+	Route::post('/kda/keterangan', 'KdaController@getketerangan');
+	Route::post('/kda/update', 'KdaController@updatekda');
+	Route::post('/temuan/temuanlama', 'TemuanController@gettemuanlama');
+	Route::get('/temuan/update', 'TemuanController@updatetemuan');
+
+	Route::get('pdf/{id}',  'PdfController@downloadpdf');
+	Route::get('/temuankda', 'TemuanController@index');
+
+	Route::get('/kdasendiri', 'KdaController@indexmember');
+	Route::get('/temuankdasendiri', 'TemuanController@indexmember');
+	Route::post('/kda/temuan', 'TemuanController@gettemuan');
+
+
+	Route::get('/templatekda', 'KdaController@template');
+	Route::get('/summernote/template','SummernoteController@pilihtemplate')->name('summernotetemplate');
+
+	Route::get('/kdatriwulan', 'KdaController@triwulan');
+	Route::get('download/triwulan/{tahun}/{sesi?}', [
+    'as' => 'downloadtriwulan',
+    'uses' => 'PdfController@downloadkdatriwulanfix',
+	]);
 });

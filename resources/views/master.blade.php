@@ -13,6 +13,7 @@ else {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title-bar')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -29,6 +30,15 @@ else {
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{url('assets/dist/css/skins/_all-skins.min.css')}}">
+
+   <link rel="stylesheet" href="{{URL::asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{URL::asset('assets/bower_components/select2/dist/css/select2.min.css')}}">
+
+  <!-- datepicker -->
+ <link rel="stylesheet" href="{{URL::asset('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+
+
   <style type="text/css">
   .styled-select {
    height: 29px;
@@ -153,7 +163,7 @@ else {
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        
+        @if ($_SESSION['userinfo2'] == "azkayasin2@gmail.com")
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -166,8 +176,99 @@ else {
           <ul class="treeview-menu">
             <li><a href="/dokumen"><i class="fa fa-circle-o"></i>Dokumen</a></li>
             <li><a href="/logperubahan"><i class="fa fa-circle-o"></i>Log Perubahan</a></li>  
-            </ul>
-            </li>
+          </ul>
+        </li>
+        <li><a href="{{ url('buatkda') }}"><i class="fa fa-edit"></i> <span> Buat KDA</span></a></li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-table"></i>
+            <span>KDA</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('kda') }}"><i class="fa fa-circle-o"></i>KDA Semua</a></li>  
+            <li><a href="{{ url('kdasendiri') }}"><i class="fa fa-circle-o"></i>KDA Sendiri</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-book"></i>
+            <span>Temuan KDA</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('temuankda') }}"><i class="fa fa-circle-o"></i> Temuan Semua</a></li>
+            <li><a href="{{ url('temuankdasendiri') }}"><i class="fa fa-circle-o"></i> Temuan Sendiri</a></li>
+          </ul>
+        </li>
+        <li><a href="{{ url('templatekda') }}"><i class="fa fa-file-o"></i><span>Template KDA</span></a></li>
+        <li><a href="{{ url('kdatriwulan') }}"><i class="fa fa-file-zip-o"></i> <span> Laporan KDA</span></a></li>
+        @elseif ($_SESSION['userinfo2'] == "nenylukitasari@gmail.com")
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Standar Biaya Institut</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          
+          <ul class="treeview-menu">
+            <li><a href="/dokumen"><i class="fa fa-circle-o"></i>Dokumen</a></li>
+            <li><a href="/logperubahan"><i class="fa fa-circle-o"></i>Log Perubahan</a></li>  
+          </ul>
+        </li>
+        <li><a href="{{ url('buatkda') }}"><i class="fa fa-edit"></i> <span> Buat KDA</span></a></li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-table"></i>
+            <span>KDA</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('kda') }}"><i class="fa fa-circle-o"></i>KDA Semua</a></li>  
+            <li><a href="{{ url('kdasendiri') }}"><i class="fa fa-circle-o"></i>KDA Sendiri</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-book"></i>
+            <span>Temuan KDA</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('temuankda') }}"><i class="fa fa-circle-o"></i> Temuan Semua</a></li>
+            <li><a href="{{ url('temuankdasendiri') }}"><i class="fa fa-circle-o"></i> Temuan Sendiri</a></li>
+          </ul>
+        </li>
+        <li><a href="{{ url('kdatriwulan') }}"><i class="fa fa-file-zip-o"></i> <span> Laporan KDA</span></a></li>
+        @else
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Standar Biaya Institut</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          
+          <ul class="treeview-menu">
+            <li><a href="/dokumen"><i class="fa fa-circle-o"></i>Dokumen</a></li>
+            <li><a href="/logperubahan"><i class="fa fa-circle-o"></i>Log Perubahan</a></li>  
+          </ul>
+        </li>
+        <li><a href="{{ url('buatkda') }}"><i class="fa fa-edit"></i> <span> Buat KDA</span></a></li>
+        <li><a href="{{ url('kdasendiri') }}"><i class="fa fa-file-zip-o"></i> <span> KDA</span></a></li>
+        <li><a href="{{ url('temuankdasendiri') }}"><i class="fa fa-file-zip-o"></i> <span> Temuan</span></a></li>
+        @endif
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
@@ -185,6 +286,7 @@ else {
             <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
           </ul>
         </li>
+      </ul>
         
         
     </section>
@@ -234,6 +336,13 @@ else {
 <script src="{{url('assets/dist/js/pages/dashboard2.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('assets/dist/js/demo.js')}}"></script>
+<!-- DataTables -->
+<script src="{{asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<!-- Select2 -->
+<script src="{{asset('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<!-- datepicker -->
+<script src="{{asset('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 @yield('add-script')
 </body>
 </html>
