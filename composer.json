@@ -14,7 +14,11 @@
         "laravel/tinker": "^1.0",
         "owen-it/laravel-auditing": "^9.0",
         "staudenmeir/belongs-to-through": "^2.4",
-        "staudenmeir/eloquent-has-many-deep": "^1.7"
+        "staudenmeir/eloquent-has-many-deep": "^1.7",
+        "nesbot/carbon": "^1.33",
+        "chumper/zipper": "1.0.x",
+        "barryvdh/laravel-dompdf": "^0.8.3",
+        "jumbojett/openid-connect-php": "^0.6.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

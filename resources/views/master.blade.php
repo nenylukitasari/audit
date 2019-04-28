@@ -1,3 +1,13 @@
+<?php
+if (!isset($_SESSION['userinfo2']))
+        {
+            return redirect('/login2');
+        }
+else {
+  $userinfo = $_SESSION['userinfo2'];
+  $username = $_SESSION['username'];
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +77,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="{{url('assets/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php echo $username; ?></span>
             </a>
             <ul class="dropdown-menu">
             <!-- User image -->
@@ -75,7 +85,7 @@
                 <img src="{{url('assets/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  <?php echo $username; ?>
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -100,7 +110,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{{ route('logout2') }}" class="btn btn-default btn-flat">Logout</a>
                 </div>
               </li>
             </ul>
@@ -124,7 +134,7 @@
           <img src="{{url('assets/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo $username; ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>

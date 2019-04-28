@@ -11,11 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('login2');
+// });
+Route::get('/', 'AuthController@login2');
 
-Route::get('/dokumen', 'JenisKegiatanController@index');
+// Route::get('/dokumen', 'JenisKegiatanController@index');
 Route::post('/dokumen','JenisKegiatanController@store');
 Route::delete('/dokumen/delete/{id}', 'JenisKegiatanController@destroy');
 Route::delete('/dokumen/delete2/{id}', 'JenisKegiatanController@destroy2');
@@ -67,3 +68,13 @@ Route::post('/data/edit-uraian','JalanDinasController@getData2');
 
 Route::get('/2old','JalanDinasController@index2');
 
+
+//yasin
+Route::get('/login', 'AuthController@showLogin')->name('login');
+Route::get('/tujuan', 'AuthController@tujuan');
+Route::get('/logout2', 'AuthController@logout2')->name('logout2');
+Route::get('/hak', function () { return view('hak');});
+
+Route::group(['middleware' => 'SemuaRole'], function () {
+	Route::get('/dokumen', 'JenisKegiatanController@index');
+});
