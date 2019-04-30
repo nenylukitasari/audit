@@ -38,7 +38,6 @@ class JenisKegiatan extends Model
     }
     public function kategori()
     {
-    	// $kegiatan = Kegiatan::whereMonth('updated_at', $bln)->whereYear('updated_at', $thn)->get();
         return $this->hasManyThrough('App\Kategori','App\Kegiatan');
     }
 }

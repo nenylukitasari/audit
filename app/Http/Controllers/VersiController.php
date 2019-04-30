@@ -13,95 +13,40 @@ use App\Uraian;
 use App\Sub1;
 use Carbon\Carbon;
 
-class JenisKegiatanController extends Controller
+class VersiController extends Controller
 {
     public function index(Request $request) {
-        // $jenis_kegiatans = JenisKegiatan::with('kategori')->withTrashed()->get();        
-
-        if($request->month_year == null || $request->month_year == date('Y-m')){
-            $month = date('Y-m');                        
-
-            $thn=explode("-",$month)[0];
-            $bln=explode("-",$month)[1];
-
-            $jenis_kegiatans = JenisKegiatan::whereMonth('updated_at','=', $bln)
-                            ->whereYear('updated_at','=', $thn) 
-                            ->where('version', '=', 0)
-                            ->orderBy('id', 'desc')
-                            ->with(['kegiatan' => function ($query) use ($thn,$bln) {            
-                                $query->whereMonth('updated_at','=', $bln);
-                                $query->whereYear('updated_at','=', $thn);
-                                $query->where('version', '=', 0);
-                            }])
-                            ->get();
-
-        }else{
-            $month = date('Y-m', strtotime($request->month_year));            
-
-            $thn=explode("-",$month)[0];
-            $bln=explode("-",$month)[1];
-
-            $jenis_kegiatans = JenisKegiatan::whereMonth('updated_at','=', $bln)
-                            ->whereYear('updated_at','=', $thn)
-                            ->where('version', '=', 1)
-                            ->orderBy('id', 'desc')
-                            ->with(['kegiatan' => function ($query) use ($thn,$bln) {
-                                $query->whereMonth('updated_at','=', $bln);
-                                $query->whereYear('updated_at','=', $thn);
-                                $query->where('version', '=', 1);
-                            }])
-                            ->get();
-        }                        
-
-        /*$jeniskegiatan_id =  JenisKegiatan::select('id')->where('version', '=', 1)->get();
-
-        for ($i=0; $i < count($jeniskegiatan_id); $i++) { 
-            foreach ($jenis_kegiatans as $jenis_kegiatan) {
-                
-            }
-            dd($jenis_kegiatan);
-
-            $jenis_kegiatan = JenisKegiatan::find($jeniskegiatan_id[$i]->id);
-
-            $version = date('Y-m', strtotime($jenis_kegiatan->updated_at));;
-
-            
-            
-        }
-
-        dd($jeniskegiatan_id[2]->id);*/
-        
-        // $jenis_kegiatans = JenisKegiatan::whereMonth('updated_at', $bln)->whereYear('updated_at', $thn)->get();
-
-        // $kegiatans = Kegiatan::whereMonth('updated_at', $bln)->whereYear('updated_at', $thn)->get();
-       /* $jenis_kegiatans = JenisKegiatan::with('kegiatan')->where(function($query) use ($thn,$bln)
-        {
-            $query->whereMonth('updated_at','=', $bln);
-            $query->whereYear('updated_at','=', $thn);
-        })->get();*/        
-
-        return view('docs', compact('jenis_kegiatans','month'));
+        $jenis_kegiatans = JenisKegiatan::all();
+        return view('tambahsbi', compact('jenis_kegiatans'));
     }
 
     public function store(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'jenis_kegiatan'  => 'required',
-        //     'nama_kegiatan' => 'required',
-        // ]);
+        $jenis_kegiatans = JenisKegiatan::with('kegiatan')->where('status', '=', 0)->get();
+        $parentid_kegiatan = Kegiatan::where('jenis_kegiatan_id', '=', $jenis_kegiatans->id)->get();
 
-        // if ($validator->passes())
-        // {
-            $kegiatan= new Kegiatan;
-            $kegiatan->jenis_kegiatan_id = $request->jenis_kegiatan;
-            $kegiatan->nama_kegiatan = $request->nama_kegiatan;
-            $kegiatan->save();
-            return redirect('/dokumen');
-        // }
-        // else{
-        //      $messages = $validator->messages();
-           //  return redirect('/dokumen')->withErrors($validator);
-        // }
+        foreach ($jenis_kegiatans as $jk) {            
+            $jenis_kegiatan = JenisKegiatan::find($jk->id);
+            $jenis_kegiatan->status = 1;
+            $jenis_kegiatan->save();
+            $new_jenis_kegiatan = $jenis_kegiatan->replicate();
+            $new_jenis_kegiatan->version = $request->versi;
+            $new_jenis_kegiatan->status = 0;
+            $new_jenis_kegiatan->save();
+
+            foreach ($jk->kegiatan as $kegiatan) {
+                $kegiatan = Kegiatan::find($kegiatan->id);
+                $kegiatan->status = 1;
+                $kegiatan->save();
+                $new_kegiatan = $kegiatan->replicate();
+                $new_kegiatan->version = $request->versi;
+                $new_kegiatan->status = 0;
+                $new_kegiatan->jenis_kegiatan_id = 11;
+                $new_kegiatan->save();
+            }
+        }    
+
+        return redirect('/tambahsbi');
     }
 
     public function storejenis(Request $request)
@@ -138,14 +83,6 @@ class JenisKegiatanController extends Controller
 
     public function update(Request $request)
     {
-        //update data
-        // $data = $request->all();
-        // $kegiatan = Kegiatan::find($request->id_kegiatan);
-        // $kegiatan->jenis_kegiatan_id = $request->jenis_kegiatan;
-  //       $kegiatan->nama_kegiatan = $request->nama_kegiatan;
-  //       $kegiatan->save();
-        // return redirect('/dokumen');
-
         //using version
         $data = $request->all();
         $kegiatan = Kegiatan::find($request->id_kegiatan);

@@ -50,9 +50,8 @@
                   <tbody>
                       <tr>
                           <td>Version</td>
-                          <td>
-                            <form class="search-form" method="POST" action="{{url('search_month')}}">
-                            {{csrf_field()}}
+                          <td>                           
+                            <form class="search-form">                            
                                 <input class="form-control" style="width:200px" type="month" name="month_year" id="month_year"required/>
                               <td>
                                 &ensp;
@@ -86,7 +85,6 @@
                       {{ $jenis_kegiatan->jenis_kegiatan}}
                     </th>
                       <td> 
-                      <i class="fa fa-eye" data-toggle="modal" onclick="viewdata2('{{ $jenis_kegiatan->id }}')" data-target="#show-modal2"> | </i> 
                       <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate2('{{ $jenis_kegiatan->id }}')" data-target="#edit-modal2"> | </i>
                         <i class="fa fa-trash-o" data-toggle="modal" data-target="#delete2-modal"></i></td>
                     </tr>
@@ -224,49 +222,17 @@
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id" name="id" disabled> </td>
+                    <td><input type="text" size="50" id="id" name="id" disabled> </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Jenis Kegiatan</th>
                     <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="jenis" name="jenis" disabled></td>
+                    <td><input type="text" size="50" id="jenis" name="jenis" disabled></td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Kegiatan</th>
                     <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="kegiatan" name="kegiatan" disabled> </td>
-                  </tr>
-                </table>
-              </div>              
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-    </div>
-
-<div class="modal fade" id="show-modal2">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Data Details</h4>
-              </div>
-              <div class="modal-body">
-              <div class="box-body">
-                <table border="0">
-                  <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id2" name="id2" disabled> </td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Jenis Kegiatan</th>
-                    <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="jenis2" name="jenis2" disabled></td>
+                    <td><input type="text" size="50" id="kegiatan" name="kegiatan" disabled> </td>
                   </tr>
                 </table>
               </div>              
@@ -377,7 +343,7 @@
     </div>
 
     <!--Delete Modal-->
-   {{-- <div class="modal modal-danger fade" id="delete-modal">
+  {{--  <div class="modal modal-danger fade" id="delete-modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -522,24 +488,6 @@
           $('#id_kegiatan').val(data.id);
           $('#jenis_kegiatan').val(data.jenis_kegiatan);
           $('#nama_kegiatan').val(data.nama_kegiatan);
-        }
-      });
-    }
-    viewdata2 = function(id){
-      $.ajax({
-        url: '/data/kegiatan2',
-        type: 'GET',
-        data: {
-          'id' : id
-        },
-        error: function() {
-          console.log('Error');
-        },
-        dataType: 'json',
-        success: function(data) {
-          console.log(data);
-          $('#id2').val(data.id);
-          $('#jenis2').val(data.jenis_kegiatan);
         }
       });
     }

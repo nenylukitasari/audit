@@ -23,6 +23,8 @@ class CreateSub1Table extends Migration
             $table->integer('var2');
             $table->integer('var3');
             $table->integer('var4');
+            $table->string('version');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
