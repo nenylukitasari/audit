@@ -243,18 +243,21 @@ class PdfController extends Controller
 					$contents = str_replace("kdaketerangan2$", $keterangans, $contents);
 					
 				}
+				
 				//untuk mencatata temuan sekarang
 					$j = 1;
 					$list_temuan='';
-					$temuansekarang = '<table  align="center" style="width:100%">
+					$temuansekarang = "<table class='tabel1' style='width:100%'>
 								<thead>
-									<th align="center" width=5%>No</th>
-									<th align="center">No. Kwitansi</th>
-									<th align="center">Nominal (Rp)</th>
-									<th align="center" width=50%>Uraian Temuan</th>
+								<tr>
+									<th align='center' width=5%>No</th>
+									<th align='center' width=30%>No. Kwitansi</th>
+									<th align='center' width=20%>Nominal (Rp)</th>
+									<th align='center' width=45%>Uraian Temuan</th>
+								</tr>
 								</thead>
 								<tbody>
-								<tr></tr>';
+								";
 					if ($temuan->count() > 0) {
 						foreach ($temuan as $tem) {
 						$list_temuan .=
@@ -321,5 +324,10 @@ class PdfController extends Controller
     	$nama = $download[1];
     	return $file->download($nama);
 
+    }
+    public function print()
+    {
+    	$summernotes = DB::table('summernotes')->where('id',2) ->first();
+		return view ("pdf", compact('summernotes'));
     }
 }

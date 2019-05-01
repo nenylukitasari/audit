@@ -23,6 +23,11 @@ else {
 
  @endsection
 @section('content')
+<style>
+div .biodata {
+  padding-left: 150px;
+}
+</style>
 <br/>
     <div class="row">
       <div class="col-xs-12">
@@ -176,13 +181,13 @@ else {
     $("#submitpilih").click(function(){
       //$(".auditor").val(auditor);
       $("#peringatan").empty();
-      var listunit = `<select id="unit" class="unit2" name="unit" required=""  style="width: 15%">>
+      var listunit = `<select id="unit" class="unit2" name="unit" required=""  style="width:170px">>
                       <option></option>
                       @foreach($unit as $data => $value)
                       <option value="{{$value->id_unit}}">{{$value->nama}}</option>
                       @endforeach</select>`;
       $(".listunit").empty();
-      $(".listunit").append(listunit);
+      $(".listunit").append(`: ${listunit}`);
       // document.getElementById('bulan_audit').valueAsDate = new Date();
       $(function () {
         //Initialize Select2 Elements

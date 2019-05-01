@@ -59,11 +59,13 @@ class SummernoteController extends Controller
 
     public function update(Request $request, Summernote $summernote)
     {
-
+        // dd($request);
+        // exit;
+        // $summernote->id = 5;
         $summernote->tipe = $request->tipe;
         $summernote->content = $request->konten;
         $summernote->save();
-        return redirect('summernote');
+        return redirect('/templatekda');
     }
 
     public function pilihtemplate(Request $request)
