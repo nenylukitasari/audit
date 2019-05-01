@@ -164,18 +164,18 @@ else {
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         @if ($_SESSION['userinfo2'] == "azkayasin2@gmail.com")
+         <li><a href="{{ url('dokumen') }}"><i class="fa fa-book"></i> <span> Standar Biaya Institut</span></a></li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Standar Biaya Institut</span>
+            <i class="fa fa-clone"></i>
+            <span>Versi SBI</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          
           <ul class="treeview-menu">
-            <li><a href="/dokumen"><i class="fa fa-circle-o"></i>Dokumen</a></li>
-            <li><a href="/logperubahan"><i class="fa fa-circle-o"></i>Log Perubahan</a></li>  
+            <li><a href={{ url('tambahsbi') }}><i class="fa fa-plus-square"></i> Tambah SBI</a></li>
+            <li><a href={{ url('pilihversi') }}><i class="fa fa-cog"></i> Pilih Versi</a></li>
           </ul>
         </li>
         <li><a href="{{ url('buatkda') }}"><i class="fa fa-edit"></i> <span> Buat KDA</span></a></li>
@@ -208,18 +208,18 @@ else {
         <li><a href="{{ url('templatekda') }}"><i class="fa fa-file-o"></i><span>Template KDA</span></a></li>
         <li><a href="{{ url('kdatriwulan') }}"><i class="fa fa-file-zip-o"></i> <span> Laporan KDA</span></a></li>
         @elseif ($_SESSION['userinfo2'] == "nenylukitasari@gmail.com")
+         <li><a href="{{ url('dokumen') }}"><i class="fa fa-book"></i> <span> Standar Biaya Institut</span></a></li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Standar Biaya Institut</span>
+            <i class="fa fa-clone"></i>
+            <span>Versi SBI</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          
           <ul class="treeview-menu">
-            <li><a href="/dokumen"><i class="fa fa-circle-o"></i>Dokumen</a></li>
-            <li><a href="/logperubahan"><i class="fa fa-circle-o"></i>Log Perubahan</a></li>  
+            <li><a href={{ url('tambahsbi') }}><i class="fa fa-plus-square"></i> Tambah SBI</a></li>
+            <li><a href={{ url('pilihversi') }}><i class="fa fa-cog"></i> Pilih Versi</a></li>
           </ul>
         </li>
         <li><a href="{{ url('buatkda') }}"><i class="fa fa-edit"></i> <span> Buat KDA</span></a></li>
@@ -251,41 +251,11 @@ else {
         </li>
         <li><a href="{{ url('kdatriwulan') }}"><i class="fa fa-file-zip-o"></i> <span> Laporan KDA</span></a></li>
         @else
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Standar Biaya Institut</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          
-          <ul class="treeview-menu">
-            <li><a href="/dokumen"><i class="fa fa-circle-o"></i>Dokumen</a></li>
-            <li><a href="/logperubahan"><i class="fa fa-circle-o"></i>Log Perubahan</a></li>  
-          </ul>
-        </li>
+         <li><a href="{{ url('dokumen') }}"><i class="fa fa-book"></i> <span> Standar Biaya Institut</span></a></li>
         <li><a href="{{ url('buatkda') }}"><i class="fa fa-edit"></i> <span> Buat KDA</span></a></li>
         <li><a href="{{ url('kdasendiri') }}"><i class="fa fa-file-zip-o"></i> <span> KDA</span></a></li>
         <li><a href="{{ url('temuankdasendiri') }}"><i class="fa fa-file-zip-o"></i> <span> Temuan</span></a></li>
         @endif
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-          </ul>
-        </li>
       </ul>
         
         

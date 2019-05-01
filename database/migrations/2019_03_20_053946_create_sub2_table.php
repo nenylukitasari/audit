@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKegiatanTable extends Migration
+class CreateSub2Table extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,19 @@ class CreateKegiatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('kegiatan', function (Blueprint $table) {
+        Schema::create('sub2', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('jenis_kegiatan_id')->unsigned();
-            $table->foreign('jenis_kegiatan_id')->references('id')->on('jenis_kegiatan');
-            $table->text('nama_kegiatan');
+            $table->integer('sub1_id')->unsigned();
+            $table->foreign('sub1_id')->references('id')->on('sub1');
+            $table->text('uraian_kegiatan');
+            $table->string('satuan');
+            $table->integer('var1');
+            $table->integer('var2');
+            $table->integer('var3');
+            $table->integer('var4');
             $table->string('version');
             $table->boolean('status');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -32,6 +36,6 @@ class CreateKegiatanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kegiatan');
+        Schema::dropIfExists('sub2');
     }
 }

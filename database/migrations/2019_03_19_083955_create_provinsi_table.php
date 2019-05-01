@@ -16,6 +16,8 @@ class CreateProvinsiTable extends Migration
         Schema::create('provinsi', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->text('provinsi');
+            $table->string('version');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

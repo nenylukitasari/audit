@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             ProvinsiSeeder::class,
             UraianSeeder::class,
             Sub1Seeder::class,
-            Template_summernote::class,
+            template_summernote::class,
             Unitseeder::class,
         ]);
     }

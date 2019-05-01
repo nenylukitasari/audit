@@ -18,6 +18,8 @@ class CreateKategoriTable extends Migration
             $table->integer('kegiatan_id')->unsigned();
             $table->foreign('kegiatan_id')->references('id')->on('kegiatan');
             $table->text('kategori_kegiatan');
+            $table->string('version');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
