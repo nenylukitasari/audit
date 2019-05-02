@@ -114,29 +114,35 @@ class PdfController extends Controller
 								$temuanawal++;
 								if ($temuanawal == 1)
 								{
-									$table .= 'Bulan '.$bulannama.'<br><br>';
-									$table .= '<table class="table table-bordered table-striped">
-											<thead>
-												<th>Kwitansi</th>
-												<th>nominal</th>
-												<th>keterangan</th>
-											</thead>
-											<tbody>
-											<tr></tr>
+									$j = 1;
+									$table .= 'Bulan '.$bulannama;
+									$table .= "<table class='tabel1' style='width:100%'>
+								<thead>
+								<tr>
+									<th align='center' width=5%>No</th>
+									<th align='center' width=30%>No. Kwitansi</th>
+									<th align='center' width=20%>Nominal (Rp)</th>
+									<th align='center' width=45%>Uraian Temuan</th>
+								</tr>
+								</thead>
+								<tbody>
 												<tr>
-												<td>'.$value->kwitansi.'</td>
-												<td>'.$value->nominal.'</td>
-												<td>'.$value->keterangan.'</td>
-												</tr>';
+												<td align='center'>".$j."</td>
+												<td align='center'>".$value->kwitansi."</td>
+												<td align='right'>".number_format($value->nominal, 2, ',', '.')."</td>
+												<td align='center'>".$value->keterangan."</td>
+												</tr>";
 
 								}
 								else
 								{
-									$table .= '<tr>
-												<td>'.$value->kwitansi.'</td>
-												<td>'.$value->nominal.'</td>
-												<td>'.$value->keterangan.'</td>
-												</tr>';
+									$j++;
+									$table .= "<tr>
+												<td align='center'>".$j."</td>
+												<td align='center'>".$value->kwitansi."</td>
+												<td align='right'>".number_format($value->nominal, 2, ',', '.')."</td>
+												<td align='center'>".$value->keterangan."</td>
+												</tr>";
 
 								}
 							}
@@ -144,8 +150,8 @@ class PdfController extends Controller
 						
 						}
 							if ($temuanawal != 0) {
-								$table .='</tbody>
-									</table><br><br>';
+								$table .="</tbody>
+									</table><br>";
 							}
 						}
 					}
@@ -267,6 +273,7 @@ class PdfController extends Controller
 										<td align="right">'.number_format($tem->nominal, 2, ',', '.').'&nbsp;&nbsp;</td>
 										<td align="center">'.$tem->keterangan.'</td>
 									</tr>';
+									$j++;
 								}
 					$temuansekarang .= $list_temuan;
 					$temuansekarang .= '</tbody>

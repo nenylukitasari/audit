@@ -27,6 +27,16 @@ else {
 div .biodata {
   padding-left: 150px;
 }
+th, td
+{
+  text-align: center;
+}
+td .tengah{
+ text-align: center; 
+}
+td .kanan{
+ text-align: right; 
+}
 </style>
 <br/>
     <div class="row">
@@ -316,13 +326,11 @@ div .biodata {
                 $("#temuanlama").append(`<li style="text-align: justify;">&nbsp; &nbsp; Hasil audit dokumen SPJ diketahui bahwa pengelolaan administrasi keuangan tahun <input class="tahun" readonly="readonly" type="text" /> yang dilaksanakan BPP di Unit Kerja : <input class="unit" readonly="readonly" type="text" /> yang belum ditindaklanjuti, antara lain:</li><div></div>`);
               for (var jbulan = 1; jbulan <= 12; jbulan++) {
                 var flag =0;
-                temuansemua = `<table class="table table-bordered table-striped">
+                temuansemua = `<table class="table table-bordered table-striped" style="width:100%">
                       <thead>
-                      <tr>
-                        <th>Kwitansi</th>
-                        <th>nominal</th>
-                        <th>keterangan</th>
-                      </tr>
+                        <th align='center' width=30%>No. Kwitansi</th>
+                        <th align='center' width=20%>Nominal (Rp)</th>
+                        <th align='center' width=45%>Uraian Temuan</th>
                       </thead>
                       <tbody>`;
                 for (var i = 0; i < jumlah; i++)
@@ -342,7 +350,7 @@ div .biodata {
                     var keterangan = data1[i]['keterangan'];
                     var id = data1[i]['id'];
                     var detailtemuan = 
-                  `<tr><td>${kwitansi}</td><td>${nominal}</td><td>${keterangan}</td></tr>`;
+                  `<tr><td class="tengah">${kwitansi}</td><td class="kanan">${nominal}</td><td class="tengah">${keterangan}</td></tr>`;
                    temuansemua = temuansemua.concat(detailtemuan);
                     }
                 }
