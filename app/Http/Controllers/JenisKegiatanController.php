@@ -16,70 +16,7 @@ use Carbon\Carbon;
 class JenisKegiatanController extends Controller
 {
     public function index(Request $request) {
-        // $jenis_kegiatans = JenisKegiatan::with('kategori')->withTrashed()->get();        
-
-        if($request->month_year == null || $request->month_year == date('Y-m')){
-            $month = date('Y-m');                        
-
-            $thn=explode("-",$month)[0];
-            $bln=explode("-",$month)[1];
-
-            $jenis_kegiatans = JenisKegiatan::whereMonth('updated_at','=', $bln)
-                            ->whereYear('updated_at','=', $thn) 
-                            ->where('version', '=', 0)
-                            ->orderBy('id', 'desc')
-                            ->with(['kegiatan' => function ($query) use ($thn,$bln) {            
-                                $query->whereMonth('updated_at','=', $bln);
-                                $query->whereYear('updated_at','=', $thn);
-                                $query->where('version', '=', 0);
-                            }])
-                            ->get();
-
-        }else{
-            $month = date('Y-m', strtotime($request->month_year));            
-
-            $thn=explode("-",$month)[0];
-            $bln=explode("-",$month)[1];
-
-            $jenis_kegiatans = JenisKegiatan::whereMonth('updated_at','=', $bln)
-                            ->whereYear('updated_at','=', $thn)
-                            ->where('version', '=', 1)
-                            ->orderBy('id', 'desc')
-                            ->with(['kegiatan' => function ($query) use ($thn,$bln) {
-                                $query->whereMonth('updated_at','=', $bln);
-                                $query->whereYear('updated_at','=', $thn);
-                                $query->where('version', '=', 1);
-                            }])
-                            ->get();
-        }                        
-
-        /*$jeniskegiatan_id =  JenisKegiatan::select('id')->where('version', '=', 1)->get();
-
-        for ($i=0; $i < count($jeniskegiatan_id); $i++) { 
-            foreach ($jenis_kegiatans as $jenis_kegiatan) {
-                
-            }
-            dd($jenis_kegiatan);
-
-            $jenis_kegiatan = JenisKegiatan::find($jeniskegiatan_id[$i]->id);
-
-            $version = date('Y-m', strtotime($jenis_kegiatan->updated_at));;
-
-            
-            
-        }
-
-        dd($jeniskegiatan_id[2]->id);*/
-        
-        // $jenis_kegiatans = JenisKegiatan::whereMonth('updated_at', $bln)->whereYear('updated_at', $thn)->get();
-
-        // $kegiatans = Kegiatan::whereMonth('updated_at', $bln)->whereYear('updated_at', $thn)->get();
-       /* $jenis_kegiatans = JenisKegiatan::with('kegiatan')->where(function($query) use ($thn,$bln)
-        {
-            $query->whereMonth('updated_at','=', $bln);
-            $query->whereYear('updated_at','=', $thn);
-        })->get();*/        
-
+        $jenis_kegiatans = JenisKegiatan::where('status',0)->get();
         return view('docs', compact('jenis_kegiatans','month'));
     }
 

@@ -12,16 +12,18 @@
         "barryvdh/laravel-dompdf": "^0.8.3",
         "chumper/zipper": "1.0.x",
         "fideloper/proxy": "^4.0",
+        "illuminate/database": "5.8.*",
         "jumbojett/openid-connect-php": "^0.6.0",
         "laravel-admin-ext/ckeditor": "^1.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "nesbot/carbon": "^1.33",
         "owen-it/laravel-auditing": "^9.0",
-        "staudenmeir/belongs-to-through": "^2.4",
+        "staudenmeir/belongs-to-through": "^2.5",
         "staudenmeir/eloquent-has-many-deep": "^1.7"
     },
     "require-dev": {
+        "illuminate/pagination": "5.8.*",
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
@@ -41,6 +43,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Staudenmeir\\EloquentHasManyDeep\\": "src/",
             "App\\": "app/"
         },
         "classmap": [

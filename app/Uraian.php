@@ -16,6 +16,10 @@ class Uraian extends Model
     {
     	return $this->hasMany(Sub1::class,'uraian_id','id');
     }
+    public function sub2()
+    {
+        return $this->hasManyThrough('App\Sub2','App\Sub1');
+    }
 
     
     // public function provinsi()

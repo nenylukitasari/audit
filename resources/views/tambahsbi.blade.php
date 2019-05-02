@@ -54,7 +54,7 @@
               </table>
             <br/><br/>
 
-            {{-- @foreach ($jenis_kegiatans as $jenis_kegiatan)
+{{--             @foreach ($jenis_kegiatans as $jenis_kegiatan)
               @foreach ($jenis_kegiatan->uraian as $uraian)
                 {{ $uraian->uraian_kegiatan}}
               @endforeach

@@ -9,8 +9,8 @@ class Kegiatan extends Model
 {
     protected $table = 'kegiatan';
     protected $primaryKey = 'id';
-    use SoftDeletes;
-    protected $dates =['deleted_at'];
+    // use SoftDeletes;
+    // protected $dates =['deleted_at'];
     
 
     public function jenis_kegiatan()

@@ -32,41 +32,14 @@
            <div class="box box-default">
             <div class="box-header with-border" style="margin: 1em 0 0 1em;">
               <strong class="box-title" >STANDAR BIAYA INSTITUT </strong><br/>
-              <strong class="card-title">Data version {{$month}}</strong>
+              @foreach ($jenis_kegiatans as $jk)
+              @endforeach
+                  <strong class="card-title">Data version {{$jk->version}}</strong>
               <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&emsp;Add
           </button>
             </div>
-
             <br/> 
-
-            <table border="0" style="width: 67%; margin: 0 auto 2em auto;">
-                  <thead>
-                      <tr>
-                          <th width="100">Target</th>
-                          <th width="80">Search</th>
-                          <th></th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>Version</td>
-                          <td>                           
-                            <form class="search-form">                            
-                                <input class="form-control" style="width:200px" type="month" name="month_year" id="month_year"required/>
-                              <td>
-                                &ensp;
-                                <button class="btn btn-danger btn-sm" type="submit" value="submit"><i class="fa fa-search"></i></button>
-                              </td>
-                            </form>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-
-
            <div class="box-body">
-
-
             <table id="example1" class="table table-bordered table-hover">
               <thead>
               <tr>
@@ -88,7 +61,6 @@
                       <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate2('{{ $jenis_kegiatan->id }}')" data-target="#edit-modal2"> | </i>
                         <i class="fa fa-trash-o" data-toggle="modal" data-target="#delete2-modal"></i></td>
                     </tr>
-                      {{-- batas suci --}}
               @foreach ($jenis_kegiatan->kegiatan as $kegiatan)
               <tr>
                 <td></td>  
@@ -113,7 +85,6 @@
             </tfoot>
         </table>
         <br/>
-        {{-- @endforeach --}}
       </div>
     </div>
   </div>
@@ -194,21 +165,15 @@
             </form>
           </form>
           </div>
-
-            
-            
           </div>
-            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
       </div>
     </div>
 
 
 <!-- Show Modal -->
-  <div class="modal fade" id="show-modal">
+    <div class="modal fade" id="show-modal">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -222,28 +187,26 @@
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input type="text" size="50" id="id" name="id" disabled> </td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id" name="id" disabled> </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Jenis Kegiatan</th>
                     <td width="10">:</td>
-                    <td><input type="text" size="50" id="jenis" name="jenis" disabled></td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="jenis" name="jenis" disabled> </td>
                   </tr>
                   <tr>
-                    <th class="col-sm-3 control-label">Kegiatan</th>
-                    <td width="10">:</td>
-                    <td><input type="text" size="50" id="kegiatan" name="kegiatan" disabled> </td>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Kegiatan</th>
+                    <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
+                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="kegiatan" name="kegiatan" disabled></textarea></td>
                   </tr>
                 </table>
               </div>              
               </div>
             </div>
-            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
     </div>
+
 
 <!-- Edit Modal -->
   <div class="modal fade" id="edit-modal">
@@ -283,7 +246,7 @@
                     <th class="col-sm-3 control-label">Kegiatan</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan" value="{{old('nama_kegiatan')}}" placeholder="Nama Kegiatan" required>
+                    <textarea class="form-control" rows="3" id="nama_kegiatan" name="nama_kegiatan"></textarea>
                     </td>
                   </tr>
                 </table>
@@ -294,11 +257,8 @@
               </div>
             </form>
             </div>
-            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
     </div>
 
      <div class="modal fade" id="edit-modal2">
@@ -324,7 +284,7 @@
                     <th class="col-sm-3 control-label">Jenis Kegiatan</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="jenis_kegiatan2" name="jenis_kegiatan2" value="{{old('jenis_kegiatan')}}" placeholder="Jenis Kegiatan" required>
+                        <textarea class="form-control" rows="3" id="jenis_kegiatan2" name="jenis_kegiatan2"></textarea>
                     </td>
                   </tr>
                 </table>
@@ -335,11 +295,8 @@
               </div>
             </form>
             </div>
-            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
     </div>
 
     <!--Delete Modal-->

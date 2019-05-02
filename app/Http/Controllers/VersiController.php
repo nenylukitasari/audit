@@ -11,6 +11,7 @@ use App\Kegiatan;
 use App\Kategori;
 use App\Uraian;
 use App\Sub1;
+use App\Sub2;
 use Carbon\Carbon;
 
 class VersiController extends Controller
@@ -22,8 +23,23 @@ class VersiController extends Controller
 
     public function store(Request $request)
     {
-        $jenis_kegiatans = JenisKegiatan::with('kegiatan')->where('status', '=', 0)->get();
-        $parentid_kegiatan = Kegiatan::where('jenis_kegiatan_id', '=', $jenis_kegiatans->id)->get();
+        // ini_set('max_execution_time', 1800);
+        // $uraians = Uraian::where('status','=', 0)
+        //             ->with(['sub2' => function ($query) {
+        //                 $query->where('sub1.status', '=', 0)
+        //                 ->orWhere('sub2.status', '=', 0);
+        //                 // ->whereNotIn('sub2.version',['{$request->versi}']);
+        //             }])
+        //             // ->union($jenis_kegiatans)
+        //             ->get();
+        // $jenis_kegiatans = JenisKegiatan::where('status','=', 0)
+        //                     ->with(['kategori' => function ($query) {
+        //                         $query->where('kategori.status', '=', 0) 
+        //                         ->orWhere('kegiatan.status', '=', 0);
+        //                     }])
+        //                     // ->union($uraians)
+        //                     ->get();
+        $jenis_kegiatans = JenisKegiatan::where('status','=', 0)->get();
 
         foreach ($jenis_kegiatans as $jk) {            
             $jenis_kegiatan = JenisKegiatan::find($jk->id);
@@ -33,7 +49,6 @@ class VersiController extends Controller
             $new_jenis_kegiatan->version = $request->versi;
             $new_jenis_kegiatan->status = 0;
             $new_jenis_kegiatan->save();
-
             foreach ($jk->kegiatan as $kegiatan) {
                 $kegiatan = Kegiatan::find($kegiatan->id);
                 $kegiatan->status = 1;
@@ -41,11 +56,50 @@ class VersiController extends Controller
                 $new_kegiatan = $kegiatan->replicate();
                 $new_kegiatan->version = $request->versi;
                 $new_kegiatan->status = 0;
-                $new_kegiatan->jenis_kegiatan_id = 11;
+                $new_kegiatan->jenis_kegiatan_id = $new_jenis_kegiatan->id;
                 $new_kegiatan->save();
+                foreach ($kegiatan->kategori as $kategori) {
+                    $kategori = Kategori::find($kategori->id);
+                    $kategori->status = 1;
+                    $kategori->save();
+                    $new_kategori = $kategori->replicate();
+                    $new_kategori->version = $request->versi;
+                    $new_kategori->status = 0;
+                    $new_kategori->kegiatan_id = $new_kegiatan->id;
+                    $new_kategori->save();
+                    foreach ($kategori->uraian as $uraian) {
+                        $uraian = Uraian::find($uraian->id);
+                        $uraian->status = 1;
+                        $uraian->save();
+                        $new_uraian = $uraian->replicate();
+                        $new_uraian->version = $request->versi;
+                        $new_uraian->status = 0;
+                        $new_uraian->kategori_id = $new_kategori->id;
+                        $new_uraian->save();
+                        foreach ($uraian->sub1 as $sub1) {
+                            $sub1 = Sub1::find($sub1->id);
+                            $sub1->status = 1;
+                            $sub1->save();
+                            $new_sub1 = $sub1->replicate();
+                            $new_sub1->version = $request->versi;
+                            $new_sub1->status = 0;
+                            $new_sub1->uraian_id = $new_uraian->id;
+                            $new_sub1->save();
+                            foreach ($sub1->sub2 as $sub2) {
+                                $sub2 = Sub2::find($sub2->id);
+                                $sub2->status = 1;
+                                $sub2->save();
+                                $new_sub2 = $sub2->replicate();
+                                $new_sub2->version = $request->versi;
+                                $new_sub2->status = 0;
+                                $new_sub2->sub1_id = $new_sub1->id;
+                                $new_sub2->save();
+                            }
+                        }
+                    }
+                }
             }
-        }    
-
+        }  
         return redirect('/tambahsbi');
     }
 

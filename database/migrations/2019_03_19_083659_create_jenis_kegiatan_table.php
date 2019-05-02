@@ -19,7 +19,7 @@ class CreateJenisKegiatanTable extends Migration
             $table->string('version');
             $table->boolean('status');
             $table->timestamps();
-            $table->softDeletes();
+            // $table->softDeletes();
         });
     }
 

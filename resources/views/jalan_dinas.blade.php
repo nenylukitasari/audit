@@ -149,7 +149,7 @@
               </div>
               <div class="modal-body">
               <div class="box-body">
-                <table border="0">
+                <table border="1">
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>

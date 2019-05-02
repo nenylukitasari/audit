@@ -11,25 +11,26 @@ class JenisKegiatan extends Model
 
     protected $table = 'jenis_kegiatan';
     protected $primaryKey = 'id';
-    use SoftDeletes;
-    protected $dates =['deleted_at'];
+    // use SoftDeletes;
+    // protected $dates =['deleted_at'];
 
-    // public function sub1(){
-    // 	return $this->hasManyDeep(
-    //         'App\Sub1',
-    //         ['App\Kegiatan', 'App\Kategori', 'App\Uraian'], 
-    //         [
-    //            'jenis_kegiatan_id', 
-    //            'kegiatan_id',  
-    //            'kategori_id',
-    //            'uraian_id'     
-    //         ],
-    //         [
-    //           'id', 
-    //           'id', 
-    //           'id'  
-    //         ]
-    //     );
+    // public function sub2(){
+    //         return $this->hasManyDeep('App\Sub2', ['App\Kegiatan', 'App\Kategori', 'App\Uraian', 'App\Sub1']);
+
+        //     'App\Sub1',
+        //     ['App\Kegiatan', 'App\Kategori', 'App\Uraian'], 
+        //     [
+        //        'jenis_kegiatan_id', 
+        //        'kegiatan_id',  
+        //        'kategori_id',
+        //        'uraian_id'     
+        //     ],
+        //     [
+        //       'id', 
+        //       'id', 
+        //       'id'  
+        //     ]
+        // );
     // }
 
     public function kegiatan()
@@ -40,4 +41,10 @@ class JenisKegiatan extends Model
     {
         return $this->hasManyThrough('App\Kategori','App\Kegiatan');
     }
+
+    // public function all()
+    // {
+    //     return $this->hasManyThrough('App\Kategori','App\Kegiatan');
+    // }
+
 }

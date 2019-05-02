@@ -12,11 +12,8 @@ class Sub1 extends Model
     public function uraian(){
     	return $this->belongsTo(Uraian::class,'uraian_id','id');
     }
-    // public function jenis_kegiatan()
-    // {
-    // 	return $this->belongsToThrough(
-    //         'App\JenisKegiatan',
-    //         ['App\Kegiatan', 'App\Kategori', 'App\Uraian']
-    //     );
-    // }
+    public function sub2()
+    {
+        return $this->hasMany(Sub2::class,'sub1_id','id');
+    }
 }
