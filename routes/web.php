@@ -105,7 +105,7 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/kda/temuan', 'TemuanController@gettemuan');
 
 
-	Route::get('/templatekda', 'KdaController@template');
+	Route::get('/templatekda', 'KdaController@template')->name('templatekda');
 	Route::get('/summernote/template','SummernoteController@pilihtemplate')->name('summernotetemplate');
 	Route::put('/summernote/update/{summernote}','SummernoteController@update')->name('summernoteUpdate');
 

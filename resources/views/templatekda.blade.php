@@ -13,6 +13,11 @@
  @endsection
 @section('content')
 <br/>
+<style>
+  div .list{
+    padding-left: 20px;
+  }
+</style>
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
@@ -22,27 +27,34 @@
           <!-- /.box-header -->
           <div class="box-body">
              <h5>Template Print</h5>
+            <div class="row">
               <ul>
               @foreach($summernote as $data => $print)
               @if ($print->id < 5)
-                <li>{{ $print->tipe }}
-                <button class="btn btn-xs btn-warning" onclick="summernoteupdate('{{$print->id}}')">Edit</button>
-              </li>
+              <div class="form-group list">
+              <li><label class="col-sm-3 control-label">{{ $print->tipe }}</label>
+              <button class="btn btn-xs btn-warning" onclick="summernoteupdate('{{$print->id}}')">Edit</button></li>
+              </div>
               @endif
               @endforeach
-            </ul>
+              <ul>
+            </div>
             <h5>Template Website</h5>
+            <div class="row">
               <ul>
               @foreach($summernote as $data => $web)
               @if ($web->id > 4)
-                <li>{{ $web->tipe }}
-                <button class="btn btn-xs btn-warning" onclick="summernoteupdate('{{$web->id}}')">Edit</button>
-              </li>
+                <div class="form-group list">
+                <li><label class="col-sm-3 control-label">{{ $web->tipe }}</label>
+                <button class="btn btn-xs btn-warning" onclick="summernoteupdate('{{$web->id}}')">Edit</button></li>
+                </div>
               @endif
               @endforeach
-            </ul>
-            
-            <h4>List Template</h4>
+              </ul>
+            </div>
+            <br>
+            <h4>Edit Template</h4>
+            <p>Edit hanya bagian2 tanpa simbol khusus (Abaikan Formating)</p>
               <form class="form-horizontal" method="POST"
                       enctype="multipart/form-data" id="fsummernote">
                     {{ method_field('PUT') }}
@@ -62,7 +74,8 @@
                         </div>
                     </div>
                     <div class="box-footer text-right">
-                        <button type="submit" class="btn btn-danger">Simpan</button>
+                      <a href="{{ route('templatekda') }}" class="btn btn-danger">Tutup</a>
+                        <button type="submit" class="btn btn-success">Simpan</button>
                     </div>
                 </form>
           </div>

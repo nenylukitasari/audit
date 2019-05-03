@@ -129,7 +129,7 @@ class PdfController extends Controller
 												<tr>
 												<td align='center'>".$j."</td>
 												<td align='center'>".$value->kwitansi."</td>
-												<td align='right'>".number_format($value->nominal, 2, ',', '.')."</td>
+												<td align='right'>".number_format($value->nominal, 0, ',', '.')."&nbsp;&nbsp;</td>
 												<td align='center'>".$value->keterangan."</td>
 												</tr>";
 
@@ -140,7 +140,7 @@ class PdfController extends Controller
 									$table .= "<tr>
 												<td align='center'>".$j."</td>
 												<td align='center'>".$value->kwitansi."</td>
-												<td align='right'>".number_format($value->nominal, 2, ',', '.')."</td>
+												<td align='right'>".number_format($value->nominal, 0, ',', '.')."&nbsp;&nbsp;</td>
 												<td align='center'>".$value->keterangan."</td>
 												</tr>";
 
@@ -221,15 +221,30 @@ class PdfController extends Controller
 								<tbody>';
 					if ($kda_ket->count() > 0) {
 						foreach ($kda_ket as $kda_ket) {
-						$list_keterangan .=
+							if ($kda_ket->nominal == null) {
+								$list_keterangan .=
 									'<tr>
 										<td align="center">'.$i.'</td>
 										<td align="left">&nbsp;&nbsp;'.$kda_ket->kelengkapan.'</td>
 										<td align="center">'.$kda_ket->kesediaan.'</td>
 										<td align="center">'.$kda_ket->jumlah.'</td>
-										<td align="right">Rp. '.number_format($kda_ket->nominal, 2, ',', '.').'&nbsp;&nbsp;</td>
+										<td align="right">'.$kda_ket->nominal.'&nbsp;&nbsp;</td>
+									</tr>';
+									$i++;		
+							}
+							else
+							{
+								$list_keterangan .=
+									'<tr>
+										<td align="center">'.$i.'</td>
+										<td align="left">&nbsp;&nbsp;'.$kda_ket->kelengkapan.'</td>
+										<td align="center">'.$kda_ket->kesediaan.'</td>
+										<td align="center">'.$kda_ket->jumlah.'</td>
+										<td align="right">'.number_format($kda_ket->nominal, 0, ',', '.').'&nbsp;&nbsp;</td>
 									</tr>';
 									$i++;
+							}
+						
 								}
 					$keterangans .= $list_keterangan;
 					$keterangans .= '</tbody>
@@ -270,7 +285,7 @@ class PdfController extends Controller
 									'<tr>
 										<td align="center">'.$j.'</td>
 										<td align="center">'.$tem->kwitansi.'</td>
-										<td align="right">'.number_format($tem->nominal, 2, ',', '.').'&nbsp;&nbsp;</td>
+										<td align="right">'.number_format($tem->nominal, 0, ',', '.').'&nbsp;&nbsp;</td>
 										<td align="center">'.$tem->keterangan.'</td>
 									</tr>';
 									$j++;
