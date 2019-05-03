@@ -33,7 +33,7 @@ class TemuanController extends Controller
                                 '11' => 'November',
                                 '12' => 'Desember',
                         );
-        $kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where('kda.jenis', 2)->orderBy('kda.bulan_audit')->get();
+        $kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where('kda.jenis', 2)->orderBy('kda.bulan_audit','DESC')->get();
         foreach ($kda as $key => $value) {
             $tahun = date("y",strtotime($value->bulan_audit));
             $value->bulan = $namabulan[date("m",strtotime($value->bulan_audit))];
@@ -59,7 +59,7 @@ class TemuanController extends Controller
                                 '12' => 'Desember',
                         );
 
-        $kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where(['kda.jenis' => 2, 'kda.created_by' => $_SESSION['username']])->orderBy('kda.bulan_audit')->get();
+        $kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where(['kda.jenis' => 2, 'kda.created_by' => $_SESSION['username']])->orderBy('kda.bulan_audit','DESC')->get();
         foreach ($kda as $key => $value) {
             $tahun = date("y",strtotime($value->bulan_audit));
             $value->bulan = $namabulan[date("m",strtotime($value->bulan_audit))];
