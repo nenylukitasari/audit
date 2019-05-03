@@ -33,6 +33,10 @@ class JenisKegiatan extends Model
         // );
     // }
 
+    public function version()
+    {
+        return $this->belongsTo(Version::class,'version_id','id');
+    }
     public function kegiatan()
     {
     	return $this->hasMany(Kegiatan::class,'jenis_kegiatan_id','id');

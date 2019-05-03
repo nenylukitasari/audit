@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKegiatanTable extends Migration
+class CreateVersionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class CreateKegiatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('kegiatan', function (Blueprint $table) {
+        Schema::create('version', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('jenis_kegiatan_id')->unsigned();
-            $table->foreign('jenis_kegiatan_id')->references('id')->on('jenis_kegiatan');
-            $table->text('nama_kegiatan');
-            $table->integer('kode');
             $table->string('version');
             $table->boolean('status');
             $table->timestamps();
-            // $table->softDeletes();
         });
     }
 
@@ -33,6 +28,6 @@ class CreateKegiatanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kegiatan');
+        Schema::dropIfExists('versi');
     }
 }

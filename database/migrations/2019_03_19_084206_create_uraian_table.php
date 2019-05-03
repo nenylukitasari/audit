@@ -25,6 +25,7 @@ class CreateUraianTable extends Migration
             $table->integer('var2')->nullable();
             $table->integer('var3')->nullable();
             $table->integer('var4')->nullable();
+            $table->integer('kode');
             $table->string('version');
             $table->boolean('status');
             $table->timestamps();

@@ -17,7 +17,7 @@ class JenisKegiatanController extends Controller
 {
     public function index(Request $request) {
         $jenis_kegiatans = JenisKegiatan::where('status',0)->get();
-        return view('docs', compact('jenis_kegiatans','month'));
+        return view('docs', compact('jenis_kegiatans'/*,'month'*/));
     }
 
     public function store(Request $request)

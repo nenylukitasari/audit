@@ -15,6 +15,8 @@ class CreateJenisKegiatanTable extends Migration
     {
         Schema::create('jenis_kegiatan', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->integer('version_id')->unsigned();
+            $table->foreign('version_id')->references('id')->on('version');
             $table->text('jenis_kegiatan');
             $table->string('version');
             $table->boolean('status');

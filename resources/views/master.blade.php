@@ -165,19 +165,7 @@ else {
         <li class="header">MAIN NAVIGATION</li>
         @if ($_SESSION['userinfo2'] == "azkayasin2@gmail.com")
          <li><a href="{{ url('dokumen') }}"><i class="fa fa-book"></i> <span> Standar Biaya Institut</span></a></li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-clone"></i>
-            <span>Versi SBI</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href={{ url('tambahsbi') }}><i class="fa fa-plus-square"></i> Tambah SBI</a></li>
-            <li><a href={{ url('pilihversi') }}><i class="fa fa-cog"></i> Pilih Versi</a></li>
-          </ul>
-        </li>
+         <li><a href="{{ url('versisbi') }}"><i class="fa fa-clone"></i> <span> Versi SBI</span></a></li>
         <li><a href="{{ url('buatkda') }}"><i class="fa fa-edit"></i> <span> Buat KDA</span></a></li>
         <li class="treeview">
           <a href="#">
@@ -209,19 +197,7 @@ else {
         <li><a href="{{ url('kdatriwulan') }}"><i class="fa fa-file-zip-o"></i> <span> Laporan KDA</span></a></li>
         @elseif ($_SESSION['userinfo2'] == "nenylukitasari@gmail.com")
          <li><a href="{{ url('dokumen') }}"><i class="fa fa-book"></i> <span> Standar Biaya Institut</span></a></li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-clone"></i>
-            <span>Versi SBI</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href={{ url('tambahsbi') }}><i class="fa fa-plus-square"></i> Tambah SBI</a></li>
-            <li><a href={{ url('pilihversi') }}><i class="fa fa-cog"></i> Pilih Versi</a></li>
-          </ul>
-        </li>
+         <li><a href="{{ url('versisbi') }}"><i class="fa fa-clone"></i> <span> Versi SBI</span></a></li>
         <li><a href="{{ url('buatkda') }}"><i class="fa fa-edit"></i> <span> Buat KDA</span></a></li>
         <li class="treeview">
           <a href="#">

@@ -65,7 +65,7 @@
               <tr>
                 <td></td>  
                   <td>
-                    <a href="{{$kegiatan->id}}">{{ $kegiatan->nama_kegiatan}}</a>
+                    <a href="{{ url('data', $kegiatan->id) }}">{{ $kegiatan->nama_kegiatan}}</a>
                   </td>
                   <td>
                     <i class="fa fa-eye" data-toggle="modal" onclick="viewdata('{{ $kegiatan->id }}')" data-target="#show-modal"> | </i> 

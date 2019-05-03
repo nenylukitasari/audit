@@ -14,10 +14,12 @@ class JenisKegiatanSeeder extends Seeder
     {
         JenisKegiatan::create([
     		'jenis_kegiatan'		=> 'Standar Biaya Institut sebagai Batas Tertinggi',
+            'version_id'            => '1',
        	]);
 
         JenisKegiatan::create([
     		'jenis_kegiatan'		=> 'Standar Biaya Institut sebagai Estimasi Perencanaan Anggaran',
+            'version_id'            => '1',
     	]);
     }
 }
