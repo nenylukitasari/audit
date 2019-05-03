@@ -42,6 +42,10 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/dokumen/update','JenisKegiatanController@update');
 	Route::post('/dokumen/update2','JenisKegiatanController@update2');
 
+	Route::get('data/{id}','DataController@index');
+
+
+
 	Route::get('/1','MakanController@index');
 	Route::post('/makan_lembur','MakanController@store');
 	Route::post('/makan_lembur/kategori','MakanController@storeKategori');
@@ -77,8 +81,16 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::get('/2old','JalanDinasController@index2');
 
 	// create sbi
-	Route::get('/tambahsbi','VersiController@index');
+	Route::get('/tambahsbi', function () { return view('tambahsbi'); });
 	Route::post('/versi','VersiController@store');
+	Route::get('/versisbi','VersiController@index');
+	Route::post('/pilihversi','VersiController@store2');
+	// Route::get('/data/show_version','VersiController@getData');
+	Route::post('/data/versi','VersiController@getData');
+	Route::post('/data/version','VersiController@getData');
+	Route::post('/sbi/update','VersiController@update');
+
+
 
 
 // punya yasin
