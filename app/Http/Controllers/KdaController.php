@@ -40,7 +40,7 @@ class KdaController extends Controller
 		$unit = DB::table('unit')->get();
     	//$kda = DB::table('kda')->get();
     	//return response()->json($kda);
-		return view ("kda", compact('kda','unit'));
+		return view ("kdasemua", compact('kda','unit'));
 	}
 	public function indexmember()
 	{

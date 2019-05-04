@@ -71,7 +71,7 @@
                       <th>Tahun</th>
                       <th>Jenis Kda</th>
                       <th>Data Pelengkap</th>
-                      <th>Lihat Data</th>
+                      <th>Dibuat Oleh</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -96,7 +96,8 @@
                       <td>KDA tanpa pengajuan UMK</td>
                       <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-keterangan" onclick="keteranganupdate('{{ $kda->id_kda }}')">lihat</button></td>
                       @endif
-                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-edit" onclick="submitUpdate('{{ $kda->id_kda }}')">Lihat</button></td>
+                      {{-- <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-edit" onclick="submitUpdate('{{ $kda->id_kda }}')">Lihat</button></td> --}}
+                      <td>{{ $kda->created_by}}</td>
                       <td><a href="{{ url('pdf/'.$kda->id_kda) }}"><button class="btn btn-xs btn-primary">Download</button></a> </td>
                     </tr>
                     @endforeach
@@ -109,7 +110,7 @@
                       <th>Tahun</th>
                       <th>Jenis Kda</th>
                       <th>Data Pelengkap</th>
-                      <th>Lihat Data</th>
+                      <th>Dibuat Oleh</th>
                       <th>Aksi</th>
                     </tr>
                   </tfoot>
