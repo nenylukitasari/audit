@@ -70,8 +70,8 @@
                       <th>Bulan</th>
                       <th>Tahun</th>
                       <th>Jenis Kda</th>
-                      <th>Data Pelengkap</th>
-                      <th>Lihat Data</th>
+                      <th>Data</th>
+                      {{-- <th>Lihat Data</th> --}}
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -96,7 +96,7 @@
                       <td>KDA tanpa pengajuan UMK</td>
                       <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-keterangan" onclick="keteranganupdate('{{ $kda->id_kda }}')">lihat</button></td>
                       @endif
-                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-edit" onclick="submitUpdate('{{ $kda->id_kda }}')">Lihat</button></td>
+                      {{-- <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-edit" onclick="submitUpdate('{{ $kda->id_kda }}')">Lihat</button></td> --}}
                       <td><a href="{{ url('pdf/'.$kda->id_kda) }}"><button class="btn btn-xs btn-primary">Download</button></a> </td>
                     </tr>
                     @endforeach
@@ -108,7 +108,7 @@
                       <th>Bulan</th>
                       <th>Tahun</th>
                       <th>Jenis Kda</th>
-                      <th>Data Pelengkap</th>
+                      {{-- <th>Data</th> --}}
                       <th>Lihat Data</th>
                       <th>Aksi</th>
                     </tr>
@@ -278,7 +278,19 @@
   }
   $(document).ready(function (){
     //var table = $('#example1').DataTable();
-    $('#example1').DataTable();
+   	//$('#example1').DataTable();
+    $('#example1').dataTable( {
+      "columns": [
+        { "width": "3%" },
+        null,
+        { "width": "10%" },
+        { "width": "10%" },
+        { "width": "20%" },
+        { "width": "10%" },
+        { "width": "10%" }
+      ]
+    } );
+    
 
     $('select.column_filter').on( 'keyup click', function () {
         filterColumn( $(this).attr('data-column') );

@@ -70,7 +70,7 @@
                       <th>Bulan</th>
                       <th>Tahun</th>
                       <th>Jenis Kda</th>
-                      <th>Data Pelengkap</th>
+                      <th>Data</th>
                       <th>Dibuat Oleh</th>
                       <th>Aksi</th>
                     </tr>
@@ -109,7 +109,7 @@
                       <th>Bulan</th>
                       <th>Tahun</th>
                       <th>Jenis Kda</th>
-                      <th>Data Pelengkap</th>
+                      <th>Data</th>
                       <th>Dibuat Oleh</th>
                       <th>Aksi</th>
                     </tr>
@@ -279,7 +279,19 @@
   }
   $(document).ready(function (){
     //var table = $('#example1').DataTable();
-    $('#example1').DataTable();
+    //$('#example1').DataTable();
+    $('#example1').dataTable( {
+      "columns": [
+        { "width": "3%" },
+        null,
+        { "width": "10%" },
+        { "width": "7%" },
+        { "width": "18%" },
+        { "width": "7%" },
+        { "width": "15%" },
+        { "width": "10%" }
+      ]
+    } );
 
     $('select.column_filter').on( 'keyup click', function () {
         filterColumn( $(this).attr('data-column') );

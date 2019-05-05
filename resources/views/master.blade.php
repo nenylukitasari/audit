@@ -19,6 +19,8 @@ else {
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{url('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{URL::asset('assets/bower_components/select2/dist/css/select2.min.css')}}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{url('assets/bower_components/font-awesome/css/font-awesome.min.css')}}">
   <!-- Ionicons -->
@@ -32,8 +34,7 @@ else {
   <link rel="stylesheet" href="{{url('assets/dist/css/skins/_all-skins.min.css')}}">
 
    <link rel="stylesheet" href="{{URL::asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="{{URL::asset('assets/bower_components/select2/dist/css/select2.min.css')}}">
+  
 
   <!-- datepicker -->
  <link rel="stylesheet" href="{{URL::asset('assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
@@ -56,7 +57,6 @@ else {
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
 
   @yield('add-css')
 </head>

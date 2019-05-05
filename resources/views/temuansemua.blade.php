@@ -62,6 +62,7 @@
                       <th>Tahun</th>
                       <th>Jenis Kda</th>
                       <th>Temuan</th>
+                      <th>Dibuat Oleh</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -75,6 +76,7 @@
                       <td>{{ $kda->tahun}}</td>
                       <td>KDA dengan temuan</td>
                       <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-temuan" onclick="temuanupdate('{{ $kda->id_kda }}')">lihat</button></td>
+                      <td>{{ $kda->created_by}}</td>
                       <td><a href="{{ url('pdf/'.$kda->id_kda) }}"><button class="btn btn-xs btn-primary">Download</button></a> </td>
                     </tr>
                     @endforeach
@@ -87,6 +89,7 @@
                       <th>Tahun</th>
                       <th>Jenis Kda</th>
                       <th>Temuan</th>
+                      <th>Dibuat Oleh</th>
                       <th>Aksi</th>
                     </tr>
                   </tfoot>
@@ -108,7 +111,7 @@
         <div class="modal-body">
           <form action="{{url('/temuan/update')}}" method="get" id="tambah_kda" enctype="multipart/form-data">
             <div>
-             <table class="table table-bordered table-striped" style='width:100%'>
+              <table class="table table-bordered table-striped" style='width:100%'>
                 <thead>
                   <tr>
                     <th width=30%>No. Kwitansi</th>
@@ -156,15 +159,16 @@
   }
   $(document).ready(function (){
     //var table = $('#example1').DataTable();
-    // $('#example1').DataTable();
+    //$('#example1').DataTable();
     $('#example1').dataTable( {
       "columns": [
         { "width": "3%" },
         null,
         { "width": "10%" },
-        { "width": "10%" },
-        { "width": "20%" },
-        { "width": "10%" },
+        { "width": "7%" },
+        { "width": "18%" },
+        { "width": "7%" },
+        { "width": "15%" },
         { "width": "10%" }
       ]
     } );

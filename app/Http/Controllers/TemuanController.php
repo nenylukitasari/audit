@@ -40,7 +40,7 @@ class TemuanController extends Controller
             $value->tahun = "20${tahun}";
         }
         $unit = DB::table('unit')->get();
-        return view ("temuan", compact('kda','unit'));
+        return view ("temuansemua", compact('kda','unit'));
     }
     public function indexmember()
     {
