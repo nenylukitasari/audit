@@ -279,7 +279,9 @@
             var keterangan = data1[i]['keterangan'];
             var status = data1[i]['status'];
             var id = data1[i]['id'];
-            if (status) {
+            console.log("ini status");
+            console.log (status);
+            if (status == 1) {
               temuansemua = 
             `<tr><td name="kwitansi[${i}]">${kwitansi}</td><td name="nominal[${i}]">${nominal}</td><td name="keterangan[${i}]">${keterangan}</td><td>Telah dikonfirmasi</td></tr>`;
              $("#temuan").append(temuansemua);

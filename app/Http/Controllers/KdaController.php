@@ -241,7 +241,8 @@ class KdaController extends Controller
         //dd($data);
         $kda = kda::find($request->idkda);
         $kda->update($data, ['except'=>'_token']);
-        return redirect('/kda');
+        return redirect()->back();
+        //return redirect('/kda');
 
     }
     public function template()
@@ -264,7 +265,16 @@ class KdaController extends Controller
 		$id = $request->input('id');
 		//$kda = kda::find($id)->join('unit');
 		$kda_ket = db::table('kda_keterangan2')->where('kda_id',$id)->get();
-		return response()->json($kda_ket);
+
+		foreach ($kda_ket as $key => $data) {
+			if ($data->nominal != null) {
+				$data->nominal = round($data->nominal, 0);	
+			}
+			$data = $kda_ket;
+			
+		}
+		// dd($kda_ket);
+		return response()->json($data);
 	}
 	public function getketerangan(Request $request)
 	{
@@ -289,6 +299,18 @@ class KdaController extends Controller
         $kda_ket->update($updatedata);
 		
 		}
-		return redirect('/kda');
+		return redirect()->back();
+		//return redirect('/kda');
+	}
+	public function updateketerangan(Request $request)
+	{
+
+		$data = $request->all();
+		$kda = kda_keterangan::find($request->id);
+		//return ($data);
+		$kda->update($data, ['except'=>'_token']);
+		return redirect()->back();
+		//return redirect('/kda');
+
 	}
 }

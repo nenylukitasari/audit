@@ -24,7 +24,7 @@ Route::get('/hak', function () { return view('hak');});
 
 Route::group(['middleware' => 'SemuaRole'], function () {
 	// punya neny
-	Route::get('/dokumen', 'DataController@index');
+	Route::get('/dokumen', 'DataController@index')->name('dokumen');
 	Route::post('/dokumen/{kode_tabel}','DataController@store');
 	Route::post('/data/kegiatan','DataController@getData');
 	Route::post('/getdata','DataController@getData');
@@ -60,6 +60,7 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/kda/kelengkapan', 'KdaController@getkelengkapan');
 	Route::get('/kda/kelengkapan/update', 'KdaController@updatekelengkapan');
 	Route::post('/kda/keterangan', 'KdaController@getketerangan');
+	Route::post('/keterangan/update', 'KdaController@updateketerangan');
 	Route::post('/kda/update', 'KdaController@updatekda');
 	Route::post('/temuan/temuanlama', 'TemuanController@gettemuanlama');
 	Route::get('/temuan/update', 'TemuanController@updatetemuan');

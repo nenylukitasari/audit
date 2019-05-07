@@ -86,8 +86,8 @@ class TemuanController extends Controller
         ->update([
             'status' => '1'
         ]);
-        
-        return redirect('/temuankda');
+        return redirect()->back();
+        //return redirect('/temuankda');
 
     }
     public function gettemuanlama(Request $request){
