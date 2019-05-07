@@ -19,22 +19,23 @@
 <br/>
   <div class="col-md-13">
 
-    @if (session('message_success'))
-                            <div class="alert alert-success">
-                                {{ session('message_success') }}
-                            </div>
-                        @elseif (session('message_error'))
-                            <div class="alert alert-danger">
-                                {{ session('message_error') }}
-                            </div>
-                        @endif
-
+   @if (session('message_success'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong><h4><i class="icon fa fa-check"></i> Sukses!</strong></h4>
+            {{ session('message_success') }}
+        </div>
+    {{-- @elseif (session('message_error'))
+        <div class="alert alert-danger">
+            {{ session('message_error') }}
+        </div> --}}
+    @endif
            <div class="box box-default">
             <div class="box-header with-border" style="margin: 1em 0 0 1em;">
               <strong class="box-title" >STANDAR BIAYA INSTITUT </strong><br/>
-              @foreach ($jenis_kegiatans as $jk)
+              @foreach ($versions as $version)
               @endforeach
-                  <strong class="card-title">Data version {{$jk->version}}</strong>
+                  <strong class="card-title">Data version {{$version->version}}</strong>
               <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&emsp;Add
           </button>
             </div>
@@ -45,11 +46,12 @@
               <tr>
                 <th width="10">No.</th>
                 <th width="600">Kegiatan</th>
-                <th width="20"></th>
+                <th width="40"></th>
               </tr>
               </thead>
              <tbody>
-              @foreach ($jenis_kegiatans as $key => $jenis_kegiatan)
+              @foreach ($versions as $version)
+              @foreach ($version->jenis_kegiatan as $key => $jenis_kegiatan)
                   <tr>
                     <td>
                         {{$key+1}}. 
@@ -58,29 +60,31 @@
                       {{ $jenis_kegiatan->jenis_kegiatan}}
                     </th>
                       <td> 
-                      <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate2('{{ $jenis_kegiatan->id }}')" data-target="#edit-modal2"> | </i>
+                      <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate({{ $jenis_kegiatan->id }},{{$jenis_kegiatan->kode_tabel}})" data-target="#show-modal"> | </i>   
+                      <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate({{ $jenis_kegiatan->id }},{{$jenis_kegiatan->kode_tabel}})" data-target="#edit-modal"> | </i>
                         <i class="fa fa-trash-o" data-toggle="modal" data-target="#delete2-modal"></i></td>
                     </tr>
               @foreach ($jenis_kegiatan->kegiatan as $kegiatan)
               <tr>
                 <td></td>  
                   <td>
-                    <a href="{{ url('data', $kegiatan->id) }}">{{ $kegiatan->nama_kegiatan}}</a>
+                    <a href="{{ url('/data/'.$kegiatan->kode_tabel . '/' .$kegiatan->kode_bagian ) }}">{{ $kegiatan->nama_kegiatan}}</a>
                   </td>
                   <td>
-                    <i class="fa fa-eye" data-toggle="modal" onclick="viewdata('{{ $kegiatan->id }}')" data-target="#show-modal"> | </i> 
-                    <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate('{{ $kegiatan->id }}')" data-target="#edit-modal"> | </i>
+                    <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate2({{ $kegiatan->id }},{{$kegiatan->kode_tabel}})" data-target="#show-modal2"> | </i> 
+                    <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate2({{ $kegiatan->id }},{{$kegiatan->kode_tabel}})" data-target="#edit-modal2"> | </i>
                     <i class="fa fa-trash-o" data-toggle="modal" data-target="#delete-modal"></i>
                   </td>
                 </tr>
                 @endforeach
               @endforeach
+            @endforeach
             </tbody>
             <tfoot>
               <tr>
                 <th width="10">No.</th>
                 <th width="600">Kegiatan</th>
-                <th width="20"></th>
+                <th width="40"></th>
               </tr>
             </tfoot>
         </table>
@@ -108,22 +112,15 @@
 
                 <div class="form-group" id="form-kegiatan">
                   <br/>
-                <form action="{{url('/dokumen')}}" method="POST"> 
-                  {{-- @if ($errors->any())
-                      <div class="alert alert-danger">
-                          <ul>
-                              @foreach ($errors->all() as $error)
-                                  <li>{{ $error }}</li>
-                              @endforeach
-                          </ul>
-                      </div>
-                  @endif --}}
+                <form action="{{url('/dokumen', $kegiatan->kode_tabel)}}" method="POST"> 
                   {{csrf_field()}} 
                     <div class="form-group">
                       <select class="form-control select2" style="width:500px" name="jenis_kegiatan" required>
                         <option></option>
-                        @foreach($jenis_kegiatans as $jenis_kegiatan)
-                        <option value="{{$jenis_kegiatan->id}}">{{$jenis_kegiatan->jenis_kegiatan}}</option>
+                        @foreach($versions as $version)
+                        @foreach($version->jenis_kegiatan as $jk)
+                        <option value="{{$jk->id}}">{{$jk->jenis_kegiatan}}</option>
+                        @endforeach
                         @endforeach
                       </select>  
                     </div>
@@ -143,25 +140,30 @@
             </form>
           </form>
           </div>
-
-
             <div class="form-group" id="form-jenis-kegiatan">
                   <br/>
-                <form action="{{url('/dokumen/jenis-kegiatan')}}" method="POST"> 
+                <form action="{{url('/dokumen', $jenis_kegiatan->kode_tabel)}}" method="POST"> 
                   {{csrf_field()}} 
             <form class="form-horizontal">
               <div class="box-body">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Version</label>
+                  <div class="col-sm-10">
+                    <input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="version" name="version" value="{{$version->id}}" required/>
+                    {{-- <input type="text" name="version" class="form-control" required /> --}}
+                  </div>
+                </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Jenis Kegiatan</label>
                   <div class="col-sm-10">
                     <input type="text" name="jenis_kegiatan" placeholder="Jenis Kegiatan" class="form-control" required />
                   </div>
                 </div>
-                <br/><br/>
+              </div>
+                <br/>
               <div class="modal-footer">  
                 <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
               </div>
-            </div>
             </form>
           </form>
           </div>
@@ -187,17 +189,46 @@
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id" name="id" disabled> </td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id_jk" name="id_jk" disabled> </td>
+                  </tr>
+                  <tr>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Jenis Kegiatan</th>
+                    <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
+                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="jenis_kegiatan" name="jenis_kegiatan" disabled></textarea> </td>
+                  </tr>
+                </table>
+              </div>              
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="show-modal2">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Data Details</h4>
+              </div>
+              <div class="modal-body">
+              <div class="box-body">
+                <table border="0">
+                  <tr>
+                    <th class="col-sm-3 control-label">ID</th>
+                    <td width="10">:</td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id_kegiatan" name="id_kegiatan" disabled> </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Jenis Kegiatan</th>
                     <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="jenis" name="jenis" disabled> </td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="jenis_kegiatan2" name="jenis_kegiatan2" disabled> </td>
                   </tr>
                   <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Kegiatan</th>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Nama Kegiatan</th>
                     <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="kegiatan" name="kegiatan" disabled></textarea></td>
+                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="nama_kegiatan" name="nama_kegiatan" disabled></textarea> </td>
                   </tr>
                 </table>
               </div>              
@@ -209,7 +240,7 @@
 
 
 <!-- Edit Modal -->
-  <div class="modal fade" id="edit-modal">
+ <div class="modal fade" id="edit-modal">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -218,35 +249,21 @@
                 <h4 class="modal-title">Data Details</h4>
               </div>
               <div class="modal-body">
-              <form action="{{url('/dokumen/update')}}" method="POST"> 
+              <form action="{{url('/dokumen/update', $jenis_kegiatan->kode_tabel)}}" method="POST"> 
               {{csrf_field()}} 
               <div class="box-body">
                 <table border="0">
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input type="text" class="form-control" id="id_kegiatan" name="id_kegiatan" required></td>
+                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id_jk" name="edit_id_jk" required></td>
                   </tr>
                   <br/>
                   <tr>
                     <th class="col-sm-3 control-label">Jenis Kegiatan</th>
                     <td width="10">:</td>
                     <td>
-                    <div class="form-group">
-                      <select class="form-control select2" style="width:385px" name="jenis_kegiatan" value="{{old('jenis_kegiatan_id')}}" required>
-                        <option></option>
-                        @foreach($jenis_kegiatans as $jenis_kegiatan)
-                        <option value="{{$jenis_kegiatan->id}}">{{$jenis_kegiatan->jenis_kegiatan}}</option> 
-                        @endforeach
-                      </select>  
-                    </div>
-                  </td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Kegiatan</th>
-                    <td width="10">:</td>
-                    <td>
-                    <textarea class="form-control" rows="3" id="nama_kegiatan" name="nama_kegiatan"></textarea>
+                        <textarea class="form-control" rows="3" id="edit_jenis_kegiatan" name="edit_jenis_kegiatan"></textarea>
                     </td>
                   </tr>
                 </table>
@@ -261,7 +278,7 @@
         </div>
     </div>
 
-     <div class="modal fade" id="edit-modal2">
+  <div class="modal fade" id="edit-modal2">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -270,21 +287,37 @@
                 <h4 class="modal-title">Data Details</h4>
               </div>
               <div class="modal-body">
-              <form action="{{url('/dokumen/update2')}}" method="POST"> 
+              <form action="{{url('/dokumen/update', $kegiatan->kode_tabel)}}" method="POST"> 
               {{csrf_field()}} 
               <div class="box-body">
                 <table border="0">
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input type="text" class="form-control" id="id_kegiatan2" name="id_kegiatan2" required></td>
+                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id_kegiatan" name="edit_id_kegiatan" required/></td>
                   </tr>
                   <br/>
                   <tr>
                     <th class="col-sm-3 control-label">Jenis Kegiatan</th>
                     <td width="10">:</td>
                     <td>
-                        <textarea class="form-control" rows="3" id="jenis_kegiatan2" name="jenis_kegiatan2"></textarea>
+                    <div class="form-group">
+                      <select class="form-control select2" style="width:385px" id="edit_jenis_kegiatan2" name="edit_jenis_kegiatan2"/>
+                        <option></option>
+                        @foreach($versions as $version)
+                        @foreach($version->jenis_kegiatan as $jk)
+                          <option value="{{$jk->id}}">{{$jk->jenis_kegiatan}}</option> 
+                        @endforeach
+                        @endforeach
+                      </select>  
+                    </div>
+                  </td>
+                  </tr>
+                  <tr>
+                    <th class="col-sm-3 control-label">Kegiatan</th>
+                    <td width="10">:</td>
+                    <td>
+                    <textarea class="form-control" rows="3" id="edit_nama_kegiatan" name="edit_nama_kegiatan" required></textarea>
                     </td>
                   </tr>
                 </table>
@@ -318,27 +351,7 @@
       </form>
     </div>
   </div>
-</div>
-
-<div class="modal modal-danger fade" id="delete2-modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title text-center" id="myModalLabel">Delete Confirmation</h4>
-      </div>
-      <form class="form-inline" action="{{ url('/dokumen/delete2/'.$jenis_kegiatan['id']) }}"
-            method="POST">
-          @csrf
-          @method('delete')
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">No, Cancel</button>
-          <button type="submit" class="btn btn-warning">Yes, Delete</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div> --}}
+</div>--}}
 
 @endsection
 
@@ -349,12 +362,6 @@
 
 <!-- FastClick -->
 <script src="{{url('assets/bower_components/fastclick/lib/fastclick.js')}}"></script>
-
-{{-- batas suci --}}
-{{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> --}}
-
 
 <!-- page script -->
 <script>
@@ -406,15 +413,18 @@
   })
 
 </script>
-<script>
-  $(document).ready(function(){
-
-    viewdata = function(id){
+<script type="text/javascript">
+  submitUpdate = function(id, kode_tabel){
+    // console.log(id);
+    // console.log("hehe");
+    // console.log(kode_tabel);
       $.ajax({
-        url: '/data/kegiatan',
-        type: 'GET',
+        url: '/getdata',
+        type: 'POST',
         data: {
-          'id' : id
+          '_token': "{{ csrf_token() }}",
+          'id' : id,
+          'kode_tabel' : kode_tabel
         },
         error: function() {
           console.log('Error');
@@ -422,19 +432,21 @@
         dataType: 'json',
         success: function(data) {
           console.log(data);
-          $('#id').val(data.id);
-          $('#jenis').val(data.jenis_kegiatan_id);
-          $('#kegiatan').val(data.nama_kegiatan);
+          $('#id_jk').val(data.id);
+          $('#jenis_kegiatan').val(data.jenis_kegiatan);
+          $('#edit_id_jk').val(data.id);
+          $('#edit_jenis_kegiatan').val(data.jenis_kegiatan);
         }
       });
     }
-    submitUpdate = function(id){
+    submitUpdate2 = function(id, kode_tabel){
       $.ajax({
-        url: '/data/edit-kegiatan',
+        url: '/getdata',
         type: 'POST',
         data: {
           '_token': "{{ csrf_token() }}",
-          'id' : id
+          'id' : id,
+          'kode_tabel' : kode_tabel
         },
         error: function() {
           console.log('Error');
@@ -443,30 +455,38 @@
         success: function(data) {
           console.log(data);
           $('#id_kegiatan').val(data.id);
-          $('#jenis_kegiatan').val(data.jenis_kegiatan);
+          $('#jenis_kegiatan2').val(data.jenis_kegiatan_id);
           $('#nama_kegiatan').val(data.nama_kegiatan);
+          $('#edit_id_kegiatan').val(data.id);
+          $('#edit_jenis_kegiatan2').val(data.jenis_kegiatan_id);
+          $('#edit_nama_kegiatan').val(data.nama_kegiatan);
         }
       });
     }
-    submitUpdate2 = function(id){
-      $.ajax({
-        url: '/data/edit-kegiatan2',
-        type: 'POST',
-        data: {
-          '_token': "{{ csrf_token() }}",
-          'id' : id
-        },
-        error: function() {
-          console.log('Error');
-        },
-        dataType: 'json',
-        success: function(data) {
-          console.log(data);
-          $('#id_kegiatan2').val(data.id);
-          $('#jenis_kegiatan2').val(data.jenis_kegiatan);
-        }
-      });
-    }
+</script>
+<script>
+  $(document).ready(function(){
+    // viewdata = function(id){
+    //   $.ajax({
+    //     url: '/data/kegiatan',
+    //     type: 'GET',
+    //     data: {
+    //       'id' : id
+    //     },
+    //     error: function() {
+    //       console.log('Error');
+    //     },
+    //     dataType: 'json',
+    //     success: function(data) {
+    //       console.log(data);
+    //       $('#id').val(data.id);
+    //       $('#jenis').val(data.jenis_kegiatan_id);
+    //       $('#kegiatan').val(data.nama_kegiatan);
+    //     }
+    //   });
+    // }
+
+    
   });
 </script>
 @endsection

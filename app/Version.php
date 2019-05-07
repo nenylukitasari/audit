@@ -17,4 +17,17 @@ class Version extends Model
     {
         return $this->hasManyThrough('App\Kegiatan','App\JenisKegiatan');
     }
+
+    public function provinsi()
+    {
+        return $this->hasMany(Provinsi::class,'version_id','id');
+    }
+    public function uraian()
+    {
+        return $this->hasManyThrough('App\Uraian','App\Provinsi');
+    }
+    public function penjelasan()
+    {
+        return $this->hasMany(Penjelasan::class,'version_id','id');
+    }
 }

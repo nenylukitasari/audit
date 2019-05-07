@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             UraianSeeder::class,
             Sub1Seeder::class,
             Sub2Seeder::class,
+            PenjelasanSeeder::class,
             template_summernote::class,
             Unitseeder::class,
         ]);

@@ -25,4 +25,9 @@ class Kegiatan extends Model
     {
     	return $this->hasManyThrough(Uraian::class,Kategori::class);
     }
+
+    public function penjelasan()
+    {
+        return $this->hasMany(Penjelasan::class,'kegiatan_id','id');
+    }
 }

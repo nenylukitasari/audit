@@ -20,4 +20,9 @@ class Kategori extends Model
     {
     	return $this->hasManyThrough('App\Sub1','App\Uraian');
     }
+
+    public function penjelasan()
+    {
+        return $this->hasMany(Penjelasan::class,'kategori_id','id');
+    }
 }

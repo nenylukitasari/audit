@@ -22,8 +22,8 @@ class Uraian extends Model
     }
 
     
-    // public function provinsi()
-    // {
-    // 	return $this->belongsTo(Provinsi::class,'provinsi_id','id');
-    // }
+    public function provinsi()
+    {
+    	return $this->belongsTo(Provinsi::class,'provinsi_id','id');
+    }
 }

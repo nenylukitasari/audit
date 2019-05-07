@@ -24,76 +24,33 @@ Route::get('/hak', function () { return view('hak');});
 
 Route::group(['middleware' => 'SemuaRole'], function () {
 	// punya neny
-	Route::get('/dokumen', 'JenisKegiatanController@index');
-	Route::post('/dokumen','JenisKegiatanController@store');
-	Route::delete('/dokumen/delete/{id}', 'JenisKegiatanController@destroy');
-	Route::delete('/dokumen/delete2/{id}', 'JenisKegiatanController@destroy2');
-	Route::post('/search_month','JenisKegiatanController@search_month');
+	Route::get('/dokumen', 'DataController@index');
+	Route::post('/dokumen/{kode_tabel}','DataController@store');
+	Route::post('/data/kegiatan','DataController@getData');
+	Route::post('/getdata','DataController@getData');
+	Route::get('/data/{kode_tabel}/{kode_bagian}','DataController@index');
+	Route::post('/dokumen/update/{kode_tabel}','DataController@update');
+	Route::post('/data/update/{kode_tabel}','DataController@update');
 
-	// belum fix
-	Route::get('/dokumen/restore/{id}','JenisKegiatanController@restore');
-	Route::get('/dokumen/restore2/{id}','JenisKegiatanController@restore2');
+	Route::post('/data/add/{kode_tabel}','DataController@store');
+	Route::get('getUraian/{id}','DataController@getUraian');
+	Route::post('/data/update/{kode_tabel}','DataController@update');
 
-	Route::post('/dokumen/jenis-kegiatan','JenisKegiatanController@storejenis');
-	Route::get('/data/kegiatan','JenisKegiatanController@getData');
-	Route::get('/data/kegiatan2','JenisKegiatanController@getData2');
-	Route::post('/data/edit-kegiatan','JenisKegiatanController@getData');
-	Route::post('/data/edit-kegiatan2','JenisKegiatanController@getData2');
-	Route::post('/dokumen/update','JenisKegiatanController@update');
-	Route::post('/dokumen/update2','JenisKegiatanController@update2');
-
-	Route::get('data/{id}','DataController@index');
-
-
-
-	Route::get('/1','MakanController@index');
-	Route::post('/makan_lembur','MakanController@store');
-	Route::post('/makan_lembur/kategori','MakanController@storeKategori');
-	Route::post('/makan_lembur/sub1','MakanController@storeSub1');
-	Route::get('/data/makan1','MakanController@getData1');
-	Route::get('/data/makan2','MakanController@getData2');
-	Route::get('/data/makan3','MakanController@getData3');
-	Route::post('/makan_lembur/update','MakanController@update');
-	Route::post('/makan_lembur/update2','MakanController@update2');
-	Route::post('/makan_lembur/update3','MakanController@update3');
-	Route::post('/data/edit-makan1','MakanController@getData1');
-	Route::post('/data/edit-makan2','MakanController@getData2');
-	Route::post('/data/edit-makan3','MakanController@getData3');
-	Route::get('getUraian/{id}','MakanController@getUraian');
-
-
-	Route::get('/2','JalanDinasController@index');
-	Route::get('/data/jalan_dinas','JalanDinasController@getData');
-	Route::post('/data/edit-jalan_dinas','JalanDinasController@getData');
-	Route::post('/jalan_dinas/update','JalanDinasController@update');
-	Route::post('/jalan_dinas/kategori_kegiatan','JalanDinasController@store');
-	Route::post('/search_month/jalan_dinas','JalanDinasController@search_month');
-
-	Route::get('/2/1','JalanDinasController@index_1');
-
-	Route::get('/2/2','JalanDinasController@index_2');
-	Route::post('/search_month/jalan_dinas_2','JalanDinasController@search_month2');
-	Route::post('/jalan_dinas/uraian','JalanDinasController@store2');
-	Route::get('/data/uraian','JalanDinasController@getData2');
-	Route::post('/jalan_dinas/update/uraian','JalanDinasController@update2');
-	Route::post('/data/edit-uraian','JalanDinasController@getData2');
-
-	Route::get('/2old','JalanDinasController@index2');
-
-	// create sbi
 	Route::get('/tambahsbi', function () { return view('tambahsbi'); });
 	Route::post('/versi','VersiController@store');
 	Route::get('/versisbi','VersiController@index');
-	Route::post('/pilihversi','VersiController@store2');
-	// Route::get('/data/show_version','VersiController@getData');
-	Route::post('/data/versi','VersiController@getData');
+	Route::post('/pilihversi','VersiController@pilihversi');
 	Route::post('/data/version','VersiController@getData');
 	Route::post('/sbi/update','VersiController@update');
 
+	// Route::delete('/dokumen/delete/{id}', 'JenisKegiatanController@destroy');
+	// Route::delete('/dokumen/delete2/{id}', 'JenisKegiatanController@destroy2');
 
+	// belum fix
+	// Route::get('/dokumen/restore/{id}','JenisKegiatanController@restore');
+	// Route::get('/dokumen/restore2/{id}','JenisKegiatanController@restore2');
 
-
-// punya yasin
+	// punya yasin
 	Route::get('/buatkda', 'KdaController@buatkda');
 	Route::get('/kda', 'KdaController@index');
 	Route::post("tambahkda1","KdaController@tambahkda1");

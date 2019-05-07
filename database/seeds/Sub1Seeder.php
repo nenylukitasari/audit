@@ -14,32 +14,35 @@ class Sub1Seeder extends Seeder
     {
         Sub1::create([
     		'uraian_id'				=> '8',
+            'kode_tabel'            => '5',
     		'uraian_kegiatan'		=> 'Makan',
     		'satuan'				=> 'Orang/Kali',
     		'var1'					=> '44000',
     	]);
     	Sub1::create([
     		'uraian_id'				=> '8',
+            'kode_tabel'            => '5',
     		'uraian_kegiatan'		=> 'Kudapan',
     		'satuan'				=> 'Orang/Kali',
     		'var1'					=> '23000',
     	]);
-
-
     	Sub1::create([
     		'uraian_id'				=> '9',
+            'kode_tabel'            => '5',
     		'uraian_kegiatan'		=> 'Makan',
     		'satuan'				=> 'Orang/Kali',
     		'var1'					=> '110000',	
     	]);
     	Sub1::create([
     		'uraian_id'				=> '9',
+            'kode_tabel'            => '5',
     		'uraian_kegiatan'		=> 'Kudapan',
     		'satuan'				=> 'Orang/Kali',
     		'var1'					=> '49000',
     	]);
         Sub1::create([
             'uraian_id'             => '47',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Amerika Serikat',
             'satuan'                => 'OH',
             'var1'                  => '578',
@@ -49,6 +52,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '47',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Kanada',
             'satuan'                => 'OH',
             'var1'                  => '447',
@@ -58,6 +62,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '48',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Argentina',
             'satuan'                => 'OH',
             'var1'                  => '534',
@@ -67,6 +72,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '48',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Venezuela',
             'satuan'                => 'OH',
             'var1'                  => '557',
@@ -76,6 +82,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '48',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Brazil',
             'satuan'                => 'OH',
             'var1'                  => '436',
@@ -85,6 +92,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '48',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Chile',
             'satuan'                => 'OH',
             'var1'                  => '415',
@@ -94,6 +102,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '48',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Columbia',
             'satuan'                => 'OH',
             'var1'                  => '436',
@@ -103,6 +112,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '48',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Peru',
             'satuan'                => 'OH',
             'var1'                  => '459',
@@ -112,6 +122,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '48',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Suriname',
             'satuan'                => 'OH',
             'var1'                  => '398',
@@ -121,6 +132,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '48',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Ekuador',
             'satuan'                => 'OH',
             'var1'                  => '385',
@@ -130,6 +142,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '49',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Mexico',
             'satuan'                => 'OH',
             'var1'                  => '493',
@@ -139,6 +152,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '49',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Kuba',
             'satuan'                => 'OH',
             'var1'                  => '406',
@@ -148,6 +162,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '49',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Panama',
             'satuan'                => 'OH',
             'var1'                  => '414',
@@ -157,6 +172,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '50',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Austria',
             'satuan'                => 'OH',
             'var1'                  => '504',
@@ -166,6 +182,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '50',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Belgia',
             'satuan'                => 'OH',
             'var1'                  => '466',
@@ -175,6 +192,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '50',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Perancis',
             'satuan'                => 'OH',
             'var1'                  => '512',
@@ -184,6 +202,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '50',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Rep. Federasi Jerman',
             'satuan'                => 'OH',
             'var1'                  => '447',
@@ -193,6 +212,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '50',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Belanda',
             'satuan'                => 'OH',
             'var1'                  => '463',
@@ -202,6 +222,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '50',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Swiss',
             'satuan'                => 'OH',
             'var1'                  => '636',
@@ -211,6 +232,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '51',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Denmark',
             'satuan'                => 'OH',
             'var1'                  => '567',
@@ -220,6 +242,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '51',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Finlandia',
             'satuan'                => 'OH',
             'var1'                  => '453',
@@ -229,6 +252,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '51',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Norwegia',
             'satuan'                => 'OH',
             'var1'                  => '621',
@@ -238,6 +262,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '51',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Swedia',
             'satuan'                => 'OH',
             'var1'                  => '466',
@@ -247,6 +272,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '51',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Kerajaan Inggris',
             'satuan'                => 'OH',
             'var1'                  => '792',
@@ -256,6 +282,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '52',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Bosnia Herzegovina',
             'satuan'                => 'OH',
             'var1'                  => '456',
@@ -265,6 +292,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '52',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Kroasia',
             'satuan'                => 'OH',
             'var1'                  => '555',
@@ -274,6 +302,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '52',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Spanyol',
             'satuan'                => 'OH',
             'var1'                  => '457',
@@ -283,6 +312,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '53',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Filipina',
             'satuan'                => 'OH',
             'var1'                  => '412',
@@ -292,6 +322,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '53',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Singapura',
             'satuan'                => 'OH',
             'var1'                  => '530',
@@ -301,6 +332,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '53',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Malaysia',
             'satuan'                => 'OH',
             'var1'                  => '394',
@@ -310,6 +342,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '53',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Thailand',
             'satuan'                => 'OH',
             'var1'                  => '392',
@@ -319,6 +352,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '53',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Myanmar',
             'satuan'                => 'OH',
             'var1'                  => '368',
@@ -328,6 +362,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '53',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Laos',
             'satuan'                => 'OH',
             'var1'                  => '380',
@@ -337,6 +372,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '53',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Vietnam',
             'satuan'                => 'OH',
             'var1'                  => '383',
@@ -346,6 +382,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '53',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Brunei Darussalam',
             'satuan'                => 'OH',
             'var1'                  => '374',
@@ -355,6 +392,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '53',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Kamboja',
             'satuan'                => 'OH',
             'var1'                  => '296',
@@ -364,6 +402,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '53',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Timor Leste',
             'satuan'                => 'OH',
             'var1'                  => '392',
@@ -373,6 +412,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '54',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Australia',
             'satuan'                => 'OH',
             'var1'                  => '636',
@@ -382,6 +422,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '54',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Selandia Baru',
             'satuan'                => 'OH',
             'var1'                  => '451',
@@ -391,6 +432,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '54',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Kaledonia Baru',
             'satuan'                => 'OH',
             'var1'                  => '425',
@@ -400,6 +442,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '54',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Papua Nugini',
             'satuan'                => 'OH',
             'var1'                  => '520',
@@ -409,6 +452,7 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '54',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Fiji',
             'satuan'                => 'OH',
             'var1'                  => '363',
@@ -418,39 +462,824 @@ class Sub1Seeder extends Seeder
         ]);
         Sub1::create([
             'uraian_id'             => '55',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Halfday',
             'satuan'                => 'Orang/Paket',
             'var1'                  => '300000',
         ]);
         Sub1::create([
             'uraian_id'             => '55',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Fullday',
             'satuan'                => 'Orang/Paket',
             'var1'                  => '350000',
         ]);
         Sub1::create([
             'uraian_id'             => '55',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Fullboard',
             'satuan'                => 'Orang/Paket',
             'var1'                  => '900000',
         ]);
         Sub1::create([
             'uraian_id'             => '56',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Halfday/Fullday di dalam Kota',
             'satuan'                => 'Orang/Hari',
             'var1'                  => '100000',
         ]);
         Sub1::create([
             'uraian_id'             => '56',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Fullboard di dalam Kota',
             'satuan'                => 'Orang/Hari',
             'var1'                  => '115000',
         ]);
         Sub1::create([
             'uraian_id'             => '56',
+            'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Fullboard di luar Kota',
             'satuan'                => 'Orang/Hari',
             'var1'                  => '140000',
         ]);
+        Sub1::create([
+            'uraian_id'             => '105',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Anggota Sidang Pleno',
+            'satuan'                => 'Orang/Kegiatan',
+            'var1'                  => '400000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '106',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Ketua Komisi',
+            'satuan'                => 'Orang/Kegiatan',
+            'var1'                  => '700000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '106',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Sekretaris Komisi',
+            'satuan'                => 'Orang/Kegiatan',
+            'var1'                  => '600000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '106',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Anggota Komisi',
+            'satuan'                => 'Orang/Kegiatan',
+            'var1'                  => '400000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '107',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Anggota Komisi Harian',
+            'satuan'                => 'Orang/Kegiatan',
+            'var1'                  => '700000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '108',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Ketua Tim Adhoc',
+            'satuan'                => 'Orang/Kegiatan',
+            'var1'                  => '900000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '108',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Sekretaris Tim Adhoc',
+            'satuan'                => 'Orang/Kegiatan',
+            'var1'                  => '875000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '108',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Anggota Tim Adhoc',
+            'satuan'                => 'Orang/Kegiatan',
+            'var1'                  => '750000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '118',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Atasan Langsung Bendahara',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '3100000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '118',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Petugas Pengelola Administrasi Belanja Pegawai',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '1745000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '118',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Bendahara Pengeluaran Pembantu (Pusat)',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '1745000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '118',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Koordinator',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '1800000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '118',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Staf Pengelola Keuangan',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '950000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '118',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Penyusunan Anggaran',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '1800000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '119',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 200 juta s.d Rp 500 juta',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '119',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 500 juta s.d Rp 1 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '119',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 1 miliar s.d Rp 2.5 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '2000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '119',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 2.5 miliar s.d Rp 5 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '2500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '119',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 5 miliar s.d Rp 10 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '3000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '119',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 10 miliar s.d Rp 25 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '3500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '119',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 25 miliar s.d Rp 50 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '4000000',
+        ]);
+
+        Sub1::create([
+            'uraian_id'             => '120',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 200 juta s.d Rp 500 juta',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '3000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '120',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 500 juta s.d Rp 1 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '3500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '120',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 1 miliar s.d Rp 2.5 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '4000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '120',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 2.5 miliar s.d Rp 5 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '4500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '120',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 5 miliar s.d Rp 10 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '5000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '120',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 10 miliar s.d Rp 25 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '5500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '120',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 25 miliar s.d Rp 50 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '6000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '121',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 200 juta s.d Rp 500 juta',
+            'var1'                  => '13500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '121',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 500 juta s.d Rp 1 miliar',
+            'var1'                  => '26250000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '121',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 1 miliar s.d Rp 2.5 miliar',
+            'var1'                  => '40000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '121',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 2.5 miliar s.d Rp 5 miliar',
+            'var1'                  => '90000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '121',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 5 miliar s.d Rp 10 miliar',
+            'var1'                  => '150000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '121',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 10 miliar s.d Rp 25 miliar',
+            'var1'                  => '264000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '121',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 25 miliar s.d Rp 50 miliar',
+            'var1'                  => '288000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '122',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 200 juta s.d Rp 500 juta',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '250000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '122',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 500 juta s.d Rp 1 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '300000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '122',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 1 miliar s.d Rp 2.5 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '350000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '122',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 2.5 miliar s.d Rp 5 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '400000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '122',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 5 miliar s.d Rp 10 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '450000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '122',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 10 miliar s.d Rp 25 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '122',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 25 miliar s.d Rp 50 miliar',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '550000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '123',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 200 juta s.d Rp 500 juta',
+            'var1'                  => '15000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '123',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 500 juta s.d Rp 1 miliar',
+            'var1'                  => '17500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '123',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 1 miliar s.d Rp 2.5 miliar',
+            'var1'                  => '20000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '123',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 2.5 miliar s.d Rp 5 miliar',
+            'var1'                  => '25000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '123',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 5 miliar s.d Rp 10 miliar',
+            'var1'                  => '300000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '123',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 10 miliar s.d Rp 25 miliar',
+            'var1'                  => '350000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '123',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 25 miliar s.d Rp 50 miliar',
+            'var1'                  => '400000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '124',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 200 juta s.d Rp 500 juta',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '680000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '124',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 500 juta s.d Rp 1 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '816000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '124',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 1 miliar s.d Rp 2.5 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1016000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '124',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 2.5 miliar s.d Rp 5 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1216000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '124',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 5 miliar s.d Rp 10 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1424000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '124',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 10 miliar s.d Rp 25 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1696000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '124',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 25 miliar s.d Rp 50 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1960000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '125',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 200 juta s.d Rp 500 juta',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '608000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '125',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 500 juta s.d Rp 1 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '736000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '125',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 1 miliar s.d Rp 2.5 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '912000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '125',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 2.5 miliar s.d Rp 5 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1096000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '125',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 5 miliar s.d Rp 10 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1280000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '125',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 10 miliar s.d Rp 25 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1528000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '125',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 25 miliar s.d Rp 50 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1768000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '126',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 200 juta s.d Rp 500 juta',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '360000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '126',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 500 juta s.d Rp 1 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '384000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '126',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 1 miliar s.d Rp 2.5 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '480000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '126',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 2.5 miliar s.d Rp 5 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '576000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '126',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 5 miliar s.d Rp 10 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '728000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '126',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 10 miliar s.d Rp 25 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '872000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '126',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 25 miliar s.d Rp 50 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1016000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '127',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 200 juta s.d Rp 500 juta',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '416000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '127',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 500 juta s.d Rp 1 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '496000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '127',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 1 miliar s.d Rp 2.5 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '616000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '127',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 2.5 miliar s.d Rp 5 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '728000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '127',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 5 miliar s.d Rp 10 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '848000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '127',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 10 miliar s.d Rp 25 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1008000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '127',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Nilai pagu di atas Rp 25 miliar s.d Rp 50 miliar',
+            'satuan'                => 'Orang/Paket',
+            'var1'                  => '1160000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '140',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengajar Kursus Bahasa Inggris dan BIPA',
+            'satuan'                => 'Tatap Muka',
+            'var1'                  => '95000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '140',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengajar Kursus Bahasa Asing I (Jerman, Jepang, dan Arab) Kelas Reguler',
+            'satuan'                => 'Tatap Muka',
+            'var1'                  => '95000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '140',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengajar Kursus Bahasa Asing II (Perancis, Mandarin, dan Korea) Kelas Reguler',
+            'satuan'                => 'Tatap Muka',
+            'var1'                  => '106000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '140',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengajar Special Class',
+            'satuan'                => 'Tatap Muka',
+            'var1'                  => '118000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '141',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengawas CLCPT, EFL, EIC, Tes Bahasa Asing Lain',
+            'satuan'                => 'Orang/Datang',
+            'var1'                  => '89000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '141',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengawas ITP',
+            'satuan'                => 'Orang/Datang',
+            'var1'                  => '148000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '141',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengawas IELPT',
+            'satuan'                => 'Orang/Datang',
+            'var1'                  => '230000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '142',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Penerjemah',
+            'satuan'                => 'Lembar Jadi',
+            'var1'                  => '118000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '142',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Interpreter',
+            'satuan'                => 'Jam',
+            'var1'                  => '330000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '143',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Jumlah peserta <100 orang',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '2000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '143',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Jumlah peserta 100 sampai 199 orang',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '2500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '143',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Jumlah peserta >= 200 orang',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '3000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '144',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Jumlah peserta <100 orang',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '1500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '144',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Jumlah peserta 100 sampai 199 orang',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '2000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '144',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Jumlah peserta >= 200 orang',
+            'satuan'                => 'Orang/Bulan',
+            'var1'                  => '2500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '163',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Reguler',
+            'satuan'                => 'SKS/Hadir',
+            'var1'                  => '150000',
+            'var2'                  => '150000',
+            'var3'                  => '150000',
+            'var4'                  => '150000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '163',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Reguler Internasional (berbahasa Inggris)',
+            'satuan'                => 'SKS/Hadir',
+            'var1'                  => '250000',
+            'var2'                  => '250000',
+            'var3'                  => '250000',
+            'var4'                  => '250000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '163',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Lintas Jalur Malam Hari',
+            'satuan'                => 'SKS/Hadir',
+            'var2'                  => '200000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '163',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'MMT',
+            'satuan'                => 'SKS/Hadir',
+            'var3'                  => '250000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '164',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pembimbing II - TA/Tesis/Disertasi',
+            'satuan'                => 'Per Mhs Lulus',
+            'var1'                  => '300000',
+            'var2'                  => '300000',
+            'var3'                  => '750000',
+            'var4'                  => '3600000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '165',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Tugas Akhir/Tesis/Disertasi',
+            'satuan'                => 'Orang/Mhs',
+            'var1'                  => '150000',
+            'var2'                  => '150000',
+            'var3'                  => '250000',
+            'var4'                  => '900000 *)',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '165',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengawas Ujian',
+            'satuan'                => 'Orang/Jam',
+            'var1'                  => '35000',
+            'var2'                  => '35000',
+            'var3'                  => '35000',
+            'var4'                  => '35000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '166',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengajar Kursus Bahasa Inggris dan BIPA',
+            'satuan'                => 'Tatap Muka',
+            'var1'                  => '95000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '166',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengajar Kursus Bahasa Asing I (Jerman, Jepang, dan Arab) Kelas Reguler',
+            'satuan'                => 'Tatap Muka',
+            'var1'                  => '95000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '166',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengajar Kursus Bahasa Asing II (Perancis, Mandarin, dan Korea) Kelas Reguler',
+            'satuan'                => 'Tatap Muka',
+            'var1'                  => '106000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '166',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengajar Special Class',
+            'satuan'                => 'Tatap Muka',
+            'var1'                  => '118000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '167',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengawas CLCPT, EFL, EIC, Tes Bahasa Asing Lain',
+            'satuan'                => 'Orang/Datang',
+            'var1'                  => '89000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '167',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengawas ITP',
+            'satuan'                => 'Orang/Datang',
+            'var1'                  => '148000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '167',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Pengawas IELPT',
+            'satuan'                => 'Orang/Datang',
+            'var1'                  => '230000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '168',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Penerjemah',
+            'satuan'                => 'Lembar Jadi',
+            'var1'                  => '118000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '168',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Interpreter',
+            'satuan'                => 'Jam',
+            'var1'                  => '330000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '179',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Narasumber/Pembicara/Pembahas/Perumus Hasil',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '179',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Moderator dan Pembawa Acara',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '180',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Narasumber/Pembicara/Pembahas/Perumus Hasil',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '180',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Moderator dan Pembawa Acara',
+        ]);
+
     }
 }

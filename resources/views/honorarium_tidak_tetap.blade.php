@@ -3,30 +3,21 @@
 @section('title-bar')
     @foreach ($versions as $version)
     @foreach ($version->kegiatan as $kegiatan)
-      @if($kegiatan->kode_bagian==2)
-      @foreach($kegiatan->kategori as $kategori)
-      @if($kategori->kode_bagian==1)
-         {{$kategori->kategori_kegiatan}}
-      @endif
-      @endforeach
-      @endif
+      @if($kegiatan->kode_bagian==4)
+         {{$kegiatan->nama_kegiatan}}
+       @endif
     @endforeach
     @endforeach
 @endsection
 
 @section('right_title')
 @foreach ($versions as $version)
-@foreach ($version->kegiatan as $kegiatan)
-@if($kegiatan->kode_bagian==2)
-  <li class="active"><a href="/data/2/2">{{$kegiatan->nama_kegiatan}}</a></li>
-  @foreach($kegiatan->kategori as $kategori)
-    @if($kategori->kode_bagian==1)
-    <li class="active">{{$kategori->kategori_kegiatan}}</li>
-    @endif
-  @endforeach
- @endif
-@endforeach
-@endforeach
+    @foreach ($version->kegiatan as $kegiatan)
+    @if($kegiatan->kode_bagian==4)
+     <li class="active">{{$kegiatan->nama_kegiatan}}</li>
+     @endif
+    @endforeach
+    @endforeach
 @endsection
 @section('add-css')
 <!-- DataTables -->
@@ -40,7 +31,7 @@
 @section('content')
 <br/>
   <div class="col-md-13">
-    @if (session('message_success'))
+  @if (session('message_success'))
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong><h4><i class="icon fa fa-check"></i> Sukses!</strong></h4>
@@ -51,15 +42,11 @@
             <div class="box-header with-border" style="margin: 1em 0 0 1em;">
               <strong class="box-title" >
                 @foreach ($versions as $version)
-                @foreach ($version->kegiatan as $kegiatan)
-                @if($kegiatan->kode_bagian==2)
-                  @foreach($kegiatan->kategori as $kategori)
-                    @if($kategori->kode_bagian==1)
-                    {{strtoupper($kategori->kategori_kegiatan)}}
-                  @endif
-                @endforeach
-                @endif
-                @endforeach
+                  @foreach ($version->kegiatan as $kegiatan)
+                  @if($kegiatan->kode_bagian==4)
+                    {{strtoupper($kegiatan->nama_kegiatan)}}
+                    @endif
+                  @endforeach
                 @endforeach
               </strong><br/>
               <strong class="card-title">Data version {{$version->version}}</strong>
@@ -76,21 +63,25 @@
               </tr>
               </thead>
              <tbody>
-              {{-- @foreach ($kategoris as $kategoria) --}}
-             {{--  @foreach ($uraians as $key => $uraian)
+              @foreach ($versions as $version)
+              @foreach ($version->kegiatan as $kegiatan)
+              @if($kegiatan->kode_bagian==4)
+              @foreach ($kegiatan->kategori as $key => $kategori)
                   <tr>
                     <td>
                         {{$key+1}}. 
                     </td>
                     <td>
-                       <a href="/2/{{$key+1}}"> {{ $kategori->kategori_kegiatan}}
+                       <a href="{{ url('/data/'.$kategori->kode_tabel . '/' .$kategori->kode_bagian ) }}">{{ $kategori->kategori_kegiatan}}</a>
                     </td>
                       <td> 
-                      <i class="fa fa-eye" data-toggle="modal" onclick="viewdata('{{ $kategori->id }}')" data-target="#show-modal"> | </i> 
-                      <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate('{{ $kategori->id }}')" data-target="#edit-modal">  </i>
+                      <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})" data-target="#show-modal"> | </i> 
+                      <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})" data-target="#edit-modal">  </i>
                     </tr>
                 @endforeach
-              @endforeach --}}
+                @endif
+              @endforeach
+              @endforeach
             </tbody>
             <tfoot>
               <tr>
@@ -104,7 +95,7 @@
       </div>
     </div>
   </div>
-{{-- 
+
 <!--Add Modal-->
         <div id="addModal" class="modal fade">
           <div class="modal-dialog">
@@ -115,34 +106,45 @@
                 <h4 class="modal-title">Add</h4>
               </div>
               <div class="modal-body">
-                <div class="form-group" id="form-jenis-kegiatan">
-                  <br/>
-                <form action="{{url('/jalan_dinas/kategori-kegiatan')}}" method="POST"> 
+             <div class="form-group">
+                <form action="{{url('/data/add', $kategori->kode_tabel)}}" method="POST"> 
                   {{csrf_field()}} 
-            <form class="form-horizontal">
-              <div class="box-body">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Kategori Kegiatan</label>
+                  <select class="form-control select2" style="width:500px" name="kegiatan_id" required>
+                      <option></option>
+                    @foreach ($versions as $version)
+                    @foreach ($version->kegiatan as $kegiatan)
+                    @if($kegiatan->kode_bagian==4)
+                     <option value="{{$kegiatan->id}}">{{$kegiatan->nama_kegiatan}}</option>
+                      {{-- <input type="text" style="border: none; box-shadow: none;" name="kegiatan_id" value="{{$kegiatan->id}}" class="form-control" required /> --}}
+                    @endif
+                    @endforeach
+                    @endforeach
+                  </select>
+                </div>
+              <form class="form-horizontal">
+                <div class="box-body">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Kategori</label>
                   <div class="col-sm-10">
-                    <input type="text" name="kategori_kegiatan" placeholder="Kategori Kegiatan" class="form-control" required />
+                    <textarea class="form-control" rows="3" id="kategori_kegiatan" name="kategori_kegiatan" placeholder="Kategori Kegiatan" required></textarea>
                   </div>
                 </div>
+              </div>
                 <br/><br/>
               <div class="modal-footer">  
                 <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
               </div>
-            </div>
             </form>
           </form>
           </div>
-        </div>
-            <!-- /.modal-content -->
           </div>
-          <!-- /.modal-dialog -->
+          </div>
         </div>
-        <!-- /.modal -->
       </div>
     </div>
+
+
 
 <!-- Show Modal -->
   <div class="modal fade" id="show-modal">
@@ -162,10 +164,9 @@
                     <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id" name="id" disabled> </td>
                   </tr>
                   <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Kategori Kegiatan</th>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Uraian Kegiatan</th>
                     <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td>
-                      <textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="kategori" name="kategori" disabled></textarea>
+                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="kategori" name="kategori" disabled></textarea> </td>
                   </tr>
                 </table>
               </div>              
@@ -176,7 +177,7 @@
     </div>
 
 <!-- Edit Modal -->
-  <div class="modal fade" id="edit-modal">
+ <div class="modal fade" id="edit-modal">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -185,22 +186,22 @@
                 <h4 class="modal-title">Data Details</h4>
               </div>
               <div class="modal-body">
-              <form action="{{url('/jalan_dinas/update')}}" method="POST"> 
+              <form action="{{url('/data/update', $kategori->kode_tabel)}}" method="POST">
               {{csrf_field()}} 
               <div class="box-body">
                 <table border="0">
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input type="text" class="form-control" id="id_kategori" name="id_kategori" required></td>
+                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id" name="edit_id" required></td>
                   </tr>
                   <br/>
                   <tr>
-                    <th class="col-sm-3 control-label">Kategori Kegiatan</th>
-                    <td width="10">:</td>
+                    <th class="col-sm-3 control-label">Uraian Kegiatan</th>
+                    <td width="10">:&ensp;</td>
                     <td>
-                    <textarea class="form-control" rows="3" id="kategori_kegiatan" name="kategori_kegiatan" value="{{old('kategori_kegiatan')}}"></textarea>
-                  </td>
+                    <textarea class="form-control" rows="3" id="kategori_kegiatan1" name="kategori_kegiatan1" required></textarea>
+                    </td>
                   </tr>
                 </table>
               </div>              
@@ -213,55 +214,6 @@
           </div>
         </div>
     </div>
- --}}
-{{-- 
-TABEL SATU
-           <div class="box-body" id="1">
-            <table id="example1" class="table table-bordered table-hover">
-              <thead>
-              <tr>
-                <th width="10">No.</th>
-                <th width="400">Provinsi</th>
-                <th width="80">Satuan</th>
-                <th width="80">Luar Kota (Rp)</th>
-                <th width="120">Dalam Kota Lebih dari 8 Jam (Rp)</th>
-                <th width="80">Diklat (Rp)</th>
-              </tr>
-              </thead>
-             <tbody>
-              @foreach ($uraians as $key => $uraian)
-                  <tr>
-                    <td>
-                        {{$key+1}}. 
-                    </td>
-                    <td>{{ $uraian->uraian_kegiatan}}</td>
-                    <td>{{ $uraian->satuan}}</td>
-                    <td>{{ number_format($uraian->var1)}}</td>
-                    <td>{{ number_format($uraian->var2)}}</td>
-                    <td>{{ number_format($uraian->var3)}}</td>
-                    </tr>
-              @endforeach
-            </tbody>
-            <tfoot>
-              <tr>
-                <th width="10">No.</th>
-                <th width="400">Provinsi</th>
-                <th width="80">Satuan</th>
-                <th width="80">Luar Kota (Rp)</th>
-                <th width="120">Dalam Kota Lebih dari 8 Jam (Rp)</th>
-                <th width="80">Diklat (Rp)</th>
-              </tr>
-            </tfoot>
-        </table>
-        <br/>
-      </div>
-    </div>
-  </div> --}}
-
- 
-
-
-
 @endsection
 
 @section('add-script')
@@ -271,12 +223,6 @@ TABEL SATU
 
 <!-- FastClick -->
 <script src="{{url('assets/bower_components/fastclick/lib/fastclick.js')}}"></script>
-
-{{-- batas suci --}}
-{{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> --}}
-
 
 <!-- form -->
 <script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>        
@@ -288,15 +234,18 @@ TABEL SATU
     });  
 });
 </script>
-<script>
-  $(document).ready(function(){
-
-    viewdata = function(id){
+<script type="text/javascript">
+  submitUpdate1 = function(id, kode_tabel){
+    // console.log(id);
+    // console.log("hehe");
+    // console.log(kode_tabel);
       $.ajax({
-        url: '/data/jalan',
-        type: 'GET',
+        url: '/getdata',
+        type: 'POST',
         data: {
-          'id' : id
+          '_token': "{{ csrf_token() }}",
+          'id' : id,
+          'kode_tabel' : kode_tabel
         },
         error: function() {
           console.log('Error');
@@ -306,43 +255,22 @@ TABEL SATU
           console.log(data);
           $('#id').val(data.id);
           $('#kategori').val(data.kategori_kegiatan);
+          $('#edit_id').val(data.id);
+          $('#kategori_kegiatan1').val(data.kategori_kegiatan);
         }
       });
     }
-    submitUpdate = function(id){
-      $.ajax({
-        url: '/data/edit-jalan',
-        type: 'POST',
-        data: {
-          '_token': "{{ csrf_token() }}",
-          'id' : id
-        },
-        error: function() {
-          console.log('Error');
-        },
-        dataType: 'json',
-        success: function(data) {
-          console.log(data);
-          $('#id_kategori').val(data.id);
-          $('#kategori_kegiatan').val(data.kategori_kegiatan);
-        }
-      });
-    }
-  });
 </script>
 <script>
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2(
     {
-      placeholder: "Pilih Kategori",
+      placeholder: "Pilih Kegiatan",
       allowClear: true
     })
-    
-
   })
 </script>
-
 @endsection
 
 

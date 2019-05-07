@@ -9,6 +9,10 @@ class Provinsi extends Model
 	protected $table = 'provinsi';
     protected $primaryKey = 'id';
 
+    public function version()
+    {
+        return $this->belongsTo(Version::class,'version_id','id');
+    }
     public function uraian()
     {
     	return $this->hasMany(Uraian::class,'provinsi_id','id');

@@ -5,7 +5,7 @@
   @foreach ($version->kegiatan as $kegiatan)
     @if($kegiatan->kode_bagian==2)
     @foreach($kegiatan->kategori as $kategori)
-    @if($kategori->kode_bagian==3)
+    @if($kategori->kode_bagian==7)
        {{$kategori->kategori_kegiatan}}
     @endif
     @endforeach
@@ -20,7 +20,7 @@
 @if($kegiatan->kode_bagian==2)
   <li class="active"><a href="/data/2/2">{{$kegiatan->nama_kegiatan}}</a></li>
   @foreach($kegiatan->kategori as $kategori)
-    @if($kategori->kode_bagian==3)
+    @if($kategori->kode_bagian==7)
     <li class="active">{{$kategori->kategori_kegiatan}}</li>
     @endif
   @endforeach
@@ -54,7 +54,7 @@
                   @foreach ($version->kegiatan as $kegiatan)
                     @if($kegiatan->kode_bagian==2)
                       @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==3)
+                        @if($kategori->kode_bagian==7)
                           {{strtoupper($kategori->kategori_kegiatan)}}
                         @endif
                       @endforeach
@@ -71,10 +71,11 @@
               <thead>
               <tr>
                 <th width="10">No.</th>
-                <th width="275">Uraian</th>
+                <th width="275">Jenis Perjalanan</th>
                 <th width="80">Satuan</th>
-                <th width="80">Luar Kota (Rp)</th>
-                <th width="80">Dalam Kota Lebih dari 8 Jam (Rp)</th>
+                <th width="80">Uang Harian (Rp)</th>
+                <th width="80">Biaya Penginapan</th>
+                <th width="80">Biaya Transport</th>
                 <th width="30"></th>
               </tr>
               </thead>
@@ -83,7 +84,7 @@
                   @foreach ($version->kegiatan as $kegiatan)
                     @if($kegiatan->kode_bagian==2)
                       @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==3)
+                        @if($kategori->kode_bagian==7)
                           @foreach($kategori->uraian as $key => $uraian)
                           <tr>
                             <td>
@@ -94,10 +95,23 @@
                             </td>
                             <td>{{$uraian->satuan}}</td>
                             <td>{{number_format($uraian->var1)}}</td>
-                            <td>{{number_format($uraian->var2)}}</td>
+                            <td>
+                            @if($uraian->var2==null || $uraian->var2==0)
+                                <i>at cost</i>
+                              @else
+                                {{number_format($uraian->var2)}}
+                            @endif
+                            </td>
+                            <td>
+                            @if($uraian->var3==null || $uraian->var3==0)
+                              <i>at cost</i>
+                              @else
+                                {{number_format($uraian->var3)}}
+                            @endif
+                            </td>
                               <td> 
                               <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})" data-target="#show-modal"> | </i> 
-                          <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}}) "data-target="#edit-modal"> </i>
+                              <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}}) "data-target="#edit-modal"> </i>
                             </tr>
                            @endforeach
                           @endif
@@ -109,10 +123,11 @@
             <tfoot>
               <tr>
                 <th width="10">No.</th>
-                <th width="275">Uraian</th>
+                <th width="275">Jenis Perjalanan</th>
                 <th width="80">Satuan</th>
-                <th width="80">Luar Kota (Rp)</th>
-                <th width="80">Dalam Kota Lebih dari 8 Jam (Rp)</th>
+                <th width="80">Uang Harian (Rp)</th>
+                <th width="80">Biaya Penginapan</th>
+                <th width="80">Biaya Transport</th>
                 <th width="30"></th>
               </tr>
             </tfoot>
@@ -147,7 +162,7 @@
                        @foreach ($version->kegiatan as $kegiatan)
                        @if($kegiatan->kode_bagian==2)
                         @foreach($kegiatan->kategori as $kategori)
-                          @if($kategori->kode_bagian==3)
+                          @if($kategori->kode_bagian==7)
                            <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                           @endif
                         @endforeach
@@ -159,27 +174,33 @@
           <form class="form-horizontal">
             <div class="box-body">
               <div class="form-group">
-                <label class="col-sm-3 control-label">Uraian</label>
-                <div class="col-sm-9">
-                  <textarea class="form-control" rows="3" id="uraian_kegiatan" name="uraian_kegiatan" placeholder="Uraian Kegiatan" required></textarea>
+                <label class="col-sm-4 control-label">Jenis Perjalanan</label>
+                <div class="col-sm-8">
+                  <textarea class="form-control" rows="3" id="uraian_kegiatan" name="uraian_kegiatan" placeholder="Jenis Perjalanan" required></textarea>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-3 control-label">Satuan</label>
-                <div class="col-sm-9">
+                <label class="col-sm-4 control-label">Satuan</label>
+                <div class="col-sm-8">
                   <input type="text" name="satuan" placeholder="Satuan" class="form-control" required />
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-3 control-label">Luar Kota</label>
-                <div class="col-sm-9">
-                  <input type="number" name="var1" placeholder="Luar Kota (Rp)" class="form-control" required />
+                <label class="col-sm-4 control-label">Uang Harian</label>
+                <div class="col-sm-8">
+                  <input type="number" name="var1" placeholder="Uang Harian (Rp)" class="form-control" required />
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-3 control-label">Dalam Kota</label>
-                <div class="col-sm-9">
-                  <input type="number" name="var2" placeholder="Dalam Kota Lebih Dari 8 Jam (Rp)" class="form-control" required />
+                <label class="col-sm-4 control-label">Biaya Penginapan</label>
+                <div class="col-sm-8">
+                  <input type="number" name="var2" placeholder="tulis 0 jika nominal at cost" class="form-control" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Biaya Transport</label>
+                <div class="col-sm-8">
+                  <input type="number" name="var3" placeholder="tulis 0 jika nominal at cost" class="form-control" required />
                 </div>
               </div>
               <br/><br/>
@@ -209,34 +230,39 @@
           <div class="box-body">
             <table border="0">
               <tr>
-                <th class="col-sm-3 control-label">ID</th>
+                <th class="col-sm-4 control-label">ID</th>
                 <td width="10">:</td>
                 <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id2" name="id2" disabled> </td>
               </tr>
               <tr>
-                <th class="col-sm-3 control-label">Kategori</th>
+                <th class="col-sm-4 control-label">Kategori</th>
                 <td width="10">:</td>
                 <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="kategori2" name="kategori2" disabled></td>
               </tr>
              <tr>
-                <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Uraian Kegiatan</th>
+                <th style="vertical-align: top; padding-top: 5px;" class="col-sm-4 control-label">Jenis Perjalanan</th>
                 <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
                 <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="uraian" name="uraian" disabled></textarea> </td>
               </tr>
               <tr>
-                <th class="col-sm-3 control-label">Satuan</th>
+                <th class="col-sm-4 control-label">Satuan</th>
                 <td width="10">:</td>
                 <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="satuan" name="satuan" disabled></td>
               </tr>
               <tr>
-                <th class="col-sm-3 control-label">Luar Kota (Rp)</th>
+                <th class="col-sm-4 control-label">Uang Harian (Rp)</th>
                 <td width="10">:</td>
                 <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="var1" name="var1" disabled></td>
               </tr>
               <tr>
-                <th class="col-sm-3 control-label">Dalam Kota (Rp)</th>
+                <th class="col-sm-4 control-label">Biaya Penginapan</th>
                 <td width="10">:</td>
                 <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="var2" name="var2" disabled></td>
+              </tr>
+              <tr>
+                <th class="col-sm-4 control-label">Biaya Transport</th>
+                <td width="10">:</td>
+                <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="var3" name="var3" disabled></td>
               </tr>
             </table>
           </div>              
@@ -272,7 +298,7 @@
                   <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_kategori2" name="edit_kategori2" required></td>
                 </tr>
                 <tr>
-                  <th class="col-sm-4 control-label">Uraian Kegiatan</th>
+                  <th class="col-sm-3 control-label">Jenis Perjalanan</th>
                   <td width="10">:&ensp;</td>
                   <td>
                   <textarea class="form-control" rows="3" id="uraian_kegiatan2" name="uraian_kegiatan2" required></textarea>
@@ -286,17 +312,24 @@
                   </td>
                 </tr>
                 <tr>
-                  <th class="col-sm-3 control-label">Luar Kota (Rp)</th>
+                  <th class="col-sm-3 control-label">Uang Harian (Rp)</th>
                   <td width="10">:</td>
                   <td>
-                  <input type="text" class="form-control" id="edit_var1" name="edit_var1" placeholder="Luar Kota (Rp)" required>
+                  <input type="text" class="form-control" id="edit_var1" name="edit_var1" placeholder="Uang Harian (Rp)" required>
                   </td>
                 </tr>
                 <tr>
-                  <th class="col-sm-3 control-label">Dalam Kota (Rp)</th>
+                  <th class="col-sm-3 control-label">Biaya Penginapan</th>
                   <td width="10">:</td>
                   <td>
-                  <input type="text" class="form-control" id="edit_var2" name="edit_var2" placeholder="Dalam Kota Lebih Dari 8 Jam (Rp)" required>
+                  <input type="text" class="form-control" id="edit_var2" name="edit_var2" placeholder="tulis 0 jika nominal at cost" required>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="col-sm-3 control-label">Biaya Transport</th>
+                  <td width="10">:</td>
+                  <td>
+                  <input type="text" class="form-control" id="edit_var3" name="edit_var3" placeholder="tulis 0 jika nominal at cost" required>
                   </td>
                 </tr>
               </table>
@@ -352,12 +385,14 @@
           $('#satuan').val(data.satuan);
           $('#var1').val(data.var1);
           $('#var2').val(data.var2);
+          $('#var3').val(data.var3);
           $('#edit_id2').val(data.id);
           $('#edit_kategori2').val(data.kategori_id);
           $('#uraian_kegiatan2').val(data.uraian_kegiatan);
           $('#satuan2').val(data.satuan);
           $('#edit_var1').val(data.var1);
           $('#edit_var2').val(data.var2);
+          $('#edit_var3').val(data.var3);
         }
       });
     }

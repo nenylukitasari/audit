@@ -18,9 +18,8 @@ class CreateKegiatanTable extends Migration
             $table->integer('jenis_kegiatan_id')->unsigned();
             $table->foreign('jenis_kegiatan_id')->references('id')->on('jenis_kegiatan');
             $table->text('nama_kegiatan');
-            $table->integer('kode');
-            $table->string('version');
-            $table->boolean('status');
+            $table->integer('kode_tabel');
+            $table->integer('kode_bagian');
             $table->timestamps();
             // $table->softDeletes();
         });

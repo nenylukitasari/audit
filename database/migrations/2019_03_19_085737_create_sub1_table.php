@@ -18,14 +18,13 @@ class CreateSub1Table extends Migration
             $table->integer('uraian_id')->unsigned();
             $table->foreign('uraian_id')->references('id')->on('uraian');
             $table->text('uraian_kegiatan');
-            $table->string('satuan');
+            $table->string('satuan')->nullable();
             $table->integer('var1');
-            $table->integer('var2');
-            $table->integer('var3');
-            $table->integer('var4');
-            $table->integer('kode');
-            $table->string('version');
-            $table->boolean('status');
+            $table->integer('var2')->nullable();
+            $table->integer('var3')->nullable();
+            $table->integer('var4')->nullable();
+            $table->integer('kode_tabel');
+            $table->integer('kode_bagian');
             $table->timestamps();
         });
     }

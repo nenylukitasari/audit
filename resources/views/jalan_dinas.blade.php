@@ -1,14 +1,22 @@
 @extends('master')
 
 @section('title-bar')
-    @foreach ($kegiatans as $kegiatan)
-       {{$kegiatan->nama_kegiatan}}
+    @foreach ($versions as $version)
+    @foreach ($version->kegiatan as $kegiatan)
+      @if($kegiatan->kode_bagian==2)
+         {{$kegiatan->nama_kegiatan}}
+       @endif
+    @endforeach
     @endforeach
 @endsection
 
 @section('right_title')
-@foreach ($kegiatans as $kegiatan)
+@foreach ($versions as $version)
+    @foreach ($version->kegiatan as $kegiatan)
+    @if($kegiatan->kode_bagian==2)
      <li class="active">{{$kegiatan->nama_kegiatan}}</li>
+     @endif
+    @endforeach
     @endforeach
 @endsection
 @section('add-css')
@@ -23,43 +31,28 @@
 @section('content')
 <br/>
   <div class="col-md-13">
+  @if (session('message_success'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong><h4><i class="icon fa fa-check"></i> Sukses!</strong></h4>
+            {{ session('message_success') }}
+        </div>
+    @endif
            <div class="box box-default">
             <div class="box-header with-border" style="margin: 1em 0 0 1em;">
               <strong class="box-title" >
-                @foreach ($kegiatans as $kegiatan)
+                @foreach ($versions as $version)
+                  @foreach ($version->kegiatan as $kegiatan)
+                  @if($kegiatan->kode_bagian==2)
                     {{strtoupper($kegiatan->nama_kegiatan)}}
+                    @endif
+                  @endforeach
                 @endforeach
               </strong><br/>
-              {{-- <strong class="card-title">Data version {{$month}}</strong> --}}
+              <strong class="card-title">Data version {{$version->version}}</strong>
               <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&emsp;Add
           </button>
             </div>
-            <br/>
-          <table border="0" style="width: 67%; margin: 0 auto 2em auto;">
-                  <thead>
-                      <tr>
-                          <th width="100">Target</th>
-                          <th width="80">Search</th>
-                          <th></th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>Version</td>
-                          <td>
-                            <form class="search-form" method="POST" action="{{url('search_month/jalan_dinas')}}">
-                            {{csrf_field()}}
-                                <input class="form-control" style="width:200px" type="month" name="month_year" id="month_year"required/>
-                              <td>
-                                &ensp;
-                                <button class="btn btn-danger btn-sm" type="submit" value="submit"><i class="fa fa-search"></i></button>
-                              </td>
-                            </form>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-
           <div class="box-body">
             <table id="example1" class="table table-bordered table-hover">
               <thead>
@@ -70,20 +63,24 @@
               </tr>
               </thead>
              <tbody>
-              @foreach ($kegiatans as $kegiatan)
+              @foreach ($versions as $version)
+              @foreach ($version->kegiatan as $kegiatan)
+              @if($kegiatan->kode_bagian==2)
               @foreach ($kegiatan->kategori as $key => $kategori)
                   <tr>
                     <td>
                         {{$key+1}}. 
                     </td>
                     <td>
-                       <a href="/2/{{$key+1}}"> {{ $kategori->kategori_kegiatan}}
+                       <a href="{{ url('/data/'.$kategori->kode_tabel . '/' .$kategori->kode_bagian ) }}">{{ $kategori->kategori_kegiatan}}</a>
                     </td>
                       <td> 
-                      <i class="fa fa-eye" data-toggle="modal" onclick="viewdata('{{ $kategori->id }}')" data-target="#show-modal"> | </i> 
-                      <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate('{{ $kategori->id }}')" data-target="#edit-modal">  </i>
+                      <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})" data-target="#show-modal"> | </i> 
+                      <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})" data-target="#edit-modal">  </i>
                     </tr>
                 @endforeach
+                @endif
+              @endforeach
               @endforeach
             </tbody>
             <tfoot>
@@ -109,28 +106,39 @@
                 <h4 class="modal-title">Add</h4>
               </div>
               <div class="modal-body">
-                <div class="form-group" id="form-jenis-kegiatan">
-                  <br/>
-                <form action="{{url('/jalan_dinas/kategori_kegiatan')}}" method="POST"> 
+             <div class="form-group">
+                <form action="{{url('/data/add', $kategori->kode_tabel)}}" method="POST"> 
                   {{csrf_field()}} 
-            <form class="form-horizontal">
-              <div class="box-body">
+                <div class="form-group">
+                  <select class="form-control select2" style="width:500px" name="kegiatan_id" required>
+                      <option></option>
+                    @foreach ($versions as $version)
+                    @foreach ($version->kegiatan as $kegiatan)
+                    @if($kegiatan->kode_bagian==2)
+                     <option value="{{$kegiatan->id}}">{{$kegiatan->nama_kegiatan}}</option>
+                      {{-- <input type="text" style="border: none; box-shadow: none;" name="kegiatan_id" value="{{$kegiatan->id}}" class="form-control" required /> --}}
+                    @endif
+                    @endforeach
+                    @endforeach
+                  </select>
+                </div>
+              <form class="form-horizontal">
+                <div class="box-body">
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Kategori</label>
                   <div class="col-sm-10">
                     <textarea class="form-control" rows="3" id="kategori_kegiatan" name="kategori_kegiatan" placeholder="Kategori Kegiatan" required></textarea>
                   </div>
                 </div>
-                <br/><br/>
               </div>
+                <br/><br/>
               <div class="modal-footer">  
                 <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
               </div>
-            </div>
             </form>
           </form>
           </div>
-        </div>
+          </div>
           </div>
         </div>
       </div>
@@ -149,16 +157,16 @@
               </div>
               <div class="modal-body">
               <div class="box-body">
-                <table border="1">
+                <table border="0">
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
                     <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id" name="id" disabled> </td>
                   </tr>
                   <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Kategori</th>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Uraian Kegiatan</th>
                     <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="kategori" name="kategori" disabled></textarea></td>
+                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="kategori" name="kategori" disabled></textarea> </td>
                   </tr>
                 </table>
               </div>              
@@ -169,7 +177,7 @@
     </div>
 
 <!-- Edit Modal -->
-  <div class="modal fade" id="edit-modal">
+ <div class="modal fade" id="edit-modal">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -178,19 +186,22 @@
                 <h4 class="modal-title">Data Details</h4>
               </div>
               <div class="modal-body">
-              <form action="{{url('/jalan_dinas/update')}}" method="POST"> 
+              <form action="{{url('/data/update', $kategori->kode_tabel)}}" method="POST">
               {{csrf_field()}} 
               <div class="box-body">
                 <table border="0">
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input class="form-control" type="text" size="50" id="edit-id" name="edit-id"> </td>
+                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id" name="edit_id" required></td>
                   </tr>
+                  <br/>
                   <tr>
-                    <th class="col-sm-3 control-label">Kategori</th>
-                    <td width="10">:</td>
-                    <td><textarea class="form-control" rows="3" id="edit-kategori" name="edit-kategori"></textarea></td>
+                    <th class="col-sm-3 control-label">Uraian Kegiatan</th>
+                    <td width="10">:&ensp;</td>
+                    <td>
+                    <textarea class="form-control" rows="3" id="kategori_kegiatan1" name="kategori_kegiatan1" required></textarea>
+                    </td>
                   </tr>
                 </table>
               </div>              
@@ -213,12 +224,6 @@
 <!-- FastClick -->
 <script src="{{url('assets/bower_components/fastclick/lib/fastclick.js')}}"></script>
 
-{{-- batas suci --}}
-{{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> --}}
-
-
 <!-- form -->
 <script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>        
 
@@ -229,15 +234,18 @@
     });  
 });
 </script>
-<script>
-  $(document).ready(function(){
-
-    viewdata = function(id){
+<script type="text/javascript">
+  submitUpdate1 = function(id, kode_tabel){
+    // console.log(id);
+    // console.log("hehe");
+    // console.log(kode_tabel);
       $.ajax({
-        url: '/data/jalan_dinas',
-        type: 'GET',
+        url: '/getdata',
+        type: 'POST',
         data: {
-          'id' : id
+          '_token': "{{ csrf_token() }}",
+          'id' : id,
+          'kode_tabel' : kode_tabel
         },
         error: function() {
           console.log('Error');
@@ -246,42 +254,23 @@
         success: function(data) {
           console.log(data);
           $('#id').val(data.id);
-          $('#kategori').val(data.kategori_kegiatan); 
-          }
+          $('#kategori').val(data.kategori_kegiatan);
+          $('#edit_id').val(data.id);
+          $('#kategori_kegiatan1').val(data.kategori_kegiatan);
+        }
       });
     }
-    submitUpdate = function(id){
-      $.ajax({
-        url: '/data/edit-jalan_dinas',
-        type: 'POST',
-        data: {
-          '_token': "{{ csrf_token() }}",
-          'id' : id
-        },
-        error: function() {
-          console.log('Error');
-        },
-        dataType: 'json',
-        success: function(data) {
-          console.log(data);
-          $('#edit-id').val(data.id);
-          $('#edit-kategori').val(data.kategori_kegiatan); 
-          }
-      });
-    }
-  });
 </script>
 <script>
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2(
     {
-      placeholder: "Pilih Kategori",
+      placeholder: "Pilih Kegiatan",
       allowClear: true
     })
   })
 </script>
-
 @endsection
 
 

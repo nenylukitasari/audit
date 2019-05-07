@@ -3,7 +3,7 @@
 @section('title-bar')
     @foreach ($versions as $version)
     @foreach ($version->kegiatan as $kegiatan)
-    @if($kegiatan->kode_bagian==1)
+    @if($kegiatan->kode_bagian==3)
        {{$kegiatan->nama_kegiatan}}
     @endif
     @endforeach
@@ -13,7 +13,7 @@
 @section('right_title')
 @foreach ($versions as $version)
 @foreach ($version->kegiatan as $kegiatan)
-@if($kegiatan->kode_bagian==1)
+@if($kegiatan->kode_bagian==3)
     <li class="active">{{$kegiatan->nama_kegiatan}}</li>
 @endif
 @endforeach
@@ -42,7 +42,7 @@
           <strong class="box-title" >
             @foreach ($versions as $version)
               @foreach ($version->kegiatan as $kegiatan)
-                @if($kegiatan->kode_bagian == 1)
+                @if($kegiatan->kode_bagian == 3)
                   {{strtoupper($kegiatan->nama_kegiatan)}}
                 @endif
               @endforeach
@@ -57,24 +57,24 @@
                 <thead>
                 <tr>
                   <th width="10">No.</th>
-                  <th>Uraian Kegiatan</th>
-                  <th>Satuan</th>
-                  <th>Besaran Bruto Maksimum (Rp)</th>
+                  <th width="275">Uraian Kegiatan</th>
+                  <th width="90">Satuan</th>
+                  <th width="100">Besaran Bruto Maksimum (Rp)</th>
                   <th width="40"></th>
                 </tr>
                 </thead>
                <tbody>
                 @foreach ($versions as $version)
                 @foreach ($version->kegiatan as $kegiatan)
-                @if($kegiatan->kode_bagian == 1)
+                @if($kegiatan->kode_bagian == 3)
                 @foreach ($kegiatan->kategori as $key => $kategori) 
                     <tr>
                       <td>
                         {{$key+1}}. 
                       </td>
                     <th>{{ $kategori->kategori_kegiatan}}</th>
-                    <td></td>
-                    <td></td>
+                      <td></td>
+                      <td></td>
                       <td> 
                         <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})" data-target="#show-modal1"> | </i>
                           <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})" data-target="#edit-modal1"> </i>
@@ -128,32 +128,6 @@
                       </tr>
                         @endforeach
                         @endforeach 
-                      <tr> 
-                          <td></td>
-                          <td><strong>Penjelasan:</strong></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                      </tr>
-                      @foreach($kategori->penjelasan as $penjelasan)
-                        <tr>
-                          <td></td>
-                          <td>
-                          <ul>
-                            <li>
-                              {{$penjelasan->penjelasan}}
-                            </li>
-                          </ul>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
-                          <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
-                        </td>
-                        </tr>
-                        @endforeach  
-
                       @endforeach
                       @endif
                     @endforeach
@@ -162,9 +136,9 @@
                 <tfoot>
                 <tr>
                   <th width="10">No.</th>
-                  <th>Uraian Kegiatan</th>
-                  <th>Satuan</th>
-                  <th>Besaran Bruto Maksimum (Rp)</th>
+                  <th width="275">Uraian Kegiatan</th>
+                  <th width="90">Satuan</th>
+                  <th width="100">Besaran Bruto Maksimum (Rp)</th>
                   <th width="40"></th>
                 </tr>
               </tfoot>
@@ -189,7 +163,6 @@
                   <option value="1">Kategori</option>
                   <option value="2">Uraian</option>
                   <option value="3">Sub Uraian</option>
-                  <option value="4">Penjelasan</option>
                 </select>
                 <input type="button" name="submitpilih" id="submitpilih" class="btn btn-primary" value="Add"/>
 
@@ -206,7 +179,7 @@
                 <option></option>
                 @foreach ($versions as $version)
                   @foreach ($version->kegiatan as $kegiatan)
-                    @if($kegiatan->kode_bagian==1)
+                    @if($kegiatan->kode_bagian==3)
                       <option value="{{$kegiatan->id}}">{{$kegiatan->nama_kegiatan}}</option>
                     @endif
                 @endforeach
@@ -218,7 +191,7 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Kode Bagian</label>
                   <div class="col-sm-9">
-                    <input type="text" style="border: none; box-shadow: none;" name="kode_bagian" value="1" class="form-control" required />
+                    <input type="text" style="border: none; box-shadow: none;" name="kode_bagian" value="3" class="form-control" required />
                   </div>
                 </div>
                 <div class="form-group">
@@ -249,7 +222,7 @@
                         <option></option>
                         @foreach ($versions as $version)
                          @foreach ($version->kegiatan as $kegiatan)
-                         @if($kegiatan->kode_bagian==1)
+                         @if($kegiatan->kode_bagian==3)
                           @foreach($kegiatan->kategori as $kategori)
                              <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                           @endforeach
@@ -304,7 +277,7 @@
               <option value=""></option>
               @foreach($versions as $version)
                 @foreach($version->kegiatan as $kegiatan)
-                @if($kegiatan->kode_bagian==1)
+                @if($kegiatan->kode_bagian==3)
                 @foreach($kegiatan->kategori as $kategori)
                     <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                 @endforeach 
@@ -347,53 +320,6 @@
             </div>
             </form>
           </div>
-          </form>
-          </div>
-
-    <div class="form-group" id="form-penjelasan">
-                  <br/>
-                  @foreach ($version->kegiatan as $kegiatan)
-                    @foreach ($kegiatan->kategori as $kategori)
-                      @foreach ($kategori->penjelasan as $penjelasan)
-                  @endforeach
-                  @endforeach
-                  @endforeach
-                <form action="{{url('/data/add', $penjelasan->kode_tabel)}}" method="POST">
-                  {{csrf_field()}} 
-                    <div class="form-group">
-                      <select class="form-control select2" style="width:500px" name="penjelasan_kategori" required>
-                        <option></option>
-                        @foreach ($versions as $version)
-                         @foreach ($version->kegiatan as $kegiatan)
-                         @if($kegiatan->kode_bagian==1)
-                          @foreach($kegiatan->kategori as $kategori)
-                             <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
-                          @endforeach
-                          @endif
-                        @endforeach
-                      @endforeach
-                      </select>  
-                    </div>
-            <form class="form-horizontal">
-              <div class="box-body">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Version</label>
-                  <div class="col-sm-10">
-                    <input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="version" name="version" value="{{$version->id}}" required/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Penjelasan</label>
-                  <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" id="penjelasan" name="penjelasan" placeholder="Penjelasan" required></textarea>
-                  </div>
-                </div>
-                <br/><br/>
-              </div>
-              <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
-              </div>
-            </form>
           </form>
           </div>
           </div>
@@ -520,40 +446,6 @@
       </div>
   </div>
 
-<div class="modal fade" id="show-modal4">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Data Details</h4>
-              </div>
-              <div class="modal-body">
-              <div class="box-body">
-                <table border="0">
-                  <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id4" name="id4" disabled> </td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Kategori</th>
-                    <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="kategori4" name="kategori4" disabled></td>
-                  </tr>
-                 <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Penjelasan</th>
-                    <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="penjelasan4" name="penjelasan4" disabled></textarea> </td>
-                  </tr>
-                </table>
-              </div>              
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
 <!-- Edit Modal -->
  <div class="modal fade" id="edit-modal1">
           <div class="modal-dialog">
@@ -620,7 +512,7 @@
                         <option></option>
                         @foreach($versions as $version)
                           @foreach($version->kegiatan as $kegiatan)
-                          @if($kegiatan->kode_bagian==1)
+                          @if($kegiatan->kode_bagian==3)
                            @foreach($kegiatan->kategori as $kategori)
                             <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                           @endforeach
@@ -692,7 +584,7 @@
                         <option></option>
                         @foreach($versions as $version)
                           @foreach($version->kegiatan as $kegiatan)
-                          @if($kegiatan->kode_bagian==1)
+                          @if($kegiatan->kode_bagian==3)
                           @foreach($kegiatan->uraian as $uraian)
                             <option value="{{$uraian->id}}">{{$uraian->uraian_kegiatan}}</option>
                           @endforeach
@@ -722,64 +614,6 @@
                     <td width="10">:</td>
                     <td>
                     <input type="text" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="Bruto" required>
-                    </td>
-                  </tr>
-                </table>
-              </div>              
-              </div>
-               <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Update" /> 
-              </div>
-            </form>
-            </div>
-          </div>
-        </div>
-    </div>
-
-<div class="modal fade" id="edit-modal4">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Data Details</h4>
-              </div>
-              <div class="modal-body">
-              <form action="{{url('/data/update', $penjelasan->kode_tabel)}}" method="POST">
-              {{csrf_field()}} 
-              <div class="box-body">
-                <table border="0">
-                  <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id4" name="edit_id4" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
-                    <th class="col-sm-3 control-label">Kategori</th>
-                    <td width="10">:</td>
-                    <td>
-                    <div class="form-group">
-                      <select class="form-control select2" style="width:385px" name="edit_kategori4" id="edit_kategori4" required>
-                        <option></option>
-                        @foreach($versions as $version)
-                          @foreach($version->kegiatan as $kegiatan)
-                          @if($kegiatan->kode_bagian==1)
-                           @foreach($kegiatan->kategori as $kategori)
-                            <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
-                          @endforeach
-                          @endif
-                         @endforeach
-                        @endforeach
-                      </select>  
-                    </div>
-                  </td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-4 control-label">Penjelasan</th>
-                    <td width="10">:&ensp;</td>
-                    <td>
-                    <textarea class="form-control" rows="3" id="edit_penjelasan" name="edit_penjelasan" required></textarea>
                     </td>
                   </tr>
                 </table>
@@ -871,7 +705,6 @@
   $("#form-kategori").hide();
   $("#form-uraian").hide();
   $("#form-sub1").hide();
-  $("#form-penjelasan").hide(); 
   $(document).ready(function(){
     $("#submitpilih").click(function(){
       var pilihan = $( "#pilihopsi" ).val();
@@ -879,31 +712,21 @@
         $("#form-kategori").hide();
         $("#form-uraian").hide();
         $("#form-sub1").hide();
-        $("#form-penjelasan").hide(); 
       }
       else if (pilihan == 1) {
         $("#form-kategori").show();
         $("#form-uraian").hide();
         $("#form-sub1").hide();
-        $("#form-penjelasan").hide(); 
       }
       else if (pilihan == 2){
         $("#form-uraian").show();
         $("#form-sub1").hide(); 
         $("#form-kategori").hide();
-        $("#form-penjelasan").hide(); 
       }
       else if (pilihan == 3){
         $("#form-sub1").show(); 
         $("#form-uraian").hide();
         $("#form-kategori").hide();
-        $("#form-penjelasan").hide(); 
-      }
-      else if (pilihan == 4){
-        $("#form-penjelasan").show(); 
-        $("#form-uraian").hide();
-        $("#form-kategori").hide();
-        $("#form-sub1").hide();
       }
     })
   })
@@ -987,30 +810,6 @@
           $('#uraian_kegiatan3').val(data.uraian_kegiatan);
           $('#satuan3').val(data.satuan);
           $('#sub1_edit_var1').val(data.var1);
-        }
-      });
-    }
-    submitUpdate4 = function(id, kode_tabel){
-      $.ajax({
-        url: '/getdata',
-        type: 'POST',
-        data: {
-          '_token': "{{ csrf_token() }}",
-          'id' : id,
-          'kode_tabel' : kode_tabel
-        },
-        error: function() {
-          console.log('Error');
-        },
-        dataType: 'json',
-        success: function(data) {
-          console.log(data);
-          $('#id4').val(data.id);
-          $('#kategori4').val(data.kategori_id);
-          $('#penjelasan4').val(data.penjelasan);
-          $('#edit_id4').val(data.id);
-          $('#edit_kategori4').val(data.kategori_id);
-          $('#edit_penjelasan').val(data.penjelasan);
         }
       });
     }

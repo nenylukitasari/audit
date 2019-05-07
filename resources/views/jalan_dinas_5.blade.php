@@ -5,7 +5,7 @@
   @foreach ($version->kegiatan as $kegiatan)
     @if($kegiatan->kode_bagian==2)
     @foreach($kegiatan->kategori as $kategori)
-    @if($kategori->kode_bagian==3)
+    @if($kategori->kode_bagian==6)
        {{$kategori->kategori_kegiatan}}
     @endif
     @endforeach
@@ -20,7 +20,7 @@
 @if($kegiatan->kode_bagian==2)
   <li class="active"><a href="/data/2/2">{{$kegiatan->nama_kegiatan}}</a></li>
   @foreach($kegiatan->kategori as $kategori)
-    @if($kategori->kode_bagian==3)
+    @if($kategori->kode_bagian==6)
     <li class="active">{{$kategori->kategori_kegiatan}}</li>
     @endif
   @endforeach
@@ -54,7 +54,7 @@
                   @foreach ($version->kegiatan as $kegiatan)
                     @if($kegiatan->kode_bagian==2)
                       @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==3)
+                        @if($kategori->kode_bagian==6)
                           {{strtoupper($kategori->kategori_kegiatan)}}
                         @endif
                       @endforeach
@@ -71,10 +71,9 @@
               <thead>
               <tr>
                 <th width="10">No.</th>
-                <th width="275">Uraian</th>
+                <th width="275">Uraian Kegiatan</th>
                 <th width="80">Satuan</th>
-                <th width="80">Luar Kota (Rp)</th>
-                <th width="80">Dalam Kota Lebih dari 8 Jam (Rp)</th>
+                <th width="80">Besaran Bruto Maksimum (Rp)</th>
                 <th width="30"></th>
               </tr>
               </thead>
@@ -83,7 +82,7 @@
                   @foreach ($version->kegiatan as $kegiatan)
                     @if($kegiatan->kode_bagian==2)
                       @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==3)
+                        @if($kategori->kode_bagian==6)
                           @foreach($kategori->uraian as $key => $uraian)
                           <tr>
                             <td>
@@ -94,7 +93,6 @@
                             </td>
                             <td>{{$uraian->satuan}}</td>
                             <td>{{number_format($uraian->var1)}}</td>
-                            <td>{{number_format($uraian->var2)}}</td>
                               <td> 
                               <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})" data-target="#show-modal"> | </i> 
                           <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}}) "data-target="#edit-modal"> </i>
@@ -109,10 +107,9 @@
             <tfoot>
               <tr>
                 <th width="10">No.</th>
-                <th width="275">Uraian</th>
+                <th width="275">Uraian Kegiatan</th>
                 <th width="80">Satuan</th>
-                <th width="80">Luar Kota (Rp)</th>
-                <th width="80">Dalam Kota Lebih dari 8 Jam (Rp)</th>
+                <th width="80">Besaran Bruto Maksimum (Rp)</th>
                 <th width="30"></th>
               </tr>
             </tfoot>
@@ -147,7 +144,7 @@
                        @foreach ($version->kegiatan as $kegiatan)
                        @if($kegiatan->kode_bagian==2)
                         @foreach($kegiatan->kategori as $kategori)
-                          @if($kategori->kode_bagian==3)
+                          @if($kategori->kode_bagian==6)
                            <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                           @endif
                         @endforeach
@@ -171,18 +168,12 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-3 control-label">Luar Kota</label>
+                <label class="col-sm-3 control-label">Bruto</label>
                 <div class="col-sm-9">
-                  <input type="number" name="var1" placeholder="Luar Kota (Rp)" class="form-control" required />
+                  <input type="number" name="var1" placeholder="Besaran Bruto Maksimum (Rp)" class="form-control" required />
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-sm-3 control-label">Dalam Kota</label>
-                <div class="col-sm-9">
-                  <input type="number" name="var2" placeholder="Dalam Kota Lebih Dari 8 Jam (Rp)" class="form-control" required />
-                </div>
-              </div>
-              <br/><br/>
+             <br/><br/>
             </div>
             <div class="modal-footer">  
               <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
@@ -229,14 +220,9 @@
                 <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="satuan" name="satuan" disabled></td>
               </tr>
               <tr>
-                <th class="col-sm-3 control-label">Luar Kota (Rp)</th>
+                <th class="col-sm-3 control-label">Besaran Bruto Maksimum (Rp)</th>
                 <td width="10">:</td>
                 <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="var1" name="var1" disabled></td>
-              </tr>
-              <tr>
-                <th class="col-sm-3 control-label">Dalam Kota (Rp)</th>
-                <td width="10">:</td>
-                <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="var2" name="var2" disabled></td>
               </tr>
             </table>
           </div>              
@@ -286,17 +272,10 @@
                   </td>
                 </tr>
                 <tr>
-                  <th class="col-sm-3 control-label">Luar Kota (Rp)</th>
+                  <th class="col-sm-3 control-label">Besaran Bruto Maksimum (Rp)</th>
                   <td width="10">:</td>
                   <td>
-                  <input type="text" class="form-control" id="edit_var1" name="edit_var1" placeholder="Luar Kota (Rp)" required>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="col-sm-3 control-label">Dalam Kota (Rp)</th>
-                  <td width="10">:</td>
-                  <td>
-                  <input type="text" class="form-control" id="edit_var2" name="edit_var2" placeholder="Dalam Kota Lebih Dari 8 Jam (Rp)" required>
+                  <input type="text" class="form-control" id="edit_var1" name="edit_var1" placeholder="Besaran Bruto Maksimum (Rp)" required>
                   </td>
                 </tr>
               </table>
@@ -351,13 +330,11 @@
           $('#uraian').val(data.uraian_kegiatan);
           $('#satuan').val(data.satuan);
           $('#var1').val(data.var1);
-          $('#var2').val(data.var2);
           $('#edit_id2').val(data.id);
           $('#edit_kategori2').val(data.kategori_id);
           $('#uraian_kegiatan2').val(data.uraian_kegiatan);
           $('#satuan2').val(data.satuan);
           $('#edit_var1').val(data.var1);
-          $('#edit_var2').val(data.var2);
         }
       });
     }

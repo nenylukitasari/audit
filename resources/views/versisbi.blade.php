@@ -18,6 +18,15 @@
 @section('content')
 <br/>
   <div class="col-md-13">
+
+    @if (session('message_success'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong><h4><i class="icon fa fa-check"></i> Sukses!</strong></h4>
+            {{ session('message_success') }}
+        </div>
+    @endif
+
        <div class="box box-default">
         <div class="box-header with-border" style="margin: 1em 0 0 1em;">
           <strong class="box-title" >VERSI STANDAR BIAYA INSTITUT</strong><br/>
@@ -31,7 +40,7 @@
                 <tr>
                   <th width="10">No.</th>
                   <th>Version</th>
-                  <th width="50">Status</th>
+                  <th width="120">Status</th>
                   <th width="150">Created at</th>
                   <th width="150">Updated at</th>
                   <th width="80">Aktif</th>
@@ -45,7 +54,12 @@
                             {{$key+1}}. 
                           </td>
                         <td>{{ $version->version}}</td>
-                        <td>{{ $version->status}}</td>
+                        @if ($version->status == 0)
+                          <td>Aktif</td>
+                        @else
+                          <td>Tidak Aktif</td>
+                        @endif
+                        {{-- <td>{{ $version->status}}</td> --}}
                         <td>{{ $version->created_at}}</td>
                         <td>{{ $version->created_at}}</td>
                         <td>
@@ -56,7 +70,7 @@
                         </form> 
                         </td>
                         <td>
-                          <i class="fa fa-eye" data-toggle="modal" onclick="viewdata('{{ $version->id }}')" data-target="#show-modal"> | </i>  
+                          <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate('{{ $version->id }}')" data-target="#show-modal"> | </i>  
                           <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate('{{ $version->id }}')" data-target="#edit-modal"> </i>
                         </td>
                     @endforeach
@@ -65,7 +79,7 @@
                 <tr>
                   <th width="10">No.</th>
                   <th>Version</th>
-                  <th width="50">Status</th>
+                  <th width="120">Status</th>
                   <th width="150">Created at</th>
                   <th width="150">Updated at</th>
                   <th width="80">Aktif</th>
@@ -130,12 +144,22 @@
                   <tr>
                     <th class="col-sm-3 control-label">Version</th>
                     <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="jenis" name="jenis" disabled> </td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="version" name="version" disabled> </td>
                   </tr>
                   <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Status</th>
-                    <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="kegiatan" name="kegiatan" disabled></textarea></td>
+                    <th class="col-sm-3 control-label">Status</th>
+                    <td width="10">:</td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="status" name="status" disabled> </td>
+                  </tr>
+                  <tr>
+                    <th class="col-sm-3 control-label">Created at</th>
+                    <td width="10">:</td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="created_at" name="created_at" disabled> </td>
+                  </tr>
+                  <tr>
+                    <th class="col-sm-3 control-label">Updated at</th>
+                    <td width="10">:</td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="updated_at" name="updated_at" disabled> </td>
                   </tr>
                 </table>
               </div>              
@@ -163,7 +187,7 @@
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="edit_id" name="edit_id" required> </td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id2" name="id2" required> </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Version</th>
@@ -203,27 +227,6 @@
 <script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>        
 <script>
   $(document).ready(function(){
-
-    viewdata = function(id){
-      $.ajax({
-        url: '/data/versi',
-        type: 'POST',
-        data: {
-          '_token': "{{ csrf_token() }}",
-          'id' : id
-        },
-        error: function() {
-          console.log('Error');
-        },
-        dataType: 'json',
-        success: function(data) {
-          console.log(data);
-          $('#id').val(data.id);
-          $('#jenis').val(data.version);
-          $('#kegiatan').val(data.status);
-        }
-      });
-    }
     submitUpdate = function(id){
       $.ajax({
         url: '/data/version',
@@ -238,9 +241,13 @@
         dataType: 'json',
         success: function(data) {
           console.log(data);
-          $('#edit_id').val(data.id);
+          $('#id').val(data.id);
+          $('#version').val(data.version);
+          $('#id2').val(data.id);
           $('#edit_version').val(data.version);
-          $('#edit_status').val(data.status);
+          $('#status').val(data.status);
+          $('#created_at').val(data.created_at);
+          $('#updated_at').val(data.updated_at);
         }
       });
     }
