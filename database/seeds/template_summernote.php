@@ -520,7 +520,7 @@ class template_summernote extends Seeder
 
 
 <div class="tg-wrap">&nbsp;</div>
-<div class="tg-wrap">&nbsp; &nbsp; &nbsp; &nbsp; <strong>2. Ketidakpatuhan terhadap aturan yang berlaku</strong></div>
+<div class="tg-wrap">&nbsp; &nbsp; &nbsp; &nbsp; <strong>2. Ketidakpatuhan terhadap aturan yang berlaku</strong><a href="/dokumen" target="_blank">  (Aturan Yang berlaku)</a></div>
 <div class="tg-wrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 <table  id="dynamic_field" class="table table-bordered" align="center" style="width:100%">
               <thead>
