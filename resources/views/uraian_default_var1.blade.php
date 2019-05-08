@@ -75,7 +75,7 @@
                     <th>{{ $kategori->kategori_kegiatan}}</th>
                     <td>
                       @if($kategori->satuan==0)
-                      @elseif($kategori->satuan!=null)
+                      {{-- @elseif($kategori->satuan!=null) --}}
                          {{$kategori->satuan}}
                       {{-- @elseif(strpos($kategori->satuan, '0') !== false) --}}
                       @endif
