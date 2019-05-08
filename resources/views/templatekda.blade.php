@@ -54,7 +54,10 @@
             </div>
             <br>
             <h4>Edit Template</h4>
-            <p>Edit hanya bagian2 tanpa simbol khusus (Abaikan Formating)</p>
+            <ul>
+              <li>Edit hanya bagian2 tanpa simbol khusus (Abaikan Formating)</li>
+              <li>Edit pada masing-masing Template Print dan Template Website pada kategori yang sama</li>
+            </ul>
               <form class="form-horizontal" method="POST"
                       enctype="multipart/form-data" id="fsummernote">
                     {{ method_field('PUT') }}

@@ -74,7 +74,14 @@ class TemuanController extends Controller
 		$temuan = DB::table('temuan')->where('kda_id',$id)->get();
         //$kda = DB::table('kda')->whereIn('id_kda', $id)->get();
         //return ($kda);
-		return response()->json($temuan);
+        foreach ($temuan as $key => $data) {
+            if ($data->nominal != null) {
+                $data->nominal = round($data->nominal, 0);  
+            }
+            $data = $temuan;
+            
+        }
+		return response()->json($data);
 	}
     public function updatetemuan(Request $request)
     {

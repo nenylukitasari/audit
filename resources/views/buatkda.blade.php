@@ -191,6 +191,7 @@ td .kanan{
     $("#submitpilih").click(function(){
       //$(".auditor").val(auditor);
       $("#peringatan").empty();
+      $("#temuanlama").empty();
       var listunit = `<select id="unit" class="unit2" name="unit" required=""  style="width:170px">>
                       <option></option>
                       @foreach($unit as $data => $value)
@@ -268,10 +269,46 @@ td .kanan{
       tanggal_audit.setMonth(tanggal_audit.getMonth()-1);
       var bulan = monthNames[tanggal_audit.getMonth()];
       var tahun = tanggal_audit.getFullYear();
+      var tanggal_sekarang_ganti = tanggal_sekarang;
+      var tanggal_audit_ganti = tanggal_audit;
+      var bulan_ganti = bulan;
+      var tahun_ganti = tahun;
+      $(".bulan_audit").change(function(){
+        tanggal_sekarang_ganti = $(this).val();
+        console.log(tanggal_sekarang_ganti);
+        //alert(bla + tanggal_sekarang);
+        tanggal_sekarang_ganti = new Date(tanggal_sekarang_ganti);
+        var bulan_audit = document.getElementsByClassName("bulan_audit");
+        for(var i = 0; i< bulan_audit.length ;i++){
+          document.getElementsByClassName("bulan_audit")[i].valueAsDate = tanggal_sekarang_ganti;
+        }
+      });
       var bulan_audit = document.getElementsByClassName("bulan_audit");
       for(var i = 0; i< bulan_audit.length ;i++){
         document.getElementsByClassName("bulan_audit")[i].valueAsDate = tanggal_sekarang;
       }
+      $(".masa_audit").change(function(){
+        tanggal_audit_ganti = $(this).val();
+        console.log(tanggal_audit_ganti);
+        //alert(bla + tanggal_sekarang);
+        tanggal_audit_ganti = new Date(tanggal_audit_ganti);
+        bulan_ganti = monthNames[tanggal_audit_ganti.getMonth()];
+        tahun_ganti = tanggal_audit_ganti.getFullYear();
+        var masa_audit = document.getElementsByClassName("masa_audit");
+        for(var i = 0; i< masa_audit.length ;i++){
+          document.getElementsByClassName("masa_audit")[i].valueAsDate = tanggal_audit_ganti;
+          $('#kondisi1').val("SPJ bulan "+bulan_ganti+" tahun "+tahun_ganti+" belum diserahkan.");
+        }
+        var jumlahbulan = document.getElementsByClassName("bulan");
+        for(var i = 0; i< jumlahbulan.length ;i++){
+          document.getElementsByClassName("bulan")[i].value = bulan_ganti;
+        }
+        var jumlahtahun = document.getElementsByClassName("tahun");
+        for(var i = 0; i< jumlahtahun.length ;i++){
+          document.getElementsByClassName("tahun")[i].value = tahun_ganti;
+        }
+
+      });
       var masa_audit = document.getElementsByClassName("masa_audit");
       for(var i = 0; i< masa_audit.length ;i++){
         document.getElementsByClassName("masa_audit")[i].valueAsDate = tanggal_audit;
@@ -295,8 +332,7 @@ td .kanan{
         var isiunit = document.getElementsByClassName("unit");
         for(var i = 0; i< isiunit.length;i++){
           document.getElementsByClassName("unit")[i].value = e.params.data.text;
-          $('#kondisi').val("Unit Kerja : "+e.params.data.text+" pada bulan "+bulan+" tahun "+tahun+ " tidak mencairkan UMK.");
-
+          $('#kondisi').val("Unit Kerja : "+e.params.data.text+" pada bulan "+bulan_ganti+" tahun "+tahun_ganti+ " tidak mencairkan UMK.");
         }
         if (pilihan == 2)
         {
@@ -307,8 +343,8 @@ td .kanan{
             data: {
               '_token': "{{ csrf_token() }}",
               'unit' : e.params.data.id,
-              'bulan' : tanggal_sekarang.getMonth()+1,
-              'tahun' : tanggal_sekarang.getFullYear()
+              'bulan' : tanggal_sekarang_ganti.getMonth()+1,
+              'tahun' : tanggal_sekarang_ganti.getFullYear()
             },
             error: function() {
               console.log('Error');
