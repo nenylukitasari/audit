@@ -89,9 +89,7 @@
                                 {{$key+1}}. 
                             </td>
                             <td>
-                          @foreach($provinsis as $provinsi)
-                              {{ $provinsi->provinsi_id}}
-                            @endforeach
+                              {{ $uraian->uraian_kegiatan}}
                             </td>
                             <td>{{$uraian->satuan}}</td>
                             <td>{{number_format($uraian->var1)}}</td>
@@ -121,7 +119,176 @@
     </div>
   </div>
 
+<!--Add Modal-->
+<div id="addModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add</h4>
+      </div>
+      <div class="modal-body">
+      <div class="form-group">
+                <br/>
+                @foreach ($version->kegiatan as $kegiatan)
+                  @foreach ($kegiatan->uraian as $uraian)
+                @endforeach
+                @endforeach
+              <form action="{{url('/data/add', $uraian->kode_tabel)}}" method="POST">
+                {{csrf_field()}} 
+                  <div class="form-group">
+                    <select class="form-control select2" style="width:500px" name="kategori_kegiatan" required>
+                      <option></option>
+                      @foreach ($versions as $version)
+                       @foreach ($version->kegiatan as $kegiatan)
+                       @if($kegiatan->kode_bagian==2)
+                        @foreach($kegiatan->kategori as $kategori)
+                          @if($kategori->kode_bagian==8)
+                           <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
+                          @endif
+                        @endforeach
+                        @endif
+                      @endforeach
+                    @endforeach
+                    </select>  
+                  </div>
+          <form class="form-horizontal">
+            <div class="box-body">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Provinsi</label>
+                <div class="col-sm-9">
+                  <textarea class="form-control" rows="3" id="uraian_kegiatan" name="uraian_kegiatan" placeholder="Provinsi" required></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Satuan</label>
+                <div class="col-sm-9">
+                  <input type="text" name="satuan" placeholder="Satuan" class="form-control" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Besaran</label>
+                <div class="col-sm-9">
+                  <input type="number" name="var1" placeholder="Besaran (Rp)" class="form-control" required />
+                </div>
+              </div>
+             <br/><br/>
+            </div>
+            <div class="modal-footer">  
+              <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
+            </div>
+          </form>
+          </form>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+<!-- Show Modal -->
+<div class="modal fade" id="show-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Data Details</h4>
+          </div>
+          <div class="modal-body">
+          <div class="box-body">
+            <table border="0">
+              <tr>
+                <th class="col-sm-3 control-label">ID</th>
+                <td width="10">:</td>
+                <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id2" name="id2" disabled> </td>
+              </tr>
+              <tr>
+                <th class="col-sm-3 control-label">Kategori</th>
+                <td width="10">:</td>
+                <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="kategori2" name="kategori2" disabled></td>
+              </tr>
+             <tr>
+                <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Provinsi</th>
+                <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
+                <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="uraian" name="uraian" disabled></textarea> </td>
+              </tr>
+              <tr>
+                <th class="col-sm-3 control-label">Satuan</th>
+                <td width="10">:</td>
+                <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="satuan" name="satuan" disabled></td>
+              </tr>
+              <tr>
+                <th class="col-sm-3 control-label">Besaran (Rp)</th>
+                <td width="10">:</td>
+                <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="var1" name="var1" disabled></td>
+              </tr>
+            </table>
+          </div>              
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="edit-modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Data Details</h4>
+            </div>
+            <div class="modal-body">
+            <form action="{{url('/data/update', $uraian->kode_tabel)}}" method="POST">
+            {{csrf_field()}} 
+            <div class="box-body">
+              <table border="0">
+                <tr>
+                  <th class="col-sm-3 control-label">ID</th>
+                  <td width="10">:</td>
+                  <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id2" name="edit_id2" required></td>
+                </tr>
+                <br/>
+                <tr>
+                  <th class="col-sm-3 control-label">Kategori</th>
+                  <td width="10">:</td>
+                  <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_kategori2" name="edit_kategori2" required></td>
+                </tr>
+                <tr>
+                  <th class="col-sm-4 control-label">Provinsi</th>
+                  <td width="10">:&ensp;</td>
+                  <td>
+                  <textarea class="form-control" rows="3" id="uraian_kegiatan2" name="uraian_kegiatan2" required></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="col-sm-3 control-label">Satuan</th>
+                  <td width="10">:</td>
+                  <td>
+                  <input type="text" class="form-control" id="satuan2" name="satuan2" placeholder="Satuan" required>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="col-sm-3 control-label">Besaran (Rp)</th>
+                  <td width="10">:</td>
+                  <td>
+                  <input type="text" class="form-control" id="edit_var1" name="edit_var1" placeholder="Besaran (Rp)" required>
+                  </td>
+                </tr>
+              </table>
+            </div>              
+            </div>
+             <div class="modal-footer">  
+              <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Update" /> 
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+  </div>
 @endsection
 
 @section('add-script')

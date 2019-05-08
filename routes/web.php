@@ -34,9 +34,10 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 
 	Route::post('/data/add/{kode_tabel}','DataController@store');
 	Route::get('getUraian/{id}','DataController@getUraian');
+	Route::get('getSub1/{id}','DataController@getSub1');
 	Route::post('/data/update/{kode_tabel}','DataController@update');
 
-	Route::get('/tambahsbi', function () { return view('tambahsbi'); });
+	// Route::get('/tambahsbi', function () { return view('tambahsbi'); });
 	Route::post('/versi','VersiController@store');
 	Route::get('/versisbi','VersiController@index');
 	Route::post('/pilihversi','VersiController@pilihversi');

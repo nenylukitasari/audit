@@ -150,7 +150,6 @@
                   <label class="col-sm-2 control-label">Version</label>
                   <div class="col-sm-10">
                     <input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="version" name="version" value="{{$version->id}}" required/>
-                    {{-- <input type="text" name="version" class="form-control" required /> --}}
                   </div>
                 </div>
                 <div class="form-group">

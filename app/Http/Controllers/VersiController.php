@@ -10,6 +10,7 @@ use App\Version;
 use App\JenisKegiatan;
 use App\Kegiatan;
 use App\Kategori;
+use App\Penjelasan;
 use App\Uraian;
 use App\Sub1;
 use App\Sub2;
@@ -27,23 +28,6 @@ class VersiController extends Controller
 
     public function store(Request $request)
     {
-        // ini_set('max_execution_time', 1800);
-        // $uraians = Uraian::where('status','=', 0)
-        //             ->with(['sub2' => function ($query) {
-        //                 $query->where('sub1.status', '=', 0)
-        //                 ->orWhere('sub2.status', '=', 0);
-        //                 // ->whereNotIn('sub2.version',['{$request->versi}']);
-        //             }])
-        //             // ->union($jenis_kegiatans)
-        //             ->get();
-        // $jenis_kegiatans = JenisKegiatan::where('status','=', 0)
-        //                     ->with(['kategori' => function ($query) {
-        //                         $query->where('kategori.status', '=', 0) 
-        //                         ->orWhere('kegiatan.status', '=', 0);
-        //                     }])
-        //                     // ->union($uraians)
-        //                     ->get();
-        // $jenis_kegiatans = JenisKegiatan::where('status','=', 0)->get();
         $versions = Version::where('status','=', 0)->get();
         foreach ($versions as $version) {
             $version = Version::find($version->id);
@@ -53,12 +37,12 @@ class VersiController extends Controller
             $new_version->version = $request->versi;
             $new_version->status = 0;
             $new_version->save();
-            foreach ($version->provinsi as $provinsi) {
-                    $provinsi = Provinsi::find($provinsi->id);
-                    $new_provinsi = $provinsi->replicate();
-                    $new_provinsi->version_id = $new_version->id;
-                    $new_provinsi->save();
-                }
+            // foreach ($version->provinsi as $provinsi) {
+            //         $provinsi = Provinsi::find($provinsi->id);
+            //         $new_provinsi = $provinsi->replicate();
+            //         $new_provinsi->version_id = $new_version->id;
+            //         $new_provinsi->save();
+            //     }
             foreach ($version->jenis_kegiatan as $jk) {
                 $jenis_kegiatan = JenisKegiatan::find($jk->id);
                 $new_jenis_kegiatan = $jenis_kegiatan->replicate();
@@ -74,6 +58,16 @@ class VersiController extends Controller
                         $new_kategori = $kategori->replicate();
                         $new_kategori->kegiatan_id = $new_kegiatan->id;
                         $new_kategori->save();
+                        foreach ($kategori->penjelasan as $penjelasan) {
+                            $penjelasan = Penjelasan::find($penjelasan->id);
+                            $new_penjelasan = $penjelasan->replicate();
+                            $new_penjelasan->version_id = $new_version->id;
+                            if($new_penjelasan->kegiatan_id != null)
+                                $new_penjelasan->kegiatan_id = $new_kegiatan->id;
+                            elseif ($new_penjelasan->kategori_id != null) 
+                                $new_penjelasan->kategori_id = $new_kategori->id;
+                            $new_penjelasan->save();
+                            }
                         foreach ($kategori->uraian as $uraian) {
                             $uraian = Uraian::find($uraian->id);
                             $new_uraian = $uraian->replicate();
@@ -102,13 +96,6 @@ class VersiController extends Controller
                     }
                 }
             }
-
-            // foreach ($version->provinsi as $provinsi) {
-            //         $provinsi = Provinsi::find($provinsi->id);
-            //         $new_provinsi = $provinsi->replicate();
-            //         $new_provinsi->version_id = $new_version->id;
-            //         $new_provinsi->save();
-            //     }
         }  
         return redirect('/versisbi')->with('message_success',"Berhasil menambahkan versi"); 
     }

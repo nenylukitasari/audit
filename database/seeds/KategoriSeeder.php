@@ -238,66 +238,85 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '5',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '18',
             'kategori_kegiatan'     => 'Satuan Biaya Kepesertaan Kegiatan',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '5',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '18',
             'kategori_kegiatan'     => 'Satuan Beasiswa Tugas Belajar Tenaga Kependidikan dan Dosen',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '6',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '19',
             'kategori_kegiatan'     => 'Satuan Biaya Honorarium Kelebihan Jam Penelitian/Perekayasaan',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '6',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '19',
             'kategori_kegiatan'     => 'Satuan Biaya Honorarium Penunjang Penelitian/Perekayasaan',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '7',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '20',
             'kategori_kegiatan'     => 'Program Percepatan Publikasi Internasional (Min Q3)',
+            'satuan'                => 'Judul',
+            'var1'                  => '25000000',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '7',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '20',
             'kategori_kegiatan'     => 'Jurnal Ilmiah Internasional Terindeks Scopus',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '7',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '20',
             'kategori_kegiatan'     => 'Prosiding Terindeks Scopus/Thompson',
+            'satuan'                => 'Judul',
+            'var1'                  => '3000000',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '7',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '20',
             'kategori_kegiatan'     => 'Jurnal Ilmiah Internasional Selain Scopus',
+            'satuan'                => 'Judul',
+            'var1'                  => '3000000',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '7',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '20',
             'kategori_kegiatan'     => 'Jurnal Ilmiah Nasional Terakreditasi',
+            'satuan'                => 'Judul',
+            'var1'                  => '25000000',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '8',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '21',
             'kategori_kegiatan'     => 'Satuan Biaya Proses Penulisan Buku',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '8',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '21',
             'kategori_kegiatan'     => 'Satuan Biaya Insentif Penerbitan Buku',
         ]);
 
@@ -334,7 +353,7 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '10',
             'kode_tabel'            => '3',
-            'kategori_kegiatan'     => 'Biaya Personel',
+            'kategori_kegiatan'     => 'Biaya Personel (Billing Rate)',
         ]);
 
         Kategori::create([
@@ -358,7 +377,51 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '12',
             'kode_tabel'            => '3',
-            'kategori_kegiatan'     => 'Standar Biaya Seragam Dinas/Kegiatan',
+            'kategori_kegiatan'     => 'Seragam devile Dies Natalis ITS',
+            'satuan'                => 'Stel',
+            'var1'                  => '250000'
+        ]);
+        Kategori::create([
+            'kegiatan_id'           => '12',
+            'kode_tabel'            => '3',
+            'kategori_kegiatan'     => 'Seragam atlet olah raga dalam rangka Dies Natalis ITS',
+            'satuan'                => 'Stel',
+            'var1'                  => '200000'
+        ]);
+        Kategori::create([
+            'kegiatan_id'           => '12',
+            'kode_tabel'            => '3',
+            'kategori_kegiatan'     => 'Seragam panitia kegiatan pameran dan lomba kemahasiswaan',
+            'satuan'                => 'Stel',
+            'var1'                  => '200000'
+        ]);
+        Kategori::create([
+            'kegiatan_id'           => '12',
+            'kode_tabel'            => '3',
+            'kategori_kegiatan'     => 'Seragam SKK lengkap',
+            'satuan'                => 'Stel',
+            'var1'                  => '1100000'
+        ]);
+        Kategori::create([
+            'kegiatan_id'           => '12',
+            'kode_tabel'            => '3',
+            'kategori_kegiatan'     => 'Seragam petugas kebersihan',
+            'satuan'                => 'Stel',
+            'var1'                  => '250000'
+        ]);
+        Kategori::create([
+            'kegiatan_id'           => '12',
+            'kode_tabel'            => '3',
+            'kategori_kegiatan'     => 'Seragam pegawai Medical Center',
+            'satuan'                => 'Stel',
+            'var1'                  => '250000'
+        ]);
+        Kategori::create([
+            'kegiatan_id'           => '12',
+            'kode_tabel'            => '3',
+            'kategori_kegiatan'     => 'Pakaian dinas ITS',
+            'satuan'                => 'Stel',
+            'var1'                  => '500000'
         ]);
 
         Kategori::create([

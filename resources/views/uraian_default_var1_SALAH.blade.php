@@ -3,9 +3,9 @@
 @section('title-bar')
   @foreach ($versions as $version)
   @foreach ($version->kegiatan as $kegiatan)
-    @if($kegiatan->kode_bagian==4)
+    @if($kegiatan->kode_bagian== $kode_bagian)
     @foreach($kegiatan->kategori as $kategori)
-    @if($kategori->kode_bagian==17)
+    @if($kategori->kode_bagian== $kode_bagian_kategori)
        {{$kategori->kategori_kegiatan}}
     @endif
     @endforeach
@@ -17,10 +17,9 @@
 @section('right_title')
 @foreach ($versions as $version)
 @foreach ($version->kegiatan as $kegiatan)
-@if($kegiatan->kode_bagian==4)
-  <li class="active"><a href="/data/2/4">{{$kegiatan->nama_kegiatan}}</a></li>
+@if($kegiatan->kode_bagian== $kode_bagian)
   @foreach($kegiatan->kategori as $kategori)
-    @if($kategori->kode_bagian==17)
+    @if($kategori->kode_bagian== $kode_bagian_kategori)
     <li class="active">{{$kategori->kategori_kegiatan}}</li>
     @endif
   @endforeach
@@ -52,9 +51,9 @@
               <strong class="box-title" >
                 @foreach ($versions as $version)
                   @foreach ($version->kegiatan as $kegiatan)
-                    @if($kegiatan->kode_bagian==4)
+                    @if($kegiatan->kode_bagian== $kode_bagian)
                       @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==17)
+                        @if($kategori->kode_bagian== $kode_bagian_kategori)
                           {{strtoupper($kategori->kategori_kegiatan)}}
                         @endif
                       @endforeach
@@ -80,9 +79,9 @@
              <tbody>
               @foreach ($versions as $version)
                   @foreach ($version->kegiatan as $kegiatan)
-                    @if($kegiatan->kode_bagian==4)
+                    @if($kegiatan->kode_bagian== $kode_bagian)
                       @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==17)
+                        @if($kategori->kode_bagian== $kode_bagian_kategori)
                           @foreach($kategori->uraian as $key => $uraian)
                           <tr>
                             <td>
@@ -98,34 +97,21 @@
                               <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}}) "data-target="#edit-modal"> </i>
                             </td>
                           </tr>
-                            @foreach($uraian->sub1 as $key2 => $sub1)
+                            @foreach($uraian->sub1 as $sub1)
                             <tr>
                                 <td></td>
-                                 <td>
-                                  @php
-                                    $i = chr($key2+97);
-                                  @endphp
-                                  &emsp;&ensp;{{$i}}. {{$sub1->uraian_kegiatan}}
-                                </td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$sub1->uraian_kegiatan}}</td>
+                                <td>{{$sub1->satuan}}</td>
+                                @if($sub1->var1==null || $sub1->var1==0)
+                                    <i>at cost</i>
+                                @else
+                                  {{number_format($sub1->var1)}}
+                                @endif
                                 <td> 
                                   <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate2({{ $sub1->id }},{{$sub1->kode_tabel}})" data-target="#show-modal2"> | </i> 
                                   <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate2({{ $sub1->id }},{{$sub1->kode_tabel}}) "data-target="#edit-modal2"> </i>
                                 </td>
                             </tr>
-                            @foreach($sub1->sub2 as $sub2)
-                            <tr>
-                                <td></td>
-                                <td>&emsp;&emsp;&emsp;&emsp;{{$sub2->uraian_kegiatan}}</td>
-                                <td>{{$sub2->satuan}}</td>
-                                <td>{{number_format($sub2->var1)}}</td>
-                                <td> 
-                                  <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate3({{ $sub2->id }},{{$sub2->kode_tabel}})" data-target="#show-modal3"> | </i> 
-                                  <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate3({{ $sub2->id }},{{$sub2->kode_tabel}}) "data-target="#edit-modal3"> </i>
-                                </td>
-                            </tr>
-                            @endforeach
                             @endforeach
                            @endforeach
                           @endif
@@ -161,9 +147,8 @@
         <div class="modal-body">
           <select class="styled-select semi-square" style="width:200px" id="pilihopsi">
             <option value="0">Pilih opsi</option>
-            <option value="1">Kategori</option>
-            <option value="2">Uraian</option>
-            <option value="3">Sub Uraian</option>
+            <option value="1">Uraian</option>
+            <option value="2">Sub Uraian</option>
           </select>
           <input type="button" name="submitpilih" id="submitpilih" class="btn btn-primary" value="Add"/>
 
@@ -180,9 +165,9 @@
                     <option></option>
                     @foreach ($versions as $version)
                      @foreach ($version->kegiatan as $kegiatan)
-                     @if($kegiatan->kode_bagian==4)
+                     @if($kegiatan->kode_bagian== $kode_bagian)
                       @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==17)
+                        @if($kategori->kode_bagian== $kode_bagian_kategori)
                          <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                          @endif
                       @endforeach
@@ -222,9 +207,9 @@
             <option value=""></option>
             @foreach($versions as $version)
               @foreach($version->kegiatan as $kegiatan)
-              @if($kegiatan->kode_bagian==4)
+              @if($kegiatan->kode_bagian== $kode_bagian)
               @foreach($kegiatan->kategori as $kategori)
-                @if($kategori->kode_bagian==17)
+                @if($kategori->kode_bagian== $kode_bagian_kategori)
                   <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                 @endif
               @endforeach 
@@ -234,7 +219,7 @@
           </select>
         </div>
           <div class="form-group">  
-          <select class="form-control selecturaian" name="list_uraian_kegiatan" style="width:500px" id="list_uraian_kegiatan">
+          <select class="form-control selecturaian" name="list_uraian_kegiatan" style="width:500px" id="list_uraian_kegiatan" required>
             </select>  
           </div>
         <div class="form-group" id="form-detail-sub1">
@@ -255,70 +240,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">Bruto</label>
                 <div class="col-sm-10">
-                  <input type="number" name="var1" placeholder="Besaran Bruto Maksimum (Rp)" class="form-control" required />
-                </div>
-              </div>
-              <br/><br/>
-            </div>
-            <div class="modal-footer">  
-              <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
-            </div>
-          </div>
-          </form>
-        </form>
-        </div>
-
-<div class="form-group" id="form-sub2">
-        <br/>
-        @foreach ($version->kegiatan as $kegiatan)
-          @foreach ($kegiatan->uraian as $uraian)
-          @foreach ($uraian->sub2 as $sub2)
-          @endforeach
-          @endforeach
-        @endforeach
-      <form action="{{url('/data/add', $sub2->kode_tabel)}}" method="POST"> 
-        {{csrf_field()}} 
-        <div class="form-group">
-          <select name="list_uraian" class="form-control selecturaian"  style="width:500px" id="list_uraian" required>
-            <option value=""></option>
-            @foreach($versions as $version)
-              @foreach($version->kegiatan as $kegiatan)
-              @if($kegiatan->kode_bagian==4)
-              @foreach($kegiatan->kategori as $kategori)
-                @if($kategori->kode_bagian==17)
-                @foreach($kategori->uraian as $uraian)
-                  <option value="{{$uraian->id}}">{{$uraian->uraian_kegiatan}}</option>
-                  @endforeach
-                @endif
-              @endforeach 
-              @endif
-            @endforeach
-          @endforeach
-          </select>
-        </div>
-          <div class="form-group">  
-          <select class="form-control selectsub1" name="list_sub1" style="width:500px" id="list_sub1" required>
-            </select>  
-          </div>
-        <div class="form-group" id="form-detail-sub1">
-          <form class="form-horizontal">
-            <div class="box-body">
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Uraian Kegiatan</label>
-                <div class="col-sm-10">
-                  <textarea class="form-control" rows="3" id="uraian_kegiatan" name="uraian_kegiatan" placeholder="Uraian Kegiatan" required></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Satuan</label>
-                <div class="col-sm-10">
-                  <input type="text" name="satuan" placeholder="Satuan" class="form-control" required />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Bruto</label>
-                <div class="col-sm-10">
-                  <input type="number" name="var1" placeholder="Besaran Bruto Maksimum (Rp)" class="form-control" required />
+                  <input type="number" name="var1" placeholder="tulis 0 jika nominal at cost" class="form-control" required />
                 </div>
               </div>
               <br/><br/>
@@ -373,39 +295,6 @@
         </div>
     </div>
 <div class="modal fade" id="show-modal2">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Data Details</h4>
-              </div>
-              <div class="modal-body">
-              <div class="box-body">
-                <table border="0">
-                  <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id3" name="id3" disabled> </td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Uraian</th>
-                    <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="uraian_id" name="uraian_id" disabled></td>
-                  </tr>
-                 <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Uraian Kegiatan</th>
-                    <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="sub1_uraian3" name="sub1_uraian3" disabled></textarea> </td>
-                  </tr>
-                </table>
-              </div>              
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-<div class="modal fade" id="show-modal3">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -419,27 +308,27 @@
                 <tr>
                   <th class="col-sm-3 control-label">ID</th>
                   <td width="10">:</td>
-                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id5" name="id5" disabled> </td>
+                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id3" name="id3" disabled> </td>
                 </tr>
                 <tr>
-                  <th class="col-sm-3 control-label">Sub Uraian</th>
+                  <th class="col-sm-3 control-label">Uraian</th>
                   <td width="10">:</td>
-                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="sub1_id" name="sub1_id" disabled></td>
+                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="uraian_id" name="uraian_id" disabled></td>
                 </tr>
                <tr>
                   <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Uraian Kegiatan</th>
                   <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                  <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="sub2_uraian" name="sub2_uraian" disabled></textarea> </td>
+                  <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="sub1_uraian3" name="sub1_uraian3" disabled></textarea> </td>
                 </tr>
                 <tr>
                   <th class="col-sm-3 control-label">Satuan</th>
                   <td width="10">:</td>
-                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="sub2_satuan" name="sub2_satuan" disabled></td>
+                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="sub1_satuan3" name="sub1_satuan3" disabled></td>
                 </tr>
                 <tr>
                   <th class="col-sm-3 control-label">Bruto</th>
                   <td width="10">:</td>
-                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="sub2_var1" name="sub2_var1" disabled></td>
+                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="sub1_var1" name="sub1_var1" disabled></td>
                 </tr>
               </table>
             </div>              
@@ -478,9 +367,9 @@
                         <option></option>
                         @foreach($versions as $version)
                           @foreach($version->kegiatan as $kegiatan)
-                          @if($kegiatan->kode_bagian==4)
+                          @if($kegiatan->kode_bagian== $kode_bagian)
                            @foreach($kegiatan->kategori as $kategori)
-                           @if($kategori->kode_bagian==17)
+                           @if($kategori->kode_bagian== $kode_bagian_kategori)
                             <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                             @endif
                           @endforeach
@@ -533,13 +422,13 @@
                     <td width="10">:</td>
                     <td>
                     <div class="form-group">
-                      <select class="form-control selecturaian" style="width:385px" name="uraian3" id="uraian3" required>
+                      <select class="form-control select2" style="width:385px" name="uraian3" id="uraian3" required>
                         <option></option>
                         @foreach($versions as $version)
                           @foreach($version->kegiatan as $kegiatan)
-                          @if($kegiatan->kode_bagian==4)
+                          @if($kegiatan->kode_bagian== $kode_bagian)
                           @foreach($kegiatan->kategori as $kategori)
-                           @if($kategori->kode_bagian==17)
+                           @if($kategori->kode_bagian== $kode_bagian_kategori)
                           @foreach($kategori->uraian as $uraian)
                             <option value="{{$uraian->id}}">{{$uraian->uraian_kegiatan}}</option>
                           @endforeach
@@ -571,81 +460,6 @@
                     <td width="10">:</td>
                     <td>
                     <input type="text" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="Bruto" required>
-                    </td>
-                  </tr>
-                </table>
-              </div>              
-              </div>
-               <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Update" /> 
-              </div>
-            </form>
-            </div>
-          </div>
-        </div>
-    </div>
-  <div class="modal fade" id="edit-modal3">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Data Details</h4>
-              </div>
-              <div class="modal-body">
-              <form action="{{url('/data/update', $sub2->kode_tabel)}}" method="POST">
-              {{csrf_field()}} 
-              <div class="box-body">
-                <table border="0">
-                  <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id5" name="edit_id5" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
-                    <th class="col-sm-3 control-label">Sub Uraian</th>
-                    <td width="10">:</td>
-                    <td>
-                    <div class="form-group">
-                      <select class="form-control selectsub1" style="width:385px" name="edit_sub1_id" id="edit_sub1_id" required>
-                        <option></option>
-                        @foreach($versions as $version)
-                          @foreach($version->kegiatan as $kegiatan)
-                          @if($kegiatan->kode_bagian==4)
-                          @foreach($kegiatan->kategori as $kategori)
-                           @if($kategori->kode_bagian==17)
-                          @foreach($kategori->sub1 as $sub1)
-                            <option value="{{$sub1->id}}">{{$sub1->uraian_kegiatan}}</option>
-                          @endforeach
-                          @endif
-                          @endforeach
-                          @endif
-                        @endforeach
-                        @endforeach
-                      </select>  
-                    </div>
-                  </td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Uraian Kegiatan</th>
-                    <td width="10">:</td>
-                    <td>
-                    <textarea class="form-control" rows="3" id="edit_sub2_uraian" name="edit_sub2_uraian" required></textarea>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Satuan</th>
-                    <td width="10">:</td>
-                    <td>
-                    <input type="text" class="form-control" id="edit_sub2_satuan" name="edit_sub2_satuan" placeholder="Satuan" required>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Bruto</th>
-                    <td width="10">:</td>
-                    <td>
-                    <input type="text" class="form-control" id="edit_sub2_var1" name="edit_sub2_var1" placeholder="Bruto" required>
                     </td>
                   </tr>
                 </table>
@@ -703,62 +517,24 @@
           }
       });
   });
-
- $(document).ready(function() {
-      $('#list_uraian').on('change', function() {
-          var getUraianId = $(this).val();
-          if(getUraianId) {
-              $.ajax({
-                  url: '/getSub1/'+getUraianId,
-                  type: "GET",
-                  data : {"_token":"{{ csrf_token() }}"},
-                  dataType: "json",
-                  success:function(data) {
-                      // console.log(data);
-                    if(data){
-                      $('#list_sub1').empty();
-                      $('#list_sub1').focus;
-                      $('#list_sub1').append('<option value=""></option>'); 
-                      $.each(data, function(key, value){
-                      $('select[name="list_sub1"]').append('<option value="'+ value.id +'">' + value.uraian_kegiatan+ '</option>');
-                  });
-                }else{
-                  $('#list_sub1').empty();
-                }
-                }
-              });
-          }else{
-            $('#list_sub1').empty();
-          }
-      });
-  });
 </script>
 <script type="text/javascript">
   $("#form-uraian").hide();
   $("#form-sub1").hide();
-  $("#form-sub2").hide();
   $(document).ready(function(){
     $("#submitpilih").click(function(){
       var pilihan = $( "#pilihopsi" ).val();
       if (pilihan == 0) {
         $("#form-uraian").hide();
         $("#form-sub1").hide();
-        $("#form-sub2").hide();
       }
       else if (pilihan == 1) {
         $("#form-uraian").show();
         $("#form-sub1").hide();
-        $("#form-sub2").hide();
       }
       else if (pilihan == 2){
         $("#form-uraian").hide();
-        $("#form-sub1").show();
-        $("#form-sub2").hide(); 
-      }
-      else if (pilihan == 3){
-        $("#form-uraian").hide();
-        $("#form-sub1").hide();
-        $("#form-sub2").show(); 
+        $("#form-sub1").show(); 
       }
     })
   })
@@ -823,34 +599,6 @@
         }
       });
     }
-    submitUpdate3 = function(id, kode_tabel){
-      $.ajax({
-        url: '/getdata',
-        type: 'POST',
-        data: {
-          '_token': "{{ csrf_token() }}",
-          'id' : id,
-          'kode_tabel' : kode_tabel
-        },
-        error: function() {
-          console.log('Error');
-        },
-        dataType: 'json',
-        success: function(data) {
-          console.log(data);
-          $('#id5').val(data.id);
-          $('#sub1_id').val(data.sub1_id);
-          $('#sub2_uraian').val(data.uraian_kegiatan);
-          $('#sub2_satuan').val(data.satuan);
-          $('#sub2_var1').val(data.var1);
-          $('#edit_id5').val(data.id);
-          $('#edit_sub1_id').val(data.sub1_id);
-          $('#edit_sub2_uraian').val(data.uraian_kegiatan);
-          $('#edit_sub2_satuan').val(data.satuan);
-          $('#edit_sub2_var1').val(data.var1);
-        }
-      });
-    }
 </script>
 <script>
   $(function () {
@@ -863,11 +611,6 @@
     $('.selecturaian').select2(
     {
       placeholder: "Pilih Uraian",
-      allowClear: true
-    })
-     $('.selectsub1').select2(
-    {
-      placeholder: "Pilih Sub Uraian",
       allowClear: true
     })
 

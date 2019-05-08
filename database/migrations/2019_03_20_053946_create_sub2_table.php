@@ -24,7 +24,7 @@ class CreateSub2Table extends Migration
             $table->integer('var3');
             $table->integer('var4');
             $table->integer('kode_tabel');
-            $table->integer('kode_bagian');
+            $table->integer('kode_bagian')->nullable();
             $table->timestamps();
         });
     }

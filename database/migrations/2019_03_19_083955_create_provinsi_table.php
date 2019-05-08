@@ -18,8 +18,8 @@ class CreateProvinsiTable extends Migration
             $table->integer('version_id')->unsigned();
             $table->foreign('version_id')->references('id')->on('version');
             $table->text('provinsi');
-            $table->integer('kode_tabel');
-            $table->integer('kode_bagian');
+            $table->integer('kode_tabel')->nullable();
+            $table->integer('kode_bagian')->nullable();
             $table->timestamps();
         });
     }

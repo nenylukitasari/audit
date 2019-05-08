@@ -200,7 +200,7 @@
       <form action="{{url('/data/add', $sub1->kode_tabel)}}" method="POST"> 
         {{csrf_field()}} 
         <div class="form-group">
-          <select name="list_kategori_kegiatan" class="form-control select2"  style="width:500px" id="list_kategori_kegiatan">
+          <select name="list_kategori_kegiatan" class="form-control select2"  style="width:500px" id="list_kategori_kegiatan" required>
             <option value=""></option>
             @foreach($versions as $version)
               @foreach($version->kegiatan as $kegiatan)
@@ -216,7 +216,7 @@
           </select>
         </div>
           <div class="form-group">  
-          <select class="form-control selecturaian" name="list_uraian_kegiatan" style="width:500px" id="list_uraian_kegiatan">
+          <select class="form-control selecturaian" name="list_uraian_kegiatan" style="width:500px" id="list_uraian_kegiatan" required>
             </select>  
           </div>
         <div class="form-group" id="form-detail-sub1">

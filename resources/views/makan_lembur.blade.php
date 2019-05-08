@@ -318,7 +318,6 @@
               {{-- <option value="1">yeyeyey</option>--}}
               </select>  
             </div>
-          <div class="form-group" id="form-detail-sub1">
             <form class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
@@ -346,17 +345,12 @@
               </div>
             </div>
             </form>
-          </div>
           </form>
           </div>
 
     <div class="form-group" id="form-penjelasan">
                   <br/>
-                  @foreach ($version->kegiatan as $kegiatan)
-                    @foreach ($kegiatan->kategori as $kategori)
-                      @foreach ($kategori->penjelasan as $penjelasan)
-                  @endforeach
-                  @endforeach
+                  @foreach ($version->penjelasan as $penjelasan)
                   @endforeach
                 <form action="{{url('/data/add', $penjelasan->kode_tabel)}}" method="POST">
                   {{csrf_field()}} 

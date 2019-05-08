@@ -1476,6 +1476,555 @@ class UraianSeeder extends Seeder
             'satuan'                => 'Judul',
             'var1'                  => '10000000',
         ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '42',
+            'uraian_kegiatan'       => 'Naskah buku untuk diterbitkan penerbit nasional',
+            'satuan'                => 'Judul',
+            'var1'                  => '7500000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '42',
+            'uraian_kegiatan'       => 'Naskah buku untuk diterbitkan penerbit internasional',
+            'satuan'                => 'Judul',
+            'var1'                  => '20000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '43',
+            'uraian_kegiatan'       => 'Naskah buku untuk diterbitkan penerbit nasional',
+            'satuan'                => 'Judul',
+            'var1'                  => '7500000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '43',
+            'uraian_kegiatan'       => 'Naskah buku untuk diterbitkan penerbit internasional',
+            'satuan'                => 'Judul',
+            'var1'                  => '20000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '44',
+            'uraian_kegiatan'       => 'Program DIKTI',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '44',
+            'uraian_kegiatan'       => 'Program Non DIKTI',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '45',
+            'uraian_kegiatan'       => 'Program DIKTI',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '45',
+            'uraian_kegiatan'       => 'Program Non DIKTI',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '46',
+            'uraian_kegiatan'       => 'Program DIKTI',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '46',
+            'uraian_kegiatan'       => 'Program Non DIKTI',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '47',
+            'uraian_kegiatan'       => 'Kewirausahaan Individu',
+            'satuan'                => 'Kegiatan',
+            'var1'                  => '10000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '47',
+            'uraian_kegiatan'       => 'Kewirausahaan Kelompok',
+            'satuan'                => 'Kegiatan',
+            'var1'                  => '15000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '48',
+            'uraian_kegiatan'       => 'Biaya Seminar Internasional Terindex',
+            'satuan'                => 'Orang/Kali',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '48',
+            'uraian_kegiatan'       => 'Biaya Kursus/Tes Bahasa Asing',
+            'satuan'                => 'Orang/Kali',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '48',
+            'uraian_kegiatan'       => 'Biaya Pelaksanaan Uji Kompetensi/Sertifikasi',
+            'satuan'                => 'Orang/Kali',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '49',
+            'uraian_kegiatan'       => 'Biaya Personel sebagai Tenaga Ahli dengan Pendidikan S-1',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '49',
+            'uraian_kegiatan'       => 'Biaya Personel sebagai Tenaga Ahli dengan Pendidikan S-2',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '49',
+            'uraian_kegiatan'       => 'Biaya Personel sebagai Tenaga Ahli dengan Pendidikan S-3',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '49',
+            'uraian_kegiatan'       => 'Biaya Personel sebagai Tenaga Sub Profesional',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '49',
+            'uraian_kegiatan'       => 'Biaya Personel sebagai Tenaga Pendukung (Supporting Staff)',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '49',
+            'uraian_kegiatan'       => 'Biaya Personel sebagai Tenaga Ahli dengan Mitra Luar Negeri',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '49',
+            'uraian_kegiatan'       => 'Biaya Personel Kegiatan Training',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '50',
+            'uraian_kegiatan'       => 'Biaya Reimbursable',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '50',
+            'uraian_kegiatan'       => 'Fixed Unit Rate',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '51',
+            'uraian_kegiatan'       => 'S1 Kelompok A',
+            'satuan'                => 'Unit',
+            'var1'                  => '75000000',
+            'var2'                  => '60000000',
+            'var3'                  => '50000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '51',
+            'uraian_kegiatan'       => 'S1 Kelompok B',
+            'satuan'                => 'Unit',
+            'var1'                  => '60000000',
+            'var2'                  => '50000000',
+            'var3'                  => '40000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '51',
+            'uraian_kegiatan'       => 'S2',
+            'satuan'                => 'Unit',
+            'var1'                  => '50000000',
+            'var2'                  => '40000000',
+            'var3'                  => '30000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '51',
+            'uraian_kegiatan'       => 'Diploma',
+            'satuan'                => 'Unit',
+            'var1'                  => '50000000',
+            'var2'                  => '40000000',
+            'var3'                  => '30000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '51',
+            'uraian_kegiatan'       => 'S3',
+            'satuan'                => 'Unit',
+            'var1'                  => '50000000',
+            'var2'                  => '40000000',
+            'var3'                  => '30000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '52',
+            'uraian_kegiatan'       => 'Juara I',
+            'satuan'                => 'Unit',
+            'var1'                  => '50000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '52',
+            'uraian_kegiatan'       => 'Juara II',
+            'satuan'                => 'Unit',
+            'var1'                  => '40000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '52',
+            'uraian_kegiatan'       => 'Juara III',
+            'satuan'                => 'Unit',
+            'var1'                  => '30000000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Bangkalan',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '225000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Banyuwangi',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '285000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Bondowoso',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '255000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Gresik',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '225000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Jember',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '261000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Jombang',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '235000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Lamongan',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '225000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Lumajang',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '261000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Magetan',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '253000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Nganjuk',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '245000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Ngawi',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '253000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Pacitan',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '285000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Pamekasan',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '243000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Pasuruan',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '228000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Ponorogo',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '255000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Sampang',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '235000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Sidoarjo',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '240000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Situbondo',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '255000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Sumenep',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '255000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Trenggalek',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '245000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Tuban',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '245000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kabupaten Tulungagung',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '245000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kota Batu',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '242000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kota Blitar',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '255000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kota Bojonegoro',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '225000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kota Kediri',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '235000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kota Madiun',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '245000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kota Malang',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '228000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kota Mojokerto',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '225000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '60',
+            'uraian_kegiatan'       => 'Kota Probolinggo',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '228000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '61',
+            'uraian_kegiatan'       => 'Kota Bekasi',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '284000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '61',
+            'uraian_kegiatan'       => 'Kabupaten Bekasi',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '284000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '61',
+            'uraian_kegiatan'       => 'Kabupaten Bogor',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '300000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '61',
+            'uraian_kegiatan'       => 'Kota Bogor',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '300000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '61',
+            'uraian_kegiatan'       => 'Kota Depok',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '275000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '61',
+            'uraian_kegiatan'       => 'Kota Tangerang',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '286000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '61',
+            'uraian_kegiatan'       => 'Kota Tangerang Selatan',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '286000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '61',
+            'uraian_kegiatan'       => 'Kabupaten Tangerang',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '310000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '61',
+            'uraian_kegiatan'       => 'Kepulauan Seribu',
+            'satuan'                => 'O/Kali',
+            'var1'                  => '428000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '62',
+            'uraian_kegiatan'       => 'Aceh',
+            'var1'                  => '000',
+            'var2'                  => '000',
+            'var3'                  => '000',
+            'var4'                  => '000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '62',
+            'uraian_kegiatan'       => 'Sumatera Utara',
+            'var1'                  => '000',
+            'var2'                  => '000',
+            'var3'                  => '000',
+            'var4'                  => '000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '62',
+            'uraian_kegiatan'       => 'Riau',
+            'var1'                  => '000',
+            'var2'                  => '000',
+            'var3'                  => '000',
+            'var4'                  => '000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '62',
+            'uraian_kegiatan'       => 'Kepulauan Riau',
+            'var1'                  => '000',
+            'var2'                  => '000',
+            'var3'                  => '000',
+            'var4'                  => '000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '62',
+            'uraian_kegiatan'       => 'Jambi',
+            'var1'                  => '000',
+            'var2'                  => '000',
+            'var3'                  => '000',
+            'var4'                  => '000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '62',
+            'uraian_kegiatan'       => 'Sumatera Barat',
+            'var1'                  => '000',
+            'var2'                  => '000',
+            'var3'                  => '000',
+            'var4'                  => '000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '62',
+            'uraian_kegiatan'       => 'Sumatera Selatan',
+            'var1'                  => '000',
+            'var2'                  => '000',
+            'var3'                  => '000',
+            'var4'                  => '000',
+        ]);
+        Uraian::create([
+            'kode_tabel'            => '4',
+            'kategori_id'           => '62',
+            'uraian_kegiatan'       => 'Lampung',
+            'var1'                  => '000',
+            'var2'                  => '000',
+            'var3'                  => '000',
+            'var4'                  => '000',
+        ]);
+
+
+
 
         
 
