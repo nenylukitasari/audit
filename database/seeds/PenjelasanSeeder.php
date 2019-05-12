@@ -84,5 +84,11 @@ class PenjelasanSeeder extends Seeder
             'kode_tabel'     => '7',
             'penjelasan'     => 'COBACOBA LAGI HEHE',
         ]);
+        Penjelasan::create([
+            'version_id'     => '1',
+            'kategori_id'    => '4',
+            'kode_tabel'     => '7',
+            'penjelasan'     => 'dummy',
+        ]);
     }
 }

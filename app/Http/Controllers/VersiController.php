@@ -53,6 +53,14 @@ class VersiController extends Controller
                     $new_kegiatan = $kegiatan->replicate();
                     $new_kegiatan->jenis_kegiatan_id = $new_jenis_kegiatan->id;
                     $new_kegiatan->save();
+                    foreach ($kegiatan->penjelasan as $penjelasan) {
+                        $penjelasan = Penjelasan::find($penjelasan->id);
+                        $new_penjelasan = $penjelasan->replicate();
+                        $new_penjelasan->version_id = $new_version->id;
+                        if($new_penjelasan->kegiatan_id != null)
+                            $new_penjelasan->kegiatan_id = $new_kegiatan->id;
+                        $new_penjelasan->save();
+                        }
                     foreach ($kegiatan->kategori as $kategori) {
                         $kategori = Kategori::find($kategori->id);
                         $new_kategori = $kategori->replicate();
@@ -62,9 +70,7 @@ class VersiController extends Controller
                             $penjelasan = Penjelasan::find($penjelasan->id);
                             $new_penjelasan = $penjelasan->replicate();
                             $new_penjelasan->version_id = $new_version->id;
-                            if($new_penjelasan->kegiatan_id != null)
-                                $new_penjelasan->kegiatan_id = $new_kegiatan->id;
-                            elseif ($new_penjelasan->kategori_id != null) 
+                            if ($new_penjelasan->kategori_id != null) 
                                 $new_penjelasan->kategori_id = $new_kategori->id;
                             $new_penjelasan->save();
                             }
