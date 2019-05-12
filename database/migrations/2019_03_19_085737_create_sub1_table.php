@@ -19,6 +19,7 @@ class CreateSub1Table extends Migration
             $table->foreign('uraian_id')->references('id')->on('uraian');
             $table->text('uraian_kegiatan');
             $table->string('satuan')->nullable();
+            $table->string('keterangan')->nullable();
             $table->integer('var1');
             $table->integer('var2')->nullable();
             $table->integer('var3')->nullable();

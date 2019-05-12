@@ -502,28 +502,28 @@
                     <th class="col-sm-3 control-label">Golongan A</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="Golongan A" required>
+                    <input type="number" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="Golongan A" required>
                     </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Golongan B</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="sub1_edit_var2" name="sub1_edit_var2" placeholder="Golongan B" required>
+                    <input type="number" class="form-control" id="sub1_edit_var2" name="sub1_edit_var2" placeholder="Golongan B" required>
                     </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Golongan C</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="sub1_edit_var3" name="sub1_edit_var3" placeholder="Golongan C" required>
+                    <input type="number" class="form-control" id="sub1_edit_var3" name="sub1_edit_var3" placeholder="Golongan C" required>
                     </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Golongan D</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="sub1_edit_var4" name="sub1_edit_var4" placeholder="Golongan D" required>
+                    <input type="number" class="form-control" id="sub1_edit_var4" name="sub1_edit_var4" placeholder="Golongan D" required>
                     </td>
                   </tr>
                 </table>

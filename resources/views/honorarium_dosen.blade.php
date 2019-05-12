@@ -495,28 +495,28 @@
                     <th class="col-sm-3 control-label">D3</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="D3" required>
+                    <input type="number" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="D3" required>
                     </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">D4/S1</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="sub1_edit_var2" name="sub1_edit_var2" placeholder="D4/S1" required>
+                    <input type="number" class="form-control" id="sub1_edit_var2" name="sub1_edit_var2" placeholder="D4/S1" required>
                     </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">S2</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="sub1_edit_var3" name="sub1_edit_var3" placeholder="S2" required>
+                    <input type="number" class="form-control" id="sub1_edit_var3" name="sub1_edit_var3" placeholder="S2" required>
                     </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">S3</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="sub1_edit_var4" name="sub1_edit_var4" placeholder="S3" required>
+                    <input type="number" class="form-control" id="sub1_edit_var4" name="sub1_edit_var4" placeholder="S3" required>
                     </td>
                   </tr>
                   <tr>

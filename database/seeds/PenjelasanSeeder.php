@@ -72,5 +72,17 @@ class PenjelasanSeeder extends Seeder
             'kode_tabel'     => '7',
             'penjelasan'     => 'Perhitungan jam lembur berdasarkan pembulatan kebawah dan diberikan untuk lembur yang dilakukan secara berturut-turut',
         ]);
+        Penjelasan::create([
+            'version_id'     => '1',
+            'kegiatan_id'    => '5',
+            'kode_tabel'     => '7',
+            'penjelasan'     => 'COBACOBA',
+        ]);
+        Penjelasan::create([
+            'version_id'     => '1',
+            'kegiatan_id'    => '5',
+            'kode_tabel'     => '7',
+            'penjelasan'     => 'COBACOBA LAGI HEHE',
+        ]);
     }
 }

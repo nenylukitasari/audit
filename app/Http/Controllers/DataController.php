@@ -29,39 +29,90 @@ class DataController extends Controller
                 {
                    switch ($kode_bagian) {
                         case '1':
-                            return view('makan_lembur', compact('versions'));
+                        {   
+                            $kode_bagian_kegiatan = $kode_bagian;
+                            $kode_bagian_kategori = 1;
+                            return view('kategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));
                             break;
+                        }
                         case '2':
-                            return view('jalan_dinas', compact('versions'));   
+                        {
+                            $kode_bagian_kegiatan = $kode_bagian;
+                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
                             break;
+                        }
                         case '3':
-                            return view('honorarium', compact('versions'));   
+                        {
+                            $kode_bagian_kegiatan = $kode_bagian;
+                            $kode_bagian_kategori = 9;
+                            return view('kategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
                             break;
+                        }
                         case '4':
-                            return view('honorarium_tidak_tetap', compact('versions'));   
+                        {
+                            $kode_bagian_kegiatan = $kode_bagian;
+                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
                             break;
+                        }
                         case '5':
                         {
                             $kode_bagian_kategori = 18;
-                            return view('uraian_default_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
+                            return view('kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
                             break;
                         }
                         case '6':
                         {
                             $kode_bagian_kategori = 19;
-                            return view('uraian_default_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
+                            return view('kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
                             break;
                         }
                         case '7':
                         {
                             $kode_bagian_kategori = 20;
-                            return view('uraian_default_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
+                            return view('kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
                             break;
                         }
                         case '8':
                         {
                             $kode_bagian_kategori = 21;
-                            return view('uraian_default_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
+                            return view('kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
+                            break;
+                        }
+                        case '9':
+                        {
+                            $kode_bagian_kegiatan = $kode_bagian;
+                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
+                            break;
+                        }
+                        case '10':
+                        {
+                            $kode_bagian_kegiatan = $kode_bagian;
+                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
+                            break;
+                        }
+                        case '11':
+                        {
+                            $kode_bagian_kegiatan = $kode_bagian;
+                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
+                            break;
+                        }
+                        case '12':
+                        {
+                            $kode_bagian_kategori = 29;
+                            $kode_bagian_kegiatan = $kode_bagian;
+                            return view('kategori_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            break;
+                        }
+                        case '13':
+                        {
+                            $kode_bagian_kegiatan = $kode_bagian;
+                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
+                            break;
+                        }
+                        case '14':
+                        {
+                            $kode_bagian_kegiatan = $kode_bagian;
+                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
                             break;
                         }
                         
@@ -88,8 +139,12 @@ class DataController extends Controller
                             return view('jalan_dinas_4', compact('versions'));   
                             break;
                         case '6':
-                            return view('jalan_dinas_5', compact('versions'));   
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 2;
+                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
+                        }
                         case '7':
                             return view('jalan_dinas_6', compact('versions'));   
                             break;
@@ -111,30 +166,126 @@ class DataController extends Controller
                             break;
                         }
                         case '10':
-                            return view('honorarium_tt_uraian', compact('versions','kode_bagian'));   
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 4;
+                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
+                        }
                         case '11':
-                            return view('honorarium_tt_uraian', compact('versions','kode_bagian'));   
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 4;
+                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
+                        }
                         case '12':
                             return view('honorarium_dosen', compact('versions'));   
                             break;
                         case '13':
-                            return view('honorarium_tt_sub1', compact('versions'));   
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 4;
+                            return view('uraian_sub1_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
+                        }
                         case '14':
-                            return view('honorarium_tt_uraian', compact('versions','kode_bagian'));   
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 4;
+                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
+                        }
                         case '15':
-                            return view('honorarium_tt_uraian', compact('versions','kode_bagian'));   
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 4;
+                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
+                        }
                         case '16':
-                            return view('honorarium_tt_uraian', compact('versions','kode_bagian'));   
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 4;
+                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
+                        }
                         case '17':
-                            return view('honorarium_tt_sub2', compact('versions'));   
+                            return view('honorarium_tt_sub2_var1', compact('versions'));   
                             break;
-                        
+                        case '22':
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 9;
+                            return view('kategori_sub1_var3', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            break;
+                        }
+                        case '23':
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 9;
+                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            break;
+                        }
+                        case '24':
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 9;
+                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            break;
+                        }
+                        case '25':
+                            return view('biaya_personel_sub2_var4', compact('versions'));   
+                            break;
+                        case '26':
+                            return view('biaya_non_personel_sub2_ket', compact('versions'));   
+                            break;
+                        case '27':
+                            return view('spmi_uraian_var3', compact('versions'));   
+                            break;
+                        case '28':
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 11;
+                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            break;
+                        }
+                        case '30':
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 13;
+                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            break;
+                        }
+                        case '31':
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 13;
+                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            break;
+                        }
+                        case '32':
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 13;
+                            return view('inap_uraian_var4', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            break;
+                        }
+                        case '33':
+                        {
+                            $kode_bagian_kategori = $kode_bagian;
+                            $kode_bagian_kegiatan = 13;
+                            return view('pesawat_uraian_var2', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            break;
+                        }
+                        case '34':
+                        {
+                            $kode_bagian = 14;
+                            $kode_bagian_kategori = 34;
+                            return view('kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
+                            break;
+                        }
+
                         default:
                             # code...
                             break;
@@ -183,7 +334,6 @@ class DataController extends Controller
                     $jenis_kegiatan->jenis_kegiatan = $request->jenis_kegiatan;
                     $jenis_kegiatan->kode_tabel=1;
                     $jenis_kegiatan->save();
-                    // return redirect('/dokumen')->with('message_success',"Berhasil menambahkan data");
                     break;
                 }
             case '2':
@@ -193,7 +343,6 @@ class DataController extends Controller
                     $kegiatan->nama_kegiatan = $request->nama_kegiatan;
                     $kegiatan->kode_tabel=2;
                     $kegiatan->save();
-                    // return redirect('/dokumen')->with('message_success',"Berhasil menambahkan data");
                     break;
                 }
             case '3':
@@ -206,7 +355,6 @@ class DataController extends Controller
                     $kategori->satuan = $request->satuan_kategori;
                     $kategori->var1 = $request->var1_kategori;
                     $kategori->save();
-                    // return redirect()->back()->with('message_success',"Berhasil menambahkan data");
                     break;
                 }
             case '4':
@@ -221,7 +369,6 @@ class DataController extends Controller
                     $uraian->var4 = $request->var4;
                     $uraian->kode_tabel=4;
                     $uraian->save();
-                    // return redirect()->back()->with('message_success',"Berhasil menambahkan data");
                     break;
                 }
             case '5':
@@ -230,13 +377,13 @@ class DataController extends Controller
                     $sub1->uraian_id = $request->list_uraian_kegiatan;
                     $sub1->uraian_kegiatan = $request->uraian_kegiatan;
                     $sub1->satuan = $request->satuan;
+                    $sub1->keterangan = $request->keterangan;
                     $sub1->var1 = $request->var1;
                     $sub1->var2 = $request->var2;
                     $sub1->var3 = $request->var3;
                     $sub1->var4 = $request->var4;
                     $sub1->kode_tabel=5;
                     $sub1->save();
-                    // return redirect()->back()->with('message_success',"Berhasil menambahkan data");
                     break;
                 }
             case '6':
@@ -245,10 +392,13 @@ class DataController extends Controller
                     $sub2->sub1_id = $request->list_sub1;
                     $sub2->uraian_kegiatan = $request->uraian_kegiatan;
                     $sub2->satuan = $request->satuan;
+                    $sub2->keterangan = $request->keterangan;
                     $sub2->var1 = $request->var1;
+                    $sub2->var2 = $request->var2;
+                    $sub2->var3 = $request->var3;
+                    $sub2->var4 = $request->var4;
                     $sub2->kode_tabel=6;
                     $sub2->save();
-                    // return redirect()->back()->with('message_success',"Berhasil menambahkan data");
                     break;
                 }
             case '7':
@@ -348,6 +498,8 @@ class DataController extends Controller
                 {
                     $kategori = Kategori::find($request->edit_id);
                     $kategori->kategori_kegiatan = $request->kategori_kegiatan1;
+                    $kategori->satuan = $request->edit_kategori_satuan;
+                    $kategori->var1 = $request->edit_kategori_var1;
                     $kategori->save();
                     break;
                 }
@@ -370,6 +522,7 @@ class DataController extends Controller
                     $sub1->uraian_id = $request->uraian3;
                     $sub1->uraian_kegiatan = $request->uraian_kegiatan3;
                     $sub1->satuan = $request->satuan3;
+                    $sub1->keterangan = $request->sub1_edit_keterangan;
                     $sub1->var1 = $request->sub1_edit_var1;
                     $sub1->var2 = $request->sub1_edit_var2;
                     $sub1->var3 = $request->sub1_edit_var3;
@@ -383,7 +536,11 @@ class DataController extends Controller
                     $sub2->sub1_id = $request->edit_sub1_id;
                     $sub2->uraian_kegiatan = $request->edit_sub2_uraian;
                     $sub2->satuan = $request->edit_sub2_satuan;
+                    $sub2->keterangan = $request->edit_sub2_keterangan;
                     $sub2->var1 = $request->edit_sub2_var1;
+                    $sub2->var2 = $request->edit_sub2_var2;
+                    $sub2->var3 = $request->edit_sub2_var3;
+                    $sub2->var4 = $request->edit_sub2_var4;
                     $sub2->save();
                     break;
                 }

@@ -275,7 +275,7 @@
                   <th class="col-sm-3 control-label">Besaran (Rp)</th>
                   <td width="10">:</td>
                   <td>
-                  <input type="text" class="form-control" id="edit_var1" name="edit_var1" placeholder="Besaran (Rp)" required>
+                  <input type="number" class="form-control" id="edit_var1" name="edit_var1" placeholder="Besaran (Rp)" required>
                   </td>
                 </tr>
               </table>

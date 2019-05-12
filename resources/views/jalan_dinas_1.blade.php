@@ -303,21 +303,21 @@
                   <th class="col-sm-3 control-label">Luar Kota (Rp)</th>
                   <td width="10">:</td>
                   <td>
-                  <input type="text" class="form-control" id="edit_var1" name="edit_var1" placeholder="Luar Kota (Rp)" required>
+                  <input type="number" class="form-control" id="edit_var1" name="edit_var1" placeholder="Luar Kota (Rp)" required>
                   </td>
                 </tr>
                 <tr>
                   <th class="col-sm-3 control-label">Dalam Kota (Rp)</th>
                   <td width="10">:</td>
                   <td>
-                  <input type="text" class="form-control" id="edit_var2" name="edit_var2" placeholder="Dalam Kota Lebih Dari 8 Jam (Rp)" required>
+                  <input type="number" class="form-control" id="edit_var2" name="edit_var2" placeholder="Dalam Kota Lebih Dari 8 Jam (Rp)" required>
                   </td>
                 </tr>
                 <tr>
                   <th class="col-sm-3 control-label">Diklat (Rp)</th>
                   <td width="10">:</td>
                   <td>
-                  <input type="text" class="form-control" id="edit_var3" name="edit_var3" placeholder="Diklat (Rp)" required>
+                  <input type="number" class="form-control" id="edit_var3" name="edit_var3" placeholder="Diklat (Rp)" required>
                   </td>
                 </tr>
               </table>

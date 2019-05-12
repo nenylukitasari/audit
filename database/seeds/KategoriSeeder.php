@@ -323,60 +323,70 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '9',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '22',
             'kategori_kegiatan'     => 'Penghargaan Kejuaraan Internasional',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '9',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '41',
             'kategori_kegiatan'     => 'Penghargaan Kejuaraan Nasional',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '9',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '42',
             'kategori_kegiatan'     => 'Penghargaan Kejuaraan Regional',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '9',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '23',
             'kategori_kegiatan'     => 'Dana Program Kewirausahaan',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '9',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '24',
             'kategori_kegiatan'     => 'Biaya Kepesertaan Kegiatan',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '10',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '25',
             'kategori_kegiatan'     => 'Biaya Personel (Billing Rate)',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '10',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '26',
             'kategori_kegiatan'     => 'Biaya Non Personel',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '11',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '27',
             'kategori_kegiatan'     => 'SPMI Akademik',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '11',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '28',
             'kategori_kegiatan'     => 'SPMI Non Akademik',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '12',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '29',
             'kategori_kegiatan'     => 'Seragam devile Dies Natalis ITS',
             'satuan'                => 'Stel',
             'var1'                  => '250000'
@@ -384,6 +394,7 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '12',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '29',
             'kategori_kegiatan'     => 'Seragam atlet olah raga dalam rangka Dies Natalis ITS',
             'satuan'                => 'Stel',
             'var1'                  => '200000'
@@ -391,6 +402,7 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '12',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '29',
             'kategori_kegiatan'     => 'Seragam panitia kegiatan pameran dan lomba kemahasiswaan',
             'satuan'                => 'Stel',
             'var1'                  => '200000'
@@ -398,6 +410,7 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '12',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '29',
             'kategori_kegiatan'     => 'Seragam SKK lengkap',
             'satuan'                => 'Stel',
             'var1'                  => '1100000'
@@ -405,6 +418,7 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '12',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '29',
             'kategori_kegiatan'     => 'Seragam petugas kebersihan',
             'satuan'                => 'Stel',
             'var1'                  => '250000'
@@ -412,6 +426,7 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '12',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '29',
             'kategori_kegiatan'     => 'Seragam pegawai Medical Center',
             'satuan'                => 'Stel',
             'var1'                  => '250000'
@@ -419,6 +434,7 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '12',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '29',
             'kategori_kegiatan'     => 'Pakaian dinas ITS',
             'satuan'                => 'Stel',
             'var1'                  => '500000'
@@ -427,66 +443,77 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '13',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '30',
             'kategori_kegiatan'     => 'Satuan Biaya Transportasi Darat dari Surabaya ke Kota/Kabupaten Dalam Provinsi Jawa Timur (Satu Kali Perjalanan)',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '13',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '31',
             'kategori_kegiatan'     => 'Satuan Biaya Transportasi Darat dari DKI Jakarta ke Kota/Kabupaten Sekitar (Satu Kali Perjalanan)',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '13',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '32',
             'kategori_kegiatan'     => 'Satuan Biaya Penginapan Perjalanan Dinas Dalam Negeri (OH)',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '13',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '33',
             'kategori_kegiatan'     => 'Satuan Biaya Tiket Pesawat Perjalanan Dinas Dalam Negeri Pergi Pulang (PP)',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '14',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '34',
             'kategori_kegiatan'     => 'Satuan Biaya Sewa Mesin Fotocopy',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '14',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '35',
             'kategori_kegiatan'     => 'Satuan Biaya Sewa Gedung Pertemuan',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '14',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '36',
             'kategori_kegiatan'     => 'Satuan Biaya Sewa Kendaraan Pelaksanaan Kegiatan Insidentil',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '14',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '37',
             'kategori_kegiatan'     => 'Satuan Biaya Pemeliharaan Sarana Kantor',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '14',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '38',
             'kategori_kegiatan'     => 'Satuan Biaya Keperluan Sehari-hari Perkantoran di Dalam Negeri',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '14',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '39',
             'kategori_kegiatan'     => 'Satuan Biaya Pemeliharaan Gedung/Bangunan Dalam Negeri',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '14',
             'kode_tabel'            => '3',
+            'kode_bagian'           => '40',
             'kategori_kegiatan'     => 'Satuan Biaya Pemeliharaan dan Operasional Kendaraan Dinas',
         ]);
     }

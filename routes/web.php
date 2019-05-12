@@ -23,7 +23,10 @@ Route::get('/logout2', 'AuthController@logout2')->name('logout2');
 Route::get('/hak', function () { return view('hak');});
 
 Route::group(['middleware' => 'SemuaRole'], function () {
-	// punya neny
+// 	// punya neny
+// 	Route::get('/dokumen', function () {
+//     return view('master');
+// });
 	Route::get('/dokumen', 'DataController@index')->name('dokumen');
 	Route::post('/dokumen/{kode_tabel}','DataController@store');
 	Route::post('/data/kegiatan','DataController@getData');
@@ -36,8 +39,6 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::get('getUraian/{id}','DataController@getUraian');
 	Route::get('getSub1/{id}','DataController@getSub1');
 	Route::post('/data/update/{kode_tabel}','DataController@update');
-
-	// Route::get('/tambahsbi', function () { return view('tambahsbi'); });
 	Route::post('/versi','VersiController@store');
 	Route::get('/versisbi','VersiController@index');
 	Route::post('/pilihversi','VersiController@pilihversi');

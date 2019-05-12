@@ -194,13 +194,13 @@
               <div class="form-group">
                 <label class="col-sm-4 control-label">Biaya Penginapan</label>
                 <div class="col-sm-8">
-                  <input type="number" name="var2" placeholder="Tulis 0 jika nominal at cost" class="form-control" required />
+                  <input type="number" name="var2" placeholder="Masukkan 0 jika nominal at cost" class="form-control" required />
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-4 control-label">Biaya Transport</label>
                 <div class="col-sm-8">
-                  <input type="number" name="var3" placeholder="Tulis 0 jika nominal at cost" class="form-control" required />
+                  <input type="number" name="var3" placeholder="Masukkan 0 jika nominal at cost" class="form-control" required />
                 </div>
               </div>
               <br/><br/>
@@ -315,21 +315,21 @@
                   <th class="col-sm-3 control-label">Uang Harian (Rp)</th>
                   <td width="10">:</td>
                   <td>
-                  <input type="text" class="form-control" id="edit_var1" name="edit_var1" placeholder="Uang Harian (Rp)" required>
+                  <input type="number" class="form-control" id="edit_var1" name="edit_var1" placeholder="Uang Harian (Rp)" required>
                   </td>
                 </tr>
                 <tr>
                   <th class="col-sm-3 control-label">Biaya Penginapan</th>
                   <td width="10">:</td>
                   <td>
-                  <input type="text" class="form-control" id="edit_var2" name="edit_var2" placeholder="Tulis 0 jika nominal at cost" required>
+                  <input type="number" class="form-control" id="edit_var2" name="edit_var2" placeholder="Masukkan 0 jika nominal at cost" required>
                   </td>
                 </tr>
                 <tr>
                   <th class="col-sm-3 control-label">Biaya Transport</th>
                   <td width="10">:</td>
                   <td>
-                  <input type="text" class="form-control" id="edit_var3" name="edit_var3" placeholder="Tulis 0 jika nominal at cost" required>
+                  <input type="number" class="form-control" id="edit_var3" name="edit_var3" placeholder="Masukkan 0 jika nominal at cost" required>
                   </td>
                 </tr>
               </table>

@@ -456,7 +456,7 @@
                     <th class="col-sm-3 control-label">Bruto</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="Bruto" required>
+                    <input type="number" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="Bruto" required>
                     </td>
                   </tr>
                 </table>

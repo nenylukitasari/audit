@@ -17,7 +17,7 @@ class Sub1Seeder extends Seeder
             'kode_tabel'            => '5',
     		'uraian_kegiatan'		=> 'Makan',
     		'satuan'				=> 'Orang/Kali',
-    		'var1'					=> '44000',
+    		'var1'					=> '44000', 
     	]);
     	Sub1::create([
     		'uraian_id'				=> '8',
@@ -1280,6 +1280,680 @@ class Sub1Seeder extends Seeder
             'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Moderator dan Pembawa Acara',
         ]);
+        Sub1::create([
+            'uraian_id'             => '205',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Perorangan',
+            'satuan'                => 'Orang',
+            'var1'                  => '2500000',
+            'var2'                  => '1875000',
+            'var3'                  => '1250000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '205',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Berpasangan 2 mahasiswa',
+            'satuan'                => 'Tim',
+            'var1'                  => '3750000',
+            'var2'                  => '2800000',
+            'var3'                  => '1875000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '205',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Tim Beregu (3 mahasiswa atau lebih)',
+            'satuan'                => 'Tim',
+            'var1'                  => '4500000',
+            'var2'                  => '3375000',
+            'var3'                  => '2250000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '206',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Perorangan',
+            'satuan'                => 'Orang',
+            'var1'                  => '2000000',
+            'var2'                  => '1500000',
+            'var3'                  => '1000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '206',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Berpasangan 2 mahasiswa',
+            'satuan'                => 'Tim',
+            'var1'                  => '3000000',
+            'var2'                  => '2250000',
+            'var3'                  => '1500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '206',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Tim Beregu (3 mahasiswa atau lebih)',
+            'satuan'                => 'Tim',
+            'var1'                  => '3600000',
+            'var2'                  => '2700000',
+            'var3'                  => '1800000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '207',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Perorangan',
+            'satuan'                => 'Orang',
+            'var1'                  => '1500000',
+            'var2'                  => '1125000',
+            'var3'                  => '750000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '207',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Berpasangan 2 mahasiswa',
+            'satuan'                => 'Tim',
+            'var1'                  => '2250000',
+            'var2'                  => '1700000',
+            'var3'                  => '1125000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '207',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Tim Beregu (3 mahasiswa atau lebih)',
+            'satuan'                => 'Tim',
+            'var1'                  => '2700000',
+            'var2'                  => '2025000',
+            'var3'                  => '1350000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '208',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Perorangan',
+            'satuan'                => 'Orang',
+            'var1'                  => '1200000',
+            'var2'                  => '900000',
+            'var3'                  => '600000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '208',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Berpasangan 2 mahasiswa',
+            'satuan'                => 'Tim',
+            'var1'                  => '1800000',
+            'var2'                  => '1350000',
+            'var3'                  => '900000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '208',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Tim Beregu (3 mahasiswa atau lebih)',
+            'satuan'                => 'Tim',
+            'var1'                  => '2160000',
+            'var2'                  => '1620000',
+            'var3'                  => '1080000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '209',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Perorangan',
+            'satuan'                => 'Orang',
+            'var1'                  => '1000000',
+            'var2'                  => '750000',
+            'var3'                  => '500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '209',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Berpasangan 2 mahasiswa',
+            'satuan'                => 'Tim',
+            'var1'                  => '1500000',
+            'var2'                  => '1125000',
+            'var3'                  => '750000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '209',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Tim Beregu (3 mahasiswa atau lebih)',
+            'satuan'                => 'Tim',
+            'var1'                  => '1800000',
+            'var2'                  => '1350000',
+            'var3'                  => '900000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '210',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Perorangan',
+            'satuan'                => 'Orang',
+            'var1'                  => '800000',
+            'var2'                  => '600000',
+            'var3'                  => '400000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '210',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Berpasangan 2 mahasiswa',
+            'satuan'                => 'Tim',
+            'var1'                  => '1200000',
+            'var2'                  => '900000',
+            'var3'                  => '600000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '210',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Tim Beregu (3 mahasiswa atau lebih)',
+            'satuan'                => 'Tim',
+            'var1'                  => '1440000',
+            'var2'                  => '1080000',
+            'var3'                  => '720000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '216',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 3-6 Tahun',
+            'satuan'                => 'Setara dengan Ahli Muda',
+            'var1'                  => '19890000',
+            'var2'                  => '4800000',
+            'var3'                  => '990000',
+            'var4'                  => '160000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '216',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 7-10 Tahun',
+            'satuan'                => 'Setara dengan Ahli Madya',
+            'var1'                  => '23460000',
+            'var2'                  => '5700000',
+            'var3'                  => '1100000',
+            'var4'                  => '190000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '216',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 11-15 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '29835000',
+            'var2'                  => '7200000',
+            'var3'                  => '1400000',
+            'var4'                  => '240000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '216',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 16-20 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '36210000',
+            'var2'                  => '8800000',
+            'var3'                  => '1800000',
+            'var4'                  => '290000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '216',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 21-25 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '41225000',
+            'var2'                  => '10000000',
+            'var3'                  => '2000000',
+            'var4'                  => '330000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '216',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan >25 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '45390000',
+            'var2'                  => '11000000',
+            'var3'                  => '2200000',
+            'var4'                  => '360000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '217',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 1-2 Tahun',
+            'satuan'                => 'Setara dengan Ahli Muda',
+            'var1'                  => '25415000',
+            'var2'                  => '6100000',
+            'var3'                  => '1200000',
+            'var4'                  => '200000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '217',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 3-6 Tahun',
+            'satuan'                => 'Setara dengan Ahli Madya',
+            'var1'                  => '31535000',
+            'var2'                  => '7600000',
+            'var3'                  => '1500000',
+            'var4'                  => '250000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '217',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 7-10 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '37655000',
+            'var2'                  => '9100000',
+            'var3'                  => '1800000',
+            'var4'                  => '300000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '217',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 11-15 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '45475000',
+            'var2'                  => '11000000',
+            'var3'                  => '2200000',
+            'var4'                  => '360000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '217',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 16-20 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '53380000',
+            'var2'                  => '13000000',
+            'var3'                  => '2600000',
+            'var4'                  => '430000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '217',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan >21 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '59755000',
+            'var2'                  => '14500000',
+            'var3'                  => '2900000',
+            'var4'                  => '480000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '218',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 1-3 Tahun',
+            'satuan'                => 'Setara dengan Ahli Madya',
+            'var1'                  => '37230000',
+            'var2'                  => '9000000',
+            'var3'                  => '1800000',
+            'var4'                  => '300000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '218',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 4-7 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '44030000',
+            'var2'                  => '10700000',
+            'var3'                  => '2200000',
+            'var4'                  => '350000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '218',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 8-10 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '49130000',
+            'var2'                  => '11900000',
+            'var3'                  => '2400000',
+            'var4'                  => '390000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '218',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 11-15 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '57545000',
+            'var2'                  => '14000000',
+            'var3'                  => '2800000',
+            'var4'                  => '460000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '218',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan 16-18 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '62645000',
+            'var2'                  => '15200000',
+            'var3'                  => '3100000',
+            'var4'                  => '500000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '218',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Personel dengan Pengalamanan >18 Tahun',
+            'satuan'                => 'Setara dengan Ahli Utama',
+            'var1'                  => '70210000',
+            'var2'                  => '17100000',
+            'var3'                  => '3500000',
+            'var4'                  => '570000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '219',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'CAD/CAM Operator',
+            'var1'                  => '8160000',
+            'var2'                  => '1900000',
+            'var3'                  => '400000',
+            'var4'                  => '66000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '219',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Software Programmer/Implementer',
+            'var1'                  => '9605000',
+            'var2'                  => '2300000',
+            'var3'                  => '480000',
+            'var4'                  => '78000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '219',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Hardware Technician',
+            'var1'                  => '8160000',
+            'var2'                  => '1900000',
+            'var3'                  => '400000',
+            'var4'                  => '66000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '219',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Facilitator',
+            'var1'                  => '8160000',
+            'var2'                  => '1900000',
+            'var3'                  => '400000',
+            'var4'                  => '66000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '219',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Senior Assistant Professional Staff',
+            'var1'                  => '10455000',
+            'var2'                  => '2500000',
+            'var3'                  => '520000',
+            'var4'                  => '84000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '219',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Assistant Professional Staff',
+            'var1'                  => '9860000',
+            'var2'                  => '2400000',
+            'var3'                  => '490000',
+            'var4'                  => '80000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '219',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Special Professional Staff',
+            'var1'                  => '9605000',
+            'var2'                  => '2300000',
+            'var3'                  => '480000',
+            'var4'                  => '78000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '219',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Technician/Teknisi',
+            'var1'                  => '8160000',
+            'var2'                  => '1900000',
+            'var3'                  => '400000',
+            'var4'                  => '66000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '219',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Inspector/Pengawas Lapangan',
+            'var1'                  => '8160000',
+            'var2'                  => '1900000',
+            'var3'                  => '400000',
+            'var4'                  => '66000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '219',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Surveyor',
+            'var1'                  => '7310000',
+            'var2'                  => '1700000',
+            'var3'                  => '360000',
+            'var4'                  => '59000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '220',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Office Manager',
+            'var1'                  => '8075000',
+            'var2'                  => '1900000',
+            'var3'                  => '400000',
+            'var4'                  => '65000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '220',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Site Office Manager/Administrator',
+            'var1'                  => '7310000',
+            'var2'                  => '1700000',
+            'var3'                  => '360000',
+            'var4'                  => '59000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '220',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Bilingual Secretary',
+            'var1'                  => '7990000',
+            'var2'                  => '1900000',
+            'var3'                  => '390000',
+            'var4'                  => '64000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '220',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Secretary',
+            'var1'                  => '4930000',
+            'var2'                  => '1200000',
+            'var3'                  => '240000',
+            'var4'                  => '40000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '220',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Computer Operator/Typist',
+            'var1'                  => '4335000',
+            'var2'                  => '1000000',
+            'var3'                  => '210000',
+            'var4'                  => '35000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '220',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Drafter (Manual)',
+            'var1'                  => '3655000',
+            'var2'                  => '890000',
+            'var3'                  => '180000',
+            'var4'                  => '29000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '220',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Messenger',
+            'var1'                  => '2805000',
+            'var2'                  => '680000',
+            'var3'                  => '140000',
+            'var4'                  => '22000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '220',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Office Boy',
+            'var1'                  => '2550000',
+            'var2'                  => '620000',
+            'var3'                  => '120000',
+            'var4'                  => '20000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '220',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Driver',
+            'var1'                  => '3060000',
+            'var2'                  => '740000',
+            'var3'                  => '150000',
+            'var4'                  => '24000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '220',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Office Guard/Security Officer',
+            'var1'                  => '2720000',
+            'var2'                  => '660000',
+            'var3'                  => '130000',
+            'var4'                  => '22000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '221',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Biaya Personel sebagai Tenaga Ahli dengan Pendidikan S-1',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '221',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Biaya Personel sebagai Tenaga Ahli dengan Pendidikan S-2',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '221',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Biaya Personel sebagai Tenaga Ahli dengan Pendidikan S-3',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '222',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Biaya Personel sebagai Trainer/Instruktur/Pemateri',
+            'var1'                  => '900000',
+            'var2'                  => '900000',
+            'var3'                  => '900000',
+            'var4'                  => '900000',
+            'satuan'                => 'Orang/Jam',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '223',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Dokumen Perjalanan Luar Negeri',
+            'keterangan'            => 'Sesuai Standar Biaya Perjalanan Dinas',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '223',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Tiket Transportasi Darat/Laut/Udara DAlam Negeri/Luar Negeri',
+            'keterangan'            => 'Sesuai Standar Biaya Perjalanan Dinas',
+            'satuan'                => 'PP',
+        ]); 
+        Sub1::create([
+            'uraian_id'             => '223',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Biaya Perjalanan Darat DN/LN',
+            'keterangan'            => 'Sesuai Standar Biaya Perjalanan Dinas',
+            'satuan'                => 'PP',
+        ]); 
+        Sub1::create([
+            'uraian_id'             => '223',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Uang Transport Lokal',
+            'keterangan'            => 'Sesuai Standar Biaya Perjalanan Dinas',
+            'satuan'                => 'Orang/Hari',
+        ]); 
+        Sub1::create([
+            'uraian_id'             => '223',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Uang Harian DN/LN',
+            'keterangan'            => 'Sesuai Standar Biaya Perjalanan Dinas',
+            'satuan'                => 'Orang/Hari',
+        ]); 
+        Sub1::create([
+            'uraian_id'             => '224',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Sewa Kendaraan',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '224',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Sewa Peralatan Kantor',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '224',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Sewa Furniture/Meubelair Kantor',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '224',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Biaya Operasional Kantor Proyek',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '224',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Biaya ATK Kantor Proyek/Office Consumables',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '224',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Biaya Komputer dan Printer Consumables',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '224',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Biaya Komunikasi',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '224',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Biaya Pelaporan Kantor Utama Proyek',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '224',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Biaya Pelaporan Kantor Utama Lapangan',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '224',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Sewa Peralatan Penunjang',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '681',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Roda Empat',
+            'satuan'                => 'Unit/Tahun',
+            'var1'                  => '33600000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '681',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Double Garden',
+            'satuan'                => 'Unit/Tahun',
+            'var1'                  => '36280000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '681',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Roda Dua',
+            'satuan'                => 'Unit/Tahun',
+            'var1'                  => '3650000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '682',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Rektor dan Wakil Rektor',
+            'satuan'                => 'Unit/Tahun',
+            'var1'                  => '30000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '682',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Sekretaris Institut, Kepala Lembaga, Kepala Badan, Dekan, Kepala Kantor, Kepala Biro',
+            'satuan'                => 'Unit/Tahun',
+            'var1'                  => '27000000',
+        ]);
+        Sub1::create([
+            'uraian_id'             => '682',
+            'kode_tabel'            => '5',
+            'uraian_kegiatan'       => 'Operasional Kantor',
+            'satuan'                => 'Unit/Tahun',
+            'var1'                  => '25000000',
+        ]);
+
 
     }
 }
