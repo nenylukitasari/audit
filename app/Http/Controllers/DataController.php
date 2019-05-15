@@ -9,6 +9,8 @@ use Validator;
 use App\Version;
 use App\Provinsi;
 use App\Penjelasan;
+use App\PenjelasanSub1;
+use App\PenjelasanSub2;
 use App\JenisKegiatan;
 use App\Kegiatan;
 use App\Kategori;
