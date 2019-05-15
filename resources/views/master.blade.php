@@ -196,6 +196,7 @@ else {
         </li>
         <li><a href="{{ url('templatekda') }}"><i class="fa fa-file-o"></i><span>Template KDA</span></a></li>
         <li><a href="{{ url('kdatriwulan') }}"><i class="fa fa-file-zip-o"></i> <span> Laporan KDA</span></a></li>
+        <li><a href="{{ url('penjelasan') }}"><i class="fa fa-briefcase"></i> <span> Penjelasan</span></a></li>
         @elseif ($_SESSION['userinfo2'] == "nenylukitasari@gmail.com")
          <li><a href="{{ url('dokumen') }}"><i class="fa fa-book"></i> <span> Standar Biaya Institut</span></a></li>
          <li><a href="{{ url('versisbi') }}"><i class="fa fa-clone"></i> <span> Versi SBI</span></a></li>
