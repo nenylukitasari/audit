@@ -330,14 +330,14 @@ class KategoriSeeder extends Seeder
         Kategori::create([
             'kegiatan_id'           => '9',
             'kode_tabel'            => '3',
-            'kode_bagian'           => '41',
+            'kode_bagian'           => '22',
             'kategori_kegiatan'     => 'Penghargaan Kejuaraan Nasional',
         ]);
 
         Kategori::create([
             'kegiatan_id'           => '9',
             'kode_tabel'            => '3',
-            'kode_bagian'           => '42',
+            'kode_bagian'           => '22',
             'kategori_kegiatan'     => 'Penghargaan Kejuaraan Regional',
         ]);
 

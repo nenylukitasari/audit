@@ -51,6 +51,9 @@ else {
    -moz-border-radius: 5px;
    border-radius: 5px;
   }
+
+  input[type="text"]:disabled{background-color:white;}
+  textarea[class="form-control"]:disabled{background-color:white;}
   </style>
 
   <!-- Google Font -->

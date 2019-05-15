@@ -61,11 +61,16 @@
               <table id="example1" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  <th width="10">No.</th>
-                  <th width="275">Uraian Kegiatan</th>
-                  <th width="90">Satuan</th>
-                  <th width="100">Besaran Bruto Maksimum (Rp)</th>
-                  <th width="40"></th>
+                  <th rowspan="2">No.</th>
+                  <th rowspan="2">Uraian Kegiatan</th>
+                  <th rowspan="2">Satuan</th>
+                  <th style="text-align: center" colspan="3">Besaran Bruto Maksimum (Rp)</th>
+                  <th rowspan="2"></th>
+                </tr>
+                <tr>
+                  <th width="80">Juara I</th>
+                  <th width="80">Juara II</th>
+                  <th width="80">Juara III</th>
                 </tr>
                 </thead>
                <tbody>
@@ -73,11 +78,14 @@
                 @foreach ($version->kegiatan as $kegiatan)
                 @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
                 @foreach ($kegiatan->kategori as $key => $kategori) 
+                @if($kategori->kode_bagian==$kode_bagian_kategori)
                     <tr>
                       <td>
                         {{$key+1}}. 
                       </td>
                     <th>{{ $kategori->kategori_kegiatan}}</th>
+                      <td></td>
+                      <td></td>
                       <td></td>
                       <td></td>
                       <td> 
@@ -94,16 +102,10 @@
                         @endphp
                         &emsp;&ensp;{{$i}}. {{ $uraian->uraian_kegiatan}}
                       </td>
-                      <td>
-                          {{ $uraian->satuan}}
-                      </td>
-                      @if($uraian->var1 == null)
-                      <td>
-                      </td>
-                      @else
-                      <td>
-                      {{number_format($uraian->var1)}}</td>
-                      @endif 
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                       <td>
                           <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})" data-target="#show-modal2"> | </i> 
                           <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}}) "data-target="#edit-modal2"> </i>
@@ -119,13 +121,9 @@
                         <td>
                             {{ $sub1->satuan}}
                         </td>
-                        @if($sub1->var1 == null)
-                        <td>
-                        </td>
-                        @else
-                        <td>
-                          {{number_format($sub1->var1)}}</td>
-                        @endif 
+                        <td>{{number_format($sub1->var1)}}</td>
+                        <td>{{number_format($sub1->var2)}}</td>
+                        <td>{{number_format($sub1->var3)}}</td>
                         <td>
                           <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})" data-target="#show-modal3"> | </i>
                           <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})" data-target="#edit-modal3"> </i>
@@ -133,6 +131,7 @@
                       </tr>
                         @endforeach
                         @endforeach 
+                        @endif
                       @endforeach
                       @endif
                     @endforeach
@@ -143,7 +142,9 @@
                   <th width="10">No.</th>
                   <th width="275">Uraian Kegiatan</th>
                   <th width="90">Satuan</th>
-                  <th width="100">Besaran Bruto Maksimum (Rp)</th>
+                  <th width="80">Juara I</th>
+                  <th width="80">Juara II</th>
+                  <th width="80">Juara III</th>
                   <th width="40"></th>
                 </tr>
               </tfoot>
@@ -244,18 +245,6 @@
                     <textarea class="form-control" rows="3" id="uraian_kegiatan" name="uraian_kegiatan" placeholder="Uraian Kegiatan" required></textarea>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Satuan</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="satuan" placeholder="Satuan" class="form-control" required />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Bruto</label>
-                  <div class="col-sm-10">
-                    <input type="number" name="var1" placeholder="Besaran Bruto Maksimum (Rp)" class="form-control" required />
-                  </div>
-                </div>
                 <br/><br/>
               </div>
               <div class="modal-footer">  
@@ -293,7 +282,6 @@
           </div>
             <div class="form-group">  
             <select class="form-control selecturaian" name="list_uraian_kegiatan" style="width:500px" id="list_uraian_kegiatan" required>
-              {{-- <option value="1">yeyeyey</option>--}}
               </select>  
             </div>
             <form class="form-horizontal">
@@ -311,9 +299,21 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Bruto</label>
+                  <label class="col-sm-2 control-label">Juara I</label>
                   <div class="col-sm-10">
-                    <input type="number" name="var1" placeholder="Besaran Bruto Maksimum (Rp)" class="form-control" required />
+                    <input type="number" name="var1" placeholder="Juara I" class="form-control" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Juara II</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="var2" placeholder="Juara II" class="form-control" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Juara III</label>
+                  <div class="col-sm-10">
+                    <input type="number" name="var3" placeholder="Juara III" class="form-control" required />
                   </div>
                 </div>
                 <br/><br/>
@@ -387,16 +387,6 @@
                     <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
                     <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="uraian" name="uraian" disabled></textarea> </td>
                   </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Satuan</th>
-                    <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="satuan" name="satuan" disabled></td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Bruto</th>
-                    <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="var1" name="var1" disabled></td>
-                  </tr>
                 </table>
               </div>              
               </div>
@@ -437,9 +427,19 @@
                   <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="sub1_satuan3" name="sub1_satuan3" disabled></td>
                 </tr>
                 <tr>
-                  <th class="col-sm-3 control-label">Bruto</th>
+                  <th class="col-sm-3 control-label">Juara I</th>
                   <td width="10">:</td>
                   <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="sub1_var1" name="sub1_var1" disabled></td>
+                </tr>
+                <tr>
+                  <th class="col-sm-3 control-label">Juara II</th>
+                  <td width="10">:</td>
+                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="sub1_var2" name="sub1_var2" disabled></td>
+                </tr>
+                <tr>
+                  <th class="col-sm-3 control-label">Juara III</th>
+                  <td width="10">:</td>
+                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="sub1_var3" name="sub1_var3" disabled></td>
                 </tr>
               </table>
             </div>              
@@ -533,20 +533,6 @@
                     <textarea class="form-control" rows="3" id="uraian_kegiatan2" name="uraian_kegiatan2" required></textarea>
                     </td>
                   </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Satuan</th>
-                    <td width="10">:</td>
-                    <td>
-                    <input type="text" class="form-control" id="satuan2" name="satuan2" placeholder="Satuan" required>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Bruto</th>
-                    <td width="10">:</td>
-                    <td>
-                    <input type="number" class="form-control" id="edit_var1" name="edit_var1" placeholder="Bruto" required>
-                    </td>
-                  </tr>
                 </table>
               </div>              
               </div>
@@ -613,10 +599,24 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="col-sm-3 control-label">Bruto</th>
+                    <th class="col-sm-3 control-label">Juara I</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="number" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="Bruto" required>
+                    <input type="number" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="Juara I" required>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="col-sm-3 control-label">Juara II</th>
+                    <td width="10">:</td>
+                    <td>
+                    <input type="number" class="form-control" id="sub1_edit_var2" name="sub1_edit_var2" placeholder="Juara II" required>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="col-sm-3 control-label">Juara III</th>
+                    <td width="10">:</td>
+                    <td>
+                    <input type="number" class="form-control" id="sub1_edit_var3" name="sub1_edit_var3" placeholder="Juara III" required>
                     </td>
                   </tr>
                 </table>
@@ -736,9 +736,6 @@
 </script>
 <script type="text/javascript">
   submitUpdate1 = function(id, kode_tabel){
-    // console.log(id);
-    // console.log("hehe");
-    // console.log(kode_tabel);
       $.ajax({
         url: '/getdata',
         type: 'POST',
@@ -778,13 +775,9 @@
           $('#id2').val(data.id);
           $('#kategori2').val(data.kategori_id);
           $('#uraian').val(data.uraian_kegiatan);
-          $('#satuan').val(data.satuan);
-          $('#var1').val(data.var1);
           $('#edit_id2').val(data.id);
           $('#edit_kategori2').val(data.kategori_id);
           $('#uraian_kegiatan2').val(data.uraian_kegiatan);
-          $('#satuan2').val(data.satuan);
-          $('#edit_var1').val(data.var1);
         }
       });
     }
@@ -808,11 +801,15 @@
           $('#sub1_uraian3').val(data.uraian_kegiatan);
           $('#sub1_satuan3').val(data.satuan);
           $('#sub1_var1').val(data.var1);
+          $('#sub1_var2').val(data.var2);
+          $('#sub1_var3').val(data.var3);
           $('#edit_id3').val(data.id);
           $('#uraian3').val(data.uraian_id);
           $('#uraian_kegiatan3').val(data.uraian_kegiatan);
           $('#satuan3').val(data.satuan);
           $('#sub1_edit_var1').val(data.var1);
+          $('#sub1_edit_var2').val(data.var2);
+          $('#sub1_edit_var3').val(data.var3);
         }
       });
     }

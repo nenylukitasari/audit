@@ -8,7 +8,7 @@ use Jumbojett\OpenIDConnectClient;
 
 class AuthController extends Controller
 {
-	 public function tujuan()
+	public function tujuan()
     {
         return view('login2');   
     }
