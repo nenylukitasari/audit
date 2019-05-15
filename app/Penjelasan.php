@@ -19,4 +19,13 @@ class Penjelasan extends Model
     	return $this->belongsTo(Kategori::class,'kategori_id','id');
     }
 
+    public function penjelasan_sub1()
+    {
+        return $this->hasMany(PenjelasanSub1::class,'penjelasan_id','id');
+    }
+    public function penjelasan_sub2()
+    {
+        return $this->hasManyThrough('App\PenjelasanSub2','App\PenjelasanSub1');
+    }
+
 }

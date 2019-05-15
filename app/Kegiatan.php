@@ -30,4 +30,8 @@ class Kegiatan extends Model
     {
         return $this->hasMany(Penjelasan::class,'kegiatan_id','id');
     }
+    public function penjelasan_sub1()
+    {
+        return $this->hasManyThrough('App\PenjelasanSub1','App\Penjelasan');
+    }
 }
