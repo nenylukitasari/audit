@@ -122,6 +122,40 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @if(strpos('$penjelasan->penjelasan', '0')!==false)
+                            @else
+                            <tr> 
+                                <td></td>
+                                <td><strong>Penjelasan:</strong></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            @endif
+                            @foreach($kategori->penjelasan as $penjelasan)
+                              <tr>
+                                <td></td>
+                                <td>
+                                <ul>
+                                  <li>
+                                    {{$penjelasan->penjelasan}}
+                                  </li>
+                                </ul>
+                              </td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>
+                                <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
+                                <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
+                              </td>
+                              </tr>
+                              @endforeach 
                            @endforeach
                           @endif
                         @endforeach

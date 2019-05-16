@@ -13,7 +13,7 @@ class VersionSeeder extends Seeder
     public function run()
     {
         Version::create([
-    		'version'			=> 'old',
+    		'version'			=> 'Mei 2019',
     		'status'			=> '0',
     	]);
     }

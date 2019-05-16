@@ -110,6 +110,62 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @if(strpos('$penjelasan->penjelasan', '0')!==false)
+                            @else
+                            <tr> 
+                                <td></td>
+                                <td><strong>Penjelasan:</strong></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            @endif
+                            @foreach($kategori->penjelasan as $key_p =>$penjelasan)
+                              <tr>
+                                <td></td>
+                                <td>
+                                    {{$key_p+1}}. {{$penjelasan->penjelasan}}
+                              </td>
+                              <td></td>
+                              <td></td>
+                              <td>
+                                <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
+                                <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
+                              </td>
+                              </tr>
+                              @foreach($penjelasan->penjelasan_sub1 as $penjelasan_sub1)
+                                <tr>
+                                  <td></td>
+                                  <td>
+                                    <ul>
+                                       <li>{{$penjelasan_sub1->penjelasan}}</li>
+                                    </ul>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                  <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
+                                  <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
+                                </td>
+                                </tr>
+                                @foreach($penjelasan_sub1->penjelasan_sub2 as $penjelasan_sub2)
+                                  <tr>
+                                    <td></td>
+                                    <td>
+                                      <ul>
+                                         <li>{{$penjelasan_sub2->penjelasan}}</li>
+                                      </ul>
+                                  </td>
+                                  <td></td>
+                                  <td></td>
+                                  <td>
+                                    <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
+                                    <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
+                                  </td>
+                                  </tr>
+                                  @endforeach
+                                @endforeach
+                              @endforeach
                            @endforeach
                           @endif
                         @endforeach

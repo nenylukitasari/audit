@@ -65,6 +65,9 @@ class AuthController extends Controller
         $_SESSION['userinfo'] = $userInfo;
         $_SESSION['userinfo2'] = $userInfo->email;
         $_SESSION['username'] = $userInfo->name;
+        $_SESSION['user_id'] = $userInfo->username;
+        $_SESSION['picture'] = $userInfo->picture;
+        // dd($_SESSION['user_id']);
         $_SESSION['id_token'] = $oidc->getIdToken();
 
         // if (($_SESSION['userinfo2'] == "azkayasin2@gmail.com")) {

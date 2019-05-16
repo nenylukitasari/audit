@@ -113,7 +113,35 @@
                               <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})" data-target="#show-modal"> | </i> 
                               <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}}) "data-target="#edit-modal"> </i>
                             </tr>
-                           @endforeach
+                          @endforeach
+                          @if(strpos('$penjelasan->penjelasan', '0')!==false)
+                          @else
+                          <tr> 
+                              <td></td>
+                              <td><strong>Penjelasan:</strong></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </tr>
+                          @endif
+                          @foreach($kategori->penjelasan as $key_p =>$penjelasan)
+                            <tr>
+                              <td></td>
+                              <td>
+                                  {{$key_p+1}}. {{$penjelasan->penjelasan}}
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
+                              <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
+                            </td>
+                            </tr>
+                            @endforeach
                           @endif
                         @endforeach
                       @endif
