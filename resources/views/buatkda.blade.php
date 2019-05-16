@@ -343,8 +343,8 @@ td .kanan{
             data: {
               '_token': "{{ csrf_token() }}",
               'unit' : e.params.data.id,
-              'bulan' : tanggal_sekarang_ganti.getMonth()+1,
-              'tahun' : tanggal_sekarang_ganti.getFullYear()
+              'bulan' : tanggal_audit_ganti.getMonth()+1,
+              'tahun' : tanggal_audit_ganti.getFullYear()
             },
             error: function() {
               console.log('Error');
@@ -371,7 +371,7 @@ td .kanan{
                       <tbody>`;
                 for (var i = 0; i < jumlah; i++)
                 {
-                  var nbulan = data1[i]['bulan_audit'];
+                  var nbulan = data1[i]['masa_audit'];
                   nbulan = new Date (nbulan);
                   nbulan = nbulan.getMonth();
                   console.log("bulan");
@@ -380,7 +380,7 @@ td .kanan{
                   if (nbulan == jbulan) {
                     flag =1;
                     nbulan = monthNames[nbulan];
-                    katatemuan = `Temuan Bulan ${nbulan}`;
+                    katatemuan = `Temuan Masa Audit ${nbulan}`;
                     var kwitansi = data1[i]['kwitansi'];
                     var nominal = data1[i]['nominal'];
                     var keterangan = data1[i]['keterangan'];

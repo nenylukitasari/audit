@@ -26,8 +26,8 @@ class PdfController extends Controller
 		$path = "zip/";
 		$zipnama = "triwulan_{$sesi}_{$tahun}.zip";
 		$path .= $zipnama;
-		$data = kda::select('id_kda', 'jenis','bulan_audit')
-		->whereRaw("(MONTH(bulan_audit) = {$bulan} OR MONTH(bulan_audit) = {$bulan}+1 OR MONTH(bulan_audit) = {$bulan}+2 ) AND YEAR(bulan_audit) =  {$tahun}")
+		$data = kda::select('id_kda', 'jenis','masa_audit')
+		->whereRaw("(MONTH(masa_audit) = {$bulan} OR MONTH(masa_audit) = {$bulan}+1 OR MONTH(masa_audit) = {$bulan}+2 ) AND YEAR(masa_audit) =  {$tahun}")
 		->get();
 
 		foreach ($data as $id) {
@@ -61,9 +61,9 @@ class PdfController extends Controller
         $kda_ket = DB::table('kda_keterangan2')->where('kda_id',$id)->get();
         $ket = DB::table('kda_keterangan')->where('kda_id',$id)->first();
         $bulan = date("m",strtotime($kda->bulan_audit));
-        $bulanlalu = date("m",strtotime($kda->masa_audit));
-        // $bulanlalu = date("m",strtotime("{$kda->bulan_audit} -1 Month"));
-        $tahun = date("y",strtotime($kda->bulan_audit));
+        $masaaudit = date("m",strtotime($kda->masa_audit));
+        // $masaaudit = date("m",strtotime("{$kda->bulan_audit} -1 Month"));
+        $tahun = date("y",strtotime($kda->masa_audit));
         // $tahun = $kda->bulan_audit.getFullYear();
         $namabulan = array(
 				                '01' => 'Januari',
@@ -94,12 +94,12 @@ class PdfController extends Controller
 					$contents = $view->render();
 					//untuk mencatat temuan sebelumnya
 					$semuakda = kda::select('id_kda')->where('unit', $kda->unit)
-					->whereRaw(" MONTH(bulan_audit) < {$bulan}  AND YEAR(bulan_audit) =  20{$tahun}")
+					->whereRaw(" MONTH(masa_audit) < {$masaaudit}  AND YEAR(masa_audit) =  20{$tahun}")
 					->get();
 					//dd($semuakda);
 					$temuan1 = db::table('temuan')->leftjoin('kda','temuan.kda_id','=','kda.id_kda')->whereIn('kda_id', $semuakda)
 					->where('temuan.status',0)
-					->orderBy('kda.bulan_audit')->get();
+					->orderBy('kda.masa_audit')->get();
 					$temuan2 = json_decode($temuan1);
 					$table = '';
 					$katapembuka = '<ul><li style="text-align: justify; ">&nbsp; &nbsp; Hasil audit dokumen SPJ diketahui bahwa pengelolaan administrasi keuangan tahun tahun$ yang dilaksanakan BPP di Unit Kerja : unit$ yang belum ditindaklanjuti, antara lain:</li></ul>';
@@ -108,14 +108,14 @@ class PdfController extends Controller
 						for ($i=1; $i < 13 ; $i++) { 
 						$temuanawal = 0;
 						foreach ($temuan2 as $key => $value) { 
-						$month = date("m",strtotime($value->bulan_audit));
-						$bulannama = $namabulan[date("m",strtotime($value->bulan_audit))];
+						$month = date("m",strtotime($value->masa_audit));
+						$bulannama = $namabulan[date("m",strtotime($value->masa_audit))];
 							if ($month == $i) {
 								$temuanawal++;
 								if ($temuanawal == 1)
 								{
 									$j = 1;
-									$table .= 'Bulan '.$bulannama;
+									$table .= 'Masa Audit '.$bulannama;
 									$table .= "<table class='tabel1' style='width:100%'>
 								<thead>
 								<tr>
@@ -190,9 +190,9 @@ class PdfController extends Controller
 				}
 
 				$contents = str_replace("unit$", $kda->nama, $contents);
-				$contents = str_replace("masaaudit$", "{$namabulan[$bulanlalu]} 20{$tahun}", $contents);
+				$contents = str_replace("masaaudit$", "{$namabulan[$masaaudit]} 20{$tahun}", $contents);
 				$contents = str_replace("bulanaudit$", "{$namabulan[$bulan]} 20{$tahun}", $contents);
-				$contents = str_replace("bulan$", $namabulan[$bulanlalu], $contents);
+				$contents = str_replace("bulan$", $namabulan[$masaaudit], $contents);
 				$contents = str_replace("tahun$", "20{$tahun}", $contents);
 				$tanggalttd = $this->tgl_indo($kda->bulan_audit);
 				$contents = str_replace("tanggalttd$", $tanggalttd, $contents);

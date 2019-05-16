@@ -33,10 +33,10 @@ class TemuanController extends Controller
                                 '11' => 'November',
                                 '12' => 'Desember',
                         );
-        $kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where('kda.jenis', 2)->orderBy('kda.bulan_audit','DESC')->get();
+        $kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where('kda.jenis', 2)->orderBy('kda.masa_audit','DESC')->get();
         foreach ($kda as $key => $value) {
-            $tahun = date("y",strtotime($value->bulan_audit));
-            $value->bulan = $namabulan[date("m",strtotime($value->bulan_audit))];
+            $tahun = date("y",strtotime($value->masa_audit));
+            $value->bulan = $namabulan[date("m",strtotime($value->masa_audit))];
             $value->tahun = "20${tahun}";
         }
         $unit = DB::table('unit')->get();
@@ -59,10 +59,10 @@ class TemuanController extends Controller
                                 '12' => 'Desember',
                         );
 
-        $kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where(['kda.jenis' => 2, 'kda.created_by' => $_SESSION['username']])->orderBy('kda.bulan_audit','DESC')->get();
+        $kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where(['kda.jenis' => 2, 'kda.created_by' => $_SESSION['username']])->orderBy('kda.masa_audit','DESC')->get();
         foreach ($kda as $key => $value) {
-            $tahun = date("y",strtotime($value->bulan_audit));
-            $value->bulan = $namabulan[date("m",strtotime($value->bulan_audit))];
+            $tahun = date("y",strtotime($value->masa_audit));
+            $value->bulan = $namabulan[date("m",strtotime($value->masa_audit))];
             $value->tahun = "20${tahun}";
         }
         $unit = DB::table('unit')->get();
@@ -103,11 +103,11 @@ class TemuanController extends Controller
         $bulan = $request->input('bulan');
         $tahun = $request->input('tahun');
         $semuakda = kda::select('id_kda')->where('unit', $unit)
-        ->whereRaw(" MONTH(bulan_audit) < {$bulan}  AND YEAR(bulan_audit) =  {$tahun}")
+        ->whereRaw(" MONTH(masa_audit) < {$bulan}  AND YEAR(masa_audit) =  {$tahun}")
         ->get();
         $temuan1 = db::table('temuan')->join('kda','temuan.kda_id','=','kda.id_kda')->whereIn('kda_id', $semuakda)
         ->where('temuan.status',0)
-        ->orderBy('kda.bulan_audit')->get();
+        ->orderBy('kda.masa_audit')->get();
         return response()->json($temuan1);
     }
 }

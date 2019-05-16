@@ -30,10 +30,10 @@ class KdaController extends Controller
 				                '11' => 'November',
 				                '12' => 'Desember',
 				        );
-		$kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->orderBy('kda.bulan_audit','DESC')->get();
+		$kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->orderBy('kda.masa_audit','DESC')->get();
 		foreach ($kda as $key => $value) {
-			$tahun = date("y",strtotime($value->bulan_audit));
-			$value->bulan = $namabulan[date("m",strtotime($value->bulan_audit))];
+			$tahun = date("y",strtotime($value->masa_audit));
+			$value->bulan = $namabulan[date("m",strtotime($value->masa_audit))];
 			$value->tahun = "20${tahun}";
 		}
 		//dd($kda);
@@ -58,10 +58,10 @@ class KdaController extends Controller
 				                '11' => 'November',
 				                '12' => 'Desember',
 				        );
-		$kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where('kda.created_by', $_SESSION['username'])->orderBy('kda.bulan_audit','DESC')->get();
+		$kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where('kda.created_by', $_SESSION['username'])->orderBy('kda.masa_audit','DESC')->get();
 		foreach ($kda as $key => $value) {
-			$tahun = date("y",strtotime($value->bulan_audit));
-			$value->bulan = $namabulan[date("m",strtotime($value->bulan_audit))];
+			$tahun = date("y",strtotime($value->masa_audit));
+			$value->bulan = $namabulan[date("m",strtotime($value->masa_audit))];
 			$value->tahun = "20${tahun}";
 		}
 		//dd($kda);
