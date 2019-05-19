@@ -69,7 +69,7 @@ class template_summernote extends Seeder
     <p>&nbsp;</p>
     <div class="row">
         <div class="col-sm-6">Ir. Tony Bambang M.,PGDip</div>
-        <div class="col-sm-6 penutup">auditor$</div>
+        <div class="col-sm-6 penutup">...................................</div>
     </div>
 </div>
 
@@ -156,7 +156,7 @@ class template_summernote extends Seeder
     <p>&nbsp;</p>
     <div class="row">
         <div class="col-sm-6">Ir. Tony Bambang M.,PGDip</div>
-        <div class="col-sm-6 penutup">auditor$</div>
+        <div class="col-sm-6 penutup">...................................</div>
     </div>
 </div>
 
@@ -221,7 +221,7 @@ class template_summernote extends Seeder
     <p>&nbsp;</p>
     <div class="row">
         <div class="col-sm-6">Ir. Mutiah Salamah Chamid., M.Kes</div>
-        <div class="col-sm-6 penutup">auditor$</div>
+        <div class="col-sm-6 penutup">...................................</div>
     </div>
 </div>
 
@@ -284,7 +284,7 @@ class template_summernote extends Seeder
     <p>&nbsp;</p>
     <div class="row">
         <div class="col-sm-6">Ir. Mutiah Salamah Chamid., M.Kes</div>
-        <div class="col-sm-6 penutup">auditor$</div>
+        <div class="col-sm-6 penutup">...................................</div>
     </div>
 </div>
 
@@ -436,7 +436,7 @@ class template_summernote extends Seeder
 
 <p>&nbsp;</p>
 
-<p>Ir. Tony Bambang M.,PGDip&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input class="auditor" readonly="readonly" type="text" value="&lt;?php echo $username; ?&gt;" /></p>
+<p>Ir. Tony Bambang M.,PGDip&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;...................................</p>
 <input class="submitkda btn btn-info" name="submitkda" type="button" value="Submit" />&nbsp;</form>
 </div>
 </div>
@@ -558,7 +558,7 @@ class template_summernote extends Seeder
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>Ir. Tony Bambang M.,PGDip&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input class="auditor" name="auditor" readonly="" type="text" value="manusia" /></p>
+<p>Ir. Tony Bambang M.,PGDip&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;...................................</p>
           <input type="button" name="submitkda" class="submitkda btn btn-info" value="Submit" />  
         </div>
       </form>  
@@ -636,7 +636,7 @@ class template_summernote extends Seeder
 <p>Kepala Kantor Audit Internal,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Auditan,</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p><strong>Ir. Mutiah Salamah Chamid., M.Kes</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input class="auditor" name="auditor" readonly="readonly" type="text" value="manusia"> </p>
+<p><strong>Ir. Mutiah Salamah Chamid., M.Kes</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;...................................</p>
 <p>&nbsp;</p>
 
       <input type="button" name="submitkda" class="submitkda btn btn-info" value="Submit">
@@ -716,7 +716,7 @@ class template_summernote extends Seeder
 <p>Kepala Kantor Audit Internal,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Auditan,</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p><strong>Ir. Mutiah Salamah Chamid., M.Kes</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input class="auditor" name="auditor" readonly="readonly" type="text" value="manusia" /> </p>
+<p><strong>Ir. Mutiah Salamah Chamid., M.Kes</strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;...................................</p>
 <p>&nbsp;</p>
 
   <input class="submitkda btn btn-info" name="submitkda" type="button" value="Submit" />

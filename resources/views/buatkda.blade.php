@@ -39,10 +39,10 @@ td .kanan{
 }
 </style>
 <br/>
-    <div class="row">
+    <div class="row" id="balik-eror">
       <div class="col-xs-12">
         <div class="box">
-          <div class="box-header">
+          <div class="box-header">  
               <h3 class="box-title">Buat KDA</h3>
           </div>
           <!-- /.box-header -->
@@ -63,13 +63,64 @@ td .kanan{
                       {!! $summernote->content !!}
                       @endforeach
 
-  
+
+<!-- Modal -->
+  <div class="modal fade" id="berkas" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Berkas Kelengkapan</h4>
+        </div>
+        <div class="modal-body">
+          <table id="berkas1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Jenis</th>
+                  <th>Berkas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i=1;?>
+                @foreach($berkas as $key => $data)
+                <tr>
+                  <td>{{$i++}}</td>
+                  <td>{{$data->nama_kegiatan}}</td>
+                  <td>
+                     @foreach ($data->berkas as $item)
+                        <p>{{$item->berkas}}</p>
+                    @endforeach
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>No</th>
+                  <th>Jenis</th>
+                  <th>Berkas</th>
+                </tr>
+              </tfoot>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
 @endsection
 
 @section('add-script')
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script>
   $(function () {
+
     //Initialize Select2 Elements
     $('.select2').select2(
     {
@@ -80,6 +131,7 @@ td .kanan{
 </script>
 
 <script type="text/javascript">
+  $('#berkas1').dataTable();
   var keterangan1 = `<tr id="krow0">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Rekap Per Mak" /></td>  
                       <td><select name="kesediaan[]">
@@ -438,6 +490,8 @@ td .kanan{
       {
         if(data.error){
           printErrorMsg(data.error);
+          //window.location.hash = '#print-error-msg';
+          document.getElementById('balik-eror').scrollIntoView();
         }else{
           $('#kda'+jenis_kda+'').hide();
           $('#add_kda'+jenis_kda+'')[0].reset();
@@ -456,7 +510,7 @@ td .kanan{
      
    });  
     function printErrorMsg (msg) {
-     $("#peringatan").append(`<div class="alert alert-danger print-error-msg" style="display:none">
+     $("#peringatan").append(`<div class="alert alert-danger print-error-msg" id="print-error-msg" style="display:none">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h4><i class="icon fa fa-ban"></i> Peringatan!</h4>
         <ul></ul>

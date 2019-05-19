@@ -83,10 +83,11 @@ class TemuanController extends Controller
         }
 		return response()->json($data);
 	}
-    public function updatetemuan(Request $request)
+    public function konfirmasitemuan(Request $request)
     {
 
         $data = $request->all();
+        // dd($data);
         $jumlah = count($data);
         $data = $request->checkbox;
         temuan::whereIn('id', $data)
@@ -97,6 +98,47 @@ class TemuanController extends Controller
         //return redirect('/temuankda');
 
     }
+    public function updatetemuan(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+        $jumlah = count($data['kwitansi']) ;
+        $tambah = count($data['hapus']) ;
+
+        for ($i=0; $i < $jumlah ; $i++) {
+            if($i < $tambah)
+            {
+                $temuan = temuan::find($data['id'][$i]);
+                if ($data['hapus'][$i] == 1) {
+                    $temuan->delete();
+                }
+                else
+                {
+                    $updatedata = [
+                    'kwitansi' => $data['kwitansi'][$i],
+                    'nominal' =>$data['nominal'][$i],
+                    'keterangan' => $data['keterangan'][$i]
+                    ];
+                    $temuan->update($updatedata);
+                }
+            }
+            else
+            {
+                $tem = new temuan;
+                $tem->kda_id = $data['id_kda'];
+                $tem->kwitansi = $data['kwitansi'][$i];
+                $tem->nominal = $data['nominal'][$i];
+                $tem->keterangan = $data['keterangan'][$i];
+                $tem->save();
+            }
+            
+        
+        }
+        return redirect()->back();
+        //return redirect('/temuankda');
+
+    }
+
     public function gettemuanlama(Request $request){
         //untuk mencatat temuan sebelumnya (belum kondisi yg status 1)
         $unit = $request->input('unit');

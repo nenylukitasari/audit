@@ -10,6 +10,8 @@ use App\kda_keterangan;
 use App\kda_keterangan2;
 use Validator;
 use App\Temuan;
+use App\Berkas;
+use App\Kegiatan;
 use Carbon;
 
 class KdaController extends Controller
@@ -70,12 +72,21 @@ class KdaController extends Controller
     	//return response()->json($kda);
 		return view ("kda", compact('kda','unit'));
 	}
+	public function berkas()
+	{
+		//$berkas = kegiatan::with('berkas')->get();
+		$berkas = kegiatan::all();
+		//dd($berkas);
+		return view ("penjelasan", compact('berkas'));
+
+	}
 
 	public function buatkda()
 	{
 		$unit = DB::table('unit')->get();
+		$berkas = kegiatan::all();
 		$summernote = DB::table('summernotes')->where('id','>' ,4)->get();
-        return view("buatkda", compact('unit','summernote'));
+        return view("buatkda", compact('unit','summernote', 'berkas'));
 	}
 	public function triwulan()
 	{
@@ -98,6 +109,8 @@ class KdaController extends Controller
     	$input = $request->all();
     	$rules = [];
     	$rules["unit"] = 'required';
+    	$rules["masa_audit"] = 'required';
+    	$rules["bulan_audit"] = 'required';
     	$messages = [
 		    'required' => 'Lengkapi dahulu data :attribute .',
 		];
@@ -147,14 +160,16 @@ class KdaController extends Controller
 		    'required' => 'Lengkapi dahulu data :attribute .',
 		];
         $rules["unit"] = 'required';
+        $rules["masa_audit"] = 'required';
+    	$rules["bulan_audit"] = 'required';
         foreach($request->input('kwitansi') as $key => $value) {
-            $rules["kwitansi.{$key}"] = 'required';
-            $rules["nominal.{$key}"] = 'required';
-            $rules["keterangan.{$key}"] = 'required';
+            $rules["kwitansi {$key}"] = 'required';
+            $rules["nominal {$key}"] = 'required';
+            $rules["keterangan {$key}"] = 'required';
         }
 
 
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules, $messages);
 
 
         if ($validator->passes())
@@ -203,6 +218,8 @@ class KdaController extends Controller
     {
     	$input = $request->all();
     	$rules["unit"] = 'required';
+    	$rules["masa_audit"] = 'required';
+    	$rules["bulan_audit"] = 'required';
     	$messages = [
 		    'required' => 'Lengkapi dahulu data :attribute .',
 		];
@@ -240,7 +257,8 @@ class KdaController extends Controller
         $data = $request->all();
         //dd($data);
         $kda = kda::find($request->idkda);
-        $kda->update($data, ['except'=>'_token']);
+        //$kda->update($data, ['except'=>'_token']);
+        $kda->update(['bulan_audit' => $request->bulan_audit]);
         return redirect()->back();
         //return redirect('/kda');
 
@@ -285,18 +303,39 @@ class KdaController extends Controller
 	public function updatekelengkapan(Request $request)
 	{
 		$data = $request->all();
-		//dd($data);
+		// dd($data);
 		$jumlah = count($data['kelengkapan']) ;
+		$tambah = count($data['hapus']) ;
 
-		for ($i=0; $i < $jumlah ; $i++) { 
-			$updatedata = [
-            'kelengkapan' => $data['kelengkapan'][$i],
-            'jumlah' =>$data['jumlah'][$i],
-            'nominal' => $data['nominal'][$i],
-            'kesediaan' => $data['kesediaan'][$i]
-        ];
-        $kda_ket = kda_keterangan2::find($data['id'][$i]);
-        $kda_ket->update($updatedata);
+		for ($i=0; $i < $jumlah ; $i++) {
+			if($i < $tambah)
+			{
+				$kda_ket = kda_keterangan2::find($data['id'][$i]);
+				if ($data['hapus'][$i] == 1) {
+					$kda_ket->delete();
+				}
+				else
+				{
+					$updatedata = [
+		            'kelengkapan' => $data['kelengkapan'][$i],
+		            'jumlah' =>$data['jumlah'][$i],
+		            'nominal' => $data['nominal'][$i],
+		            'kesediaan' => $data['kesediaan'][$i]
+			        ];
+			        $kda_ket->update($updatedata);
+				}
+			}
+			else
+			{
+				$ket = new kda_keterangan2;
+			    $ket->kda_id = $data['id_kda'];
+			    $ket->kelengkapan = $data['kelengkapan'][$i];
+			    $ket->kesediaan = $data['kesediaan'][$i];
+			    $ket->jumlah = $data['jumlah'][$i];
+			    $ket->nominal = $data['nominal'][$i];
+			    $ket->save();
+			}
+			
 		
 		}
 		return redirect()->back();

@@ -22,28 +22,35 @@
           <!-- /.box-header -->
           <div class="box-body">  
             <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Penjelasan</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $i=1;?>
-                    @foreach($jelas as $key => $data)
-                    <tr>
-                      <td>{{$i++}}</td>
-                      <td>{{$data->penjelasan}}</td>
-                    </tr>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Jenis</th>
+                  <th>Berkas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i=1;?>
+                @foreach($berkas as $key => $data)
+                <tr>
+                  <td>{{$i++}}</td>
+                  <td>{{$data->nama_kegiatan}}</td>
+                  <td>
+                     @foreach ($data->berkas as $item)
+                        <p>{{$item->berkas}}</p>
                     @endforeach
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <th>No</th>
-                      <th>Penjelasan</th>
-                    </tr>
-                  </tfoot>
-                    </table>    
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>No</th>
+                  <th>Jenis</th>
+                  <th>Berkas</th>
+                </tr>
+              </tfoot>
+            </table>    
             
           <!-- /.box-body -->
           </div>

@@ -13,10 +13,53 @@
  @endsection
 @section('content')
 <br/>
-<style>
+<style type="text/css">
   div .list{
     padding-left: 20px;
   }
+
+table {
+  border-collapse: collapse;
+}
+div .row{
+margin-bottom: 0px !important;
+}
+.row-bottom-margin { 
+  margin-bottom: 0px !important; 
+  margin-top: 0px !important; 
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+th
+{
+  text-align: center;
+}
+
+div .biodata {
+  padding-left: 160px;
+}
+div .tab1 {
+  text-align: justify;
+  padding-left: 35px;
+}
+div .tab2 {
+  text-align: justify;
+  padding-left: 15px;
+}
+div .menu {
+  padding-left: 15px;
+}
+div .deskripsi {
+  padding-left: 211px;
+}
+div .penutup {
+  padding-left: 400px;
+}
+div .temuan {
+  padding-left: 15px;
+}
 </style>
     <div class="row">
       <div class="col-xs-12">

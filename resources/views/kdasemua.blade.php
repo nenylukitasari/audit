@@ -71,6 +71,7 @@
                       <th>Tahun</th>
                       <th>Jenis Kda</th>
                       <th>Data</th>
+                      <th>Edit</th>
                       <th>Dibuat Oleh</th>
                       <th>Aksi</th>
                     </tr>
@@ -96,7 +97,7 @@
                       <td>KDA tanpa pengajuan UMK</td>
                       <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-keterangan" onclick="keteranganupdate('{{ $kda->id_kda }}')">lihat</button></td>
                       @endif
-                      {{-- <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-edit" onclick="submitUpdate('{{ $kda->id_kda }}')">Lihat</button></td> --}}
+                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-edit" onclick="submitUpdate('{{ $kda->id_kda }}')">data</button></td>
                       <td>{{ $kda->created_by}}</td>
                       <td><a href="{{ url('pdf/'.$kda->id_kda) }}"><button class="btn btn-xs btn-primary">Download</button></a> </td>
                     </tr>
@@ -110,6 +111,7 @@
                       <th>Tahun</th>
                       <th>Jenis Kda</th>
                       <th>Data</th>
+                      <th>Edit</th>
                       <th>Dibuat Oleh</th>
                       <th>Aksi</th>
                     </tr>
@@ -120,8 +122,8 @@
   </div>
 </div>
 
-<div class="modal fade" id="modal-pelengkap">
-  <div class="modal-dialog">
+<div class="modal fade" id="modal-pelengkap" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="temuanclose()">
@@ -130,15 +132,19 @@
           <div id="test"></div>
       </div>
         <div class="modal-body">
-          <form action="{{url('kda/kelengkapan/update')}}" method="get" id="update_kelengkapan" enctype="multipart/form-data">
+          <form action="{{url('kda/kelengkapan/update')}}" method="post" id="update_kelengkapan" enctype="multipart/form-data">
+            {{-- <input name="_token" type="hidden" value="{{ csrf_token() }}"/> --}}
+            {{csrf_field()}}
+            <input type="hidden" name="id_kda" id="id_kda">
             <div>
-              <table class="table table-bordered table-striped">
+              <table class="table table-bordered table-striped" style="width:100%">
                 <thead>
                   <tr>
                     <th>Kelengkapan</th>
                     <th>Ada / Tidak Ada</th>
                     <th>jumlah</th>
                     <th>Nominal</th>
+                    <th><button class="add1 btn btn-success" name="add" type="button">Add More</button></th>
                   </tr>
                   <tbody id="kelengkapan">
                   </tbody>
@@ -221,34 +227,26 @@
             <div class="form-group has-feedback">
               <label class="control-label">Nama Unit</label>
               <input type="text" class="form-control" id="unit" name="unit" value="{{old('unit')}}" placeholder="Nama unit" readonly="">
-              @if ($errors->has('unit'))
-              <div class="alert alert-danger">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> {{ $errors->first('unit') }}</div>
-                @endif
-              </div>
-              <div class="form-group has-feedback">
+            </div>
+            <div class="form-group has-feedback">
                 <label class="control-label">Jenis Kda</label>
                 <input type="text" class="form-control" id="jenis" name="jenis" value="{{old('jenis')}}" placeholder="jenis" readonly="">
-                @if ($errors->has('jenis'))
-                <div class="alert alert-danger">
-                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> {{ $errors->first('jenis') }}</div>
-                  @endif
-                </div>
-                <div class="form-group has-feedback">
-                  <label class="control-label">Tanggal Dibuat</label>
-                  <input type="text" class="form-control" id="datetimepicker" name="bulan_audit" value="{{old('bulan_audit')}}" placeholder="Tanggal" readonly="">
-                  @if ($errors->has('tanggal'))
-                  <div class="alert alert-danger">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> {{ $errors->first('tanggal') }}</div>
-                    @endif
-                  </div>
-                  <div class="form-group has-feedback">
+            </div>
+            <div class="form-group has-feedback">
+                  <label class="control-label">Masa Audit</label>
+                  <input type="date" class="form-control" id="masa_audit" name="masa_audit" value="{{old('masa_audit')}}" readonly="">
+            </div>
+            <div class="form-group has-feedback">
+                  <label class="control-label">Bulan Audit</label>
+                  <input type="date" class="form-control" id="bulan_audit" name="bulan_audit" value="{{old('bulan_audit')}}" placeholder="Tanggal">
+            </div>
+            <div class="form-group has-feedback">
                   <label class="control-label">Dibuat Oleh</label>
                   <input type="text" class="form-control" id="created_by" name="created_by" value="{{old('created_by')}}" placeholder="Dibuat Oleh" readonly="">
-                  </div>
+            </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    {{-- <button type="submit" class="btn btn-primary">Simpan</button> --}}
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                   </div>
             </form>
         </div>
@@ -287,6 +285,7 @@
         { "width": "10%" },
         { "width": "7%" },
         { "width": "18%" },
+        { "width": "7%" },
         { "width": "7%" },
         { "width": "15%" },
         { "width": "10%" }
@@ -330,6 +329,7 @@
 </script>
 <script>
   $(document).ready(function(){
+    var i=0;
 
     submitUpdate = function(id){
       $.ajax({
@@ -351,7 +351,8 @@
           else if(data.jenis == 2) $('#jenis').val("KDA Dengan Temuan");
           else if(data.jenis == 3) $('#jenis').val("KDA Unaudited");
           else $('#jenis').val("KDA Tanpa Pengajuan UMK");
-          $('#datetimepicker').val(data.bulan_audit);
+          $('#masa_audit').val(data.masa_audit);
+          $('#bulan_audit').val(data.bulan_audit);
           $('#created_by').val(data.created_by);
         }
       });
@@ -383,6 +384,7 @@
     }
     
     kelengkapanupdate = function(id){
+      $('#id_kda').val(id);
       $.ajax({
         url: '/kda/kelengkapan',
         type: 'POST',
@@ -395,12 +397,12 @@
         },
         dataType: 'json',
         success: function(data1) {
-
           console.log(data1);      
           var ketsemua = '';
 
           //var data1 = $.parseJSON(data1);
-          for (var i = 0; i < data1.length; i++)
+          i =0;
+          for (i; i < data1.length; i++)
           {
             var kelengkapan = data1[i]['kelengkapan'];
             var nominal = data1[i]['nominal'];
@@ -408,25 +410,29 @@
             var jumlah = data1[i]['jumlah'];
             var id = data1[i]['id'];
             if (kesediaan == null) {
-             ketsemua = `<tr><td> <input type="hidden" name="id[${i}]" value="${id}"><input type="text" name="kelengkapan[${i}]" value="${kelengkapan}"></td>
+             ketsemua = `<tr id="krow${i}"><td> <input type="hidden" name="id[${i}]" value="${id}"><input type="text" style='width:100%' name="kelengkapan[${i}]" value="${kelengkapan}"></td>
              <td><select name="kesediaan[${i}]" id="kesediaan">
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak</option>
                       </select></td>
-             <td><input type="text" name="jumlah[${i}]" value="" size="10"></td>
-             <td><input type="text" name="nominal[${i}]" value=""></tr>`; 
+             <td><input type="text" style='width:100%' name="jumlah[${i}]" value="" size="10"></td>
+             <td><input type="text" style='width:100%' name="nominal[${i}]" value="">
+             <td><button type="button" name="remove" id="${i}" class="btn btn-danger btn-sm hapus_palsu">X</button></td></tr>
+             <input type="hidden" name="hapus[${i}]" id="hapus${i}" value="0">`;
               $("#kelengkapan").append(ketsemua);
             }
             else{
-              ketsemua = `<tr><td> <input type="hidden" name="id[${i}]" value="${id}"><input type="text" name="kelengkapan[${i}]" value="${kelengkapan}"></td>
+              ketsemua = `<tr id="krow${i}"><td> <input type="hidden" name="id[${i}]" value="${id}"><input type="text" style='width:100%' name="kelengkapan[${i}]" value="${kelengkapan}"></td>
               <td><select name="kesediaan[${i}]" id="kesediaan[${i}]">
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak</option>
                       </select></td>
-             <td><input type="text" name="jumlah[${i}]" value="${jumlah}" size ="10"></td>
-             <td><input type="text" name="nominal[${i}]" value="${nominal}"></tr>`;
+             <td><input type="text" style='width:100%' name="jumlah[${i}]" value="${jumlah}" size ="10"></td>
+             <td><input type="text" style='width:100%' name="nominal[${i}]" value="${nominal}">
+             <td><button type="button" name="remove" id="${i}" class="btn btn-danger btn-sm hapus_palsu">X</button></td></tr>
+             <input type="hidden" name="hapus[${i}]" id="hapus${i}" value="0">`;
              $("#kelengkapan").append(ketsemua);
              document.getElementById(`kesediaan[${i}]`).value = kesediaan;
             }
@@ -437,7 +443,24 @@
 
     temuanclose = function(){
       $("#kelengkapan").empty();
-    }
+    };
+
+    $('.add1').click(function(){  
+     i++;  
+     $('#kelengkapan').append('<tr id="krow'+i+'" class="dynamic-added1"><td><input type="text" style="width:100%" name="kelengkapan[]" placeholder="jenis Kelengkapan" /></td><td><select name="kesediaan[]"><option value=""></option><option value="Ada">Ada</option><option value="Tidak Ada">Tidak</option></select></td> <td><input type="text" style="width:100%" name="jumlah[]" placeholder="jumlah" size ="10"/></td><td><input type="text" style="width:100%" name="nominal[]" placeholder="masukkan nominal" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn-sm btn_remove1">X</button></td></tr>');  
+   });  
+
+
+    $(document).on('click', '.btn_remove1', function(){  
+     var button_id = $(this).attr("id");   
+     $('#krow'+button_id+'').remove();  
+   });
+
+    $(document).on('click', '.hapus_palsu', function(){  
+     var button_id = $(this).attr("id");   
+     $('#hapus'+button_id+'').val(1);
+     $('#krow'+button_id+'').hide();  
+   });
 
   });     
 </script>

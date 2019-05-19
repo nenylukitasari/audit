@@ -34,4 +34,8 @@ class Kegiatan extends Model
     {
         return $this->hasManyThrough('App\PenjelasanSub1','App\Penjelasan');
     }
+    public function berkas()
+    {
+        return $this->hasMany(berkas::class,'kegiatan_id','id');
+    }
 }

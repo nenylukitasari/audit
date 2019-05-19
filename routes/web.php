@@ -27,6 +27,7 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 // 	Route::get('/dokumen', function () {
 //     return view('master');
 // });
+	Route::get('/berkas', 'KdaController@berkas');
 	Route::get('/dokumen', 'DataController@index')->name('dokumen');
 	Route::post('/dokumen/{kode_tabel}','DataController@store');
 	Route::post('/data/kegiatan','DataController@getData');
@@ -60,12 +61,13 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post("tambahkda3","KdaController@tambahkda3");
 	Route::post('/kda/data', 'KdaController@getkda');
 	Route::post('/kda/kelengkapan', 'KdaController@getkelengkapan');
-	Route::get('/kda/kelengkapan/update', 'KdaController@updatekelengkapan');
+	Route::post('/kda/kelengkapan/update', 'KdaController@updatekelengkapan');
 	Route::post('/kda/keterangan', 'KdaController@getketerangan');
 	Route::post('/keterangan/update', 'KdaController@updateketerangan');
 	Route::post('/kda/update', 'KdaController@updatekda');
 	Route::post('/temuan/temuanlama', 'TemuanController@gettemuanlama');
-	Route::get('/temuan/update', 'TemuanController@updatetemuan');
+	Route::post('/temuan/update', 'TemuanController@updatetemuan');
+	Route::post('/temuan/konfirmasi', 'TemuanController@konfirmasitemuan');
 
 	Route::get('pdf/{id}',  'PdfController@downloadpdf');
 	Route::get('print',  'PdfController@print');
