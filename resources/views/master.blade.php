@@ -6,6 +6,8 @@ if (!isset($_SESSION['userinfo2']))
 else {
   $userinfo = $_SESSION['userinfo2'];
   $username = $_SESSION['username'];
+  $user_id = $_SESSION['user_id'];
+  $picture = $_SESSION['picture'];
 }
 ?>
 <!DOCTYPE html>
@@ -57,7 +59,6 @@ else {
          -moz-border-radius: 5px;
          border-radius: 5px;
         }
-
         input[type="text"]:disabled{background-color:white;}
         textarea[class="form-control"]:disabled{background-color:white;}
     </style>
@@ -96,12 +97,12 @@ else {
                         <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="{{url('assets/plugins/images/users/varun.jpg')}}" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"><?php echo $username; ?></b><span class="caret"></span> </a>
+                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="<?php echo $picture; ?>" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"><?php echo $username; ?></b><span class="caret"></span> </a>
                     <ul class="dropdown-menu dropdown-user animated flipInY">
                         <li>
                             <div class="dw-user-box">
-                                <div class="u-img">{{-- <img src="../plugins/images/users/varun.jpg" alt="user" /> --}}</div>
-                                <div class="u-text"><h4><?php echo $username; ?></h4><p class="text-muted"></p></div>
+                                <div class="u-img"><img src="<?php echo $picture; ?>" alt="user" /></div>
+                                <div class="u-text"><h4><?php echo $username; ?></h4><p class="text-muted"><?php echo $user_id; ?></p></div>
                             </div>
                         </li>
                         <li role="separator" class="divider"></li>
