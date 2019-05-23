@@ -1,29 +1,25 @@
 @extends('master')
 
-@section('title-bar')
+@section('title')
     List KDA
 @endsection
 
 @section('right_title')
     <li class="active">KDA</li>
 @endsection
-
-@section('add-css')
-
- @endsection
 @section('content')
 <br/>
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-              <h3 class="box-title">KDA</h3>
+              <h3 class="box-title">FILTER</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <div class="col-sm-12">
+            {{-- <div class="col-sm-12">
               <label for="inputEmail3" class="col-sm-3 control-label">Filter</label>  
-            </div>
+            </div> --}}
               <div class="row">
                 <div class="col-sm-3">
                   <select id="col1_filter" class="column_filter form-control select2" data-column="1" style="width: 100%;">
@@ -61,6 +57,7 @@
                 </div>
               </div>
           </div>
+          <br/><br/>
           <div class="box-body">
             <table id="example1" class="table table-bordered table-striped">
                   <thead>

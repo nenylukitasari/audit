@@ -815,7 +815,7 @@
 {{-- dependent dropdown --}}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
      <script>
-             $(document).ready(function() {
+            $(document).ready(function() {
             $('#list_kategori_kegiatan').on('change', function() {
                 var getKategoriId = $(this).val();
                 if(getKategoriId) {

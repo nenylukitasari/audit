@@ -24,9 +24,7 @@ Route::get('/hak', function () { return view('hak');});
 
 Route::group(['middleware' => 'SemuaRole'], function () {
 // 	// punya neny
-// 	Route::get('/dokumen', function () {
-//     return view('master');
-// });
+	Route::get('/datapegawai', function () {return view('cari_pegawai');});
 	Route::get('/berkas', 'KdaController@berkas');
 	Route::get('/dokumen', 'DataController@index')->name('dokumen');
 	Route::post('/dokumen/{kode_tabel}','DataController@store');

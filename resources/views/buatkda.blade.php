@@ -10,18 +10,12 @@ else {
 ?>
 @extends('master')
 
-@section('title-bar')
+@section('title')
     Buat KDA
 @endsection
-
 @section('right_title')
     <li class="active">Buat KDA</li>
 @endsection
-
-@section('add-css')
-
-
- @endsection
 @section('content')
 <style>
 div .biodata {
@@ -55,7 +49,7 @@ td .kanan{
               <option value="3">kda Unaudited</option>
               <option value="4">kda tanpa pengajuan UMK</option>
             </select>
-          <input type="button" name="submitpilih" id="submitpilih" class="btn btn-info" value="buat kda" />
+          &ensp;<input type="button" name="submitpilih" id="submitpilih" class="btn btn-info btn-rounded btn-sm" value="buat kda" />
           </div>
       </div>
       <div id="peringatan"></div>

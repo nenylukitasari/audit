@@ -1,16 +1,12 @@
 @extends('master')
 
-@section('title-bar')
+@section('title')
     Laporan KDA
 @endsection
 
 @section('right_title')
     <li class="active">Laporan KDA</li>
 @endsection
-
-@section('add-css')
-
- @endsection
 @section('content')
 <br/>
     <div class="row">

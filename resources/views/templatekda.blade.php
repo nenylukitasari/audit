@@ -1,16 +1,12 @@
 @extends('master')
 
-@section('title-bar')
+@section('title')
     Template KDA
 @endsection
 
 @section('right_title')
     <li class="active">Template KDA</li>
 @endsection
-
-@section('add-css')
-
- @endsection
 @section('content')
 <br/>
 <style type="text/css">

@@ -34,87 +34,87 @@ class DataController extends Controller
                         {   
                             $kode_bagian_kegiatan = $kode_bagian;
                             $kode_bagian_kategori = 1;
-                            return view('kategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));
+                            return view('sbi.kategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));
                             break;
                         }
                         case '2':
                         {
                             $kode_bagian_kegiatan = $kode_bagian;
-                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
+                            return view('sbi.menu_kategori', compact('versions','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '3':
                         {
                             $kode_bagian_kegiatan = $kode_bagian;
                             $kode_bagian_kategori = 9;
-                            return view('kategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            return view('sbi.kategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
                             break;
                         }
                         case '4':
                         {
                             $kode_bagian_kegiatan = $kode_bagian;
-                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
+                            return view('sbi.menu_kategori', compact('versions','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '5':
                         {
                             $kode_bagian_kategori = 18;
-                            return view('kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
+                            return view('sbi.kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
                             break;
                         }
                         case '6':
                         {
                             $kode_bagian_kategori = 19;
-                            return view('kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
+                            return view('sbi.kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
                             break;
                         }
                         case '7':
                         {
                             $kode_bagian_kategori = 20;
-                            return view('kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
+                            return view('sbi.kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
                             break;
                         }
                         case '8':
                         {
                             $kode_bagian_kategori = 21;
-                            return view('kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
+                            return view('sbi.kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
                             break;
                         }
                         case '9':
                         {
                             $kode_bagian_kegiatan = $kode_bagian;
-                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
+                            return view('sbi.menu_kategori', compact('versions','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '10':
                         {
                             $kode_bagian_kegiatan = $kode_bagian;
-                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
+                            return view('sbi.menu_kategori', compact('versions','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '11':
                         {
                             $kode_bagian_kegiatan = $kode_bagian;
-                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
+                            return view('sbi.menu_kategori', compact('versions','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '12':
                         {
                             $kode_bagian_kategori = 29;
                             $kode_bagian_kegiatan = $kode_bagian;
-                            return view('kategori_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            return view('sbi.kategori_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
                             break;
                         }
                         case '13':
                         {
                             $kode_bagian_kegiatan = $kode_bagian;
-                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
+                            return view('sbi.menu_kategori', compact('versions','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '14':
                         {
                             $kode_bagian_kegiatan = $kode_bagian;
-                            return view('menu_kategori', compact('versions','kode_bagian_kegiatan'));   
+                            return view('sbi.menu_kategori', compact('versions','kode_bagian_kegiatan'));   
                             break;
                         }
                         
@@ -129,26 +129,26 @@ class DataController extends Controller
                 {
                     switch ($kode_bagian) {
                         case '2':
-                            return view('jalan_dinas_1', compact('versions'));
+                            return view('sbi.jalan_dinas_1', compact('versions'));
                             break;
                         case '3':
-                            return view('jalan_dinas_2', compact('versions'));   
+                            return view('sbi.jalan_dinas_2', compact('versions'));   
                             break;
                         case '4':
-                            return view('jalan_dinas_3', compact('versions'));   
+                            return view('sbi.jalan_dinas_3', compact('versions'));   
                             break;
                         case '5':
-                            return view('jalan_dinas_4', compact('versions'));   
+                            return view('sbi.jalan_dinas_4', compact('versions'));   
                             break;
                         case '6':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 2;
-                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '7':
-                            return view('jalan_dinas_6', compact('versions'));   
+                            return view('sbi.jalan_dinas_6', compact('versions'));   
                             break;
                         case '8':
                         {
@@ -164,127 +164,127 @@ class DataController extends Controller
                             //                 ->where('version.status',0)
                             //                 ->get();
 
-                            return view('jalan_dinas_7', compact('versions'/*,'provinsis'*/));
+                            return view('sbi.jalan_dinas_7', compact('versions'/*,'provinsis'*/));
                             break;
                         }
                         case '10':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 4;
-                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '11':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 4;
-                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '12':
-                            return view('honorarium_dosen', compact('versions'));   
+                            return view('sbi.honorarium_dosen', compact('versions'));   
                             break;
                         case '13':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 4;
-                            return view('uraian_sub1_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_sub1_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '14':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 4;
-                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '15':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 4;
-                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '16':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 4;
-                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '17':
-                            return view('honorarium_tt_sub2_var1', compact('versions'));   
+                            return view('sbi.honorarium_tt_sub2_var1', compact('versions'));   
                             break;
                         case '22':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 9;
-                            return view('kategori_sub1_var3', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            return view('sbi.kategori_sub1_var3', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
                             break;
                         }
                         case '23':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 9;
-                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '24':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 9;
-                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '25':
-                            return view('biaya_personel_sub2_var4', compact('versions'));   
+                            return view('sbi.biaya_personel_sub2_var4', compact('versions'));   
                             break;
                         case '26':
-                            return view('biaya_non_personel_sub2_ket', compact('versions'));   
+                            return view('sbi.biaya_non_personel_sub2_ket', compact('versions'));   
                             break;
                         case '27':
-                            return view('spmi_uraian_var3', compact('versions'));   
+                            return view('sbi.spmi_uraian_var3', compact('versions'));   
                             break;
                         case '28':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 11;
-                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '30':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 13;
-                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '31':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 13;
-                            return view('uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '32':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 13;
-                            return view('inap_uraian_var4', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.inap_uraian_var4', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '33':
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 13;
-                            return view('pesawat_uraian_var2', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
+                            return view('sbi.pesawat_uraian_var2', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'));   
                             break;
                         }
                         case '34':
                         {
                             $kode_bagian = 14;
                             $kode_bagian_kategori = 34;
-                            return view('kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
+                            return view('sbi.kategori_uraian_var1', compact('versions','kode_bagian','kode_bagian_kategori'));   
                             break;
                         }
 
@@ -296,7 +296,7 @@ class DataController extends Controller
                 }
             
             default:
-                return view('docs', compact('versions'));
+                return view('sbi.docs', compact('versions'));
                 break;
         }
     }

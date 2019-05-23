@@ -22,7 +22,7 @@ else {
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{url('assets/plugins/images/favicon.png')}}">
-    <title>@yield('title-bar')</title>
+    <title>@yield('title')</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{url('assets/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{url('assets/plugins/bower_components/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css" />
@@ -39,7 +39,7 @@ else {
     <!-- We have chosen the skin-blue (default.css) for this starter
          page. However, you can choose any other skin from folder css / colors .
     -->
-    <link href="{{url('assets/css/colors/blue.css')}}" id="theme" rel="stylesheet"> 
+    <link href="{{url('assets/css/colors/custom.css')}}" id="theme" rel="stylesheet"> 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -123,51 +123,31 @@ else {
             <h3><span class="fa-fw open-close"><i class="ti-menu hidden-xs"></i><i class="ti-close visible-xs"></i></span> <span class="hide-menu">Navigation</span></h3> 
         </div>
         <ul class="nav" id="side-menu">
-        @if ($_SESSION['userinfo2'] == "azkayasin2@gmail.com")
-            <li><a href="{{ url('dokumen') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Standar Biaya Institut</span></a> </li>
-            <li><a href="{{ url('versisbi') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Versi SBI</span></a> </li>
-            <li><a href="{{ url('datapegawai') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Data Pegawai</span></a> </li>
-            <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
-            <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA<span class="fa arrow"></span></span></a>
+        @if ($_SESSION['userinfo2'] == "azkayasin2@gmail.com" || $_SESSION['userinfo2'] == "nenylukitasari@gmail.com")
+            <li><a href="{{ url('dokumen') }}" class="waves-effect"><i data-icon="m" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Standar Biaya Institut</span></a> </li>
+            <li><a href="{{ url('versisbi') }}" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Versi SBI</span></a> </li>
+            <li><a href="{{ url('datapegawai') }}" class="waves-effect"><i data-icon="O" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Data Pegawai</span></a> </li>
+            <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="<" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
+            <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="{{ url('kda') }}"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA Semua</span></a></li>
-                    <li><a href="{{ url('kdasendiri') }}"><i class="fa-fw">S</i><span class="hide-menu">KDA Sendiri</span></a></li>
+                    <li><a href="{{ url('kda') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA Semua</span></a></li>
+                    <li><a href="{{ url('kdasendiri') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA Sendiri</span></a></li>
                 </ul>
             </li>
-            <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan KDA<span class="fa arrow"></span></span></a>
+            <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="H" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan KDA<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="{{ url('temuankda') }}"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan Semua</span></a></li>
-                    <li><a href="{{ url('temuankdasendiri') }}"><i class="fa-fw">S</i><span class="hide-menu">Temuan Sendiri</span></a></li>
+                    <li><a href="{{ url('temuankda') }}"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan Semua</span></a></li>
+                    <li><a href="{{ url('temuankdasendiri') }}"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan Sendiri</span></a></li>
                 </ul>
             </li>
-            <li><a href="{{ url('templatekda') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Template KDA</span></a> </li>
-            <li><a href="{{ url('kdatriwulan') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Laporan KDA</span></a> </li>
-            <li><a href="{{ url('penjelasan') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Penjelasan</span></a> </li>
-        @elseif ($_SESSION['userinfo2'] == "nenylukitasari@gmail.com")
-            <li><a href="{{ url('dokumen') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Standar Biaya Institut</span></a> </li>
-            <li><a href="{{ url('versisbi') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Versi SBI</span></a> </li>
-            <li><a href="{{ url('datapegawai') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Data Pegawai</span></a> </li>
-            <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
-            <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA<span class="fa arrow"></span></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="{{ url('kda') }}"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA Semua</span></a></li>
-                    <li><a href="{{ url('kdasendiri') }}"><i class="fa-fw">S</i><span class="hide-menu">KDA Sendiri</span></a></li>
-                </ul>
-            </li>
-            <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan KDA<span class="fa arrow"></span></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="{{ url('temuankda') }}"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan Semua</span></a></li>
-                    <li><a href="{{ url('temuankdasendiri') }}"><i class="fa-fw">S</i><span class="hide-menu">Temuan Sendiri</span></a></li>
-                </ul>
-            </li>
-            <li><a href="{{ url('templatekda') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Template KDA</span></a> </li>
-            <li><a href="{{ url('kdatriwulan') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Laporan KDA</span></a> </li>
+            <li><a href="{{ url('templatekda') }}" class="waves-effect"><i data-icon="&#xe016;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Template KDA</span></a> </li>
+            <li><a href="{{ url('kdatriwulan') }}" class="waves-effect"><i data-icon="}" class="linea-icon linea-elaborate fa-fw"></i><span class="hide-menu">Laporan KDA</span></a> </li>
         @else
-            <li><a href="{{ url('dokumen') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Standar Biaya Institut</span></a> </li>
-            <li><a href="{{ url('datapegawai') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Data Pegawai</span></a> </li>
-            <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
-            <li><a href="{{ url('kdasendiri') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA</span></a> </li>
-            <li><a href="{{ url('temuankdasendiri') }}" class="waves-effect"><i data-icon="7" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan</span></a> </li>
+            <li><a href="{{ url('dokumen') }}" class="waves-effect"><i data-icon="m" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Standar Biaya Institut</span></a> </li>
+            <li><a href="{{ url('datapegawai') }}" class="waves-effect"><i data-icon="n" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Data Pegawai</span></a> </li>
+            <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="<" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
+            <li><a href="{{ url('kdasendiri') }}" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA</span></a> </li>
+            <li><a href="{{ url('temuankdasendiri') }}" class="waves-effect"><i data-icon="H" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan</span></a> </li>
         @endif
         </ul>
     </div>
@@ -185,7 +165,7 @@ else {
             <!-- .breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
                 <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ url('home') }}">Home</a></li>
                     @yield('right_title')
                 </ol>
             </div>
