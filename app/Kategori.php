@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Kategori extends Model
+class Kategori extends Model implements Searchable
 {
     protected $table = 'kategori';
     protected $primaryKey = 'id';
@@ -28,5 +30,16 @@ class Kategori extends Model
     public function penjelasan_sub1()
     {
         return $this->hasManyThrough('App\PenjelasanSub1','App\Penjelasan');
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        // $url = route('categories.show', $this->id);
+
+        return new SearchResult(
+            $this,
+            $this->kategori_kegiatan
+            // $url
+         );
     }
 }

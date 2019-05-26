@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Uraian extends Model
+class Uraian extends Model implements Searchable
 {
     protected $table = 'uraian';
     protected $primaryKey = 'id';
@@ -26,4 +28,16 @@ class Uraian extends Model
     {
     	return $this->belongsTo(Provinsi::class,'provinsi_id','id');
     }
+
+    public function getSearchResult(): SearchResult
+    {
+        // $url = route('categories.show', $this->id);
+
+        return new SearchResult(
+            $this,
+            $this->uraian_kegiatan
+            // $url
+         );
+    }
+
 }

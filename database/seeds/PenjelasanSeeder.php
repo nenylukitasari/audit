@@ -75,7 +75,7 @@ class PenjelasanSeeder extends Seeder
         //===========================
         Penjelasan::create([
             'version_id'     => '1',
-            'kategori_id'    => '5',
+            'kategori_id'    => '6',
             'kode_tabel'     => '7',
             'penjelasan'     => 'Uang harian perjalanan dinas luar negeri digunakan untuk uang makan, transport lokal, uang saku, dan uang penginapan.',
         ]);
@@ -525,13 +525,13 @@ class PenjelasanSeeder extends Seeder
         ]);
         Penjelasan::create([
             'version_id'     => '1',
-            'kegiatan_id'    => '10',
+            'kategori_id'    => '49',
             'kode_tabel'     => '7',
             'penjelasan'     => 'Besaran Pajak, berlaku ketentuan pajak progresif (menggunakan NPWP ITS PTNBH): ',
         ]);
         Penjelasan::create([
             'version_id'     => '1',
-            'kegiatan_id'    => '10',
+            'kategori_id'    => '49',
             'kode_tabel'     => '7',
             'penjelasan'     => 'Apabila yang bersangkutan tidak memiliki NPWP, besaran pajak 120% dari ketentuan pajak di atas.',
         ]);

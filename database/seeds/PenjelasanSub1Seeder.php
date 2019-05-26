@@ -103,6 +103,16 @@ class PenjelasanSub1Seeder extends Seeder
             'penjelasan'     => 'Tidak Memiliki NPWP: 6% x biaya honorarium.',
         ]);
         PenjelasanSub1::create([
+            'penjelasan_id'    => '67',
+            'kode_tabel'     => '8',
+            'penjelasan'     => ' Memiliki NPWP = 5% x 50% x biaya honorarium.',
+        ]);
+        PenjelasanSub1::create([
+            'penjelasan_id'    => '67',
+            'kode_tabel'     => '8',
+            'penjelasan'     => 'Tidak memiliki NPWP = 6% x 50% x biaya honorarium.',
+        ]);
+        PenjelasanSub1::create([
             'penjelasan_id'    => '71',
             'kode_tabel'     => '8',
             'penjelasan'     => 'Merupakan pegawai PNS/Non PNS  ITS dengan Masa kerja Minimum 2 tahun.',

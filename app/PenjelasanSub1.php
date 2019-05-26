@@ -3,8 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class PenjelasanSub1 extends Model
+class PenjelasanSub1 extends Model implements Searchable
 {
     protected $table = 'penjelasan_sub1';
     protected $primaryKey = 'id';
@@ -15,5 +17,15 @@ class PenjelasanSub1 extends Model
     public function penjelasan_sub2()
     {
         return $this->hasMany(PenjelasanSub2::class,'penjelasan_sub1_id','id');
+    }
+    public function getSearchResult(): SearchResult
+    {
+        // $url = route('categories.show', $this->id);
+
+        return new SearchResult(
+            $this,
+            $this->penjelasan
+            // $url
+         );
     }
 }

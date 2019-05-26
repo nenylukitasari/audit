@@ -1,13 +1,7 @@
 @extends('master')
 
-@section('title-bar')
-    @foreach ($versions as $version)
-    @foreach ($version->kegiatan as $kegiatan)
-    @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
-       {{$kegiatan->nama_kegiatan}}
-    @endif
-    @endforeach
-    @endforeach
+@section('title')
+    Standar Biaya Penghargaan
 @endsection
 
 @section('right_title')
@@ -22,17 +16,22 @@
 @endforeach
 @endforeach
 @endsection
-
-@section('add-css')
-<!-- DataTables -->
-   <link rel="stylesheet" href="{{url('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
-   <!-- Form -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
- @endsection
 @section('content')
 <br/>
-  <div class="col-md-13">
+<button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
+<h3 class="box-title m-b-0">
+ @foreach ($versions as $version)
+  @foreach ($version->kegiatan as $kegiatan)
+    @if($kegiatan->kode_bagian==$kode_bagian_kegiatan && $kegiatan->kode_bagian!=9)
+      {{strtoupper($kegiatan->nama_kegiatan)}}
+    @elseif($kegiatan->kode_bagian==9)
+    {{strtoupper('standar biaya penghargaan')}} &nbsp;
+      <button type="button" class="btn btn-danger btn-circle btn-xs" data-toggle="modal" data-target="#penjelasanModalKegiatan" ><i class="fa fa-bullhorn" data-toggle="tooltip" title="Penjelasan"></i></button>
+    @endif
+  @endforeach
+@endforeach
+</h3>
+  <p class="text-muted m-b-30">Data version {{$version->version}}</p>
     @if (session('message_success'))
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -40,119 +39,119 @@
             {{ session('message_success') }}
         </div>
     @endif
-       <div class="box box-default">
-        <div class="box-header with-border" style="margin: 1em 0 0 1em;">
-          <strong class="box-title" >
-            @foreach ($versions as $version)
-              @foreach ($version->kegiatan as $kegiatan)
-                @if($kegiatan->kode_bagian==$kode_bagian_kegiatan && $kegiatan->kode_bagian!=9)
-                  {{strtoupper($kegiatan->nama_kegiatan)}}
-                @elseif($kegiatan->kode_bagian==9)
-                {{strtoupper('standar biaya penghargaan')}}
+    <div class="table-responsive">
+      <table id="example1" class="table table-striped">
+        <thead>
+        <tr>
+          <th rowspan="2" class="col-sm-1">No.</th>
+          <th rowspan="2" class="col-sm-5">Uraian Kegiatan</th>
+          <th rowspan="2" class="col-sm-1">Satuan</th>
+          <th style="text-align: center" colspan="3" class="col-sm-2">Besaran Bruto Maksimum (Rp)</th>
+          <th rowspan="2" class="col-sm-1"></th>
+        </tr>
+        <tr>
+          <th>Juara I</th>
+          <th>Juara II</th>
+          <th>Juara III</th>
+        </tr>
+        </thead>
+       <tbody>
+        @foreach ($versions as $version)
+        @foreach ($version->kegiatan as $kegiatan)
+        @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+        @foreach ($kegiatan->kategori as $key => $kategori) 
+        @if($kategori->kode_bagian==$kode_bagian_kategori)
+            <tr>
+              <td>
+                {{$key+1}}. 
+              </td>
+            <th>{{ $kategori->kategori_kegiatan}}</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td> 
+               <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+              <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                </td>
+            </tr>
+            @foreach ($kategori->uraian as $key2 => $uraian)
+            <tr>
+              <td></td>
+              <td>
+                @php
+                  $i = chr($key2+97);
+                @endphp
+                &emsp;&ensp;{{$i}}. {{ $uraian->uraian_kegiatan}}
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+              </td>
+            </tr>
+            @foreach ($uraian->sub1 as $sub1)
+              <tr> 
+                <td></td>
+                <td>
+                  &emsp;&emsp;&emsp;&emsp;{{ $sub1->uraian_kegiatan}}
+                </td>
+                
+                <td>
+                    {{ $sub1->satuan}}
+                </td>
+                <td>{{number_format($sub1->var1)}}</td>
+                <td>{{number_format($sub1->var2)}}</td>
+                <td>{{number_format($sub1->var3)}}</td>
+                <td>
+                   <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal3" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+                   <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal3" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                </td>
+              </tr>
+                @endforeach
+                @endforeach 
                 @endif
               @endforeach
+              @endif
             @endforeach
-          </strong><br/>
-          <strong class="card-title">Data version {{$version->version}}</strong>
-          <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&emsp;Add
-      </button>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+
+<!--Penjelasan Modal-->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;" id="penjelasanModalKegiatan">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myLargeModalLabel">Penjelasan</h4> </div>
+        <div class="modal-body">
+        <table class="table table-striped" class="table toggle-circle table-hover" border="0">
+          @foreach($versions as $version)
+          @foreach($version->kegiatan as $kegiatan)
+          @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+          @foreach($kegiatan->penjelasan as $penjelasan)
+          <tr>
+            <td>{{$penjelasan->penjelasan}}</td>
+            <td width="100">
+            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal1"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal1"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+            </td>
+          </tr> 
+          @endforeach  
+          @endif
+          @endforeach  
+          @endforeach  
         </div>
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th rowspan="2">No.</th>
-                  <th rowspan="2">Uraian Kegiatan</th>
-                  <th rowspan="2">Satuan</th>
-                  <th style="text-align: center" colspan="3">Besaran Bruto Maksimum (Rp)</th>
-                  <th rowspan="2"></th>
-                </tr>
-                <tr>
-                  <th width="80">Juara I</th>
-                  <th width="80">Juara II</th>
-                  <th width="80">Juara III</th>
-                </tr>
-                </thead>
-               <tbody>
-                @foreach ($versions as $version)
-                @foreach ($version->kegiatan as $kegiatan)
-                @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
-                @foreach ($kegiatan->kategori as $key => $kategori) 
-                @if($kategori->kode_bagian==$kode_bagian_kategori)
-                    <tr>
-                      <td>
-                        {{$key+1}}. 
-                      </td>
-                    <th>{{ $kategori->kategori_kegiatan}}</th>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td> 
-                        <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})" data-target="#show-modal1"> | </i>
-                          <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})" data-target="#edit-modal1"> </i>
-                        </td>
-                    </tr>
-                    @foreach ($kategori->uraian as $key2 => $uraian)
-                    <tr>
-                      <td></td>
-                      <td>
-                        @php
-                          $i = chr($key2+97);
-                        @endphp
-                        &emsp;&ensp;{{$i}}. {{ $uraian->uraian_kegiatan}}
-                      </td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td>
-                          <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})" data-target="#show-modal2"> | </i> 
-                          <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}}) "data-target="#edit-modal2"> </i>
-                      </td>
-                    </tr>
-                    @foreach ($uraian->sub1 as $sub1)
-                      <tr> 
-                        <td></td>
-                        <td>
-                          &emsp;&emsp;&emsp;&emsp;{{ $sub1->uraian_kegiatan}}
-                        </td>
-                        
-                        <td>
-                            {{ $sub1->satuan}}
-                        </td>
-                        <td>{{number_format($sub1->var1)}}</td>
-                        <td>{{number_format($sub1->var2)}}</td>
-                        <td>{{number_format($sub1->var3)}}</td>
-                        <td>
-                          <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})" data-target="#show-modal3"> | </i>
-                          <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})" data-target="#edit-modal3"> </i>
-                        </td>
-                      </tr>
-                        @endforeach
-                        @endforeach 
-                        @endif
-                      @endforeach
-                      @endif
-                    @endforeach
-                  @endforeach
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th width="10">No.</th>
-                  <th width="275">Uraian Kegiatan</th>
-                  <th width="90">Satuan</th>
-                  <th width="80">Juara I</th>
-                  <th width="80">Juara II</th>
-                  <th width="80">Juara III</th>
-                  <th width="40"></th>
-                </tr>
-              </tfoot>
-              </table>
-          </br/>
-        </div>
-      </div>
-      </div>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
 
 <!--Add Modal-->
         <div id="addModal" class="modal fade">
@@ -169,8 +168,50 @@
                   <option value="1">Kategori</option>
                   <option value="2">Uraian</option>
                   <option value="3">Sub Uraian</option>
+                  <option value="4">Penjelasan</option>
                 </select>
-                <input type="button" name="submitpilih" id="submitpilih" class="btn btn-primary" value="Add"/>
+                <input type="button" name="submitpilih" id="submitpilih" class="btn btn-primary btn-rounded" value="Add"/>
+
+            <div class="form-group" id="form-penjelasan-kegiatan">
+                  <br/>
+                  @foreach ($version->penjelasan as $penjelasan)
+                  @endforeach
+                <form action="{{url('/data/add', $penjelasan->kode_tabel)}}" method="POST">
+                  {{csrf_field()}} 
+                    <div class="form-group">
+                      <select class="form-control selectkegiatan" style="width:500px" name="penjelasan_kegiatan" required>
+                        <option></option>
+                        @foreach ($versions as $version)
+                         @foreach ($version->kegiatan as $kegiatan)
+                         @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+                             <option value="{{$kegiatan->id}}">{{$kegiatan->nama_kegiatan}}</option>
+                          @endif
+                        @endforeach
+                      @endforeach
+                      </select>  
+                    </div>
+            <form class="form-horizontal">
+              <div class="box-body">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Version</label>
+                  <div class="col-sm-10">
+                    <input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="version" name="version" value="{{$version->id}}" required/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Penjelasan</label>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" id="penjelasan" name="penjelasan" placeholder="Penjelasan" required></textarea>
+                  </div>
+                </div>
+              </div>
+              <br/><br/><br/><br/><br/><br/>
+              <div class="modal-footer">  
+                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
+              </div>
+            </form>
+          </form>
+          </div>
 
              <div class="form-group" id="form-kategori">
                   <br/>
@@ -207,9 +248,9 @@
                   </div>
                 </div>
               </div>
-                <br/><br/>
+              <br/><br/><br/><br/><br/><br/>
               <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
+                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
               </div>
             </form>
           </form>
@@ -245,10 +286,10 @@
                     <textarea class="form-control" rows="3" id="uraian_kegiatan" name="uraian_kegiatan" placeholder="Uraian Kegiatan" required></textarea>
                   </div>
                 </div>
-                <br/><br/>
               </div>
+              <br/><br/><br/><br/>
               <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
+                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
               </div>
             </form>
           </form>
@@ -316,10 +357,10 @@
                     <input type="number" name="var3" placeholder="Juara III" class="form-control" required />
                   </div>
                 </div>
-                <br/><br/>
               </div>
+              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
               <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
+                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
               </div>
             </div>
             </form>
@@ -480,7 +521,7 @@
               </div>              
               </div>
                <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Update" /> 
+                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Update" /> 
               </div>
             </form>
             </div>
@@ -537,7 +578,7 @@
               </div>              
               </div>
                <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Update" /> 
+                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Update" /> 
               </div>
             </form>
             </div>
@@ -623,7 +664,7 @@
               </div>              
               </div>
                <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Update" /> 
+                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Update" /> 
               </div>
             </form>
             </div>
@@ -636,13 +677,6 @@
 @endsection
 
 @section('add-script')
-<!-- DataTables -->
-<script src="{{url('assets/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{url('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-
-<!-- FastClick -->
-<script src="{{url('assets/bower_components/fastclick/lib/fastclick.js')}}"></script>
-
 <script>
   $(document).ready(function (){
     $('#example1').DataTable({
@@ -652,38 +686,36 @@
 </script>
 
 
-{{-- dependent dropdown --}}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-     <script>
-             $(document).ready(function() {
-            $('#list_kategori_kegiatan').on('change', function() {
-                var getKategoriId = $(this).val();
-                if(getKategoriId) {
-                    $.ajax({
-                        url: '/getUraian/'+getKategoriId,
-                        type: "GET",
-                        data : {"_token":"{{ csrf_token() }}"},
-                        dataType: "json",
-                        success:function(data) {
-                            // console.log(data);
-                          if(data){
-                            $('#list_uraian_kegiatan').empty();
-                            $('#list_uraian_kegiatan').focus;
-                            $('#list_uraian_kegiatan').append('<option value=""></option>'); 
-                            $.each(data, function(key, value){
-                            $('select[name="list_uraian_kegiatan"]').append('<option value="'+ value.id +'">' + value.uraian_kegiatan+ '</option>');
-                        });
-                      }else{
-                        $('#list_uraian_kegiatan').empty();
-                      }
-                      }
-                    });
+<script>
+       $(document).ready(function() {
+      $('#list_kategori_kegiatan').on('change', function() {
+          var getKategoriId = $(this).val();
+          if(getKategoriId) {
+              $.ajax({
+                  url: '/getUraian/'+getKategoriId,
+                  type: "GET",
+                  data : {"_token":"{{ csrf_token() }}"},
+                  dataType: "json",
+                  success:function(data) {
+                      // console.log(data);
+                    if(data){
+                      $('#list_uraian_kegiatan').empty();
+                      $('#list_uraian_kegiatan').focus;
+                      $('#list_uraian_kegiatan').append('<option value=""></option>'); 
+                      $.each(data, function(key, value){
+                      $('select[name="list_uraian_kegiatan"]').append('<option value="'+ value.id +'">' + value.uraian_kegiatan+ '</option>');
+                  });
                 }else{
                   $('#list_uraian_kegiatan').empty();
                 }
-            });
-        });
-        </script>
+                }
+              });
+          }else{
+            $('#list_uraian_kegiatan').empty();
+          }
+      });
+  });
+  </script>
 
 <!-- form -->
 <script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>        
@@ -701,6 +733,11 @@
       placeholder: "Pilih Uraian",
       allowClear: true
     })
+    $('.selectkegiatan').select2(
+    {
+      placeholder: "Pilih Kegiatan",
+      allowClear: true
+    })
 
   })
 </script>
@@ -708,6 +745,7 @@
   $("#form-kategori").hide();
   $("#form-uraian").hide();
   $("#form-sub1").hide();
+  $("#form-penjelasan-kegiatan").hide();
   $(document).ready(function(){
     $("#submitpilih").click(function(){
       var pilihan = $( "#pilihopsi" ).val();
@@ -715,21 +753,31 @@
         $("#form-kategori").hide();
         $("#form-uraian").hide();
         $("#form-sub1").hide();
+        $("#form-penjelasan-kegiatan").hide();
       }
       else if (pilihan == 1) {
         $("#form-kategori").show();
         $("#form-uraian").hide();
         $("#form-sub1").hide();
+        $("#form-penjelasan-kegiatan").hide();
       }
       else if (pilihan == 2){
         $("#form-uraian").show();
         $("#form-sub1").hide(); 
         $("#form-kategori").hide();
+        $("#form-penjelasan-kegiatan").hide();
       }
       else if (pilihan == 3){
         $("#form-sub1").show(); 
         $("#form-uraian").hide();
         $("#form-kategori").hide();
+        $("#form-penjelasan-kegiatan").hide();
+      }
+      else if (pilihan == 4){
+        $("#form-sub1").hide(); 
+        $("#form-uraian").hide();
+        $("#form-kategori").hide();
+        $("#form-penjelasan-kegiatan").show();
       }
     })
   })

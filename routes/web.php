@@ -11,9 +11,6 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('login2');
-// });
 Route::get('/', 'AuthController@login2');
 
 //yasin
@@ -25,6 +22,12 @@ Route::get('/hak', function () { return view('hak');});
 Route::group(['middleware' => 'SemuaRole'], function () {
 // 	// punya neny
 	Route::get('/datapegawai', function () {return view('cari_pegawai');});
+	Route::get('/home', function () {return view('home');});
+
+	Route::get('/datasbi', function () {return view('cari_sbi');});
+	Route::post('/data/search','VersiController@search');
+	// Route::post('/datasbi','VersiController@search');
+
 	Route::get('/berkas', 'KdaController@berkas');
 	Route::get('/dokumen', 'DataController@index')->name('dokumen');
 	Route::post('/dokumen/{kode_tabel}','DataController@store');
@@ -33,23 +36,20 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::get('/data/{kode_tabel}/{kode_bagian}','DataController@index');
 	Route::post('/dokumen/update/{kode_tabel}','DataController@update');
 	Route::post('/data/update/{kode_tabel}','DataController@update');
-
 	Route::post('/data/add/{kode_tabel}','DataController@store');
+
+	//coba rapiin lagi
 	Route::get('getUraian/{id}','DataController@getUraian');
 	Route::get('getSub1/{id}','DataController@getSub1');
+	Route::get('getPenjelasan/{id}','DataController@getPenjelasan');
+	Route::get('getPenjelasanSub1/{id}','DataController@getPenjelasanSub1');
+
 	Route::post('/data/update/{kode_tabel}','DataController@update');
 	Route::post('/versi','VersiController@store');
 	Route::get('/versisbi','VersiController@index');
 	Route::post('/pilihversi','VersiController@pilihversi');
 	Route::post('/data/version','VersiController@getData');
 	Route::post('/sbi/update','VersiController@update');
-
-	// Route::delete('/dokumen/delete/{id}', 'JenisKegiatanController@destroy');
-	// Route::delete('/dokumen/delete2/{id}', 'JenisKegiatanController@destroy2');
-
-	// belum fix
-	// Route::get('/dokumen/restore/{id}','JenisKegiatanController@restore');
-	// Route::get('/dokumen/restore2/{id}','JenisKegiatanController@restore2');
 
 	// punya yasin
 	Route::get('/buatkda', 'KdaController@buatkda');

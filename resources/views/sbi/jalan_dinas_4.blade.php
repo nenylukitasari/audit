@@ -1,11 +1,11 @@
 @extends('master')
 
-@section('title-bar')
+@section('title')
   @foreach ($versions as $version)
   @foreach ($version->kegiatan as $kegiatan)
-    @if($kegiatan->kode_bagian==2)
+    @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
     @foreach($kegiatan->kategori as $kategori)
-    @if($kategori->kode_bagian==5)
+    @if($kategori->kode_bagian==$kode_bagian_kategori)
        {{$kategori->kategori_kegiatan}}
     @endif
     @endforeach
@@ -17,10 +17,10 @@
 @section('right_title')
 @foreach ($versions as $version)
 @foreach ($version->kegiatan as $kegiatan)
-@if($kegiatan->kode_bagian==2)
-  <li class="active"><a href="/data/2/2">{{$kegiatan->nama_kegiatan}}</a></li>
+@if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+  <li class="active"><a href="/data/2/{{$kode_bagian_kegiatan}}">{{$kegiatan->nama_kegiatan}}</a></li>
   @foreach($kegiatan->kategori as $kategori)
-    @if($kategori->kode_bagian==5)
+    @if($kategori->kode_bagian==$kode_bagian_kategori)
     <li class="active">{{$kategori->kategori_kegiatan}}</li>
     @endif
   @endforeach
@@ -28,18 +28,23 @@
 @endforeach
 @endforeach
 @endsection
-@section('add-css')
-<!-- DataTables -->
-   <link rel="stylesheet" href="{{url('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
-   <!-- Form -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
-
-  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-@endsection
 @section('content')
 <br/>
-  <div class="col-md-13">
+<button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
+<h3 class="box-title m-b-0">
+@foreach ($versions as $version)
+  @foreach ($version->kegiatan as $kegiatan)
+    @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+      @foreach($kegiatan->kategori as $kategori)
+        @if($kategori->kode_bagian==$kode_bagian_kategori)
+          {{strtoupper($kategori->kategori_kegiatan)}}
+        @endif
+      @endforeach
+    @endif
+  @endforeach
+@endforeach
+</h3>
+  <p class="text-muted m-b-30">Data version {{$version->version}}</p>
   @if (session('message_success'))
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -47,146 +52,115 @@
             {{ session('message_success') }}
         </div>
     @endif
-           <div class="box box-default">
-            <div class="box-header with-border" style="margin: 1em 0 0 1em;">
-              <strong class="box-title" >
-                @foreach ($versions as $version)
-                  @foreach ($version->kegiatan as $kegiatan)
-                    @if($kegiatan->kode_bagian==2)
-                      @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==5)
-                          {{strtoupper($kategori->kategori_kegiatan)}}
-                        @endif
-                      @endforeach
-                    @endif
-                  @endforeach
-                @endforeach
-              </strong><br/>
-              <strong class="card-title">Data version {{$version->version}}</strong>
-              <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&emsp;Add
-          </button>
-            </div>
-          <div class="box-body">
-            <table id="example1" class="table table-bordered table-hover">
-              <thead>
-              <tr>
-                <th width="10">No.</th>
-                <th width="275">Uraian Kegiatan</th>
-                <th width="80">Satuan</th>
-                <th width="100">Besaran Bruto Maksimum (Rp)</th>
-                <th width="30"></th>
-              </tr>
-              </thead>
-             <tbody>
-              @foreach ($versions as $version)
-                  @foreach ($version->kegiatan as $kegiatan)
-                    @if($kegiatan->kode_bagian==2)
-                      @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==5)
-                          @foreach($kategori->uraian as $key => $uraian)
-                          <tr>
-                            <td>
-                                {{$key+1}}. 
-                            </td>
-                            <td>
-                              <strong>{{ $uraian->uraian_kegiatan}}</strong>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td> 
-                              <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})" data-target="#show-modal"> | </i> 
-                              <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}}) "data-target="#edit-modal"> </i>
-                            </td>
-                          </tr>
-                            @foreach($uraian->sub1 as $sub1)
-                            <tr>
-                                <td></td>
-                                <td>{{$sub1->uraian_kegiatan}}</td>
-                                <td>{{$sub1->satuan}}</td>
-                                <td>{{number_format($sub1->var1)}}</td>
-                                <td> 
-                                  <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate2({{ $sub1->id }},{{$sub1->kode_tabel}})" data-target="#show-modal2"> | </i> 
-                                  <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate2({{ $sub1->id }},{{$sub1->kode_tabel}}) "data-target="#edit-modal2"> </i>
-                                </td>
-                            </tr>
-                            @endforeach
-                            @if(strpos('$penjelasan->penjelasan', '0')!==false)
-                            @else
-                            <tr> 
-                                <td></td>
-                                <td><strong>Penjelasan:</strong></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            @endif
-                            @foreach($kategori->penjelasan as $key_p =>$penjelasan)
-                              <tr>
-                                <td></td>
-                                <td>
-                                    {{$key_p+1}}. {{$penjelasan->penjelasan}}
-                              </td>
-                              <td></td>
-                              <td></td>
-                              <td>
-                                <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
-                                <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
-                              </td>
-                              </tr>
-                              @foreach($penjelasan->penjelasan_sub1 as $penjelasan_sub1)
-                                <tr>
-                                  <td></td>
-                                  <td>
-                                    <ul>
-                                       <li>{{$penjelasan_sub1->penjelasan}}</li>
-                                    </ul>
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                  <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
-                                  <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
-                                </td>
-                                </tr>
-                                @foreach($penjelasan_sub1->penjelasan_sub2 as $penjelasan_sub2)
-                                  <tr>
-                                    <td></td>
-                                    <td>
-                                      <ul>
-                                         <li>{{$penjelasan_sub2->penjelasan}}</li>
-                                      </ul>
-                                  </td>
-                                  <td></td>
-                                  <td></td>
-                                  <td>
-                                    <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
-                                    <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
-                                  </td>
-                                  </tr>
-                                  @endforeach
-                                @endforeach
-                              @endforeach
-                           @endforeach
-                          @endif
-                        @endforeach
-                      @endif
+  <div class="table-responsive">
+    <table id="example1" class="table table-striped">
+      <thead>
+      <tr>
+        <th class="col-sm-1">No.</th>
+        <th class="col-sm-5">Uraian Kegiatan</th>
+        <th class="col-sm-1">Satuan</th>
+        <th class="col-sm-1">Besaran Bruto Maksimum (Rp)</th>
+        <th class="col-sm-1"></th>
+      </tr>
+      </thead>
+     <tbody>
+      @foreach ($versions as $version)
+          @foreach ($version->kegiatan as $kegiatan)
+            @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+              @foreach($kegiatan->kategori as $kategori)
+                @if($kategori->kode_bagian==$kode_bagian_kategori)
+                  @foreach($kategori->uraian as $key => $uraian)
+                  <tr>
+                    <td>
+                        {{$key+1}}. 
+                    </td>
+                    <td>
+                      <strong>{{ $uraian->uraian_kegiatan}}</strong>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td> 
+                      <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})" data-target="#show-modal"> | </i> 
+                      <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}}) "data-target="#edit-modal"> </i>
+                    </td>
+                  </tr>
+                    @foreach($uraian->sub1 as $sub1)
+                    <tr>
+                        <td></td>
+                        <td>{{$sub1->uraian_kegiatan}}</td>
+                        <td>{{$sub1->satuan}}</td>
+                        <td>{{number_format($sub1->var1)}}</td>
+                        <td> 
+                          <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate2({{ $sub1->id }},{{$sub1->kode_tabel}})" data-target="#show-modal2"> | </i> 
+                          <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate2({{ $sub1->id }},{{$sub1->kode_tabel}}) "data-target="#edit-modal2"> </i>
+                        </td>
+                    </tr>
                     @endforeach
+                    @if(strpos('$penjelasan->penjelasan', '0')!==false)
+                    @else
+                    <tr> 
+                        <td></td>
+                        <td><strong>Penjelasan:</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    @endif
+                    @foreach($kategori->penjelasan as $key_p =>$penjelasan)
+                      <tr>
+                        <td></td>
+                        <td>
+                            {{$key_p+1}}. {{$penjelasan->penjelasan}}
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
+                        <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
+                      </td>
+                      </tr>
+                      @foreach($penjelasan->penjelasan_sub1 as $penjelasan_sub1)
+                        <tr>
+                          <td></td>
+                          <td>
+                            <ul>
+                               <li>{{$penjelasan_sub1->penjelasan}}</li>
+                            </ul>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
+                          <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
+                        </td>
+                        </tr>
+                        @foreach($penjelasan_sub1->penjelasan_sub2 as $penjelasan_sub2)
+                          <tr>
+                            <td></td>
+                            <td>
+                              <ul>
+                                 <li>{{$penjelasan_sub2->penjelasan}}</li>
+                              </ul>
+                          </td>
+                          <td></td>
+                          <td></td>
+                          <td>
+                            <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#show-modal4"> | </i>
+                            <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})" data-target="#edit-modal4"> </i>
+                          </td>
+                          </tr>
+                          @endforeach
+                        @endforeach
+                      @endforeach
+                   @endforeach
+                  @endif
                 @endforeach
-            </tbody>
-            <tfoot>
-              <tr>
-                <th width="10">No.</th>
-                <th width="275">Uraian Kegiatan</th>
-                <th width="80">Satuan</th>
-                <th width="100">Besaran Bruto Maksimum (Rp)</th>
-                <th width="30"></th>
-              </tr>
-            </tfoot>
-        </table>
-        <br/>
-      </div>
-    </div>
-  </div>
+              @endif
+            @endforeach
+        @endforeach
+    </tbody>
+</table>
+</div>
 
 <!--Add Modal-->
 <div id="addModal" class="modal fade">
@@ -218,9 +192,9 @@
                     <option></option>
                     @foreach ($versions as $version)
                      @foreach ($version->kegiatan as $kegiatan)
-                     @if($kegiatan->kode_bagian==2)
+                     @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
                       @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==5)
+                        @if($kategori->kode_bagian==$kode_bagian_kategori)
                          <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                          @endif
                       @endforeach
@@ -260,9 +234,9 @@
             <option value=""></option>
             @foreach($versions as $version)
               @foreach($version->kegiatan as $kegiatan)
-              @if($kegiatan->kode_bagian==2)
+              @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
               @foreach($kegiatan->kategori as $kategori)
-                @if($kategori->kode_bagian==5)
+                @if($kategori->kode_bagian==$kode_bagian_kategori)
                   <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                 @endif
               @endforeach 
@@ -420,9 +394,9 @@
                         <option></option>
                         @foreach($versions as $version)
                           @foreach($version->kegiatan as $kegiatan)
-                          @if($kegiatan->kode_bagian==2)
+                          @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
                            @foreach($kegiatan->kategori as $kategori)
-                           @if($kategori->kode_bagian==5)
+                           @if($kategori->kode_bagian==$kode_bagian_kategori)
                             <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                             @endif
                           @endforeach
@@ -479,9 +453,9 @@
                         <option></option>
                         @foreach($versions as $version)
                           @foreach($version->kegiatan as $kegiatan)
-                          @if($kegiatan->kode_bagian==2)
+                          @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
                           @foreach($kegiatan->kategori as $kategori)
-                           @if($kategori->kode_bagian==5)
+                           @if($kategori->kode_bagian==$kode_bagian_kategori)
                           @foreach($kategori->uraian as $uraian)
                             <option value="{{$uraian->id}}">{{$uraian->uraian_kegiatan}}</option>
                           @endforeach

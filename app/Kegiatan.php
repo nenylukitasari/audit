@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Kegiatan extends Model
+class Kegiatan extends Model implements Searchable
 {
     protected $table = 'kegiatan';
     protected $primaryKey = 'id';
@@ -38,4 +40,16 @@ class Kegiatan extends Model
     {
         return $this->hasMany(berkas::class,'kegiatan_id','id');
     }
+
+    public function getSearchResult(): SearchResult
+    {
+        // $url = route('categories.show', $this->id);
+
+        return new SearchResult(
+            $this,
+            $this->nama_kegiatan
+            // $url
+         );
+    }
+
 }

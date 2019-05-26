@@ -1,11 +1,11 @@
 @extends('master')
 
-@section('title-bar')
+@section('title')
   @foreach ($versions as $version)
   @foreach ($version->kegiatan as $kegiatan)
-    @if($kegiatan->kode_bagian==2)
+    @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
     @foreach($kegiatan->kategori as $kategori)
-    @if($kategori->kode_bagian==2)
+    @if($kategori->kode_bagian==$kode_bagian_kategori)
        {{$kategori->kategori_kegiatan}}
     @endif
     @endforeach
@@ -17,10 +17,10 @@
 @section('right_title')
 @foreach ($versions as $version)
 @foreach ($version->kegiatan as $kegiatan)
-@if($kegiatan->kode_bagian==2)
-  <li class="active"><a href="/data/2/2">{{$kegiatan->nama_kegiatan}}</a></li>
+@if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+  <li class="active"><a href="/data/2/{{$kode_bagian_kegiatan}}">{{$kegiatan->nama_kegiatan}}</a></li>
   @foreach($kegiatan->kategori as $kategori)
-    @if($kategori->kode_bagian==2)
+    @if($kategori->kode_bagian==$kode_bagian_kategori)
     <li class="active">{{$kategori->kategori_kegiatan}}</li>
     @endif
   @endforeach
@@ -28,18 +28,23 @@
 @endforeach
 @endforeach
 @endsection
-@section('add-css')
-<!-- DataTables -->
-   <link rel="stylesheet" href="{{url('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
-   <!-- Form -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
-
-  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-@endsection
 @section('content')
 <br/>
-  <div class="col-md-13">
+<button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
+<h3 class="box-title m-b-0">
+  @foreach ($versions as $version)
+    @foreach ($version->kegiatan as $kegiatan)
+      @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+        @foreach($kegiatan->kategori as $kategori)
+          @if($kategori->kode_bagian==$kode_bagian_kategori)
+            {{strtoupper($kategori->kategori_kegiatan)}}
+          @endif
+        @endforeach
+      @endif
+    @endforeach
+  @endforeach
+</h3>
+  <p class="text-muted m-b-30">Data version {{$version->version}}</p>
   @if (session('message_success'))
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -47,83 +52,50 @@
             {{ session('message_success') }}
         </div>
     @endif
-           <div class="box box-default">
-            <div class="box-header with-border" style="margin: 1em 0 0 1em;">
-              <strong class="box-title" >
-                @foreach ($versions as $version)
-                  @foreach ($version->kegiatan as $kegiatan)
-                    @if($kegiatan->kode_bagian==2)
-                      @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==2)
-                          {{strtoupper($kategori->kategori_kegiatan)}}
-                        @endif
-                      @endforeach
-                    @endif
-                  @endforeach
-                @endforeach
-              </strong><br/>
-              <strong class="card-title">Data version {{$version->version}}</strong>
-              <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&emsp;Add
-          </button>
-            </div>
-          <div class="box-body">
-            <table id="example1" class="table table-bordered table-hover">
-              <thead>
-              <tr>
-                <th width="10">No.</th>
-                <th width="275">Provinsi</th>
-                <th width="80">Satuan</th>
-                <th width="80">Luar Kota (Rp)</th>
-                <th width="80">Dalam Kota Lebih dari 8 Jam (Rp)</th>
-                <th width="80">Diklat (Rp)</th>
-                <th width="30"></th>
-              </tr>
-              </thead>
-             <tbody>
-              @foreach ($versions as $version)
-                  @foreach ($version->kegiatan as $kegiatan)
-                    @if($kegiatan->kode_bagian==2)
-                      @foreach($kegiatan->kategori as $kategori)
-                        @if($kategori->kode_bagian==2)
-                          @foreach($kategori->uraian as $key => $uraian)
-                          <tr>
-                            <td>
-                                {{$key+1}}. 
-                            </td>
-                            <td>
-                              {{ $uraian->uraian_kegiatan}}
-                            </td>
-                            <td>{{$uraian->satuan}}</td>
-                            <td>{{number_format($uraian->var1)}}</td>
-                            <td>{{number_format($uraian->var2)}}</td>
-                            <td>{{number_format($uraian->var3)}}</td>
-                              <td> 
-                              <i class="fa fa-eye" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})" data-target="#show-modal"> | </i> 
-                          <i class="fa fa-pencil" data-toggle="modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}}) "data-target="#edit-modal"> </i>
-                            </tr>
-                           @endforeach
-                          @endif
-                        @endforeach
-                      @endif
-                    @endforeach
-                @endforeach
-            </tbody>
-            <tfoot>
-              <tr>
-                <th width="10">No.</th>
-                <th width="275">Provinsi</th>
-                <th width="80">Satuan</th>
-                <th width="80">Luar Kota (Rp)</th>
-                <th width="80">Dalam Kota Lebih dari 8 Jam (Rp)</th>
-                <th width="80">Diklat (Rp)</th>
-                <th width="30"></th>
-              </tr>
-            </tfoot>
-        </table>
-        <br/>
-      </div>
-    </div>
-  </div>
+<div class="table-responsive">
+  <table id="example1" class="table table-striped">
+    <thead>
+    <tr>
+      <th class="col-sm-1">No.</th>
+      <th class="col-sm-6">Provinsi</th>
+      <th class="col-sm-1">Satuan</th>
+      <th class="col-sm-1">Luar Kota (Rp)</th>
+      <th class="col-sm-1">Dalam Kota Lebih dari 8 Jam (Rp)</th>
+      <th class="col-sm-1">Diklat (Rp)</th>
+      <th class="col-sm-1"></th>
+    </tr>
+    </thead>
+   <tbody>
+    @foreach ($versions as $version)
+        @foreach ($version->kegiatan as $kegiatan)
+          @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+            @foreach($kegiatan->kategori as $kategori)
+              @if($kategori->kode_bagian==$kode_bagian_kategori)
+                @foreach($kategori->uraian as $key => $uraian)
+                <tr>
+                  <td>
+                      {{$key+1}}. 
+                  </td>
+                  <td>
+                    {{ $uraian->uraian_kegiatan}}
+                  </td>
+                  <td>{{$uraian->satuan}}</td>
+                  <td>{{number_format($uraian->var1)}}</td>
+                  <td>{{number_format($uraian->var2)}}</td>
+                  <td>{{number_format($uraian->var3)}}</td>
+                    <td> 
+                    <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+                    <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                  </tr>
+                 @endforeach
+                @endif
+              @endforeach
+            @endif
+          @endforeach
+      @endforeach
+  </tbody>
+</table>
+</div>
 
 <!--Add Modal-->
 <div id="addModal" class="modal fade">
@@ -148,9 +120,9 @@
                       <option></option>
                       @foreach ($versions as $version)
                        @foreach ($version->kegiatan as $kegiatan)
-                       @if($kegiatan->kode_bagian==2)
+                       @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
                         @foreach($kegiatan->kategori as $kategori)
-                          @if($kategori->kode_bagian==2)
+                          @if($kategori->kode_bagian==$kode_bagian_kategori)
                            <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
                           @endif
                         @endforeach
@@ -191,10 +163,10 @@
                   <input type="number" name="var3" placeholder="Diklat (Rp)" class="form-control" required />
                 </div>
               </div>
-              <br/><br/>
             </div>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="modal-footer">  
-              <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add" /> 
+              <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
             </div>
           </form>
           </form>
@@ -324,7 +296,7 @@
             </div>              
             </div>
              <div class="modal-footer">  
-              <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Update" /> 
+              <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Update" /> 
             </div>
           </form>
           </div>
@@ -334,16 +306,6 @@
 @endsection
 
 @section('add-script')
-<!-- DataTables -->
-<script src="{{url('assets/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{url('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-
-<!-- FastClick -->
-<script src="{{url('assets/bower_components/fastclick/lib/fastclick.js')}}"></script>
-
-<!-- form -->
-<script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>        
-
 <script>
   $(document).ready(function (){
     $('#example1').DataTable({

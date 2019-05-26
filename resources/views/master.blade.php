@@ -124,9 +124,15 @@ else {
         </div>
         <ul class="nav" id="side-menu">
         @if ($_SESSION['userinfo2'] == "azkayasin2@gmail.com" || $_SESSION['userinfo2'] == "nenylukitasari@gmail.com")
+            <li><a href="{{ url('home') }}" class="waves-effect"><i data-icon="Z" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Dashboard</span></a> </li>
             <li><a href="{{ url('dokumen') }}" class="waves-effect"><i data-icon="m" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Standar Biaya Institut</span></a> </li>
             <li><a href="{{ url('versisbi') }}" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Versi SBI</span></a> </li>
-            <li><a href="{{ url('datapegawai') }}" class="waves-effect"><i data-icon="O" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Data Pegawai</span></a> </li>
+            <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="#" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Cari Data<span class="fa arrow"></span></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="{{ url('datapegawai') }}" class="waves-effect"><i data-icon="O" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Data Pegawai</span></a> </li>
+                    <li><a href="{{ url('datasbi') }}"><i data-icon="O" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Data SBI</span></a></li>
+                </ul>
+            </li>
             <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="<" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
             <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
@@ -159,11 +165,11 @@ else {
     <div class="container-fluid">
         <div class="row bg-title">
             <!-- .page title -->
-            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12">
                 <h4 class="page-title">@yield('title')</h4> </div>
             <!-- /.page title -->
             <!-- .breadcrumb -->
-            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
+            <div class="col-lg-8 col-sm-7 col-md-7 col-xs-12"> 
                 <ol class="breadcrumb">
                     <li><a href="{{ url('home') }}">Home</a></li>
                     @yield('right_title')
@@ -206,6 +212,15 @@ else {
     <script src="{{url('assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>        
     <!-- datepicker -->
     <script src="{{asset('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+    <!-- Custom tab JavaScript -->
+    <script src="{{asset('assets/js/cbpFWTabs.js')}}"></script>
+    <script type="text/javascript">
+    (function() {
+        [].slice.call(document.querySelectorAll('.sttabs')).forEach(function(el) {
+            new CBPFWTabs(el);
+        });
+    })();
+    </script>
     @yield('add-script')
 </body>
 

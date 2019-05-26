@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class JenisKegiatan extends Model
+class JenisKegiatan extends Model implements Searchable
 {
 	// use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
@@ -50,5 +52,16 @@ class JenisKegiatan extends Model
     // {
     //     return $this->hasManyThrough('App\Kategori','App\Kegiatan');
     // }
+
+    public function getSearchResult(): SearchResult
+    {
+        // $url = route('categories.show', $this->id);
+
+        return new SearchResult(
+            $this,
+            $this->jenis_kegiatan
+            // $url
+         );
+    }
 
 }

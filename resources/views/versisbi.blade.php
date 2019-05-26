@@ -9,7 +9,6 @@
 @section('content')
 <br/>
 <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
-  {{-- <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i>&emsp;Add</button> --}}
   <h3 class="box-title m-b-0">VERSI STANDAR BIAYA INSTITUT</h3>
   <p></p>
   <br/>
@@ -24,13 +23,13 @@
         <table id="example1" class="table table-striped">
           <thead>
           <tr>
-            <th width="10">No.</th>
-            <th width="200">Version</th>
-            <th width="120">Status</th>
-            <th width="150">Created at</th>
-            <th width="150">Updated at</th>
-            <th width="80">Aktif</th>
-            <th width="40"></th>
+            <th class="col-sm-1">No.</th>
+            <th class="col-sm-5">Version</th>
+            <th class="col-sm-1">Status</th>
+            <th class="col-sm-1">Created at</th>
+            <th class="col-sm-1">Updated at</th>
+            <th class="col-sm-1">Aktif</th>
+            <th class="col-sm-1"></th>
           </tr>
           </thead>
          <tbody>

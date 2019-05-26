@@ -11,15 +11,18 @@ use App\JenisKegiatan;
 use App\Kegiatan;
 use App\Kategori;
 use App\Penjelasan;
+use App\PenjelasanSub1;
+use App\PenjelasanSub2;
 use App\Uraian;
 use App\Sub1;
 use App\Sub2;
 use App\Provinsi;
 use Carbon\Carbon;
+use Spatie\Searchable\Search;
 
 class VersiController extends Controller
 {
-    public function index(Request $request) {
+    public function index() {
         $versions = DB::table('version')
         ->orderBy('status', 'asc')
         ->get();
@@ -131,5 +134,61 @@ class VersiController extends Controller
         $version->save();
         return redirect('/versisbi');
     }
+    // public function search(Request $request) {
+    //     // dd($request->kode)
+    //     // switch ($request->kode) {
+    //     //  case '2':
+    //     //     {
+    //     // dd($request->keywordsbi);
+    //             // $versions = Version::where('status','=', 0)->get();
+    //             // foreach ($versions as $version) {
+    //             //     foreach ($version->jenis_kegiatan as $jk) {
+    //             //         $search = JenisKegiatan::where('jenis_kegiatan','like', "%{$request->keywordsbi}%")->get();
+    //             //     }
+    //             // }
+
+    //             $key=$request->keywordsbi;
+    //             $search = Version::where('status','=', 0)
+    //                         ->with(['jenis_kegiatan' => function ($query) use ($key) {            
+    //                             $query->where('jenis_kegiatan','like', "%{$key}%");  
+
+    //                             // ->with(['kegiatan' => function ($query) use ($key) {            
+    //                             //     $query->where('nama_kegiatan','like', "%{$key}%");  
+    //                             // }])
+
+    //                         }])
+    //                         ->get();
+
+    //             // dd($search);
+    //             // break;
+    //  //        }
+         
+    //  //     default:
+    //  //         # code...
+    //  //         break;
+    //  // }
+    //  return view('hasil_sbi', compact('search', 'key'));
+     
+    // }
+
+    public function search(Request $request)
+    {
+        $searchResults = (new Search())
+        // ->where(Version::class, )
+            ->registerModel(JenisKegiatan::class, 'jenis_kegiatan')
+            ->registerModel(Kegiatan::class, 'nama_kegiatan')
+            ->registerModel(Kategori::class, 'kategori_kegiatan')
+            ->registerModel(Uraian::class, 'uraian_kegiatan')
+            ->registerModel(Sub1::class, 'uraian_kegiatan')
+            ->registerModel(Sub2::class, 'uraian_kegiatan')
+            ->registerModel(Penjelasan::class, 'penjelasan')
+            ->registerModel(PenjelasanSub1::class, 'penjelasan')
+            ->registerModel(PenjelasanSub2::class, 'penjelasan')
+            // ->perform(Version::where('status','=', 0))
+            ->perform($request->input('query'));
+
+        return view('hasil_sbi', compact('searchResults'));
+    }
+            
 }
     

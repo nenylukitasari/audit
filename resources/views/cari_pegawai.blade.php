@@ -12,8 +12,8 @@
   <table border="0" style="width: 67%; margin: 0 auto 2em auto;">
         <thead>
             <tr>
-                <th width="100">Target</th>
-                <th width="500">Nama</th>
+                <th class="col-sm-1">Target</th>
+                <th class="col-sm-9">Nama</th>
                 <th></th>
             </tr>
         </thead>
