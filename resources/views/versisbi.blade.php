@@ -8,6 +8,16 @@
 @endsection
 @section('content')
 <br/>
+<style type="text/css">
+  #spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+  }
+</style>
+<div id="spinner" style="display: none;">
+  <img src="{{url('assets/plugins/images/ajax-loader.gif')}}" alt="loading"/>
+</div>
 <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
   <h3 class="box-title m-b-0">VERSI STANDAR BIAYA INSTITUT</h3>
   <p></p>
@@ -72,27 +82,36 @@
           <h4 class="modal-title">Add</h4>
         </div>
         <div class="modal-body">
-          <form action="{{url('/versi')}}" method="POST"> 
-            {{csrf_field()}} 
-            <form class="form-horizontal">
+          {{-- <form id="fversi"> --}}
               <div class="box-body">
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Version</label>
                   <div class="col-sm-10">
-                    <input type="text" name="versi" placeholder="Nama Versi" class="form-control" required />
+                    <input type="text" name="versi" id="versibaru" placeholder="Nama Versi" class="form-control" required />
                   </div>
                 </div>
               </div>
               <br/><br/><br/>
               <div class="modal-footer">  
-                  <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
+                <button class="btn btn-primary btn-rounded" onclick="versiBaru()">Add</button>
+                  {{-- <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" />  --}}
               </div>
-            </form>
-          </form>
+          {{-- </form> --}}
         </div>
     </div>
   </div>
 </div>
+{{-- <div id="container1">
+<div id="modalloading" class="reveal-modal">
+     <h2>POP UP</h2>
+     <p>
+     <font size="4">window window window.window window window. window.
+         </font>
+    </p>
+    <a href="#" class="close-reveal-modal">×</a>
+</div>
+</div> --}}
+
 
 <!-- Show Modal -->
 <div class="modal fade" id="show-modal">
@@ -208,6 +227,27 @@
           $('#status').val(data.status);
           $('#created_at').val(data.created_at);
           $('#updated_at').val(data.updated_at);
+        }
+      });
+    }
+
+    versiBaru = function(){
+      $('#spinner').show();
+      console.log("sudah muncul");
+      var versi = $('#versibaru').val();
+      $.ajax({
+        url: '/versi',
+        type: 'POST',
+        data: {
+          '_token': "{{ csrf_token() }}",
+          'versi' : versi
+        },
+        error: function() {
+          console.log('Error');
+        },
+        success: function(data) {
+          window.location = '';
+          $('#spinner').hide(); 
         }
       });
     }

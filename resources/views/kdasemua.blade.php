@@ -92,7 +92,8 @@
                       <td>KDA tanpa pengajuan UMK</td>
                       <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-keterangan" onclick="keteranganupdate('{{ $kda->id_kda }}')">lihat</button></td>
                       @endif
-                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-edit" onclick="submitUpdate('{{ $kda->id_kda }}')">data</button></td>
+                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-edit" onclick="submitUpdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
+                      
                       <td>{{ $kda->created_by}}</td>
                       <td><a href="{{ url('pdf/'.$kda->id_kda) }}"><button class="btn btn-xs btn-primary">Download</button></a> </td>
                     </tr>

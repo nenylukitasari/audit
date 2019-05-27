@@ -413,6 +413,7 @@
           $('#nama_kegiatan2').val(data.nama_kegiatan);
           $('#edit_id_kegiatan').val(data.id);
           $('#edit_jenis_kegiatan2').val(data.jenis_kegiatan_id);
+          $('#edit_jenis_kegiatan2').select2().trigger('change');
           $('#edit_nama_kegiatan').val(data.nama_kegiatan);
         }
       });

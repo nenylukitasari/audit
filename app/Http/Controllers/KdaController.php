@@ -163,9 +163,9 @@ class KdaController extends Controller
         $rules["masa_audit"] = 'required';
     	$rules["bulan_audit"] = 'required';
         foreach($request->input('kwitansi') as $key => $value) {
-            $rules["kwitansi {$key}"] = 'required';
-            $rules["nominal {$key}"] = 'required';
-            $rules["keterangan {$key}"] = 'required';
+            $rules["kwitansi.{$key}"] = 'required';
+            $rules["nominal.{$key}"] = 'required';
+            $rules["keterangan.{$key}"] = 'required';
         }
 
 

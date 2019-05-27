@@ -106,7 +106,10 @@ class VersiController extends Controller
                 }
             }
         }  
-        return redirect('/versisbi')->with('message_success',"Berhasil menambahkan versi"); 
+        //return redirect('/versisbi')->with('message_success',"Berhasil menambahkan versi"); 
+        //sleep(2);
+        return response()->json("berhasil");
+        //exit(json_encode(['message_success'=>"Berhasil menambahkan versi"]));
     }
 
     public function pilihversi(Request $request)

@@ -34,7 +34,6 @@ td .kanan{
 </style>
 <br/>
     <div class="row" id="balik-eror">
-      <div class="col-xs-12">
         <div class="box">
           <div class="box-header">  
               <h3 class="box-title">Buat KDA</h3>
@@ -42,20 +41,29 @@ td .kanan{
           <!-- /.box-header -->
           <div class="box-body">
             <input type="hidden" name="auditor1" id="auditor1" value="<?php echo $username; ?>">
-            <select id="pilihkda">
+            <div class="col-xs-3">
+            	<select id="pilihkda" class="form-control">
               <!-- <option value="" disabled selected>Select your option</option> -->
               <option value="1">kda tanpa Temuan</option>
               <option value="2">kda dengan Temuan</option>
               <option value="3">kda Unaudited</option>
               <option value="4">kda tanpa pengajuan UMK</option>
             </select>
+            </div>
           &ensp;<input type="button" name="submitpilih" id="submitpilih" class="btn btn-info btn-rounded btn-sm" value="buat kda" />
           </div>
       </div>
-      <div id="peringatan"></div>
-      @foreach( $summernote as $summernote)
+  </div>
+  <div id="peringatan"></div>
+</div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="white-box">
+		@foreach( $summernote as $summernote)
                       {!! $summernote->content !!}
                       @endforeach
+
 
 
 <!-- Modal -->
@@ -128,101 +136,101 @@ td .kanan{
   $('#berkas1').dataTable();
   var keterangan1 = `<tr id="krow0">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Rekap Per Mak" /></td>  
-                      <td><select name="kesediaan[]">
+                      <td><select name="kesediaan[]" class="form-control name_list">
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak</option>
                       </select></td>
-                      <td><input type="text" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>  
-                      <td><input type="text" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td> 
+                      <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>  
+                      <td><input type="number" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td> 
                       <td><button type="button" name="remove" id="0" class="btn btn-danger btn_remove1">X</button></td>  
                     </tr>
                     <tr id="krow1">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Rekap SPJ (urut)" /></td>
-                      <td><select name="kesediaan[]">
+                      <td><select name="kesediaan[]" class="form-control name_list">
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak</option>
                       </select></td>
-                      <td><input type="text" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
-                      <td><input type="text" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
+                      <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
+                      <td><input type="number" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
                       <td><button type="button" name="remove" id="1" class="btn btn-danger btn_remove1">X</button></td>
                     </tr>
                     <tr id="krow2">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Kwitansi di Rekap SPJ" /></td>
-                      <td><select name="kesediaan[]">
+                      <td><select name="kesediaan[]" class="form-control name_list">
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak</option>
                       </select></td>
-                      <td><input type="text" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
-                      <td><input type="text" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
+                      <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
+                      <td><input type="number" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
                       <td><button type="button" name="remove" id="2" class="btn btn-danger btn_remove1">X</button></td>
                     </tr>
                     <tr id="krow3">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Fisik kwitansi yang ada" /></td>
-                      <td><select name="kesediaan[]">
+                      <td><select name="kesediaan[]" class="form-control name_list">
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak</option>
                       </select></td>
-                      <td><input type="text" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
-                      <td><input type="text" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
+                      <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
+                      <td><input type="number" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
                       <td><button type="button" name="remove" id="3" class="btn btn-danger btn_remove1">X</button></td>
                     </tr>
                     <tr id="krow4">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Kwitansi Yang Ada Temuan" /></td>
-                      <td><select name="kesediaan[]">
+                      <td><select name="kesediaan[]" class="form-control name_list">
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak</option>
                       </select></td>
-                      <td><input type="text" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
-                      <td><input type="text" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
+                      <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
+                      <td><input type="number" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
                       <td><button type="button" name="remove" id="4" class="btn btn-danger btn_remove1">X</button></td>
                     </tr>
                     <tr id="krow5">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="BA Serah Terima UMK" /></td>
-                      <td><select name="kesediaan[]">
+                      <td><select name="kesediaan[]" class="form-control name_list">
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak</option>
                       </select></td>
-                      <td><input type="text" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
-                      <td><input type="text" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
+                      <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
+                      <td><input type="number" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
                       <td><button type="button" name="remove" id="5" class="btn btn-danger btn_remove1">X</button></td>
                     </tr>
                     <tr id="krow6">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="BA Rekonsiliasi" /></td>
-                      <td><select name="kesediaan[]">
+                      <td><select name="kesediaan[]" class="form-control name_list">
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak</option>
                       </select></td>
-                      <td><input type="text" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
-                      <td><input type="text" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
+                      <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
+                      <td><input type="number" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
                       <td><button type="button" name="remove" id="6" class="btn btn-danger btn_remove1">X</button></td>
                     </tr>
                     <tr id="krow7">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Transaksi Jurnal" /></td>
-                      <td><select name="kesediaan[]">
+                      <td><select name="kesediaan[]" class="form-control name_list">
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak</option>
                       </select></td>
-                      <td><input type="text" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
-                      <td><input type="text" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
+                      <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
+                      <td><input type="number" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
                       <td><button type="button" name="remove" id="7" class="btn btn-danger btn_remove1">X</button></td>
                     </tr>
                     <tr id="krow8">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Bukti Setor Saldo" /></td>
-                      <td><select name="kesediaan[]">
+                      <td><select name="kesediaan[]" class="form-control name_list">
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak</option>
                       </select></td>
-                      <td><input type="text" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
-                      <td><input type="text" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
+                      <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
+                      <td><input type="number" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td>
                       <td><button type="button" name="remove" id="8" class="btn btn-danger btn_remove1">X</button></td>
                     </tr>`;
 
@@ -244,7 +252,7 @@ td .kanan{
                       <option value="{{$value->id_unit}}">{{$value->nama}}</option>
                       @endforeach</select>`;
       $(".listunit").empty();
-      $(".listunit").append(`: ${listunit}`);
+      $(".listunit").append(`${listunit}`);
       // document.getElementById('bulan_audit').valueAsDate = new Date();
       $(function () {
         //Initialize Select2 Elements
@@ -526,7 +534,7 @@ td .kanan{
 
     $('.add1').click(function(){  
      i++;  
-     $('.keterangan1').append('<tr id="krow'+i+'" class="dynamic-added1"><td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" /></td><td><select name="kesediaan[]"><option value=""></option><option value="Ada">Ada</option><option value="Tidak Ada">Tidak</option></select></td> <td><input type="text" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td><td><input type="text" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove1">X</button></td></tr>');  
+     $('.keterangan1').append('<tr id="krow'+i+'" class="dynamic-added1"><td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" /></td><td><select name="kesediaan[]" class="form-control name_list"><option value=""></option><option value="Ada">Ada</option><option value="Tidak Ada">Tidak</option></select></td> <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td><td><input type="number" name="nom[]" placeholder="masukkan nominal" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove1">X</button></td></tr>');  
    });  
 
 
@@ -544,7 +552,7 @@ td .kanan{
 
     $('#add').click(function(){  
      i++;  
-     $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="kwitansi[]" placeholder="nomor kwitansi" class="form-control name_list" /></td><td><input type="text" name="nominal[]" placeholder="masukkan nominal" class="form-control name_list" /></td><td><input type="text" name="keterangan[]" placeholder="masukkan keterangan" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+     $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="kwitansi[]" placeholder="nomor kwitansi" class="form-control name_list" /></td><td><input type="number" name="nominal[]" placeholder="masukkan nominal" class="form-control name_list" /></td><td><input type="text" name="keterangan[]" placeholder="masukkan keterangan" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
    });  
 
 
