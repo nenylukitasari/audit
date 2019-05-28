@@ -34,12 +34,14 @@ class Kategori extends Model implements Searchable
 
     public function getSearchResult(): SearchResult
     {
-        // $url = route('categories.show', $this->id);
+        // $url = route('data.index', $this->kode_tabel, $this->kode_bagian);
+
+        $url = url('/data/'.$this->kode_tabel . '/' .$this->kode_bagian );
 
         return new SearchResult(
             $this,
-            $this->kategori_kegiatan
-            // $url
+            $this->kategori_kegiatan,
+            $url
          );
     }
 }

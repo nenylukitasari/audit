@@ -112,8 +112,8 @@
           <tr>
             <td>{{$penjelasan->penjelasan}}</td>
             <td width="100">
-            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal1"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal1"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
             </td>
           </tr> 
           @endforeach  

@@ -178,13 +178,14 @@
                   <option value="1">Kategori</option>
                   <option value="2">Uraian</option>
                   <option value="3">Penjelasan</option>
-                  @foreach($versions as $version)
+                  {{-- @foreach($versions as $version)
                   @foreach($version->penjelasan as $penjelasan)
                   @foreach($penjelasan->penjelasan_sub1 as $penjelasan_sub1)
                   @endforeach
                   @endforeach
                   @endforeach
-                  @if(strpos($penjelasan->penjelasan_sub1,'0')!== false)
+                  @if(strpos($penjelasan->penjelasan_sub1,'0')!== false) --}}
+                  @if($kode_bagian_kategori==18)
                       <option value="4">Sub Penjelasan</option>
                       <option value="5">Sub2 Penjelasan</option>
                   @endif
@@ -240,91 +241,7 @@
                 </div>
             @endif
               </div>
-                <br/><br/><br/><br/><br/><br/>
-              <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
-              </div>
-            </form>
-          </form>
-          </div>
-
-      <div class="form-group" id="form-penjelasan-sub1">
-                  <br/>
-                  @foreach ($version->penjelasan as $penjelasan)
-                  @endforeach
-                <form action="{{url('/data/add', $penjelasan_sub1->kode_tabel)}}" method="POST">
-                  {{csrf_field()}}
-          <div class="form-group">  
-          <select class="form-control selectpenjelasan" name="list_penjelasan" style="width:500px" id="list_penjelasan" required>
-             <option></option>
-              @foreach ($versions as $version)
-               @foreach ($version->kegiatan as $kegiatan)
-               @if($kegiatan->kode_bagian==$kode_bagian)
-               @foreach($kegiatan->penjelasan as $penjelasan)
-                   <option value="{{$penjelasan->id}}">{{$penjelasan->penjelasan}}</option>
-                  @endforeach
-                @endif
-              @endforeach
-            @endforeach
-            </select>  
-          </div>
-            <form class="form-horizontal">
-              <div class="box-body">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Penjelasan</label>
-                  <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" id="penjelasan_sub1" name="penjelasan_sub1" placeholder="Penjelasan" required></textarea>
-                  </div>
-                </div>
-              </div>
-              <br/><br/><br/><br/><br/>
-              <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
-              </div>
-            </form>
-          </form>
-          </div>
-
-    <div class="form-group" id="form-penjelasan-sub2">
-                  <br/>
-                  @foreach($versions as $version)
-                  @foreach ($version->penjelasan as $penjelasan)
-                  @foreach ($penjelasan->penjelasan_sub1 as $penjelasan_sub1)
-                  @foreach ($penjelasan_sub1->penjelasan_sub2 as $penjelasan_sub2)
-                  @endforeach
-                  @endforeach
-                  @endforeach
-                  @endforeach
-                <form action="{{url('/data/add', $penjelasan_sub2->kode_tabel)}}" method="POST">
-                  {{csrf_field()}} 
-                    <div class="form-group">
-                       <select name="list_all_penjelasan" class="form-control selectpenjelasan"  style="width:500px" id="list_all_penjelasan" required>
-                        <option></option>
-                        @foreach ($versions as $version)
-                         @foreach ($version->kegiatan as $kegiatan)
-                         @if($kegiatan->kode_bagian==$kode_bagian)
-                            @foreach($kegiatan->penjelasan as $penjelasan)
-                             <option value="{{$penjelasan->id}}">{{$penjelasan->penjelasan}}</option>
-                            @endforeach
-                          @endif
-                        @endforeach
-                      @endforeach
-                      </select>  
-                    </div>
-          <div class="form-group">  
-          <select class="form-control selectpenjelasansub1" name="list_penjelasan_sub1" style="width:500px" id="list_penjelasan_sub1">
-            </select>  
-          </div>
-            <form class="form-horizontal">
-              <div class="box-body">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Penjelasan</label>
-                  <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" id="penjelasan_sub2" name="penjelasan_sub2" placeholder="Penjelasan" required></textarea>
-                  </div>
-                </div>
-              </div>
-              <br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/><br/>
               <div class="modal-footer">  
                 <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
               </div>
@@ -365,7 +282,95 @@
                   </div>
                 </div>
               </div>
-              <br/><br/><br/><br/><br/><br/>
+              <br/><br/><br/><br/><br/><br/><br/>
+              <div class="modal-footer">  
+                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
+              </div>
+            </form>
+          </form>
+          </div>
+
+       <div class="form-group" id="form-penjelasan-sub1">
+                  <br/>
+                  {{-- @foreach($versions as $version)
+                  @foreach ($version->penjelasan as $penjelasan) --}}
+                  @foreach ($penjelasan->penjelasan_sub1 as $penjelasan_sub1)
+                  <form action="{{url('/data/add', $penjelasan_sub1->kode_tabel)}}" method="POST">
+                  @endforeach
+                  {{-- @endforeach
+                  @endforeach --}}
+                  {{csrf_field()}}
+          <div class="form-group">  
+          <select class="form-control selectpenjelasan" name="list_penjelasan" style="width:500px" id="list_penjelasan" required>
+             <option></option>
+              @foreach ($versions as $version)
+               @foreach ($version->kegiatan as $kegiatan)
+               @if($kegiatan->kode_bagian==$kode_bagian)
+               @foreach($kegiatan->penjelasan as $penjelasan)
+                   <option value="{{$penjelasan->id}}">{{$penjelasan->penjelasan}}</option>
+                  @endforeach
+                @endif
+              @endforeach
+            @endforeach
+            </select>  
+          </div>
+            <form class="form-horizontal">
+              <div class="box-body">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Penjelasan</label>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" id="penjelasan_sub1" name="penjelasan_sub1" placeholder="Penjelasan" required></textarea>
+                  </div>
+                </div>
+              </div>
+              <br/><br/><br/><br/><br/>
+              <div class="modal-footer">  
+                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
+              </div>
+            </form>
+          </form>
+          </div>
+
+    <div class="form-group" id="form-penjelasan-sub2">
+                  <br/>
+                  {{-- @foreach($versions as $version)
+                  @foreach ($version->penjelasan as $penjelasan) --}}
+                  @foreach ($penjelasan->penjelasan_sub1 as $penjelasan_sub1)
+                  @foreach ($penjelasan_sub1->penjelasan_sub2 as $penjelasan_sub2)
+                  <form action="{{url('/data/add', $penjelasan_sub2->kode_tabel)}}" method="POST">
+                  @endforeach
+                  {{-- @endforeach
+                  @endforeach--}}
+                  @endforeach 
+                  {{csrf_field()}} 
+                    <div class="form-group">
+                       <select name="list_all_penjelasan" class="form-control selectpenjelasan"  style="width:500px" id="list_all_penjelasan" required>
+                        <option></option>
+                        @foreach ($versions as $version)
+                         @foreach ($version->kegiatan as $kegiatan)
+                         @if($kegiatan->kode_bagian==$kode_bagian)
+                            @foreach($kegiatan->penjelasan as $penjelasan)
+                             <option value="{{$penjelasan->id}}">{{$penjelasan->penjelasan}}</option>
+                            @endforeach
+                          @endif
+                        @endforeach
+                      @endforeach
+                      </select>  
+                    </div>
+          <div class="form-group">  
+          <select class="form-control selectpenjelasansub1" name="list_penjelasan_sub1" style="width:500px" id="list_penjelasan_sub1">
+            </select>  
+          </div>
+            <form class="form-horizontal">
+              <div class="box-body">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Penjelasan</label>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" id="penjelasan_sub2" name="penjelasan_sub2" placeholder="Penjelasan" required></textarea>
+                  </div>
+                </div>
+              </div>
+              <br/><br/><br/><br/><br/>
               <div class="modal-footer">  
                 <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
               </div>
@@ -416,7 +421,7 @@
                   </div>
                 </div>
               </div>
-              <br/><br/><br/><br/><br/><br/><br/><br/>
+              <br/><br/><br/><br/><br/><br/><br/><br/><br/>
               <div class="modal-footer">  
                 <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
               </div>

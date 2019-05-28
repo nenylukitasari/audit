@@ -8,6 +8,7 @@ use DB;
 use Validator;
 use App\Version;
 use App\JenisKegiatan;
+use App\VersionSearchAspect;
 use App\Kegiatan;
 use App\Kategori;
 use App\Penjelasan;
@@ -63,6 +64,12 @@ class VersiController extends Controller
                         if($new_penjelasan->kegiatan_id != null)
                             $new_penjelasan->kegiatan_id = $new_kegiatan->id;
                         $new_penjelasan->save();
+                            foreach ($penjelasan->penjelasan_sub1 as $penjelasan_sub1) {
+                                $penjelasan_sub1 = PenjelasanSub1::find($penjelasan_sub1->id);
+                                $new_penjelasan_sub1 = $penjelasan_sub1->replicate();
+                                $new_penjelasan_sub1->penjelasan_id = $new_penjelasan->id;
+                                $new_penjelasan_sub1->save();
+                            }
                         }
                     foreach ($kegiatan->kategori as $kategori) {
                         $kategori = Kategori::find($kategori->id);
@@ -76,6 +83,18 @@ class VersiController extends Controller
                             if ($new_penjelasan->kategori_id != null) 
                                 $new_penjelasan->kategori_id = $new_kategori->id;
                             $new_penjelasan->save();
+                                foreach ($penjelasan->penjelasan_sub1 as $penjelasan_sub1) {
+                                    $penjelasan_sub1 = PenjelasanSub1::find($penjelasan_sub1->id);
+                                    $new_penjelasan_sub1 = $penjelasan_sub1->replicate();
+                                    $new_penjelasan_sub1->penjelasan_id = $new_penjelasan->id;
+                                    $new_penjelasan_sub1->save();
+                                    foreach ($penjelasan_sub1->penjelasan_sub2 as $penjelasan_sub2) {
+                                        $penjelasan_sub2 = PenjelasanSub2::find($penjelasan_sub2->id);
+                                        $new_penjelasan_sub2 = $penjelasan_sub2->replicate();
+                                        $new_penjelasan_sub2->penjelasan_sub1_id = $new_penjelasan_sub1->id;
+                                        $new_penjelasan_sub2->save();
+                                    }
+                                }
                             }
                         foreach ($kategori->uraian as $uraian) {
                             $uraian = Uraian::find($uraian->id);
@@ -106,9 +125,9 @@ class VersiController extends Controller
                 }
             }
         }  
-        //return redirect('/versisbi')->with('message_success',"Berhasil menambahkan versi"); 
+        return redirect('/versisbi')->with('message_success',"Berhasil menambahkan versi"); 
         //sleep(2);
-        return response()->json("berhasil");
+        // return response()->json("berhasil");
         //exit(json_encode(['message_success'=>"Berhasil menambahkan versi"]));
     }
 
@@ -176,20 +195,27 @@ class VersiController extends Controller
 
     public function search(Request $request)
     {
-        $searchResults = (new Search())
-        // ->where(Version::class, )
-            ->registerModel(JenisKegiatan::class, 'jenis_kegiatan')
-            ->registerModel(Kegiatan::class, 'nama_kegiatan')
-            ->registerModel(Kategori::class, 'kategori_kegiatan')
-            ->registerModel(Uraian::class, 'uraian_kegiatan')
-            ->registerModel(Sub1::class, 'uraian_kegiatan')
-            ->registerModel(Sub2::class, 'uraian_kegiatan')
-            ->registerModel(Penjelasan::class, 'penjelasan')
-            ->registerModel(PenjelasanSub1::class, 'penjelasan')
-            ->registerModel(PenjelasanSub2::class, 'penjelasan')
-            // ->perform(Version::where('status','=', 0))
-            ->perform($request->input('query'));
+        // $versions = Version::where('status','=', 0)->get();
+            $searchResults = (new Search())
+            // ->registerAspect(VersionSearchAspect::class)
+            // ->where(Version::class, )
+                ->registerModel(JenisKegiatan::class, 'jenis_kegiatan')
+                ->registerModel(Kegiatan::class, 'nama_kegiatan')
+                ->registerModel(Kategori::class, 'kategori_kegiatan')
+                // // ->registerModel(Uraian::class, 'uraian_kegiatan')
+                // // ->registerModel(Sub1::class, 'uraian_kegiatan')
+                // // ->registerModel(Sub2::class, 'uraian_kegiatan')
+                // // ->registerModel(Penjelasan::class, 'penjelasan')
+                // // ->registerModel(PenjelasanSub1::class, 'penjelasan')
+                // // ->registerModel(PenjelasanSub2::class, 'penjelasan')
+                // // ->perform(Version::where('status','=', 0))
+                ->perform($request->input('query'));
+        // $searchTerm = $request->query;
 
+
+        // $searchResults= Version::query()
+        //                 ->where('status' , 0)
+        //                 ->whereLike(['version'], $request->query)->get();
         return view('hasil_sbi', compact('searchResults'));
     }
             

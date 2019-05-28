@@ -5,6 +5,11 @@
     @foreach ($version->kegiatan as $kegiatan)
     @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
        {{$kegiatan->nama_kegiatan}}
+       @foreach ($kegiatan->kategori as $kategori)
+         @if($kategori->kode_bagian==$kode_bagian_kategori)
+          {{$kategori->kategori_kegiatan}}
+         @endif
+       @endforeach
     @endif
     @endforeach
     @endforeach
@@ -176,271 +181,284 @@
 </div>
 
 <!--Add Modal-->
-        <div id="addModal" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Add</h4>
-              </div>
-              <div class="modal-body">
-                <select class="styled-select semi-square" style="width:200px" id="pilihopsi">
-                  <option value="0">Pilih opsi</option>
-                  <option value="1">Kategori</option>
-                  <option value="2">Uraian</option>
-                  <option value="3">Sub Uraian</option>
-                  <option value="4">Penjelasan</option>
-                  @if(strpos($penjelasan->penjelasan_sub1,'0')!== false)
-                  <option value="5">Sub Penjelasan</option>
-                  @endif
-                </select>
-                <input type="button" name="submitpilih" id="submitpilih" class="btn btn-primary btn-rounded" value="Add"/>
+<div id="addModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add</h4>
+      </div>
+      <div class="modal-body">
+        @foreach ($versions as $version)
+        @foreach ($version->kegiatan as $kegiatan)
+        @foreach ($kegiatan->kategori as $kategori)
+        @foreach ($kategori->penjelasan as $penjelasan)
+        @endforeach
+        @endforeach
+        @endforeach
+        @endforeach
+        <select class="styled-select semi-square" style="width:200px" id="pilihopsi">
+          <option value="0">Pilih opsi</option>
+          <option value="1">Kategori</option>
+          <option value="2">Uraian</option>
+          <option value="3">Sub Uraian</option>
+          <option value="4">Penjelasan</option>
+          @if(strpos($penjelasan->penjelasan_sub1,'0')!== false)
+          <option value="5">Sub Penjelasan</option>
+          @endif
+        </select>
+        <input type="button" name="submitpilih" id="submitpilih" class="btn btn-primary btn-rounded" value="Add"/>
 
-             <div class="form-group" id="form-kategori">
-                  <br/>
-                  @foreach ($version->kegiatan as $kegiatan)
-                    @foreach ($kegiatan->kategori as $kategori)
-                  @endforeach
-                  @endforeach
-                <form action="{{url('/data/add', $kategori->kode_tabel)}}" method="POST"> 
-                  {{csrf_field()}} 
-             <div class="form-group">
-              <select class="form-control select2" style="width:500px" name="kegiatan_id" required>
-                <option></option>
-                @foreach ($versions as $version)
-                  @foreach ($version->kegiatan as $kegiatan)
-                    @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
-                      <option value="{{$kegiatan->id}}">{{$kegiatan->nama_kegiatan}}</option>
-                    @endif
-                @endforeach
-              @endforeach
-              </select>  
-            </div>
-            <form class="form-horizontal">
-              <div class="box-body">
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Kode Bagian</label>
-                  <div class="col-sm-9">
-                    <input type="text" style="border: none; box-shadow: none;" name="kode_bagian" value="{{$kode_bagian_kategori}}" class="form-control" required />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Kategori</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" id="kategori_kegiatan" name="kategori_kegiatan" placeholder="Kategori Kegiatan" required></textarea>
-                  </div>
-                </div>
-              </div>
-              <br/><br/><br/><br/><br/><br/><br/><br/>
-              <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
-              </div>
-            </form>
-          </form>
-          </div>
-
-          <div class="form-group" id="form-uraian">
-                  <br/>
-                  @foreach ($version->kegiatan as $kegiatan)
-                    @foreach ($kegiatan->uraian as $uraian)
-                  @endforeach
-                  @endforeach
-                <form action="{{url('/data/add', $uraian->kode_tabel)}}" method="POST">
-                  {{csrf_field()}} 
-                    <div class="form-group">
-                      <select class="form-control select2" style="width:500px" name="kategori_kegiatan" required>
-                        <option></option>
-                        @foreach ($versions as $version)
-                         @foreach ($version->kegiatan as $kegiatan)
-                         @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
-                          @foreach($kegiatan->kategori as $kategori)
-                             <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
-                          @endforeach
-                          @endif
-                        @endforeach
-                      @endforeach
-                      </select>  
-                    </div>
-            <form class="form-horizontal">
-              <div class="box-body">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Uraian</label>
-                  <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" id="uraian_kegiatan" name="uraian_kegiatan" placeholder="Uraian Kegiatan" required></textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Satuan</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="satuan" placeholder="Satuan" class="form-control" required />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Bruto</label>
-                  <div class="col-sm-10">
-                    <input type="number" name="var1" placeholder="Besaran Bruto Maksimum (Rp)" class="form-control" required />
-                  </div>
-                </div>
-              </div>
-              <br/><br/><br/><br/><br/><br/><br/><br/>
-              <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
-              </div>
-            </form>
-          </form>
-          </div>
-
-         
-
-         <div class="form-group" id="form-sub1">
-          <br/>
+ <div class="form-group" id="form-kategori">
+      <br/>
+      @foreach ($version->kegiatan as $kegiatan)
+        @foreach ($kegiatan->kategori as $kategori)
+      @endforeach
+      @endforeach
+    <form action="{{url('/data/add', $kategori->kode_tabel)}}" method="POST"> 
+      {{csrf_field()}} 
+     <div class="form-group">
+      <select class="form-control select2" style="width:500px" name="kegiatan_id" required>
+        <option></option>
+        @foreach ($versions as $version)
           @foreach ($version->kegiatan as $kegiatan)
-            @foreach ($kegiatan->uraian as $uraian)
-            @foreach ($uraian->sub1 as $sub1)
-            @endforeach
-            @endforeach
-          @endforeach
-        <form action="{{url('/data/add', $sub1->kode_tabel)}}" method="POST"> 
-          {{csrf_field()}} 
-          <div class="form-group">
-            <select name="list_kategori_kegiatan" class="form-control select2"  style="width:500px" id="list_kategori_kegiatan">
-              <option value=""></option>
-              @foreach($versions as $version)
-                @foreach($version->kegiatan as $kegiatan)
-                @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
-                @foreach($kegiatan->kategori as $kategori)
-                    <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
-                @endforeach 
-                @endif
-              @endforeach
-            @endforeach
-            </select>
+            @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+              <option value="{{$kegiatan->id}}">{{$kegiatan->nama_kegiatan}}</option>
+            @endif
+        @endforeach
+      @endforeach
+      </select>  
+    </div>
+    <form class="form-horizontal">
+      <div class="box-body">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Kode Bagian</label>
+          <div class="col-sm-9">
+            <input type="text" style="border: none; box-shadow: none;" name="kode_bagian" value="{{$kode_bagian_kategori}}" class="form-control" required />
           </div>
-            <div class="form-group">  
-            <select class="form-control selecturaian" name="list_uraian_kegiatan" style="width:500px" id="list_uraian_kegiatan">
-              {{-- <option value="1">yeyeyey</option>--}}
-              </select>  
-            </div>
-            <form class="form-horizontal">
-              <div class="box-body">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Uraian</label>
-                  <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" id="uraian_kegiatan" name="uraian_kegiatan" placeholder="Uraian Kegiatan" required></textarea>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Satuan</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="satuan" placeholder="Satuan" class="form-control" required />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Bruto</label>
-                  <div class="col-sm-10">
-                    <input type="number" name="var1" placeholder="Besaran Bruto Maksimum (Rp)" class="form-control" required />
-                  </div>
-                </div>
-              </div>
-              <br/><br/><br/><br/><br/><br/><br/><br/>
-              <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
-              </div>
-            </form>
-          </form>
-          </div>
-  <div class="form-group" id="form-penjelasan-sub1">
-                  <br/>
-                  @foreach ($version->penjelasan as $penjelasan)
-                  @endforeach
-                <form action="{{url('/data/add', $penjelasan_sub1->kode_tabel)}}" method="POST">
-                  {{csrf_field()}} 
-                    <div class="form-group">
-                       <select name="list_kategori_kegiatan" class="form-control select2"  style="width:500px" id="list_kategori" required>
-                        <option></option>
-                        @foreach ($versions as $version)
-                         @foreach ($version->kegiatan as $kegiatan)
-                         @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
-                          @foreach($kegiatan->kategori as $kategori)
-                          @if($kategori->kode_bagian==$kode_bagian_kategori)
-                             <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
-                          @endif
-                          @endforeach
-                          @endif
-                        @endforeach
-                      @endforeach
-                      </select>  
-                    </div>
-          <div class="form-group">  
-          <select class="form-control selectpenjelasan" name="list_penjelasan" style="width:500px" id="list_penjelasan">
-            </select>  
-          </div>
-            <form class="form-horizontal">
-              <div class="box-body">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Penjelasan</label>
-                  <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" id="penjelasan_sub1" name="penjelasan_sub1" placeholder="Penjelasan" required></textarea>
-                  </div>
-                </div>
-              </div>
-              <br/><br/><br/><br/><br/>
-              <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
-              </div>
-            </form>
-          </form>
-          </div>
-
-    <div class="form-group" id="form-penjelasan">
-                  <br/>
-                  @foreach ($version->penjelasan as $penjelasan)
-                  @endforeach
-                <form action="{{url('/data/add', $penjelasan->kode_tabel)}}" method="POST">
-                  {{csrf_field()}} 
-                    <div class="form-group">
-                      <select class="form-control select2" style="width:500px" name="penjelasan_kategori" required>
-                        <option></option>
-                        @foreach ($versions as $version)
-                         @foreach ($version->kegiatan as $kegiatan)
-                         @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
-                          @foreach($kegiatan->kategori as $kategori)
-                             <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
-                          @endforeach
-                          @endif
-                        @endforeach
-                      @endforeach
-                      </select>  
-                    </div>
-            <form class="form-horizontal">
-              <div class="box-body">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Version</label>
-                  <div class="col-sm-10">
-                    <input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="version" name="version" value="{{$version->id}}" required/>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Penjelasan</label>
-                  <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" id="penjelasan" name="penjelasan" placeholder="Penjelasan" required></textarea>
-                  </div>
-                </div>
-              </div>
-              <br/><br/><br/><br/><br/><br/>
-              <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
-              </div>
-            </form>
-          </form>
-          </div>
-
-          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Kategori</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" rows="3" id="kategori_kegiatan" name="kategori_kegiatan" placeholder="Kategori Kegiatan" required></textarea>
           </div>
         </div>
       </div>
+      <br/><br/><br/><br/><br/><br/><br/><br/>
+      <div class="modal-footer">  
+        <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
+      </div>
+    </form>
+  </form>
+</div>
+
+<div class="form-group" id="form-uraian">
+  <br/>
+  @foreach ($version->kegiatan as $kegiatan)
+    @foreach ($kegiatan->uraian as $uraian)
+  @endforeach
+  @endforeach
+<form action="{{url('/data/add', $uraian->kode_tabel)}}" method="POST">
+  {{csrf_field()}} 
+    <div class="form-group">
+      <select class="form-control select2" style="width:500px" name="kategori_kegiatan" required>
+        <option></option>
+        @foreach ($versions as $version)
+         @foreach ($version->kegiatan as $kegiatan)
+         @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+          @foreach($kegiatan->kategori as $kategori)
+             <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
+          @endforeach
+          @endif
+        @endforeach
+      @endforeach
+      </select>  
     </div>
+  <form class="form-horizontal">
+    <div class="box-body">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Uraian</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" rows="3" id="uraian_kegiatan" name="uraian_kegiatan" placeholder="Uraian Kegiatan" required></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Satuan</label>
+        <div class="col-sm-10">
+          <input type="text" name="satuan" placeholder="Satuan" class="form-control" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Bruto</label>
+        <div class="col-sm-10">
+          <input type="number" name="var1" placeholder="Besaran Bruto Maksimum (Rp)" class="form-control" required />
+        </div>
+      </div>
+    </div>
+    <br/><br/><br/><br/><br/><br/><br/><br/>
+    <div class="modal-footer">  
+      <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
+    </div>
+  </form>
+</form>
+</div>
+<div class="form-group" id="form-sub1">
+<br/>
+@foreach ($version->kegiatan as $kegiatan)
+  @foreach ($kegiatan->uraian as $uraian)
+  @foreach ($uraian->sub1 as $sub1)
+  @endforeach
+  @endforeach
+@endforeach
+<form action="{{url('/data/add', $sub1->kode_tabel)}}" method="POST"> 
+{{csrf_field()}} 
+<div class="form-group">
+  <select name="list_kategori_kegiatan" class="form-control select2"  style="width:500px" id="list_kategori_kegiatan">
+    <option value=""></option>
+    @foreach($versions as $version)
+      @foreach($version->kegiatan as $kegiatan)
+      @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+      @foreach($kegiatan->kategori as $kategori)
+          <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
+      @endforeach 
+      @endif
+    @endforeach
+  @endforeach
+  </select>
+</div>
+  <div class="form-group">  
+  <select class="form-control selecturaian" name="list_uraian_kegiatan" style="width:500px" id="list_uraian_kegiatan">
+    {{-- <option value="1">yeyeyey</option>--}}
+    </select>  
+  </div>
+  <form class="form-horizontal">
+    <div class="box-body">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Uraian</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" rows="3" id="uraian_kegiatan" name="uraian_kegiatan" placeholder="Uraian Kegiatan" required></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Satuan</label>
+        <div class="col-sm-10">
+          <input type="text" name="satuan" placeholder="Satuan" class="form-control" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Bruto</label>
+        <div class="col-sm-10">
+          <input type="number" name="var1" placeholder="Besaran Bruto Maksimum (Rp)" class="form-control" required />
+        </div>
+      </div>
+    </div>
+    <br/><br/><br/><br/><br/><br/><br/><br/>
+    <div class="modal-footer">  
+      <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
+    </div>
+  </form>
+</form>
+</div>
+{{-- <div class="form-group" id="form-penjelasan-sub1">
+  <br/>
+  @foreach ($versions as $version)
+  @foreach ($version->kegiatan as $kegiatan)
+  @foreach ($kegiatan->kategori as $kategori)
+  @foreach ($kategori->penjelasan as $penjelasan)
+  @foreach ($penjelasan->penjelasan_sub1 as $penjelasan_sub1)
+  @endforeach
+  @endforeach
+  @endforeach
+  @endforeach
+  @endforeach
+  <form action="{{url('/data/add', $penjelasan_sub1->kode_tabel)}}" method="POST">
+  {{csrf_field()}} 
+    <div class="form-group">
+       <select name="list_kategori_kegiatan" class="form-control select2"  style="width:500px" id="list_kategori" required>
+        <option></option>
+        @foreach ($versions as $version)
+         @foreach ($version->kegiatan as $kegiatan)
+         @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+          @foreach($kegiatan->kategori as $kategori)
+          @if($kategori->kode_bagian==$kode_bagian_kategori)
+             <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
+          @endif
+          @endforeach
+          @endif
+        @endforeach
+      @endforeach
+      </select>  
+  </div>
+  <div class="form-group">  
+  <select class="form-control selectpenjelasan" name="list_penjelasan" style="width:500px" id="list_penjelasan">
+    </select>  
+  </div>
+    <form class="form-horizontal">
+      <div class="box-body">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Penjelasan</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" rows="3" id="penjelasan_sub1" name="penjelasan_sub1" placeholder="Penjelasan" required></textarea>
+          </div>
+        </div>
+      </div>
+      <br/><br/><br/><br/><br/>
+      <div class="modal-footer">  
+        <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
+      </div>
+    </form>
+  </form>
+  </div> --}}
+
+<div class="form-group" id="form-penjelasan">
+  <br/>
+  @foreach ($version->penjelasan as $penjelasan)
+  @endforeach
+<form action="{{url('/data/add', $penjelasan->kode_tabel)}}" method="POST">
+  {{csrf_field()}} 
+    <div class="form-group">
+      <select class="form-control select2" style="width:500px" name="penjelasan_kategori" required>
+        <option></option>
+        @foreach ($versions as $version)
+         @foreach ($version->kegiatan as $kegiatan)
+         @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+          @foreach($kegiatan->kategori as $kategori)
+             <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
+          @endforeach
+          @endif
+        @endforeach
+      @endforeach
+      </select>  
+    </div>
+  <form class="form-horizontal">
+    <div class="box-body">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Version</label>
+        <div class="col-sm-10">
+          <input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="version" name="version" value="{{$version->id}}" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Penjelasan</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" rows="3" id="penjelasan" name="penjelasan" placeholder="Penjelasan" required></textarea>
+        </div>
+      </div>
+    </div>
+    <br/><br/><br/><br/><br/><br/>
+    <div class="modal-footer">  
+      <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
+    </div>
+  </form>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <!-- Show Modal -->
   <div class="modal fade" id="show-modal1">

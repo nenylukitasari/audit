@@ -55,12 +55,12 @@ class JenisKegiatan extends Model implements Searchable
 
     public function getSearchResult(): SearchResult
     {
-        // $url = route('categories.show', $this->id);
+        $url = url('/dokumen');
 
         return new SearchResult(
             $this,
-            $this->jenis_kegiatan
-            // $url
+            $this->jenis_kegiatan,
+            $url
          );
     }
 

@@ -360,6 +360,20 @@ class DataController extends Controller
         return response()->json($list_penjelasan_sub1);
     }
 
+    public function getDataId(Request $request) {
+        switch ($request->kode_tabel) {
+            case '':
+            {
+
+                break;
+            }
+             
+            default:
+                # code...
+                break;
+        }
+    }
+
     public function store(Request $request)
     {
         // $validator = Validator::make($request->all(), [

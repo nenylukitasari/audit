@@ -8,6 +8,8 @@
 @endsection
 @section('content')
 <br/>
+<button type="button" class="btn btn-default waves-effect waves-light"><span class="btn-label"><i class="fa fa-search"></i></span><a href= "{{url ('/datasbi') }}">Cari Data SBI</a></button>
+<br/><br/><br/>
 <div class="card">
     <div class="card-header"><b>{{ $searchResults->count() }} results found for "{{ request('query') }}"</b></div>
 
@@ -18,7 +20,7 @@
 
             @foreach($modelSearchResults as $searchResult)
                 <ul>
-                    <li><a href="#">{{ $searchResult->title }}</a></li>
+                    <li><a href="{{ $searchResult->url }}">{{ $searchResult->title }}</a></li>
                 </ul>
             @endforeach
         @endforeach

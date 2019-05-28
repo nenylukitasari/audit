@@ -43,12 +43,12 @@ class Kegiatan extends Model implements Searchable
 
     public function getSearchResult(): SearchResult
     {
-        // $url = route('categories.show', $this->id);
+        $url = url('/data/'.$this->kode_tabel . '/' .$this->kode_bagian );
 
         return new SearchResult(
             $this,
-            $this->nama_kegiatan
-            // $url
+            $this->nama_kegiatan,
+            $url
          );
     }
 

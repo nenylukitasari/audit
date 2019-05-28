@@ -159,7 +159,6 @@ else {
     </div>
 </div>
 <!-- Left navbar-header end -->
-
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
