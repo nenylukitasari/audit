@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Temuan;
+use App\Kda_temuan;
 use App\kda;
 use App\kda_keterangan;
-use App\kda_keterangan2;
+use App\Kda_pelengkap;
 use PDF;
 use DB;
 use Zipper;
@@ -57,8 +57,8 @@ class PdfController extends Controller
     {
         $kda = DB::table('kda')->where('id_kda',$id)->leftjoin('unit','kda.unit','=','unit.id_unit')->first();
         // $data = DB::table('kda_data')->where('kda_id',$id)->first();
-        $temuan = DB::table('temuan')->where('kda_id',$id)->where('status',0)->get();
-        $kda_ket = DB::table('kda_keterangan2')->where('kda_id',$id)->get();
+        $temuan = DB::table('kda_temuan')->where('kda_id',$id)->where('status',0)->get();
+        $kda_ket = DB::table('kda_pelengkap')->where('kda_id',$id)->get();
         $ket = DB::table('kda_keterangan')->where('kda_id',$id)->first();
         $bulan = date("m",strtotime($kda->bulan_audit));
         $masaaudit = date("m",strtotime($kda->masa_audit));
@@ -83,13 +83,13 @@ class PdfController extends Controller
         $pdfnama = $kda->id_kda."-".$kda->nama."-".$kda->bulan_audit.".pdf";
         if ($kda->jenis == 1)
 				{
-					$summernotes = DB::table('summernotes')->where('id',1)->first();
+					$summernotes = DB::table('kda_template')->where('id',1)->first();
 					$view = view('pdf', ['summernotes' => $summernotes]);
 					$contents = $view->render();
 
 				}
 				elseif ($kda->jenis == 2) {
-					$summernotes = DB::table('summernotes')->where('id',2) ->first();
+					$summernotes = DB::table('kda_template')->where('id',2) ->first();
 					$view = view('pdf', ['summernotes' => $summernotes]);
 					$contents = $view->render();
 					//untuk mencatat temuan sebelumnya
@@ -97,8 +97,8 @@ class PdfController extends Controller
 					->whereRaw(" MONTH(masa_audit) < {$masaaudit}  AND YEAR(masa_audit) =  20{$tahun}")
 					->get();
 					//dd($semuakda);
-					$temuan1 = db::table('temuan')->leftjoin('kda','temuan.kda_id','=','kda.id_kda')->whereIn('kda_id', $semuakda)
-					->where('temuan.status',0)
+					$temuan1 = db::table('kda_temuan')->leftjoin('kda','kda_temuan.kda_id','=','kda.id_kda')->whereIn('kda_id', $semuakda)
+					->where('kda_temuan.status',0)
 					->orderBy('kda.masa_audit')->get();
 					$temuan2 = json_decode($temuan1);
 					$table = '';
@@ -169,7 +169,7 @@ class PdfController extends Controller
 					
 				}
 				elseif ($kda->jenis == 3) {
-					$summernotes = DB::table('summernotes')->where('id',3) ->first();
+					$summernotes = DB::table('kda_template')->where('id',3) ->first();
 					$view = view('pdf', ['summernotes' => $summernotes]);
 					$contents = $view->render();
 					$contents = str_replace("kondisi$", $ket->kondisi, $contents);
@@ -179,7 +179,7 @@ class PdfController extends Controller
 					$contents = str_replace("tanggapan$", $ket->tanggapan, $contents);
 				}
 				else {
-					$summernotes = DB::table('summernotes')->where('id',4) ->first();
+					$summernotes = DB::table('kda_template')->where('id',4) ->first();
 					$view = view('pdf', ['summernotes' => $summernotes]);
 					$contents = $view->render();
 					$contents = str_replace("kondisi$", $ket->kondisi, $contents);
@@ -349,7 +349,7 @@ class PdfController extends Controller
     }
     public function print()
     {
-    	$summernotes = DB::table('summernotes')->where('id',2) ->first();
+    	$summernotes = DB::table('kda_template')->where('id',2) ->first();
 		return view ("pdf", compact('summernotes'));
     }
 }

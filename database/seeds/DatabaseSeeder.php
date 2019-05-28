@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             PenjelasanSeeder::class,
             PenjelasanSub1Seeder::class,
             PenjelasanSub2Seeder::class,
-            template_summernote::class,
+            Kda_templateSeeder::class,
+            BerkasSeeder::class,
             Unitseeder::class,
         ]);
     }

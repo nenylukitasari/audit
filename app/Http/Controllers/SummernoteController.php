@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Summernote;
+use App\Kda_template;
 use Illuminate\Http\Request;
 use DB;
 
@@ -10,7 +10,7 @@ class SummernoteController extends Controller
 {
     public function index()
     {
-        $summernote = DB::table('summernotes')->where('id', 4)->get();
+        $summernote = DB::table('kda_template')->where('id', 4)->get();
         //return $summernote;
         return view('summernote',compact('summernote'));
     }
@@ -52,7 +52,7 @@ class SummernoteController extends Controller
 
     public function show(Summernote $summernote)
     {
-        $summernote = DB::table('summernotes')->get();
+        $summernote = DB::table('kda_template')->get();
         //return $summernote;
         return view('summernote_display',compact('summernote'));
     }
@@ -71,7 +71,7 @@ class SummernoteController extends Controller
     public function pilihtemplate(Request $request)
     {
         $id = $request->input('id');
-        $summernote = DB::table('summernotes')->where('id', $id)->first();
+        $summernote = DB::table('kda_template')->where('id', $id)->first();
 
         return response()->json($summernote);
         //return $summernote;

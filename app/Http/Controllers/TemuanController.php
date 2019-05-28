@@ -6,10 +6,10 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use App\Temuan;
+use App\Kda_temuan;
 use App\kda;
 use App\kda_keterangan;
-use App\kda_keterangan2;
+use App\Kda_pelengkap;
 use Validator;
 use DB;
 use PDF;
@@ -71,7 +71,7 @@ class TemuanController extends Controller
     public function gettemuan(Request $request)
 	{
 		$id = $request->input('id');
-		$temuan = DB::table('temuan')->where('kda_id',$id)->get();
+		$temuan = DB::table('kda_temuan')->where('kda_id',$id)->get();
         //$kda = DB::table('kda')->whereIn('id_kda', $id)->get();
         //return ($kda);
         foreach ($temuan as $key => $data) {
@@ -108,7 +108,7 @@ class TemuanController extends Controller
         for ($i=0; $i < $jumlah ; $i++) {
             if($i < $tambah)
             {
-                $temuan = temuan::find($data['id'][$i]);
+                $temuan = kda_temuan::find($data['id'][$i]);
                 if ($data['hapus'][$i] == 1) {
                     $temuan->delete();
                 }
@@ -124,7 +124,7 @@ class TemuanController extends Controller
             }
             else
             {
-                $tem = new temuan;
+                $tem = new kda_temuan;
                 $tem->kda_id = $data['id_kda'];
                 $tem->kwitansi = $data['kwitansi'][$i];
                 $tem->nominal = $data['nominal'][$i];
@@ -147,8 +147,8 @@ class TemuanController extends Controller
         $semuakda = kda::select('id_kda')->where('unit', $unit)
         ->whereRaw(" MONTH(masa_audit) < {$bulan}  AND YEAR(masa_audit) =  {$tahun}")
         ->get();
-        $temuan1 = db::table('temuan')->join('kda','temuan.kda_id','=','kda.id_kda')->whereIn('kda_id', $semuakda)
-        ->where('temuan.status',0)
+        $temuan1 = db::table('kda_temuan')->join('kda','kda_temuan.kda_id','=','kda.id_kda')->whereIn('kda_id', $semuakda)
+        ->where('kda_temuan.status',0)
         ->orderBy('kda.masa_audit')->get();
         return response()->json($temuan1);
     }

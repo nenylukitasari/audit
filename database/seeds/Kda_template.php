@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Summernote;
+use App\Kda_template;
 
-class template_summernote extends Seeder
+class Kda_template extends Seeder
 {
     /**
      * Run the database seeds.

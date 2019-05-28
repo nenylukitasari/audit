@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\kda;
-use App\summernote;
+
 use App\kda_keterangan;
-use App\kda_keterangan2;
+use App\Kda_pelengkap;
+use App\Kda_template;
 use Validator;
-use App\Temuan;
+use App\Kda_temuan;
 use App\Berkas;
 use App\Kegiatan;
 use Carbon;
@@ -85,7 +86,7 @@ class KdaController extends Controller
 	{
 		$unit = DB::table('unit')->get();
 		$berkas = kegiatan::all();
-		$summernote = DB::table('summernotes')->where('id','>' ,4)->get();
+		$summernote = DB::table('Kda_template')->where('id','>' ,4)->get();
         return view("buatkda", compact('unit','summernote', 'berkas'));
 	}
 	public function triwulan()
@@ -132,7 +133,7 @@ class KdaController extends Controller
 	        for ($i=0; $i < $jumlah; ++$i) 
 	        {
 
-	            $ket= new kda_keterangan2;        
+	            $ket= new Kda_pelengkap;        
 	            $ket->kelengkapan = $input['kelengkapan'][$i];
 	            $ket->kesediaan= $input['kesediaan'][$i];
 	            $ket->jumlah= $input['jumlah'][$i];
@@ -190,7 +191,7 @@ class KdaController extends Controller
             for ($i=0; $i < $jumlah2; ++$i) 
             {
 
-                $ket= new kda_keterangan2;        
+                $ket= new Kda_pelengkap;        
                 $ket->kelengkapan = $input['kelengkapan'][$i];
                 $ket->kesediaan= $input['kesediaan'][$i];
                 $ket->jumlah= $input['jumlah'][$i];
@@ -203,7 +204,7 @@ class KdaController extends Controller
             for ($i=0; $i < $jumlah; ++$i) 
             {
 
-                $temuan= new temuan;        
+                $temuan= new Kda_temuan;        
                 $temuan->kwitansi = $input['kwitansi'][$i];
                 $temuan->nominal= $input['nominal'][$i];
                 $temuan->keterangan= $input['keterangan'][$i];
@@ -266,7 +267,7 @@ class KdaController extends Controller
     public function template()
 	{
 
-		$summernote = DB::table('summernotes')->get();
+		$summernote = DB::table('kda_template')->get();
 		//dd($summernote);
         return view("templatekda", compact('summernote'));
 	}
@@ -282,7 +283,7 @@ class KdaController extends Controller
 	{
 		$id = $request->input('id');
 		//$kda = kda::find($id)->join('unit');
-		$kda_ket = db::table('kda_keterangan2')->where('kda_id',$id)->get();
+		$kda_ket = db::table('Kda_pelengkap')->where('kda_id',$id)->get();
 
 		foreach ($kda_ket as $key => $data) {
 			if ($data->nominal != null) {
@@ -310,7 +311,7 @@ class KdaController extends Controller
 		for ($i=0; $i < $jumlah ; $i++) {
 			if($i < $tambah)
 			{
-				$kda_ket = kda_keterangan2::find($data['id'][$i]);
+				$kda_ket = Kda_pelengkap::find($data['id'][$i]);
 				if ($data['hapus'][$i] == 1) {
 					$kda_ket->delete();
 				}
@@ -327,7 +328,7 @@ class KdaController extends Controller
 			}
 			else
 			{
-				$ket = new kda_keterangan2;
+				$ket = new Kda_pelengkap;
 			    $ket->kda_id = $data['id_kda'];
 			    $ket->kelengkapan = $data['kelengkapan'][$i];
 			    $ket->kesediaan = $data['kesediaan'][$i];

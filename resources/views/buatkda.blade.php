@@ -246,7 +246,7 @@ td .kanan{
       //$(".auditor").val(auditor);
       $("#peringatan").empty();
       $("#temuanlama").empty();
-      var listunit = `<select id="unit" class="unit2" name="unit" required=""  style="width:170px">>
+      var listunit = `<select id="unit" class="unit2" name="unit"  style="width:170px">>
                       <option></option>
                       @foreach($unit as $data => $value)
                       <option value="{{$value->id_unit}}">{{$value->nama}}</option>
