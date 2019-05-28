@@ -32,13 +32,18 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        
 	    $user = Users::find($request->edit_id_user);
 	    $user->nama = $request->edit_user_nama;
         $user->email = $request->edit_user_email;
         $user->role = $request->edit_user_role;
         $user->save();
 	    return redirect()->back()->with('message_success',"Berhasil mengubah data");
+    }
+    public function destroy($id)
+    {
+        $user = Users::find($id);
+        $user->delete();
+        return redirect()->back()->with('message_success',"Berhasil menghapus data");
     }
             
 }

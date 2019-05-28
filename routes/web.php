@@ -31,6 +31,7 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/users', 'UserController@store');
 	Route::post('/data/user','UserController@getData');
 	Route::post('/user/update','UserController@update');
+	Route::post('/user/delete/{id}','UserController@destroy');
 
 	Route::get('/datasbi', function () {return view('cari_sbi');});
 	Route::post('/data/search','VersiController@search');

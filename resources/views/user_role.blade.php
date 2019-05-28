@@ -26,7 +26,7 @@
           <th class="col-sm-5">Nama</th>
           <th class="col-sm-3">Email</th>
           <th class="col-sm-1">Role</th>
-          <th class="col-sm-1"></th>
+          <th class="col-sm-2"></th>
         </tr>
       </thead>
      <tbody>
@@ -49,6 +49,7 @@
               <td> 
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $user->id }})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $user->id }})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#delete-modal"><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button>
               </td>
             </tr>
         @endforeach
@@ -178,7 +179,6 @@
                           <option value="1">Admin</option> 
                           <option value="2">Pimpinan</option> 
                       </select>  
-                      {{-- <input class="form-control" type="text" size="50" id="edit_user_role" name="edit_user_role" required> </td> --}}
                   </tr>
                 </table>
               </div>              
@@ -191,6 +191,26 @@
           </div>
         </div>
     </div>
+<!--Delete Modal-->
+<div class="modal modal-danger fade" id="delete-modal">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title text-center" id="myModalLabel">Delete Confirmation</h4>
+  </div>
+  @foreach($users as $user)
+  <form class="form-inline" action="{{ url('/user/delete/'.$user->id) }}" method="POST">
+  @endforeach
+    {{csrf_field()}} 
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" data-dismiss="modal">No, Cancel</button>
+      <button type="submit" class="btn btn-warning">Yes, Delete</button>
+    </div>
+  </form>
+</div>
+</div>
+</div>
   
 </div>
 @endsection
