@@ -127,6 +127,7 @@ else {
             <li><a href="{{ url('home') }}" class="waves-effect"><i data-icon="Z" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Dashboard</span></a> </li>
             <li><a href="{{ url('dokumen') }}" class="waves-effect"><i data-icon="m" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Standar Biaya Institut</span></a> </li>
             <li><a href="{{ url('versisbi') }}" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Versi SBI</span></a> </li>
+            <li><a href="{{ url('users') }}" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">User Role</span></a> </li>
             <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="#" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Cari Data<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ url('datapegawai') }}" class="waves-effect"><i data-icon="O" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Data Pegawai</span></a> </li>

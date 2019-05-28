@@ -23,10 +23,17 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 // 	// punya neny
 	Route::get('/datapegawai', function () {return view('cari_pegawai');});
 	Route::get('/home', function () {return view('home');});
+	// Route::get('/user','UserController@index');
+	// Route::post('/user/add','UserController@store');
+
+	// Route::resource('users', 'UserController');
+	Route::get('/users', 'UserController@index');
+	Route::post('/users', 'UserController@store');
+	Route::post('/data/user','UserController@getData');
+	Route::post('/user/update','UserController@update');
 
 	Route::get('/datasbi', function () {return view('cari_sbi');});
 	Route::post('/data/search','VersiController@search');
-	// Route::post('/datasbi','VersiController@search');
 
 	Route::get('/berkas', 'KdaController@berkas');
 	Route::get('/dokumen', 'DataController@index')->name('dokumen');
