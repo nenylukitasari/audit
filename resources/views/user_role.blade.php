@@ -251,7 +251,9 @@
           $('#id_user').val(data.id);
           $('#user_nama').val(data.nama);
           $('#user_email').val(data.email);
-          $('#user_role').val(data.role);
+          if (data.role == 1) $('#user_role').val("Admin");
+          if (data.role == 2) $('#user_role').val("Pimpinan");
+          if (data.role == 3) $('#user_role').val("Auditor");
           $('#edit_id_user').val(data.id);
           $('#edit_user_nama').val(data.nama);
           $('#edit_user_email').val(data.email);
