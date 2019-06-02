@@ -50,7 +50,12 @@ td .kanan{
               <option value="4">kda tanpa pengajuan UMK</option>
             </select>
             </div>
+            <div class="col-xs-6">
           &ensp;<input type="button" name="submitpilih" id="submitpilih" class="btn btn-info btn-rounded btn-sm" value="buat kda" />
+            </div>
+            <div class="col-xs-3">
+          <button type="button" class="btn btn-sm btn-rounded btn-warning" data-toggle="modal" data-target="#berkas">Berkas</button>
+        </div>
           </div>
       </div>
   </div>

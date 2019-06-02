@@ -5,7 +5,7 @@ session_start();
 use Closure;
 use Auth;
 
-class SemuaRole
+class BukanAuditor
 {
     /**
      * Handle an incoming request.
@@ -16,13 +16,11 @@ class SemuaRole
      */
     public function handle($request, Closure $next)
     {
-        $user = Auth::user();
-        //dd($user);
-         if (!isset($_SESSION['userinfo2']))
+        if (!isset($_SESSION['userinfo2']))
         {
             return redirect('/');
         }
-        elseif(isset($_SESSION['userinfo2']))
+        elseif(Auth::user()->role != 3)
         {
             return $next($request);
         }

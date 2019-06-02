@@ -14,74 +14,130 @@ class BerkasSeeder extends Seeder
     {
     	berkas::create([
     		'kegiatan_id'		=> '1',
-            'berkas'            => 'berkas1',
+            'berkas'    => 'Surat Tugas',
        	]);
+      berkas::create([
+        'kegiatan_id'   => '1',
+            'berkas'    => 'Daftar hadir',
+        ]);
+      berkas::create([
+        'kegiatan_id'   => '1',
+            'berkas'    => 'Daftar Penerima lembur',
+        ]);
+      berkas::create([
+        'kegiatan_id'   => '1',
+            'berkas'    => 'Undangan',
+        ]);
+      berkas::create([
+        'kegiatan_id'   => '1',
+            'berkas'    => 'Daftar Hadir',
+        ]);
+      berkas::create([
+        'kegiatan_id'   => '1',
+            'berkas'    => 'Kwitansi',
+        ]);
 
        	berkas::create([
     		'kegiatan_id'		=> '2',
-            'berkas'            => 'berkas2',
+            'berkas'            => 'Surat perjalanan dinas',
        	]);
+        berkas::create([
+        'kegiatan_id'   => '2',
+            'berkas'            => 'Surat tugas',
+        ]);
+        berkas::create([
+        'kegiatan_id'   => '2',
+            'berkas'            => 'Tiket + Boarding pass',
+        ]);
+        berkas::create([
+        'kegiatan_id'   => '2',
+            'berkas'            => 'Hotel',
+        ]);
+        berkas::create([
+        'kegiatan_id'   => '2',
+            'berkas'            => 'Laporan kegiatan',
+        ]);
+        berkas::create([
+        'kegiatan_id'   => '2',
+            'berkas'            => 'taxi',
+        ]);
 
        	berkas::create([
     		'kegiatan_id'		=> '3',
-            'berkas'            => 'berkas3',
+            'berkas'            => 'Perjanjian Kontrak Kerja',
        	]);
+        berkas::create([
+        'kegiatan_id'   => '3',
+            'berkas'            => 'Daftar hadir',
+        ]);
+        berkas::create([
+        'kegiatan_id'   => '3',
+            'berkas'            => 'Daftar penerima honorer',
+        ]);
 
        	berkas::create([
     		'kegiatan_id'		=> '4',
-            'berkas'            => 'berkas4',
+            'berkas'            => 'Urusan langsung dengan Kantor Audit Internal ITS',
        	]);
        	berkas::create([
     		'kegiatan_id'		=> '5',
-            'berkas'            => 'berkas5',
+            'berkas'            => 'Urusan langsung dengan Kantor Audit Internal ITS',
        	]);
        	berkas::create([
     		'kegiatan_id'		=> '6',
-            'berkas'            => 'berkas6',
+            'berkas'            => 'Urusan langsung dengan Kantor Audit Internal ITS',
        	]);
        	berkas::create([
     		'kegiatan_id'		=> '7',
-            'berkas'            => 'berkas7',
+            'berkas'            => 'Urusan langsung dengan Kantor Audit Internal ITS',
        	]);
        	berkas::create([
     		'kegiatan_id'		=> '8',
-            'berkas'            => 'berkas8',
+            'berkas'            => 'Urusan langsung dengan Kantor Audit Internal ITS',
        	]);
        	berkas::create([
     		'kegiatan_id'		=> '9',
-            'berkas'            => 'berkas9',
+            'berkas'            => 'Urusan langsung dengan Kantor Audit Internal ITS',
        	]);
        	berkas::create([
     		'kegiatan_id'		=> '10',
-            'berkas'            => 'berkas10',
+            'berkas'            => 'Urusan langsung dengan Kantor Audit Internal ITS',
        	]);
        	berkas::create([
     		'kegiatan_id'		=> '11',
-            'berkas'            => 'berkas11',
+            'berkas'            => 'Urusan langsung dengan Kantor Audit Internal ITS',
        	]);
        	berkas::create([
     		'kegiatan_id'		=> '12',
-            'berkas'            => 'berkas12',
+            'berkas'            => 'Urusan langsung dengan Kantor Audit Internal ITS',
        	]);
        	berkas::create([
-    		'kegiatan_id'		=> '13',
-            'berkas'            => 'berkas13',
-       	]);
+        'kegiatan_id'   => '13',
+            'berkas'            => 'Surat perjalanan dinas',
+        ]);
+        berkas::create([
+        'kegiatan_id'   => '13',
+            'berkas'            => 'Surat tugas',
+        ]);
+        berkas::create([
+        'kegiatan_id'   => '13',
+            'berkas'            => 'Tiket + Boarding pass',
+        ]);
+        berkas::create([
+        'kegiatan_id'   => '13',
+            'berkas'            => 'Hotel',
+        ]);
+        berkas::create([
+        'kegiatan_id'   => '13',
+            'berkas'            => 'Laporan kegiatan',
+        ]);
+        berkas::create([
+        'kegiatan_id'   => '13',
+            'berkas'            => 'taxi',
+        ]);
        	berkas::create([
     		'kegiatan_id'		=> '14',
-            'berkas'            => 'berkas14',
-       	]);
-       	berkas::create([
-    		'kegiatan_id'		=> '1',
-            'berkas'            => 'berkas11111',
-       	]);
-       	berkas::create([
-    		'kegiatan_id'		=> '2',
-            'berkas'            => 'berkas22222',
-       	]);
-       	berkas::create([
-    		'kegiatan_id'		=> '3',
-            'berkas'            => 'berkas33333',
+            'berkas'            => 'Urusan langsung dengan Kantor Audit Internal ITS',
        	]);
 
         

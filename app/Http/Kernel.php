@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'Auditor' => \App\Http\Middleware\Auditor::class,
         'Pimpinan' => \App\Http\Middleware\Pimpinan::class,
         'SemuaRole' => \App\Http\Middleware\SemuaRole::class,
+        'BukanAuditor' => \App\Http\Middleware\BukanAuditor::class,
     ];
 
     /**

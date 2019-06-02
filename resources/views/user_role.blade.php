@@ -43,13 +43,14 @@
             </td>
             <td>
               @if($user->role == 1) Admin
-              @else Pimpinan
+              @elseif($user->role == 2) Pimpinan
+              @else Auditor
               @endif
             </td>
               <td> 
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $user->id }})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $user->id }})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#delete-modal"><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button>
+                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs open-AddBookDialog" data-toggle="modal" data-target="#delete-modal" data-id="{{ $user->id }}"><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button>
               </td>
             </tr>
         @endforeach
@@ -88,6 +89,7 @@
                   &emsp;<select class="styled-select semi-square" style="width:200px" id="role" name="role" required>
                     <option value="1">Admin</option>
                     <option value="2">Pimpinan</option>
+                    <option value="3">Auditor</option>
                 </select>
                 </div>
               </div>
@@ -178,6 +180,7 @@
                       <option></option>
                           <option value="1">Admin</option> 
                           <option value="2">Pimpinan</option> 
+                          <option value="3">Auditor</option>
                       </select>  
                   </tr>
                 </table>
@@ -199,10 +202,10 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title text-center" id="myModalLabel">Delete Confirmation</h4>
   </div>
-  @foreach($users as $user)
-  <form class="form-inline" action="{{ url('/user/delete/'.$user->id) }}" method="POST">
-  @endforeach
-    {{csrf_field()}} 
+  <div class="modal-body">
+    <form class="form-inline"  method="POST" id="fuser">
+    {{csrf_field()}}
+  </div> 
     <div class="modal-footer">
       <button type="button" class="btn btn-success" data-dismiss="modal">No, Cancel</button>
       <button type="submit" class="btn btn-warning">Yes, Delete</button>
@@ -217,10 +220,18 @@
 
 @section('add-script')
 <script>
+
   $(document).ready(function() {
     $('#example1').DataTable({
         'ordering'    :false
     });
+  $(document).on("click", ".open-AddBookDialog", function () {
+   var id = $(this).data('id');
+  $(".modal-body #fuser").attr("action");
+  $(".modal-body #fuser").attr("action", '/user/delete/'+id);
+});
+
+  });
 </script>
 <script type="text/javascript">
   submitUpdate = function(id){

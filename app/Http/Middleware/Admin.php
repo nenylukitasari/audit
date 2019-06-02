@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 session_start();
 use Closure;
-
+use Auth;
 class Admin
 {
     /**
@@ -15,11 +15,13 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-         if (!isset($_SESSION['userinfo2']))
+        //$user = Auth::user();
+        //dd($user);
+        if (!isset($_SESSION['userinfo2']))
         {
             return redirect('/');
         }
-        elseif($_SESSION['userinfo2'] == "azkayasin2@gmail.com")
+        elseif(Auth::user()->role == 1)
         {
             return $next($request);
         }

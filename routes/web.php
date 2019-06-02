@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'AuthController@login2');
+Auth::routes();
 
 //yasin
 Route::get('/login', 'AuthController@showLogin')->name('login');
@@ -19,8 +20,30 @@ Route::get('/tujuan', 'AuthController@tujuan');
 Route::get('/logout2', 'AuthController@logout2')->name('logout2');
 Route::get('/hak', function () { return view('hak');});
 
+Route::group(['middleware' => 'Admin'], function () {
+	//punya yasin
+	Route::get('/templatekda', 'KdaController@template')->name('templatekda');
+	Route::get('/summernote/template','SummernoteController@pilihtemplate')->name('summernotetemplate');
+	Route::put('/summernote/update/{summernote}','SummernoteController@update')->name('summernoteUpdate');
+	
+});
+Route::group(['middleware' => 'Pimpinan'], function () {
+
+});
+Route::group(['middleware' => 'BukanAuditor'], function () {
+	Route::get('/kda', 'KdaController@index');
+	Route::get('/temuankda', 'TemuanController@index');
+	Route::get('/kdatriwulan', 'KdaController@triwulan');
+	Route::get('download/triwulan/{tahun}/{sesi?}', [
+    'as' => 'downloadtriwulan',
+    'uses' => 'PdfController@downloadkdatriwulanfix',
+	]);
+
+});
+
 Route::group(['middleware' => 'SemuaRole'], function () {
 // 	// punya neny
+	Route::get('/dokumen', 'DataController@index')->name('dokumen');
 	Route::get('/datapegawai', function () {return view('cari_pegawai');});
 	Route::get('/home', function () {return view('home');});
 	// Route::get('/user','UserController@index');
@@ -37,7 +60,6 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/data/search','VersiController@search');
 
 	Route::get('/berkas', 'KdaController@berkas');
-	Route::get('/dokumen', 'DataController@index')->name('dokumen');
 	Route::post('/dokumen/{kode_tabel}','DataController@store');
 	Route::post('/data/kegiatan','DataController@getData');
 	Route::post('/getdata','DataController@getData');
@@ -61,7 +83,6 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 
 	// punya yasin
 	Route::get('/buatkda', 'KdaController@buatkda');
-	Route::get('/kda', 'KdaController@index');
 	Route::post("tambahkda1","KdaController@tambahkda1");
 	Route::post("tambahkda2","KdaController@tambahkda2");
 	Route::post("tambahkda3","KdaController@tambahkda3");
@@ -78,23 +99,12 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::get('pdf/{id}',  'PdfController@downloadpdf');
 	Route::get('print',  'PdfController@print');
 
-	Route::get('/temuankda', 'TemuanController@index');
-
 	Route::get('/kdasendiri', 'KdaController@indexmember');
 	Route::get('/temuankdasendiri', 'TemuanController@indexmember');
 	Route::post('/kda/temuan', 'TemuanController@gettemuan');
 
 	Route::get('/penjelasan', 'PenjelasanController@index');
 
-
-	Route::get('/templatekda', 'KdaController@template')->name('templatekda');
-	Route::get('/summernote/template','SummernoteController@pilihtemplate')->name('summernotetemplate');
-	Route::put('/summernote/update/{summernote}','SummernoteController@update')->name('summernoteUpdate');
-
-	Route::get('/kdatriwulan', 'KdaController@triwulan');
-	Route::get('download/triwulan/{tahun}/{sesi?}', [
-    'as' => 'downloadtriwulan',
-    'uses' => 'PdfController@downloadkdatriwulanfix',
-	]);
+	
 
 });

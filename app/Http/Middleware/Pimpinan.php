@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 session_start();
 use Closure;
+use Auth;
 
 class Pimpinan
 {
@@ -19,7 +20,7 @@ class Pimpinan
         {
             return redirect('/');
         }
-        elseif($_SESSION['userinfo2'] == "nenylukitasari@gmail.com")
+        elseif(Auth::user()->role == 2)
         {
             return $next($request);
         }

@@ -80,7 +80,7 @@ class PdfController extends Controller
 				                '12' => 'Desember',
 				        );
   
-        $pdfnama = $kda->id_kda."-".$kda->nama."-".$kda->bulan_audit.".pdf";
+        $pdfnama = $kda->nama."-".$kda->masa_audit.".pdf";
         if ($kda->jenis == 1)
 				{
 					$summernotes = DB::table('kda_template')->where('id',1)->first();

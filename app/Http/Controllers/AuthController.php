@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Jumbojett\OpenIDConnectClient;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -75,11 +77,31 @@ class AuthController extends Controller
         // else if (($_SESSION['userinfo2'] == "nenylukitasari@gmail.com")){
         //     return redirect('/home');   
         // }
-        return redirect('/home');
+        //return redirect('/home');
+        $user = User::where('email', $userInfo->email)->first();
+        if (!$user) {
+            return back()->withError('user not found');
+        }
+        Auth::login($user);
+        // if (Auth::User()->role == 1)
+        //  {
+        //      return redirect('/buatkda');
+        //  }
+        //  else if (Auth::User()->role == 2)
+        //  {
+        //      return redirect('/dokumen');
+        //  }
+        //  else
+        //  {
+        //    return redirect('/kda'); 
+        //  }
         //header('Location: index.php');
-        //return redirect('/tujuan');
+        return redirect('/home');
     }
     public function logout2(){
+        // if (Auth::user() != null) {
+        //     Auth::logout();
+        // }
         session_start();
         if (isset($_SESSION['id_token'])) {
         $accessToken = $_SESSION['id_token'];
@@ -89,11 +111,11 @@ class AuthController extends Controller
 
         $oidc = new OpenIDConnectClient('https://my.its.ac.id', '23361951-658B-488E-BBB2-61E0726257C8', '473f1834480bcd7e2bb7d3ca');
         $oidc->signOut($accessToken, $redirect);
-
+        Auth::logout();
         return redirect('/tujuan');
 	    }
 	    else{
-	        dd("belum keisi session");
+	        dd("belum ada akun login");
 	    }
     }
 }

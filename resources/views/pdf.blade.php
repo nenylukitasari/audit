@@ -1,5 +1,8 @@
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+{{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> --}}
 {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> --}}
+{{-- <link href="{{url('css/pdf.min.css')}}" rel="stylesheet"> --}}
+<link rel="stylesheet" href="css/pdf.min.css">
+{{-- <link rel="stylesheet" href="{{URL::asset('css/pdf.min.css')}}"> --}}
 <style type="text/css">
 table {
   border-collapse: collapse;

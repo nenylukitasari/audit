@@ -90,7 +90,7 @@ class TemuanController extends Controller
         // dd($data);
         $jumlah = count($data);
         $data = $request->checkbox;
-        temuan::whereIn('id', $data)
+        kda_temuan::whereIn('id', $data)
         ->update([
             'status' => '1'
         ]);

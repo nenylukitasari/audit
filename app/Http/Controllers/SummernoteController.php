@@ -43,7 +43,7 @@ class SummernoteController extends Controller
         }
         
         $detail = $dom->savehtml();
-        $summernote = new Summernote;
+        $summernote = new Kda_template;
         $summernote->tipe = $tipe;
         $summernote->content = $detail;
         $summernote->save();
@@ -57,7 +57,7 @@ class SummernoteController extends Controller
         return view('summernote_display',compact('summernote'));
     }
 
-    public function update(Request $request, Summernote $summernote)
+    public function update(Request $request, Kda_template $summernote)
     {
         // dd($request);
         // exit;

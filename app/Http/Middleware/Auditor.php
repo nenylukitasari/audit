@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 session_start();
 use Closure;
+use Auth;
 
 class Auditor
 {
@@ -19,7 +20,7 @@ class Auditor
         {
             return redirect('/');
         }
-        elseif($_SESSION['userinfo2'] != "azkayasin2@gmail.com" && $_SESSION['userinfo2'] != "nenylukitasari@gmail.com")
+        elseif(Auth::user()->role == 3)
         {
             return $next($request);
         }

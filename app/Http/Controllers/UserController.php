@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\Users;
+use App\User;
 
 class UserController extends Controller
 {
@@ -16,7 +16,7 @@ class UserController extends Controller
     }
     public function store(Request $request)
     {
-    	$user = new Users;
+    	$user = new User;
         $user->nama = $request->nama;
         $user->email = $request->email;
         $user->role = $request->role;
@@ -26,13 +26,13 @@ class UserController extends Controller
     public function getData(Request $request)
     {
         $id = $request->input('id');
-        $data = Users::find($id);
+        $data = User::find($id);
         return response()->json($data);
     }
 
     public function update(Request $request)
     {
-	    $user = Users::find($request->edit_id_user);
+	    $user = User::find($request->edit_id_user);
 	    $user->nama = $request->edit_user_nama;
         $user->email = $request->edit_user_email;
         $user->role = $request->edit_user_role;
@@ -41,7 +41,7 @@ class UserController extends Controller
     }
     public function destroy($id)
     {
-        $user = Users::find($id);
+        $user = User::find($id);
         $user->delete();
         return redirect()->back()->with('message_success',"Berhasil menghapus data");
     }

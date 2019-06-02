@@ -123,11 +123,9 @@ else {
             <h3><span class="fa-fw open-close"><i class="ti-menu hidden-xs"></i><i class="ti-close visible-xs"></i></span> <span class="hide-menu">Navigation</span></h3> 
         </div>
         <ul class="nav" id="side-menu">
-        @if ($_SESSION['userinfo2'] == "azkayasin2@gmail.com" || $_SESSION['userinfo2'] == "nenylukitasari@gmail.com")
+            {{-- //semua --}}
             <li><a href="{{ url('home') }}" class="waves-effect"><i data-icon="Z" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Dashboard</span></a> </li>
             <li><a href="{{ url('dokumen') }}" class="waves-effect"><i data-icon="m" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Standar Biaya Institut</span></a> </li>
-            <li><a href="{{ url('versisbi') }}" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Versi SBI</span></a> </li>
-            <li><a href="{{ url('users') }}" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">User Role</span></a> </li>
             <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="#" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Cari Data<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ url('datapegawai') }}" class="waves-effect"><i data-icon="O" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Data Pegawai</span></a> </li>
@@ -135,6 +133,8 @@ else {
                 </ul>
             </li>
             <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="<" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
+            {{-- //admin atau pimpinan --}}
+        @if(Auth::user()->role!=3)
             <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ url('kda') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA Semua</span></a></li>
@@ -147,12 +147,14 @@ else {
                     <li><a href="{{ url('temuankdasendiri') }}"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan Sendiri</span></a></li>
                 </ul>
             </li>
-            <li><a href="{{ url('templatekda') }}" class="waves-effect"><i data-icon="&#xe016;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Template KDA</span></a> </li>
             <li><a href="{{ url('kdatriwulan') }}" class="waves-effect"><i data-icon="}" class="linea-icon linea-elaborate fa-fw"></i><span class="hide-menu">Laporan KDA</span></a> </li>
-        @else
-            <li><a href="{{ url('dokumen') }}" class="waves-effect"><i data-icon="m" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Standar Biaya Institut</span></a> </li>
-            <li><a href="{{ url('datapegawai') }}" class="waves-effect"><i data-icon="n" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Data Pegawai</span></a> </li>
-            <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="<" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
+        @endif
+        @if(Auth::user()->role==1)
+            <li><a href="{{ url('versisbi') }}" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Versi SBI</span></a> </li>
+            <li><a href="{{ url('users') }}" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">User Role</span></a> </li>
+            <li><a href="{{ url('templatekda') }}" class="waves-effect"><i data-icon="&#xe016;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Template KDA</span></a> </li>
+        @endif
+        @if(Auth::user()->role==3)
             <li><a href="{{ url('kdasendiri') }}" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA</span></a> </li>
             <li><a href="{{ url('temuankdasendiri') }}" class="waves-effect"><i data-icon="H" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan</span></a> </li>
         @endif
