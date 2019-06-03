@@ -167,11 +167,11 @@ else {
     <div class="container-fluid">
         <div class="row bg-title">
             <!-- .page title -->
-            <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12">
+            <div class="col-md-3">
                 <h4 class="page-title">@yield('title')</h4> </div>
             <!-- /.page title -->
             <!-- .breadcrumb -->
-            <div class="col-lg-8 col-sm-7 col-md-7 col-xs-12"> 
+            <div class="col-sm-9"> 
                 <ol class="breadcrumb">
                     <li><a href="{{ url('home') }}">Home</a></li>
                     @yield('right_title')

@@ -10,33 +10,23 @@
 <style type="text/css">
   #spinner {
     position: fixed;
-    top: 50%;
-    left: 50%;
-   /*position: fixed;
-   left: 50%;
-   top: 50%;
-   height:60px;
-   width:60px;
-   margin:0px auto;*/
-  /*background-color: white;*/
-  z-index: 99;
+    top: 45%;
+    left: 35%;
+    height: 50px;
+    width: 400px;
+    text-align: center; 
+    background-color: white; 
+    z-index: 99;
   }
 </style>
 @endsection
 @section('content')
 <br/>
-
 <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
   <h3 class="box-title m-b-0">VERSI STANDAR BIAYA INSTITUT</h3>
   <p></p>
   <br/>
-    @if (session('message_success'))
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong><h4><i class="icon fa fa-check"></i> Sukses!</strong></h4>
-            {{ session('message_success') }}
-        </div>
-    @endif
+  <div id="peringatan"></div>
    <div class="table-responsive">
         <table id="example1" class="table table-striped">
           <thead>
@@ -83,8 +73,9 @@
 
  <!--Spinner Modal-->
   <div id="spinnerModal" class="modal fade">
-    <div id="spinner"{{--  style="display: none;" --}}>
-      <img src="{{url('assets/plugins/images/ajax-loader.gif')}}" alt="loading"/>
+    <div id="spinner" {{-- style="display: none;" --}}>
+      <h3>Please Wait...</h3>
+      {{-- <img src="{{url('assets/plugins/images/ajax-loader.gif')}}" alt="loading"/> --}}
     </div>
   </div>
 
@@ -250,7 +241,8 @@
     versiBaru = function(){
       $('#addModal').modal('hide');
       $('#spinnerModal').modal('show');
-      console.log("sudah muncul");
+      $("#peringatan").empty();
+      // console.log("sudah muncul");
       var versi = $('#versibaru').val();
       $.ajax({
         url: '/versi',
@@ -264,7 +256,16 @@
         },
         success: function(data) {
           window.location = '';
-          $('#spinner').hide(); 
+          $('#spinnerModal').modal('hide'); 
+          $("#peringatan").append(`<div class="alert alert-success print-success-msg" style="display:none">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h4><i class="icon fa fa-check"></i> Sukses!</h4>
+              <ul></ul>
+            </div>`)
+          $(".print-success-msg").find("ul").html('');
+          $(".print-success-msg").css('display','block');
+          $(".print-error-msg").css('display','none');
+          $(".print-success-msg").find("ul").append('<li>Berhasil menambahkan versi</li>');
         }
       });
     }

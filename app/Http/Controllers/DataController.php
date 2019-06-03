@@ -186,8 +186,7 @@ class DataController extends Controller
                         {
                             $kode_bagian_kategori = $kode_bagian;
                             $kode_bagian_kegiatan = 2;
-                            // return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan')); 
-                            return view('sbi.jalan_dinas_7', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan'/*,'provinsis'*/));
+                            return view('sbi.uraian_var1', compact('versions','kode_bagian_kategori','kode_bagian_kegiatan')); 
                             break;
                         }
                         case '10':
@@ -327,7 +326,49 @@ class DataController extends Controller
                         {
                             $kode_bagian_kegiatan = 14;
                             $kode_bagian_kategori = $kode_bagian;
-                            return view('sbi.kategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            return view('sbi.subkategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            break;
+                        }
+                        case '35':
+                        {
+                            $kode_bagian_kegiatan = 14;
+                            $kode_bagian_kategori = $kode_bagian;
+                            return view('sbi.subkategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            break;
+                        }
+                        case '36':
+                        {
+                            $kode_bagian_kegiatan = 14;
+                            $kode_bagian_kategori = $kode_bagian;
+                            return view('sbi.subkategori_var3', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            break;
+                        }
+                        case '37':
+                        {
+                            $kode_bagian_kegiatan = 14;
+                            $kode_bagian_kategori = $kode_bagian;
+                            return view('sbi.subkategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            break;
+                        }
+                        case '38':
+                        {
+                            $kode_bagian_kegiatan = 14;
+                            $kode_bagian_kategori = $kode_bagian;
+                            return view('sbi.subkategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            break;
+                        }
+                        case '39':
+                        {
+                            $kode_bagian_kegiatan = 14;
+                            $kode_bagian_kategori = $kode_bagian;
+                            return view('sbi.subkategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
+                            break;
+                        }
+                        case '40':
+                        {
+                            $kode_bagian_kegiatan = 14;
+                            $kode_bagian_kategori = $kode_bagian;
+                            return view('sbi.subkategori_sub1_var1', compact('versions','kode_bagian_kegiatan','kode_bagian_kategori'));   
                             break;
                         }
 
@@ -343,18 +384,7 @@ class DataController extends Controller
                 break;
         }
     }
-    public function getUraian($id) {
-        $list_uraian_kegiatan = Uraian::where('kategori_id',$id)->get();
-        return response()->json($list_uraian_kegiatan);
-    }
-    public function getSub1($id) {
-        $list_sub1 = Sub1::where('uraian_id',$id)->get();
-        return response()->json($list_sub1);
-    }
-    public function getPenjelasan($id) {
-        $list_penjelasan = Penjelasan::where('kategori_id',$id)->get();
-        return response()->json($list_penjelasan);
-    }
+    
     public function getPenjelasanSub1($id) {
         $list_penjelasan_sub1 = PenjelasanSub1::where('penjelasan_id',$id)->get();
         return response()->json($list_penjelasan_sub1);
@@ -362,10 +392,32 @@ class DataController extends Controller
 
     public function getDataId(Request $request) {
         switch ($request->kode_tabel) {
-            case '':
+            case '4':
             {
-
+                $list_uraian_kegiatan = Uraian::where('kategori_id',$request->id)->get();
+                return response()->json($list_uraian_kegiatan);
                 break;
+            }
+            case '5':
+            {
+                $list_sub1 = Sub1::where('uraian_id',$request->id)->get();
+                return response()->json($list_sub1);
+                break;
+            }
+            case '7':
+            {
+                $list_penjelasan = Penjelasan::where('kategori_id',$request->id)->get();
+                return response()->json($list_penjelasan);
+            }
+            case '70':
+            {
+                $list_penjelasan = Penjelasan::where('kegiatan_id',$request->id)->get();
+                return response()->json($list_penjelasan);
+            }
+            case '8':
+            {
+                $list_penjelasan_sub1 = PenjelasanSub1::where('penjelasan_id',$request->id)->get();
+                return response()->json($list_penjelasan_sub1);
             }
              
             default:
@@ -376,23 +428,6 @@ class DataController extends Controller
 
     public function store(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'jenis_kegiatan'  => 'required',
-        //     'nama_kegiatan' => 'required',
-        // ]);
-
-        // if ($validator->passes())
-        // {
-            // $kegiatan= new Kegiatan;
-            // $kegiatan->jenis_kegiatan_id = $request->jenis_kegiatan;
-            // $kegiatan->nama_kegiatan = $request->nama_kegiatan;
-            // $kegiatan->save();
-            // return redirect('/dokumen');
-        // }
-        // else{
-        //      $messages = $validator->messages();
-           //  return redirect('/dokumen')->withErrors($validator);
-        // }
         switch ($request->kode_tabel) {
             case '1':
                 {
@@ -409,6 +444,7 @@ class DataController extends Controller
                     $kegiatan->jenis_kegiatan_id = $request->jenis_kegiatan;
                     $kegiatan->nama_kegiatan = $request->nama_kegiatan;
                     $kegiatan->kode_tabel=2;
+                    $kegiatan->kode_bagian = $kegiatan->id;
                     $kegiatan->save();
                     break;
                 }
@@ -417,7 +453,14 @@ class DataController extends Controller
                     $kategori= new Kategori;
                     $kategori->kegiatan_id = $request->kegiatan_id;
                     $kategori->kategori_kegiatan = $request->kategori_kegiatan;
-                    $kategori->kode_tabel=3;
+                        // $current_id = DB::table('kategori')->where('kode_bagian', $id)->max('id');
+                        // dd($current_id);
+                    // if ($request->kode_bagian != null) {
+                    //     $kategori->kode_bagian = $current_id + 1;
+                    // }
+                    // else {
+                        $kategori->kode_tabel=3;
+                    // }
                     $kategori->kode_bagian = $request->kode_bagian;
                     $kategori->satuan = $request->satuan_kategori;
                     $kategori->var1 = $request->var1_kategori;
@@ -629,7 +672,7 @@ class DataController extends Controller
                 }
             case '6':
                 {
-                    $sub2 = Sub2::find($request->edit_id5);
+                    $sub2 = Sub2::find($request->edit_id6);
                     $sub2->sub1_id = $request->edit_sub1_id;
                     $sub2->uraian_kegiatan = $request->edit_sub2_uraian;
                     $sub2->satuan = $request->edit_sub2_satuan;
@@ -644,7 +687,7 @@ class DataController extends Controller
             case '7':
                 {
                     $penjelasan = Penjelasan::find($request->edit_id4);
-                    // $penjelasan->kegiatan_id = $request->uraian3;
+                    $penjelasan->kegiatan_id = $request->edit_kegiatan4;
                     $penjelasan->kategori_id = $request->edit_kategori4;
                     $penjelasan->penjelasan = $request->edit_penjelasan;
                     $penjelasan->save();
@@ -653,10 +696,17 @@ class DataController extends Controller
             case '8':
                 {
                     $penjelasan_sub1 = PenjelasanSub1::find($request->edit_id5);
-                    // $penjelasan_sub1->kegiatan_id = $request->uraian3;
                     $penjelasan_sub1->penjelasan_id = $request->edit_penjelasan_id;
                     $penjelasan_sub1->penjelasan = $request->edit_penjelasan_sub1;
                     $penjelasan_sub1->save();
+                    break;
+                }
+            case '9':
+                {
+                    $penjelasan_sub2 = PenjelasanSub2::find($request->edit_id7);
+                    $penjelasan_sub2->penjelasan_sub1_id = $request->edit_penjelasan_sub1_id;
+                    $penjelasan_sub2->penjelasan = $request->edit_penjelasan_sub2;
+                    $penjelasan_sub2->save();
                     break;
                 }
                 

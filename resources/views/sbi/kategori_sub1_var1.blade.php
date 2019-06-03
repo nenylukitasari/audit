@@ -5,17 +5,13 @@
     @foreach ($version->kegiatan as $kegiatan)
     @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
        {{$kegiatan->nama_kegiatan}}
-       @foreach ($kegiatan->kategori as $kategori)
-         @if($kategori->kode_bagian==$kode_bagian_kategori)
-          {{$kategori->kategori_kegiatan}}
-         @endif
-       @endforeach
     @endif
     @endforeach
     @endforeach
 @endsection
 
 @section('right_title')
+  <li class="active"><a href="/dokumen">SBI</a></li>
 @foreach ($versions as $version)
 @foreach ($version->kegiatan as $kegiatan)
 @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
@@ -26,12 +22,15 @@
 @endsection
 @section('content')
 <br/>
+@if(Auth::user()->role!=3)
 <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
+@endif
 <h3 class="box-title m-b-0">
  @foreach ($versions as $version)
     @foreach ($version->kegiatan as $kegiatan)
       @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
-        {{strtoupper($kegiatan->nama_kegiatan)}}
+        {{strtoupper($kegiatan->nama_kegiatan)}} &nbsp; 
+          <button type="button" class="btn btn-danger btn-circle btn-xs" data-toggle="modal" data-target="#penjelasanModal" ><i class="fa fa-bullhorn" data-toggle="tooltip" title="Penjelasan"></i></button>
       @endif
     @endforeach
   @endforeach
@@ -70,7 +69,9 @@
         <td></td>
           <td> 
             <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+            @if(Auth::user()->role!=3)
+                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+            @endif
             </td>
         </tr>
         @foreach ($kategori->uraian as $key2 => $uraian)
@@ -94,7 +95,9 @@
           @endif 
           <td>
             <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+            @if(Auth::user()->role!=3)
+                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+            @endif
           </td>
         </tr>
         @foreach ($uraian->sub1 as $sub1)
@@ -116,68 +119,76 @@
             @endif 
             <td>
               <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal3" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-              <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal3" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+              @if(Auth::user()->role!=3)
+                  <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal3" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+              @endif
             </td>
           </tr>
             @endforeach
-            @endforeach 
-          <?php $counter = 0; ?>
-          @foreach($kategori->penjelasan as $penjelasan)
-            @if(strpos('$penjelasan->penjelasan', '0')!==false)
-              @elseif(strpos('$penjelasan->penjelasan', '0')!==true && $counter != 1)
-              <?php $counter = 1; ?>
-              <tr> 
-                  <td></td>
-                  <td><strong>Penjelasan:</strong></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-            @endif
-          @endforeach
-          @foreach($kategori->penjelasan as $penjelasan)
-            <tr>
-              <td></td>
-              <td>
-              <ul>
-                <li>
-                  {{$penjelasan->penjelasan}}
-                </li>
-              </ul>
-              <td></td>
-            <td></td>
-            </td>
-            <td>
-              <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal4" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-              <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal4" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-            </td>
-            </tr>
-            @foreach($penjelasan->penjelasan_sub1 as $penjelasan_sub1)
-            <tr>
-              <td></td>
-              <td>
-              <ul>
-                <li>
-                  {{$penjelasan_sub1->penjelasan}}
-                </li>
-              </ul>
-              <td></td>
-            <td></td>
-            </td>
-            <td>
-              <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal5" onclick="submitUpdate5({{ $penjelasan_sub1->id }},{{$penjelasan_sub1->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-              <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal5" onclick="submitUpdate5({{ $penjelasan_sub1->id }},{{$penjelasan_sub1->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-            </td>
-            </tr>
             @endforeach
-            @endforeach   
-
           @endforeach
           @endif
         @endforeach
       @endforeach
     </tbody>
   </table>
+</div>
+
+<!--Penjelasan Modal-->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;" id="penjelasanModal">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myLargeModalLabel">Penjelasan</h4> </div>
+        <div class="modal-body">
+        <div class="table-responsive">
+          <table id="example2" class="table table-striped">
+            <thead>
+            <tr>
+              <th width="10">#</th>
+              <th>Penjelasan</th>
+              <th width="100"></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($versions as $version)
+            @foreach($version->kegiatan as $kegiatan)
+            @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+            @foreach($kegiatan->kategori as $kategori)
+            @if($kategori->kode_bagian==$kode_bagian_kategori)
+            <?php $counter = 0; ?>
+            @foreach($kategori->penjelasan as $penjelasan)
+              @if(strpos('$penjelasan->penjelasan', '0')!==true && $counter != 1)
+                <?php $counter = 1; ?>
+                <tr>
+                  <th></th>
+                  <th>{{$kategori->kategori_kegiatan}}</th>
+                  <td></td>
+                </tr>
+              @endif
+            <tr>
+              <td></td>
+              <td>{{$penjelasan->penjelasan}}</td>
+              <td>
+              <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal4" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+              @if(Auth::user()->role!=3)
+                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal4" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+              @endif
+              </td>
+            </tr> 
+            @endforeach  
+            @endif
+            @endforeach  
+            @endif
+            @endforeach  
+            @endforeach  
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
 </div>
 
 <!--Add Modal-->
@@ -204,9 +215,6 @@
           <option value="2">Uraian</option>
           <option value="3">Sub Uraian</option>
           <option value="4">Penjelasan</option>
-          @if(strpos($penjelasan->penjelasan_sub1,'0')!== false)
-          <option value="5">Sub Penjelasan</option>
-          @endif
         </select>
         <input type="button" name="submitpilih" id="submitpilih" class="btn btn-primary btn-rounded" value="Add"/>
 
@@ -245,7 +253,7 @@
           </div>
         </div>
       </div>
-      <br/><br/><br/><br/><br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/><br/><br/>
       <div class="modal-footer">  
         <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
       </div>
@@ -296,7 +304,7 @@
         </div>
       </div>
     </div>
-    <br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <div class="modal-footer">  
       <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
     </div>
@@ -353,63 +361,13 @@
         </div>
       </div>
     </div>
-    <br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <div class="modal-footer">  
       <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
     </div>
   </form>
 </form>
 </div>
-{{-- <div class="form-group" id="form-penjelasan-sub1">
-  <br/>
-  @foreach ($versions as $version)
-  @foreach ($version->kegiatan as $kegiatan)
-  @foreach ($kegiatan->kategori as $kategori)
-  @foreach ($kategori->penjelasan as $penjelasan)
-  @foreach ($penjelasan->penjelasan_sub1 as $penjelasan_sub1)
-  @endforeach
-  @endforeach
-  @endforeach
-  @endforeach
-  @endforeach
-  <form action="{{url('/data/add', $penjelasan_sub1->kode_tabel)}}" method="POST">
-  {{csrf_field()}} 
-    <div class="form-group">
-       <select name="list_kategori_kegiatan" class="form-control select2"  style="width:500px" id="list_kategori" required>
-        <option></option>
-        @foreach ($versions as $version)
-         @foreach ($version->kegiatan as $kegiatan)
-         @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
-          @foreach($kegiatan->kategori as $kategori)
-          @if($kategori->kode_bagian==$kode_bagian_kategori)
-             <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
-          @endif
-          @endforeach
-          @endif
-        @endforeach
-      @endforeach
-      </select>  
-  </div>
-  <div class="form-group">  
-  <select class="form-control selectpenjelasan" name="list_penjelasan" style="width:500px" id="list_penjelasan">
-    </select>  
-  </div>
-    <form class="form-horizontal">
-      <div class="box-body">
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Penjelasan</label>
-          <div class="col-sm-10">
-            <textarea class="form-control" rows="3" id="penjelasan_sub1" name="penjelasan_sub1" placeholder="Penjelasan" required></textarea>
-          </div>
-        </div>
-      </div>
-      <br/><br/><br/><br/><br/>
-      <div class="modal-footer">  
-        <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
-      </div>
-    </form>
-  </form>
-  </div> --}}
 
 <div class="form-group" id="form-penjelasan">
   <br/>
@@ -424,7 +382,9 @@
          @foreach ($version->kegiatan as $kegiatan)
          @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
           @foreach($kegiatan->kategori as $kategori)
+            @if($kategori->kode_bagian==$kode_bagian_kategori)
              <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
+            @endif
           @endforeach
           @endif
         @endforeach
@@ -446,7 +406,7 @@
         </div>
       </div>
     </div>
-    <br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/>
     <div class="modal-footer">  
       <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
     </div>
@@ -511,11 +471,6 @@
                     <td width="10">:</td>
                     <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="kategori2" name="kategori2" disabled></td>
                   </tr>
-                 <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Uraian Kegiatan</th>
-                    <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="uraian" name="uraian" disabled></textarea> </td>
-                  </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Satuan</th>
                     <td width="10">:</td>
@@ -525,6 +480,11 @@
                     <th class="col-sm-3 control-label">Bruto</th>
                     <td width="10">:</td>
                     <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="var1" name="var1" disabled></td>
+                  </tr>
+                 <tr>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Uraian Kegiatan</th>
+                    <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
+                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="uraian" name="uraian" disabled></textarea> </td>
                   </tr>
                 </table>
               </div>              
@@ -555,11 +515,6 @@
                   <td width="10">:</td>
                   <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="uraian_id" name="uraian_id" disabled></td>
                 </tr>
-               <tr>
-                  <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Uraian Kegiatan</th>
-                  <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                  <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="sub1_uraian3" name="sub1_uraian3" disabled></textarea> </td>
-                </tr>
                 <tr>
                   <th class="col-sm-3 control-label">Satuan</th>
                   <td width="10">:</td>
@@ -569,6 +524,11 @@
                   <th class="col-sm-3 control-label">Bruto</th>
                   <td width="10">:</td>
                   <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="sub1_var1" name="sub1_var1" disabled></td>
+                </tr>
+               <tr>
+                  <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Uraian Kegiatan</th>
+                  <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
+                  <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="sub1_uraian3" name="sub1_uraian3" disabled></textarea> </td>
                 </tr>
               </table>
             </div>              
@@ -603,40 +563,6 @@
                     <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Penjelasan</th>
                     <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
                     <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="penjelasan4" name="penjelasan4" disabled></textarea> </td>
-                  </tr>
-                </table>
-              </div>              
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-<div class="modal fade" id="show-modal5">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Data Details</h4>
-              </div>
-              <div class="modal-body">
-              <div class="box-body">
-                <table border="0">
-                  <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id5" name="id5" disabled> </td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-3 control-label">Penjelasan ID</th>
-                    <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="kategori5" name="kategori5" disabled></td>
-                  </tr>
-                 <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Penjelasan</th>
-                    <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="penjelasan5" name="penjelasan5" disabled></textarea> </td>
                   </tr>
                 </table>
               </div>              
@@ -885,70 +811,6 @@
           </div>
         </div>
     </div>
-@if(strpos($penjelasan->penjelasan_sub1, '0') !== false)
-<div class="modal fade" id="edit-modal5">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Data Details</h4>
-              </div>
-              <div class="modal-body">
-              <form action="{{url('/data/update', $penjelasan_sub1->kode_tabel)}}" method="POST">
-              {{csrf_field()}} 
-              <div class="box-body">
-                <table border="0">
-                  <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id5" name="edit_id5" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
-                    <th class="col-sm-3 control-label">Penjelasan</th>
-                    <td width="10">:</td>
-                    <td>
-                    <div class="form-group">
-                      <select class="form-control selectpenjelasan" style="width:385px" name="edit_penjelasan_id" id="edit_penjelasan_id" required>
-                        <option></option>
-                        @foreach($versions as $version)
-                          @foreach($version->kegiatan as $kegiatan)
-                          @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
-                           @foreach($kegiatan->kategori as $kategori)
-                           @foreach($kategori->penjelasan as $penjelasan)
-                            <option value="{{$penjelasan->id}}">{{$penjelasan->penjelasan}}</option>
-                            @endforeach
-                          @endforeach
-                          @endif
-                         @endforeach
-                        @endforeach
-                      </select>  
-                    </div>
-                  </td>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-4 control-label">Sub Penjelasan</th>
-                    <td width="10">:&ensp;</td>
-                    <td>
-                    <textarea class="form-control" rows="3" id="edit_penjelasan_sub1" name="edit_penjelasan_sub1" required></textarea>
-                    </td>
-                  </tr>
-                </table>
-              </div>              
-              </div>
-               <div class="modal-footer">  
-                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Update" /> 
-              </div>
-            </form>
-            </div>
-          </div>
-        </div>
-    </div>
-@endif
-
-
-
 @endsection
 
 @section('add-script')
@@ -957,17 +819,24 @@
     $('#example1').DataTable({
       'ordering'    :false
     });  
+    $('#example2').DataTable({
+      'ordering'    :false
+    });  
 });
 </script>
 <script>
       $(document).ready(function() {
       $('#list_kategori_kegiatan').on('change', function() {
           var getKategoriId = $(this).val();
+          var kode_tabel = 4;
           if(getKategoriId) {
               $.ajax({
-                  url: '/getUraian/'+getKategoriId,
+                  url: '/getDataId/'+getKategoriId,
                   type: "GET",
-                  data : {"_token":"{{ csrf_token() }}"},
+                  data : {
+                    '_token': "{{ csrf_token() }}",
+                    'kode_tabel' : kode_tabel
+                  },
                   dataType: "json",
                   success:function(data) {
                       // console.log(data);
@@ -988,33 +857,6 @@
           }
       });
   });
-$(document).ready(function() {
-$('#list_kategori').on('change', function() {
-    var getKategoriId = $(this).val();
-    if(getKategoriId) {
-        $.ajax({
-            url: '/getPenjelasan/'+getKategoriId,
-            type: "GET",
-            data : {"_token":"{{ csrf_token() }}"},
-            dataType: "json",
-            success:function(data) {
-              if(data){
-                $('#list_penjelasan').empty();
-                $('#list_penjelasan').focus;
-                $('#list_penjelasan').append('<option value=""></option>'); 
-                $.each(data, function(key, value){
-                $('select[name="list_penjelasan"]').append('<option value="'+ value.id +'">' + value.penjelasan+ '</option>');
-            });
-          }else{
-            $('#list_penjelasan').empty();
-          }
-          }
-        });
-    }else{
-      $('#list_penjelasan').empty();
-    }
-});
-});
 </script>
 
 <script>
@@ -1030,12 +872,6 @@ $('#list_kategori').on('change', function() {
       placeholder: "Pilih Uraian",
       allowClear: true
     })
-    $('.selectpenjelasan').select2(
-    {
-      placeholder: "Pilih Penjelasan",
-      allowClear: true
-    })
-
   })
 </script>
 <script type="text/javascript">
@@ -1043,7 +879,6 @@ $('#list_kategori').on('change', function() {
   $("#form-uraian").hide();
   $("#form-sub1").hide();
   $("#form-penjelasan").hide(); 
-  $("#form-penjelasan-sub1").hide();
   $(document).ready(function(){
     $("#submitpilih").click(function(){
       var pilihan = $( "#pilihopsi" ).val();
@@ -1051,43 +886,31 @@ $('#list_kategori').on('change', function() {
         $("#form-kategori").hide();
         $("#form-uraian").hide();
         $("#form-sub1").hide();
-        $("#form-penjelasan").hide();
-        $("#form-penjelasan-sub1").hide(); 
+        $("#form-penjelasan").hide(); 
       }
       else if (pilihan == 1) {
         $("#form-kategori").show();
         $("#form-uraian").hide();
         $("#form-sub1").hide();
         $("#form-penjelasan").hide(); 
-        $("#form-penjelasan-sub1").hide();
       }
       else if (pilihan == 2){
         $("#form-uraian").show();
         $("#form-sub1").hide(); 
         $("#form-kategori").hide();
         $("#form-penjelasan").hide(); 
-        $("#form-penjelasan-sub1").hide();
       }
       else if (pilihan == 3){
         $("#form-sub1").show(); 
         $("#form-uraian").hide();
         $("#form-kategori").hide();
-        $("#form-penjelasan").hide();
-        $("#form-penjelasan-sub1").hide(); 
+        $("#form-penjelasan").hide(); 
       }
       else if (pilihan == 4){
         $("#form-penjelasan").show(); 
         $("#form-uraian").hide();
         $("#form-kategori").hide();
         $("#form-sub1").hide();
-        $("#form-penjelasan-sub1").hide();
-      }
-      else if (pilihan == 5){
-        $("#form-penjelasan").hide(); 
-        $("#form-uraian").hide();
-        $("#form-kategori").hide();
-        $("#form-sub1").hide();
-        $("#form-penjelasan-sub1").show();
       }
     })
   })
@@ -1137,6 +960,7 @@ $('#list_kategori').on('change', function() {
           $('#var1').val(data.var1);
           $('#edit_id2').val(data.id);
           $('#edit_kategori2').val(data.kategori_id);
+          $('#edit_kategori2').select2().trigger('change');
           $('#uraian_kegiatan2').val(data.uraian_kegiatan);
           $('#satuan2').val(data.satuan);
           $('#edit_var1').val(data.var1);
@@ -1165,6 +989,7 @@ $('#list_kategori').on('change', function() {
           $('#sub1_var1').val(data.var1);
           $('#edit_id3').val(data.id);
           $('#uraian3').val(data.uraian_id);
+          $('#uraian3').select2().trigger('change');
           $('#uraian_kegiatan3').val(data.uraian_kegiatan);
           $('#satuan3').val(data.satuan);
           $('#sub1_edit_var1').val(data.var1);
@@ -1191,31 +1016,8 @@ $('#list_kategori').on('change', function() {
           $('#penjelasan4').val(data.penjelasan);
           $('#edit_id4').val(data.id);
           $('#edit_kategori4').val(data.kategori_id);
+          $('#edit_kategori4').select2().trigger('change');
           $('#edit_penjelasan').val(data.penjelasan);
-        }
-      });
-    }
-    submitUpdate5 = function(id, kode_tabel){
-      $.ajax({
-        url: '/getdata',
-        type: 'POST',
-        data: {
-          '_token': "{{ csrf_token() }}",
-          'id' : id,
-          'kode_tabel' : kode_tabel
-        },
-        error: function() {
-          console.log('Error');
-        },
-        dataType: 'json',
-        success: function(data) {
-          console.log(data);
-          $('#id5').val(data.id);
-          $('#kategori5').val(data.penjelasan_id);
-          $('#penjelasan5').val(data.penjelasan);
-          $('#edit_id5').val(data.id);
-          $('#edit_penjelasan_id').val(data.penjelasan_id);
-          $('#edit_penjelasan_sub1').val(data.penjelasan);
         }
       });
     }

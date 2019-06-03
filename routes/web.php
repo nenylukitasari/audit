@@ -47,10 +47,6 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::get('/dokumen', 'DataController@index')->name('dokumen');
 	Route::get('/datapegawai', function () {return view('cari_pegawai');});
 	Route::get('/home', function () {return view('home');});
-	// Route::get('/user','UserController@index');
-	// Route::post('/user/add','UserController@store');
-
-	// Route::resource('users', 'UserController');
 	Route::get('/users', 'UserController@index');
 	Route::post('/users', 'UserController@store');
 	Route::post('/data/user','UserController@getData');
@@ -68,13 +64,8 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/dokumen/update/{kode_tabel}','DataController@update');
 	Route::post('/data/update/{kode_tabel}','DataController@update');
 	Route::post('/data/add/{kode_tabel}','DataController@store');
-
-	//coba rapiin lagi
-	Route::get('getUraian/{id}','DataController@getUraian');
-	Route::get('getSub1/{id}','DataController@getSub1');
-	Route::get('getPenjelasan/{id}','DataController@getPenjelasan');
-	Route::get('getPenjelasanSub1/{id}','DataController@getPenjelasanSub1');
-
+	Route::get('getDataId/{id}','DataController@getDataId');
+	
 	Route::post('/data/update/{kode_tabel}','DataController@update');
 	Route::post('/versi','VersiController@store');
 	Route::get('/versisbi','VersiController@index');

@@ -8,7 +8,9 @@
 @endsection
 @section('content')
 <br/>
+@if(Auth::user()->role!=3)
 <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
+@endif
 <h3 class="box-title m-b-0">STANDAR BIAYA INSTITUT</h3>
 @foreach ($versions as $version)
 @endforeach
@@ -45,7 +47,9 @@
             </th>
               <td> 
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $jenis_kegiatan->id }},{{$jenis_kegiatan->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $jenis_kegiatan->id }},{{$jenis_kegiatan->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                @if(Auth::user()->role!=3)
+                  <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $jenis_kegiatan->id }},{{$jenis_kegiatan->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                @endif
               </td>
             </tr>
         @foreach ($jenis_kegiatan->kegiatan as $kegiatan)
@@ -56,7 +60,9 @@
               </td>
               <td>
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal2" onclick="submitUpdate2({{ $kegiatan->id }},{{$kegiatan->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $kegiatan->id }},{{$kegiatan->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                @if(Auth::user()->role!=3)
+                  <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $kegiatan->id }},{{$kegiatan->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                @endif
               </td>
             </tr>
         @endforeach
@@ -301,28 +307,6 @@
           </div>
         </div>
     </div>
-
-    <!--Delete Modal-->
-  {{--  <div class="modal modal-danger fade" id="delete-modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title text-center" id="myModalLabel">Delete Confirmation</h4>
-      </div>
-      <form class="form-inline" action="{{ url('/dokumen/delete/'.$kegiatan['id']) }}"
-            method="POST">
-          @csrf
-          @method('delete')
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">No, Cancel</button>
-          <button type="submit" class="btn btn-warning">Yes, Delete</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>--}}
-
 @endsection
 
 @section('add-script')

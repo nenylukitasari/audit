@@ -11,6 +11,7 @@
 @endsection
 
 @section('right_title')
+<li class="active"><a href="/dokumen">SBI</a></li>
 @foreach ($versions as $version)
     @foreach ($version->kegiatan as $kegiatan)
     @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
@@ -21,7 +22,9 @@
 @endsection
 @section('content')
 <br/>
+@if(Auth::user()->role!=3)
 <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
+@endif
 <h3 class="box-title m-b-0">
  @foreach ($versions as $version)
   @foreach ($version->kegiatan as $kegiatan)
@@ -62,7 +65,9 @@
               </td>
                 <td> 
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                @if(Auth::user()->role!=3)
+                  <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                @endif
               </tr>
           @endforeach
           @endif
@@ -91,7 +96,6 @@
                 @foreach ($version->kegiatan as $kegiatan)
                 @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
                  <option value="{{$kegiatan->id}}">{{$kegiatan->nama_kegiatan}}</option>
-                  {{-- <input type="text" style="border: none; box-shadow: none;" name="kegiatan_id" value="{{$kegiatan->id}}" class="form-control" required /> --}}
                 @endif
                 @endforeach
                 @endforeach

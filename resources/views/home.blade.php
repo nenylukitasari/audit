@@ -59,12 +59,14 @@
                                     </td>
                                     <td>Menu utama dokumen standar biaya institut</td>
                                   </tr>
+                                  @if(Auth::user()->role!=3)
                                   <tr class="advance-table-row">
                                     <td><a href="/versisbi">
                                       Versi Standar Biaya Institut</a>
                                     </td>
                                     <td>Mengganti versi Standar Biaya Institut jika dilakukan perubahan secara menyeluruh</td>
                                   </tr>
+                                  @endif
                               </tbody>
                           </table>
                       </div>
@@ -121,18 +123,21 @@
                                     </td>
                                     <td>Menu utama untuk membuat Kertas Data Audit</td>
                                   </tr>
+                                  @if(Auth::user()->role!=3)
                                   <tr class="advance-table-row">
                                     <td><a href="/kda">
                                       Data Kertas Data Audit Semua</a>
                                     </td>
                                     <td>Menu untuk melihat seluruh data Kertas Data Audit yang telah diaudit oleh semua auditor</td>
                                   </tr>
+                                  @endif
                                   <tr class="advance-table-row">
                                     <td><a href="/kdasendiri">
                                       Data Kertas Data Audit Sendiri</a>
                                     </td>
                                     <td>Menu untuk melihat data Kertas Data Audit yang telah diaudit</td>
                                   </tr>
+                                  @if(Auth::user()->role!=3)
                                   <tr class="advance-table-row">
                                     <td><a href="/templatekda">
                                       Template Kertas Data Audit</a>
@@ -145,6 +150,7 @@
                                     </td>
                                     <td>Menu untuk melihat laporan Kertas Data Audit dan mengunduh laporan yang dibutuhkan</td>
                                   </tr>
+                                  @endif
                               </tbody>
                           </table>
                       </div>
@@ -164,12 +170,14 @@
                                   </tr>
                               </thead>
                               <tbody>
+                                  @if(Auth::user()->role!=3)
                                   <tr class="advance-table-row">
                                     <td><a href="/temuankda">
                                       Data Temuan Kertas Data Audit Semua</a>
                                     </td>
                                     <td>Menu untuk melihat seluruh data temuan Kertas Data Audit yang telah diaudit oleh semua auditor</td>
                                   </tr>
+                                  @endif
                                   <tr class="advance-table-row">
                                     <td><a href="/temuankdasendiri">
                                       Data Temuan Kertas Data Audit Sendiri</a>

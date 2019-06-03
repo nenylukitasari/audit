@@ -18,6 +18,7 @@
 @foreach ($versions as $version)
 @foreach ($version->kegiatan as $kegiatan)
 @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+  <li class="active"><a href="/dokumen">SBI</a></li>
   <li class="active"><a href="/data/2/{{$kode_bagian_kegiatan}}">{{$kegiatan->nama_kegiatan}}</a></li>
   @foreach($kegiatan->kategori as $kategori)
     @if($kategori->kode_bagian==$kode_bagian_kategori)
@@ -30,7 +31,9 @@
 @endsection
 @section('content')
 <br/>
+@if(Auth::user()->role!=3)
 <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
+@endif
 <h3 class="box-title m-b-0">
  @foreach ($versions as $version)
   @foreach ($version->kegiatan as $kegiatan)
@@ -83,7 +86,9 @@
                     <td>{{number_format($uraian->var2)}}</td>
                       <td> 
                       <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-                      <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                      @if(Auth::user()->role!=3)
+                        <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                      @endif
                     </tr>
                    @endforeach
                   @endif
@@ -191,11 +196,6 @@
                 <td width="10">:</td>
                 <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="kategori2" name="kategori2" disabled></td>
               </tr>
-             <tr>
-                <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Uraian Kegiatan</th>
-                <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="uraian" name="uraian" disabled></textarea> </td>
-              </tr>
               <tr>
                 <th class="col-sm-3 control-label">Satuan</th>
                 <td width="10">:</td>
@@ -210,6 +210,11 @@
                 <th class="col-sm-3 control-label">Dalam Kota (Rp)</th>
                 <td width="10">:</td>
                 <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="var2" name="var2" disabled></td>
+              </tr>
+             <tr>
+                <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Uraian Kegiatan</th>
+                <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
+                <td><textarea style="border: none; box-shadow: none;" class="form-control" rows="3" id="uraian" name="uraian" disabled></textarea> </td>
               </tr>
             </table>
           </div>              
@@ -245,13 +250,6 @@
                   <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_kategori2" name="edit_kategori2" required></td>
                 </tr>
                 <tr>
-                  <th class="col-sm-4 control-label">Uraian Kegiatan</th>
-                  <td width="10">:&ensp;</td>
-                  <td>
-                  <textarea class="form-control" rows="3" id="uraian_kegiatan2" name="uraian_kegiatan2" required></textarea>
-                  </td>
-                </tr>
-                <tr>
                   <th class="col-sm-3 control-label">Satuan</th>
                   <td width="10">:</td>
                   <td>
@@ -270,6 +268,13 @@
                   <td width="10">:</td>
                   <td>
                   <input type="number" class="form-control" id="edit_var2" name="edit_var2" placeholder="Dalam Kota Lebih Dari 8 Jam (Rp)" required>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="col-sm-3 control-label">Uraian Kegiatan</th>
+                  <td width="10">:&ensp;</td>
+                  <td>
+                  <textarea class="form-control" rows="3" id="uraian_kegiatan2" name="uraian_kegiatan2" required></textarea>
                   </td>
                 </tr>
               </table>

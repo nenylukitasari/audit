@@ -18,6 +18,7 @@
 @foreach ($versions as $version)
 @foreach ($version->kegiatan as $kegiatan)
 @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+  <li class="active"><a href="/dokumen">SBI</a></li>
   <li class="active"><a href="/data/2/{{$kode_bagian_kegiatan}}">{{$kegiatan->nama_kegiatan}}</a></li>
   @foreach($kegiatan->kategori as $kategori)
     @if($kategori->kode_bagian==$kode_bagian_kategori)
@@ -30,7 +31,9 @@
 @endsection
 @section('content')
 <br/>
+@if(Auth::user()->role!=3)
 <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
+@endif
 <h3 class="box-title m-b-0">
 @foreach ($versions as $version)
 @foreach ($version->kegiatan as $kegiatan)
@@ -83,7 +86,9 @@
                       <td></td>
                       <td> 
                         <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-                        <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                        @if(Auth::user()->role!=3)
+                          <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                        @endif
                       </td>
                     </tr>
                       @foreach($uraian->sub1 as $key2 => $sub1)
@@ -114,7 +119,9 @@
                           </td>
                           <td> 
                             <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal2" onclick="submitUpdate2({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-                            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                            @if(Auth::user()->role!=3)
+                              <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                            @endif
                           </td>
                       </tr>
                       @foreach($sub1->sub2 as $sub2)
@@ -131,7 +138,9 @@
                           </td>
                           <td> 
                             <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal3" onclick="submitUpdate3({{ $sub2->id }},{{$sub2->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
-                            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal3" onclick="submitUpdate3({{ $sub2->id }},{{$sub2->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                            @if(Auth::user()->role!=3)
+                              <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal3" onclick="submitUpdate3({{ $sub2->id }},{{$sub2->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                            @endif
                           </td>
                       </tr>
                       @endforeach
@@ -443,7 +452,7 @@
                 <tr>
                   <th class="col-sm-3 control-label">ID</th>
                   <td width="10">:</td>
-                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id5" name="id5" disabled> </td>
+                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id6" name="id6" disabled> </td>
                 </tr>
                 <tr>
                   <th class="col-sm-3 control-label">Sub Uraian</th>
@@ -636,7 +645,7 @@
                   <tr>
                     <th class="col-sm-3 control-label">ID</th>
                     <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id5" name="edit_id5" required></td>
+                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id6" name="edit_id6" required></td>
                   </tr>
                   <br/>
                   <tr>
@@ -709,11 +718,15 @@
        $(document).ready(function() {
       $('#list_kategori_kegiatan').on('change', function() {
           var getKategoriId = $(this).val();
+          var kode_tabel = 4;
           if(getKategoriId) {
               $.ajax({
-                  url: '/getUraian/'+getKategoriId,
+                  url: '/getDataId/'+getKategoriId,
                   type: "GET",
-                  data : {"_token":"{{ csrf_token() }}"},
+                  data : {
+                    '_token': "{{ csrf_token() }}",
+                    'kode_tabel' : kode_tabel
+                  },
                   dataType: "json",
                   success:function(data) {
                       // console.log(data);
@@ -738,11 +751,15 @@
  $(document).ready(function() {
       $('#list_uraian').on('change', function() {
           var getUraianId = $(this).val();
+          var kode_tabel = 5;
           if(getUraianId) {
               $.ajax({
-                  url: '/getSub1/'+getUraianId,
+                  url: '/getDataId/'+getUraianId,
                   type: "GET",
-                  data : {"_token":"{{ csrf_token() }}"},
+                  data : {
+                    '_token': "{{ csrf_token() }}",
+                    'kode_tabel' : kode_tabel
+                  },
                   dataType: "json",
                   success:function(data) {
                       // console.log(data);
@@ -822,6 +839,7 @@
           $('#uraian').val(data.uraian_kegiatan);
           $('#edit_id2').val(data.id);
           $('#edit_kategori2').val(data.kategori_id);
+          $('#edit_kategori2').select2().trigger('change');
           $('#uraian_kegiatan2').val(data.uraian_kegiatan);
         }
       });
@@ -849,6 +867,7 @@
           $('#sub1_var1').val(data.var1);
           $('#edit_id3').val(data.id);
           $('#uraian3').val(data.uraian_id);
+          $('#uraian3').select2().trigger('change');
           $('#uraian_kegiatan3').val(data.uraian_kegiatan);
           $('#satuan3').val(data.satuan);
           $('#sub1_edit_keterangan').val(data.keterangan);
@@ -871,14 +890,15 @@
         dataType: 'json',
         success: function(data) {
           console.log(data);
-          $('#id5').val(data.id);
+          $('#id6').val(data.id);
           $('#sub1_id').val(data.sub1_id);
           $('#sub2_uraian').val(data.uraian_kegiatan);
           $('#sub2_satuan').val(data.satuan);
           $('#sub2_keterangan').val(data.keterangan);
           $('#sub2_var1').val(data.var1);
-          $('#edit_id5').val(data.id);
+          $('#edit_id6').val(data.id);
           $('#edit_sub1_id').val(data.sub1_id);
+          $('#edit_sub1_id').select2().trigger('change');
           $('#edit_sub2_uraian').val(data.uraian_kegiatan);
           $('#edit_sub2_satuan').val(data.satuan);
           $('#edit_sub2_keterangan').val(data.keterangan);

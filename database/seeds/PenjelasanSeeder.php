@@ -22,7 +22,7 @@ class PenjelasanSeeder extends Seeder
             'version_id'     => '1',
             'kategori_id'    => '2',
             'kode_tabel'     => '7',
-            'penjelasan'     => 'Uang Lembur merupakann kompensasi bagi tenaga kependidikan tetap yang melakukan kerja lembur berdasarkan surat perintah dan otorisasi dari pejabat yang berwenang',
+            'penjelasan'     => 'Uang Lembur merupakan kompensasi bagi tenaga kependidikan tetap yang melakukan kerja lembur berdasarkan surat perintah dan otorisasi dari pejabat yang berwenang',
         ]);
         Penjelasan::create([
             'version_id'     => '1',
