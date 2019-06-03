@@ -384,12 +384,7 @@ class DataController extends Controller
                 break;
         }
     }
-    
-    public function getPenjelasanSub1($id) {
-        $list_penjelasan_sub1 = PenjelasanSub1::where('penjelasan_id',$id)->get();
-        return response()->json($list_penjelasan_sub1);
-    }
-
+   
     public function getDataId(Request $request) {
         switch ($request->kode_tabel) {
             case '4':
@@ -715,31 +710,6 @@ class DataController extends Controller
                 break;
         }
         return redirect()->back()->with('message_success',"Berhasil mengubah data");
-    }
-    public function destroy($id)
-    {
-        $kegiatan = Kegiatan::find($id);
-        $kegiatan->delete();
-        return redirect('/dokumen');
-        /*if($kegiatan->delete()){// this Is Soft Delete
-            return redirect()->back()->with('message_success',"Delete Successfully");
-        }else{
-            return redirect()->back()->with('message_success',"Sorry please try again");
-        }*/
-
-        // Force Delete
-        //$kegiatan = Post::find($id);
-        /*$kegiatan = Post::find($id);
-        if($kegiatan->forceDelete()){// this Is Soft Delete
-            return redirect()->back()->with('message_success',"Delete Successfully");
-        }else{
-            return redirect()->back()->with('message_success',"Sorry please try again");
-        }*/
-    }
-    public function restore(Request $request,$id){
-        $kegiatan = Kegiatan::onlyTrashed()->find($id);
-        $kegiatan->restore();
-        return redirect('/dokumen');
     }
 }
     

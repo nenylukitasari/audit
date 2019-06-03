@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\User;
+use Validator;
 
 class UserController extends Controller
 {
@@ -16,12 +17,18 @@ class UserController extends Controller
     }
     public function store(Request $request)
     {
-    	$user = new User;
-        $user->nama = $request->nama;
-        $user->email = $request->email;
-        $user->role = $request->role;
-        $user->save();
-        return redirect()->back()->with('message_success',"Berhasil menambahkan data");
+    	$rules["email"] = 'unique:users';
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->passes())
+        {
+            $user = new User;
+            $user->nama = $request->nama;
+            $user->email = $request->email;
+            $user->role = $request->role;
+            $user->save();
+            return redirect()->back()->with('message_success',"Berhasil menambahkan data");
+        }
+        return redirect()->back()->with('message_error',"Gagal menambahkan data. Email telah terpakai.");
     }
     public function getData(Request $request)
     {
@@ -32,12 +39,19 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-	    $user = User::find($request->edit_id_user);
-	    $user->nama = $request->edit_user_nama;
-        $user->email = $request->edit_user_email;
-        $user->role = $request->edit_user_role;
-        $user->save();
-	    return redirect()->back()->with('message_success',"Berhasil mengubah data");
+        $rules["email"] = 'unique:users,email,' . $request->edit_id_user;
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->passes())
+        {
+
+            $user = User::find($request->edit_id_user);
+    	    $user->nama = $request->edit_user_nama;
+            $user->email = $request->edit_user_email;
+            $user->role = $request->edit_user_role;
+            $user->save();
+    	    return redirect()->back()->with('message_success',"Berhasil mengubah data");
+        }
+        return redirect()->back()->with('message_error',"Gagal menambahkan data. Email telah terpakai.");
     }
     public function destroy($id)
     {

@@ -9,7 +9,6 @@
 @section('content')
 <br/>
 <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
-{{-- <h3 class="box-title m-b-0">LIST USER</h3s> --}}
   <br/><br/><br/><br/>
   @if (session('message_success'))
       <div class="alert alert-success">
@@ -17,6 +16,12 @@
           <strong><h4><i class="icon fa fa-check"></i> Sukses!</strong></h4>
           {{ session('message_success') }}
       </div>
+  @elseif (session('message_error'))
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong><h4><i class="icon fa fa-close"></i> Error!</strong></h4>
+        {{ session('message_error') }}
+    </div>
   @endif
    <div class="table-responsive">
     <table id="example1" class="table table-striped">
@@ -200,15 +205,16 @@
 <div class="modal-content">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title text-center" id="myModalLabel">Delete Confirmation</h4>
+    <h4 class="modal-title text-center" id="myModalLabel">Konfirmasi</h4>
   </div>
   <div class="modal-body">
     <form class="form-inline"  method="POST" id="fuser">
     {{csrf_field()}}
+    <h5 style="text-align: center;">Apakah akan menghapus data? Data yang telah dihapus tidak dapat dikembalikan.</h5>
   </div> 
     <div class="modal-footer">
-      <button type="button" class="btn btn-success" data-dismiss="modal">No, Cancel</button>
-      <button type="submit" class="btn btn-warning">Yes, Delete</button>
+      <button type="button" class="btn btn-success" data-dismiss="modal">Tidak</button>
+      <button type="submit" class="btn btn-warning">Ya, Hapus</button>
     </div>
   </form>
 </div>
