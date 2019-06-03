@@ -54,7 +54,7 @@ td .kanan{
           &ensp;<input type="button" name="submitpilih" id="submitpilih" class="btn btn-info btn-rounded btn-sm" value="buat kda" />
             </div>
             <div class="col-xs-3">
-          <button type="button" class="btn btn-sm btn-rounded btn-warning" data-toggle="modal" data-target="#berkas">Berkas</button>
+          <button type="button" class="btn btn-sm btn-rounded btn-warning pull-right" data-toggle="modal" data-target="#berkas">Berkas</button>
         </div>
           </div>
       </div>
