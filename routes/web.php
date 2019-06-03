@@ -25,7 +25,8 @@ Route::group(['middleware' => 'Admin'], function () {
 	Route::get('/templatekda', 'KdaController@template')->name('templatekda');
 	Route::get('/summernote/template','SummernoteController@pilihtemplate')->name('summernotetemplate');
 	Route::put('/summernote/update/{summernote}','SummernoteController@update')->name('summernoteUpdate');
-	
+	Route::post('/berkas/add', 'KdaController@BerkasAdd');
+	Route::post('/berkas/delete/{id}', 'KdaController@BerkasDelete');
 });
 Route::group(['middleware' => 'Pimpinan'], function () {
 

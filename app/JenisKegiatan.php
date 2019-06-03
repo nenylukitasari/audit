@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 
-class JenisKegiatan extends Model implements Searchable
+class JenisKegiatan extends Model 
 {
 	// use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
@@ -53,15 +53,24 @@ class JenisKegiatan extends Model implements Searchable
     //     return $this->hasManyThrough('App\Kategori','App\Kegiatan');
     // }
 
-    public function getSearchResult(): SearchResult
-    {
-        $url = url('/dokumen');
+    // public function getSearchResult(): SearchResult
+    // {
+    //     $url = url('/dokumen');
 
-        return new SearchResult(
-            $this,
-            $this->jenis_kegiatan,
-            $url
-         );
+    //     return new SearchResult(
+    //         $this,
+    //         $this->jenis_kegiatan,
+    //         $url
+    //      );
+    // }
+   
+    public static $searchType = 'JenisKegiatan';
+    public function getResults(string $term): Collection
+    {
+        return JenisKegiatan::query()
+            ->where('version_id', 2)
+            ->where('jenis_kegiatan', 'LIKE', "%{$term}%")
+            ->get();
     }
 
 }

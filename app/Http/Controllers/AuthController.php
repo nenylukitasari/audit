@@ -80,7 +80,7 @@ class AuthController extends Controller
         //return redirect('/home');
         $user = User::where('email', $userInfo->email)->first();
         if (!$user) {
-            return back()->withError('user not found');
+            return redirect('/')->withError('user not found');;
         }
         Auth::login($user);
         // if (Auth::User()->role == 1)

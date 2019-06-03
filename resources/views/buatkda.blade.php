@@ -80,28 +80,47 @@ td .kanan{
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Berkas Kelengkapan</h4>
+
         </div>
         <div class="modal-body">
+          @if(Auth::user()->role==1)
+          <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button></br></br>
+          @endif
+           
           <table id="berkas1" class="table table-bordered table-striped">
               <thead>
                 <tr>
                   <th>No</th>
                   <th>Jenis</th>
                   <th>Berkas</th>
+                  @if(Auth::user()->role==1)
+                  <th>Hapus</th>
+                  @endif
                 </tr>
               </thead>
               <tbody>
                 <?php $i=1;?>
-                @foreach($berkas as $key => $data)
+                @foreach ($versions as $key => $version)
+                @foreach ($version->kegiatan as $key2 => $data)
                 <tr>
                   <td>{{$i++}}</td>
                   <td>{{$data->nama_kegiatan}}</td>
-                  <td>
-                     @foreach ($data->berkas as $item)
-                        <p>{{$item->berkas}}</p>
-                    @endforeach
-                  </td>
+                  <td></td>
+                  @if(Auth::user()->role==1)
+                  <td></td>
+                  @endif
                 </tr>
+                @foreach ($data->berkas as $item)
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>{{$item->berkas}}</td>
+                        @if(Auth::user()->role==1)
+                        <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs open-AddBookDialog" data-toggle="modal" data-target="#delete-modal" data-id="{{ $item->id }}"><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button></td>
+                        @endif
+                    </tr>
+                    @endforeach
+                @endforeach
                 @endforeach
               </tbody>
               <tfoot>
@@ -109,6 +128,9 @@ td .kanan{
                   <th>No</th>
                   <th>Jenis</th>
                   <th>Berkas</th>
+                  @if(Auth::user()->role==1)
+                  <th>Hapus</th>
+                  @endif
                 </tr>
               </tfoot>
             </table>
@@ -121,6 +143,76 @@ td .kanan{
     </div>
   </div>
 
+  <!--Add Modal-->
+<div id="addModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add</h4>
+      </div>
+      <div class="modal-body">
+      <div class="form-group">
+                <br/>
+              <form action="{{url('/berkas/add')}}" method="POST">
+                {{csrf_field()}}
+          <form class="form-horizontal">
+            <div class="box-body">
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Kegiatan</label>
+                <div class="col-sm-9">
+                  <select class="form-control select2" style="width:100%" name="kegiatan" required>
+                      <option></option>
+                      @foreach ($versions as $key => $version)
+                        @foreach ($version->kegiatan as $key2 => $data)
+                           <option value="{{$data->id}}">{{$data->nama_kegiatan}}</option>
+                        @endforeach
+                      @endforeach
+                    </select>  
+                </div>
+              </div>
+            </br></br>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">Berkas</label>
+                <div class="col-sm-9">
+                  <input type="text" name="berkas" placeholder="Berkas" class="form-control" required />
+                </div>
+              </div>
+            </div>
+            <br/><br/>
+            <div class="modal-footer">  
+              <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
+            </div>
+          </form>
+          </form>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Delete Modal-->
+<div class="modal modal-danger fade" id="delete-modal">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title text-center" id="myModalLabel">Delete Confirmation</h4>
+  </div>
+  <div class="modal-body">
+    <form class="form-inline"  method="POST" id="fberkas">
+    {{csrf_field()}}
+  </div> 
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" data-dismiss="modal">No, Cancel</button>
+      <button type="submit" class="btn btn-warning">Yes, Delete</button>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+
 @endsection
 
 @section('add-script')
@@ -131,7 +223,7 @@ td .kanan{
     //Initialize Select2 Elements
     $('.select2').select2(
     {
-      placeholder: "Pilih Unit",
+      placeholder: "Pilih Kategori",
       allowClear: true
     })
   })
@@ -565,6 +657,12 @@ td .kanan{
      var button_id = $(this).attr("id");   
      $('#row'+button_id+'').remove();  
    });  
+
+    $(document).on("click", ".open-AddBookDialog", function () {
+     var id = $(this).data('id');
+    $(".modal-body #fberkas").attr("action");
+    $(".modal-body #fberkas").attr("action", '/berkas/delete/'+id);
+  });
  });  
 </script>
 

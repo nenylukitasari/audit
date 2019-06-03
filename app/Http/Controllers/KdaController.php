@@ -13,6 +13,7 @@ use Validator;
 use App\Kda_temuan;
 use App\Berkas;
 use App\Kegiatan;
+use App\Version;
 use Carbon;
 
 class KdaController extends Controller
@@ -81,13 +82,30 @@ class KdaController extends Controller
 		return view ("penjelasan", compact('berkas'));
 
 	}
+	public function BerkasAdd(Request $request)
+	{
+		$berkas = new Berkas;
+        $berkas->kegiatan_id = $request->kegiatan;
+        $berkas->berkas = $request->berkas;
+        $berkas->save();
+		return redirect()->back();
+
+	}
+	public function BerkasDelete($id)
+    {
+        $berkas = Berkas::find($id);
+        $berkas->delete();
+        return redirect()->back()->with('message_success',"Berhasil menghapus data");
+    }
 
 	public function buatkda()
 	{
 		$unit = DB::table('unit')->get();
+
 		$berkas = kegiatan::all();
+		$versions = Version::where('id',1)->get();
 		$summernote = DB::table('Kda_template')->where('id','>' ,4)->get();
-        return view("buatkda", compact('unit','summernote', 'berkas'));
+        return view("buatkda", compact('unit','summernote', 'berkas', 'versions'));
 	}
 	public function triwulan()
 	{
