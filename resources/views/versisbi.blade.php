@@ -6,7 +6,8 @@
 @section('right_title')
     <li class="active">Versi Standar Biaya Institut</li>
 @endsection
-@section('add-css')
+@section('content')
+<br/>
 <style type="text/css">
   #spinner {
     position: fixed;
@@ -17,15 +18,27 @@
     text-align: center; 
     background-color: white; 
     z-index: 99;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
   }
 </style>
-@endsection
-@section('content')
-<br/>
+<div id="spinnerModal" class="modal fade">
+  <div id="spinner">
+    <h3>Please Wait <img src="{{url('assets/plugins/images/ajax-loader-point.gif')}}" alt="loading"/></h3>
+  </div>
+</div>
 <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button>
   <h3 class="box-title m-b-0">VERSI STANDAR BIAYA INSTITUT</h3>
   <p></p>
   <br/>
+    @if (session('message_success'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong><h4><i class="icon fa fa-check"></i> Sukses!</strong></h4>
+            {{ session('message_success') }}
+        </div>
+    @endif
   <div id="peringatan"></div>
    <div class="table-responsive">
         <table id="example1" class="table table-striped">
@@ -65,22 +78,13 @@
                     <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $version->id }})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
                     <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $version->id }})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
                   </td>
-                </tr>
               @endforeach
           </tbody>
         </table>
       </div>
 
- <!--Spinner Modal-->
-  <div id="spinnerModal" class="modal fade">
-    <div id="spinner" {{-- style="display: none;" --}}>
-      <h3>Please Wait...</h3>
-      {{-- <img src="{{url('assets/plugins/images/ajax-loader.gif')}}" alt="loading"/> --}}
-    </div>
-  </div>
-
-<!--Add Modal-->
-<div id="addModal" class="modal fade">
+ <!--Add Modal-->
+  <div id="addModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -89,7 +93,6 @@
           <h4 class="modal-title">Add</h4>
         </div>
         <div class="modal-body">
-          {{-- <form id="fversi"> --}}
               <div class="box-body">
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Version</label>
@@ -101,24 +104,11 @@
               <br/><br/><br/>
               <div class="modal-footer">  
                 <button class="btn btn-primary btn-rounded" onclick="versiBaru()">Add</button>
-                {{-- <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" onclick="versiBaru()" value="Add" />  --}}
               </div>
-          {{-- </form> --}}
         </div>
     </div>
   </div>
 </div>
-{{-- <div id="container1">
-<div id="modalloading" class="reveal-modal">
-     <h2>POP UP</h2>
-     <p>
-     <font size="4">window window window.window window window. window.
-         </font>
-    </p>
-    <a href="#" class="close-reveal-modal">×</a>
-</div>
-</div> --}}
-
 
 <!-- Show Modal -->
 <div class="modal fade" id="show-modal">
@@ -237,12 +227,10 @@
         }
       });
     }
-
     versiBaru = function(){
       $('#addModal').modal('hide');
       $('#spinnerModal').modal('show');
-      $("#peringatan").empty();
-      // console.log("sudah muncul");
+      console.log("sudah muncul");
       var versi = $('#versibaru').val();
       $.ajax({
         url: '/versi',
@@ -255,8 +243,10 @@
           console.log('Error');
         },
         success: function(data) {
-          window.location = '';
+          
           $('#spinnerModal').modal('hide'); 
+          //window.location = '';
+
           $("#peringatan").append(`<div class="alert alert-success print-success-msg" style="display:none">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h4><i class="icon fa fa-check"></i> Sukses!</h4>
@@ -266,6 +256,8 @@
           $(".print-success-msg").css('display','block');
           $(".print-error-msg").css('display','none');
           $(".print-success-msg").find("ul").append('<li>Berhasil menambahkan versi</li>');
+
+
         }
       });
     }

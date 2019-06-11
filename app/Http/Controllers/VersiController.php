@@ -8,6 +8,7 @@ use DB;
 use Validator;
 use App\Version;
 use App\JenisKegiatan;
+use App\PeraturanLain;
 use App\VersionSearchAspect;
 use App\Kegiatan;
 use App\Kategori;
@@ -47,6 +48,12 @@ class VersiController extends Controller
             //         $new_provinsi->version_id = $new_version->id;
             //         $new_provinsi->save();
             //     }
+            foreach ($version->peraturan_lain as $pl) {
+                $peraturan_lain = PeraturanLain::find($pl->id);
+                $new_peraturan_lain = $peraturan_lain->replicate();
+                $new_peraturan_lain->version_id = $new_version->id;
+                $new_peraturan_lain->save();
+            }
             foreach ($version->jenis_kegiatan as $jk) {
                 $jenis_kegiatan = JenisKegiatan::find($jk->id);
                 $new_jenis_kegiatan = $jenis_kegiatan->replicate();
@@ -57,18 +64,24 @@ class VersiController extends Controller
                     $new_kegiatan = $kegiatan->replicate();
                     $new_kegiatan->jenis_kegiatan_id = $new_jenis_kegiatan->id;
                     $new_kegiatan->save();
-                    foreach ($kegiatan->penjelasan as $penjelasan) {
-                        $penjelasan = Penjelasan::find($penjelasan->id);
-                        $new_penjelasan = $penjelasan->replicate();
-                        $new_penjelasan->version_id = $new_version->id;
-                        if($new_penjelasan->kegiatan_id != null)
-                            $new_penjelasan->kegiatan_id = $new_kegiatan->id;
-                        $new_penjelasan->save();
-                            foreach ($penjelasan->penjelasan_sub1 as $penjelasan_sub1) {
-                                $penjelasan_sub1 = PenjelasanSub1::find($penjelasan_sub1->id);
-                                $new_penjelasan_sub1 = $penjelasan_sub1->replicate();
-                                $new_penjelasan_sub1->penjelasan_id = $new_penjelasan->id;
-                                $new_penjelasan_sub1->save();
+                    foreach ($kegiatan->penjelasan as $penjelasan_kegiatan) {
+                        $penjelasan_kegiatan = Penjelasan::find($penjelasan_kegiatan->id);
+                        $new_penjelasan_kegiatan = $penjelasan_kegiatan->replicate();
+                        $new_penjelasan_kegiatan->version_id = $new_version->id;
+                        if($new_penjelasan_kegiatan->kegiatan_id != null)
+                            $new_penjelasan_kegiatan->kegiatan_id = $new_kegiatan->id;
+                        $new_penjelasan_kegiatan->save();
+                            foreach ($penjelasan_kegiatan->penjelasan_sub1 as $penjelasan_kegiatan_sub1) {
+                                $penjelasan_kegiatan_sub1 = PenjelasanSub1::find($penjelasan_kegiatan_sub1->id);
+                                $new_penjelasan_kegiatan_sub1 = $penjelasan_kegiatan_sub1->replicate();
+                                $new_penjelasan_kegiatan_sub1->penjelasan_id = $new_penjelasan_kegiatan->id;
+                                $new_penjelasan_kegiatan_sub1->save();
+                                foreach ($penjelasan_kegiatan_sub1->penjelasan_sub2 as $penjelasan_kegiatan_sub2) {
+                                    $penjelasan_kegiatan_sub2 = PenjelasanSub2::find($penjelasan_kegiatan_sub2->id);
+                                    $new_penjelasan_kegiatan_sub2 = $penjelasan_kegiatan_sub2->replicate();
+                                    $new_penjelasan_kegiatan_sub2->penjelasan_sub1_id = $new_penjelasan_kegiatan_sub1->id;
+                                    $new_penjelasan_kegiatan_sub2->save();
+                                }
                             }
                         }
                     foreach ($kegiatan->kategori as $kategori) {
@@ -83,17 +96,11 @@ class VersiController extends Controller
                             if ($new_penjelasan->kategori_id != null) 
                                 $new_penjelasan->kategori_id = $new_kategori->id;
                             $new_penjelasan->save();
-                                foreach ($penjelasan->penjelasan_sub1 as $penjelasan_sub1) {
-                                    $penjelasan_sub1 = PenjelasanSub1::find($penjelasan_sub1->id);
-                                    $new_penjelasan_sub1 = $penjelasan_sub1->replicate();
-                                    $new_penjelasan_sub1->penjelasan_id = $new_penjelasan->id;
-                                    $new_penjelasan_sub1->save();
-                                    foreach ($penjelasan_sub1->penjelasan_sub2 as $penjelasan_sub2) {
-                                        $penjelasan_sub2 = PenjelasanSub2::find($penjelasan_sub2->id);
-                                        $new_penjelasan_sub2 = $penjelasan_sub2->replicate();
-                                        $new_penjelasan_sub2->penjelasan_sub1_id = $new_penjelasan_sub1->id;
-                                        $new_penjelasan_sub2->save();
-                                    }
+                            foreach ($penjelasan->penjelasan_sub1 as $penjelasan_sub1) {
+                                $penjelasan_sub1 = PenjelasanSub1::find($penjelasan_sub1->id);
+                                $new_penjelasan_sub1 = $penjelasan_sub1->replicate();
+                                $new_penjelasan_sub1->penjelasan_id = $new_penjelasan->id;
+                                $new_penjelasan_sub1->save();
                                 }
                             }
                         foreach ($kategori->uraian as $uraian) {
@@ -156,69 +163,151 @@ class VersiController extends Controller
         $version->save();
         return redirect('/versisbi');
     }
+
+    public function search(Request $request)
+    {
+        $key=$request->keywordsbi;
+
+        $search=Version::where('status',0)
+        ->whereHas('jenis_kegiatan', function ($query) use ($key){
+            $query->where('jenis_kegiatan', 'like', "%{$key}%");
+            })
+            ->get();
+
+        // dd($search);
+
+        // $categories = Categories::whereHas('products', function ($query) use ($searchString){
+        // $query->where('name', 'like', '%'.$searchString.'%');
+        //     })
+        //     ->with(['products' => function($query) use ($searchString){
+        //         $query->where('name', 'like', '%'.$searchString.'%');
+        //     }])->get();
+
+        // foreach($categories as $category){
+        //     echo $category->name . ':' . PHP_EOL;
+        //     foreach($category->products as $product){
+        //         echo . '-' . $product->name . PHP_EOL;
+        //     }
+        // }
+
+
+        
+        return view('hasil_sbi', compact('search', 'key'));
+        
+        
+    }
+
     // public function search(Request $request) {
-    //     // dd($request->kode)
-    //     // switch ($request->kode) {
-    //     //  case '2':
-    //     //     {
-    //     // dd($request->keywordsbi);
-    //             // $versions = Version::where('status','=', 0)->get();
-    //             // foreach ($versions as $version) {
-    //             //     foreach ($version->jenis_kegiatan as $jk) {
-    //             //         $search = JenisKegiatan::where('jenis_kegiatan','like', "%{$request->keywordsbi}%")->get();
-    //             //     }
-    //             // }
+        // dd($request->kode)
+        // switch ($request->kode) {
+        //  case '2':
+        //     {
+        // dd($request->keywordsbi);
+                // $versions = Version::where('status','=', 0)->get();
+                // foreach ($versions as $version) {
+                //     foreach ($version->jenis_kegiatan as $jk) {
+                //         $search = JenisKegiatan::where('jenis_kegiatan','like', "%{$request->keywordsbi}%")->get();
+                //     }
+                // }
 
-    //             $key=$request->keywordsbi;
-    //             $search = Version::where('status','=', 0)
-    //                         ->with(['jenis_kegiatan' => function ($query) use ($key) {            
-    //                             $query->where('jenis_kegiatan','like', "%{$key}%");  
+                // $key=$request->keywordsbi;
+                // dd($key);
+                // $search = Version::where('status','=', 0)
+                // ->whereHas('jenis_kegiatan', function($jk) use ($key) {
+                //       $jk->where('jenis_kegiatan','like', "%{$key}%");  
+                // })
 
-    //                             // ->with(['kegiatan' => function ($query) use ($key) {            
-    //                             //     $query->where('nama_kegiatan','like', "%{$key}%");  
-    //                             // }])
+                // ->get();
 
-    //                         }])
-    //                         ->get();
+                // $search = JenisKegiatan::query()
+                //    ->where('jenis_kegiatan', 'LIKE', "%{$key}%") 
+                //    // ->orWhere('email', 'LIKE', "%{$searchTerm}%") 
+                //    ->get();
 
-    //             // dd($search);
-    //             // break;
-    //  //        }
+                // dd($search);
+                   
+
+
+
+                            // ->with(['jenis_kegiatan' => function ($query) use ($key) {            
+                            //     $query->where('jenis_kegiatan','like', "%{$key}%");  
+
+                            //     // ->with(['kegiatan' => function ($query) use ($key) {            
+                            //     //     $query->where('nama_kegiatan','like', "%{$key}%");  
+                            //     // }])
+
+                            // }])
+                            // ->get();
+
+                // dd($search);
+                // break;
+     //        }
          
-    //  //     default:
-    //  //         # code...
-    //  //         break;
-    //  // }
+     //     default:
+     //         # code...
+     //         break;
+     // }
     //  return view('hasil_sbi', compact('search', 'key'));
      
     // }
 
-    public function search(Request $request)
-    {
-        // $versions = Version::where('status','=', 0)->get();
-            $searchResults = (new Search())
-            // ->registerAspect(VersionSearchAspect::class)
-            // ->where(Version::class, )
-                ->registerAspect(JenisKegiatan::class)
-                //->registerModel(JenisKegiatan::class, 'jenis_kegiatan')
-                ->registerModel(Kegiatan::class, 'nama_kegiatan')
-                ->registerModel(Kategori::class, 'kategori_kegiatan')
-                // // ->registerModel(Uraian::class, 'uraian_kegiatan')
-                // // ->registerModel(Sub1::class, 'uraian_kegiatan')
-                // // ->registerModel(Sub2::class, 'uraian_kegiatan')
-                // // ->registerModel(Penjelasan::class, 'penjelasan')
-                // // ->registerModel(PenjelasanSub1::class, 'penjelasan')
-                // // ->registerModel(PenjelasanSub2::class, 'penjelasan')
-                // // ->perform(Version::where('status','=', 0))
-                ->perform($request->input('query'));
-        // $searchTerm = $request->query;
+    // public function search(Request $request)
+    // {
+    //      $query=$request->keywordsbi;
+    //      // dd($query);
+    //     // $versions = Version::where('status','=', 0)->get();
+    //         // $searchResults = (new Search())
+    //         // // ->registerAspect(VersionSearchAspect::class)
+    //         // // ->where(Version::class, )
+    //         //     // ->registerAspect(JenisKegiatan::class)
+    //         //     //->registerModel(JenisKegiatan::class, 'jenis_kegiatan')
+    //         //     ->registerModel(Kegiatan::class, 'nama_kegiatan')
+    //         //     ->registerModel(Kategori::class, 'kategori_kegiatan')
+    //         //     // // ->registerModel(Uraian::class, 'uraian_kegiatan')
+    //         //     // // ->registerModel(Sub1::class, 'uraian_kegiatan')
+    //         //     // // ->registerModel(Sub2::class, 'uraian_kegiatan')
+    //         //     // // ->registerModel(Penjelasan::class, 'penjelasan')
+    //         //     // // ->registerModel(PenjelasanSub1::class, 'penjelasan')
+    //         //     // // ->registerModel(PenjelasanSub2::class, 'penjelasan')
+    //         //     // // ->perform(Version::where('status','=', 0))
+    //         //     ->perform($request->input('query'));
+    //     // $searchTerm = $request->query;
 
 
-        // $searchResults= Version::query()
-        //                 ->where('status' , 0)
-        //                 ->whereLike(['version'], $request->query)->get();
-        return view('hasil_sbi', compact('searchResults'));
-    }
+    //     // $searchResults= Version::query()
+    //     //                 ->where('status' , 0)
+    //     //                 ->whereLike(['version'], $request->query)->get();
+
+
+    //             $searchResults = (new Search())
+    //                            ->registerAspect(VersionSearchAspect::class)
+    //                            ->search($query);
+
+    //     return view('hasil_sbi', compact('searchResults','query'));
+    // }
+
+    // public function search (Request $request)
+    // {
+    //     $query=$request->keywordsbi;
+    //     // dd($query);
+
+    //     // $search = Version::where('status', 0)
+    //     //     ->search($query, null, true)
+    //     //     ->with('jenis_kegiatan','kegiatan')
+    //     //     ->get();
+
+    //         // $users = User::search("John Doe", null, true)->get();
+
+          
+
+    //         // ->paginate(20);
+
+    //     // $search = Version::search($query)
+    //     //         ->with('jenis_kegiatan')
+    //     //         ->paginate(5);
+
+
+    //     return view('hasil_sbi', compact('search', 'query'));
+    // }
             
 }
-    

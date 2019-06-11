@@ -12,20 +12,22 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            VersionSeeder::class,
-            JenisKegiatanSeeder::class,
-            KegiatanSeeder::class,
-            KategoriSeeder::class,
-            ProvinsiSeeder::class,
-            UraianSeeder::class,
-            Sub1Seeder::class,
-            Sub2Seeder::class,
-            PenjelasanSeeder::class,
-            PenjelasanSub1Seeder::class,
-            PenjelasanSub2Seeder::class,
-            Kda_templateSeeder::class,
-            BerkasSeeder::class,
-            Unitseeder::class,
+            // VersionSeeder::class,
+            // JenisKegiatanSeeder::class,
+            // KegiatanSeeder::class,
+            // KategoriSeeder::class,
+            // ProvinsiSeeder::class,
+            // UraianSeeder::class,
+            // Sub1Seeder::class,
+            // Sub2Seeder::class,
+            // PenjelasanSeeder::class,
+            // PenjelasanSub1Seeder::class,
+            // PenjelasanSub2Seeder::class,
+            // Kda_templateSeeder::class,
+            // BerkasSeeder::class,
+            // Unitseeder::class,
+            UserSeeder::class,
+            // Peraturan_LainSeeder::class,
         ]);
     }
 }

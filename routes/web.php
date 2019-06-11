@@ -46,6 +46,9 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 // 	// punya neny
 	Route::get('/dokumen', 'DataController@index')->name('dokumen');
 	Route::get('/datapegawai', function () {return view('cari_pegawai');});
+
+	Route::get('/peraturanlain','DataController@index2');
+
 	Route::get('/home', function () {return view('home');});
 	Route::get('/users', 'UserController@index');
 	Route::post('/users', 'UserController@store');

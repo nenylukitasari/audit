@@ -321,12 +321,6 @@
       placeholder: "Pilih Jenis Kegiatan",
       allowClear: true
     });
-
-    $('.year').select2(
-    {
-      placeholder: "",
-      allowClear: true
-    });
   });
 </script>
 <script type="text/javascript">

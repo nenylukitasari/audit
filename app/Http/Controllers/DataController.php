@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use Validator;
 use App\Version;
+use App\PeraturanLain;
 use App\Provinsi;
 use App\Penjelasan;
 use App\PenjelasanSub1;
@@ -384,6 +385,12 @@ class DataController extends Controller
                 break;
         }
     }
+
+    public function index2()
+    {   
+        $versions = Version::where('status',0)->get();
+        return view('sbi.peraturan_lain', compact('versions'));
+    }
    
     public function getDataId(Request $request) {
         switch ($request->kode_tabel) {
@@ -435,28 +442,30 @@ class DataController extends Controller
                 }
             case '2':
                 {
+                    $last_row=Kegiatan::all()->last();
+                    $current_kode_bagian = $last_row->kode_bagian;
                     $kegiatan= new Kegiatan;
                     $kegiatan->jenis_kegiatan_id = $request->jenis_kegiatan;
                     $kegiatan->nama_kegiatan = $request->nama_kegiatan;
                     $kegiatan->kode_tabel=2;
-                    $kegiatan->kode_bagian = $kegiatan->id;
+                    $kegiatan->kode_bagian = $current_kode_bagian+1;
                     $kegiatan->save();
                     break;
                 }
             case '3':
                 {
+                    $last_row=Kategori::all()->last();
+                    $current_kode_bagian = $last_row->kode_bagian;
+
                     $kategori= new Kategori;
                     $kategori->kegiatan_id = $request->kegiatan_id;
                     $kategori->kategori_kegiatan = $request->kategori_kegiatan;
-                        // $current_id = DB::table('kategori')->where('kode_bagian', $id)->max('id');
-                        // dd($current_id);
-                    // if ($request->kode_bagian != null) {
-                    //     $kategori->kode_bagian = $current_id + 1;
-                    // }
-                    // else {
-                        $kategori->kode_tabel=3;
-                    // }
-                    $kategori->kode_bagian = $request->kode_bagian;
+                    $kategori->kode_tabel=3;
+                    if ($request->kode_bagian == null) {
+                        $kategori->kode_bagian = $current_kode_bagian+1;
+                    }
+                    else
+                        $kategori->kode_bagian = $request->kode_bagian;
                     $kategori->satuan = $request->satuan_kategori;
                     $kategori->var1 = $request->var1_kategori;
                     $kategori->save();
@@ -535,6 +544,16 @@ class DataController extends Controller
                     $penjelasan_sub2->save();
                     break;
                 }
+            case '10':
+                {
+                    $peraturan_lain= new PeraturanLain;
+                    $peraturan_lain->version_id = $request->version;
+                    $peraturan_lain->peraturan = $request->peraturan;
+                    $peraturan_lain->keterangan = $request->keterangan;
+                    $peraturan_lain->kode_tabel=10;
+                    $peraturan_lain->save();
+                    break;
+                }
                 
                 
                 
@@ -602,6 +621,12 @@ class DataController extends Controller
                 {
                     $id = $request->input('id');
                     $data = PenjelasanSub2::find($id);
+                    break;
+                }
+            case '10':
+                {
+                    $id = $request->input('id');
+                    $data = PeraturanLain::find($id);
                     break;
                 }
              
@@ -702,6 +727,14 @@ class DataController extends Controller
                     $penjelasan_sub2->penjelasan_sub1_id = $request->edit_penjelasan_sub1_id;
                     $penjelasan_sub2->penjelasan = $request->edit_penjelasan_sub2;
                     $penjelasan_sub2->save();
+                    break;
+                }
+             case '10':
+                {
+                    $peraturan_lain = PeraturanLain::find($request->edit_id_peraturan);
+                    $peraturan_lain->peraturan = $request->edit_peraturan;
+                    $peraturan_lain->keterangan = $request->edit_keterangan;
+                    $peraturan_lain->save();
                     break;
                 }
                 

@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use App\Version;
 use App\VersionSearchAspect;
 use App\JenisKegiatan;
+use App\Kegiatan;
 
 
 class VersionSearchAspect extends SearchAspect
@@ -18,13 +19,21 @@ class VersionSearchAspect extends SearchAspect
 
     public function getResults(string $term): Collection
     {
-        return Version::query()
-        	// ->where('status', 'LIKE', "%{$term}%") // search for $user->email property
-            ->where('status', '=', 0) // search for $user->email property
-            ->orWhereHas('JenisKegiatan', function($query) use ($term) {
-                // and search for $user->userProfile->username property
-                $query->where('jenis_kegiatan', 'LIKE', "%{$term}%"); 
+        // return Version::query()
+        // 	// ->where('status', 'LIKE', "%{$term}%") // search for $user->email property
+        //     ->where('status', '=', 0) // search for $user->email property
+        //     ->orWhereHas('jenis_kegiatan', function($query) use ($term) {
+        //         // and search for $user->userProfile->username property
+        //         $query->where('jenis_kegiatan', 'LIKE', "%{$term}%"); 
+        //     })
+        //     ->get();
+        return JenisKegiatan::query()
+            ->where('jenis_kegiatan', 'LIKE', "%{$term}%") // search for $user->email property
+            ->orWhereHas('kegiatan', function($query) use ($term) {
+            // and search for $user->userProfile->username property
+                $query->where('nama_kegiatan', 'LIKE', "%{$term}%"); 
             })
+            
             ->get();
     }
 }

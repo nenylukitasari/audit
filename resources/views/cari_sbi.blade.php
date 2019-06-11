@@ -24,7 +24,7 @@
                 <form action="{{url('/data/search')}}" method="POST">
                       {{csrf_field()}} 
                     <td>                           
-                      <input type="text" name="query" id="query" placeholder="Masukkan kata kunci" class="form-control" required />
+                      <input type="text" name="keywordsbi" id="keywordsbi" placeholder="Masukkan kata kunci" class="form-control" required />
                     </td>
                     <td>
                       &ensp;
