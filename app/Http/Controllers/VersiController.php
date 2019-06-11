@@ -168,29 +168,29 @@ class VersiController extends Controller
     {
         $key=$request->keywordsbi;
 
-        $search=Version::where('status',0)
-        ->whereHas('jenis_kegiatan', function ($query) use ($key){
-            $query->where('jenis_kegiatan', 'like', "%{$key}%");
-            })
-            ->get();
+        // $search=Version::where('status',0)
+        // ->whereHas('jenis_kegiatan', function ($query) use ($key){
+        //     $query->where('jenis_kegiatan', 'like', "%{$key}%");
+        //     })
+        //     ->get();
+
+        // $search = JenisKegiatan::where('jenis_kegiatan','like', "%{$key}%")
+        //                     ->with(['version' => function ($query) use ($key) {            
+        //                         $query->where('status','=', 0);
+        //                     }])                        
+        //                     ->get();
+
+        $search = Version::where('status',0) 
+                    ->with(['kegiatan' => function ($query) use ($key) {            
+                        $query->where('jenis_kegiatan.jenis_kegiatan','like', "%{$key}%");
+                        $query->orWhere('kegiatan.nama_kegiatan','like', "%{$key}%");
+                            // ->with(['kategori' => function ($query) use ($key) {            
+                            //     $query->where('kategori_kegiatan','like', "%{$key}%");
+                            // }])                                              
+                    }])                                              
+                    ->get();
 
         // dd($search);
-
-        // $categories = Categories::whereHas('products', function ($query) use ($searchString){
-        // $query->where('name', 'like', '%'.$searchString.'%');
-        //     })
-        //     ->with(['products' => function($query) use ($searchString){
-        //         $query->where('name', 'like', '%'.$searchString.'%');
-        //     }])->get();
-
-        // foreach($categories as $category){
-        //     echo $category->name . ':' . PHP_EOL;
-        //     foreach($category->products as $product){
-        //         echo . '-' . $product->name . PHP_EOL;
-        //     }
-        // }
-
-
         
         return view('hasil_sbi', compact('search', 'key'));
         

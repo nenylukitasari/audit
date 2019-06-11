@@ -33,13 +33,9 @@
     <div class="card-body">
 
         @foreach($search as $search)
-            {{-- <h2>{{ ucfirst($type) }}</h2> 
-
-            @foreach($modelSearchResults as $searchResult) --}}
-                <ul>
-                    <li><a href="#">{{ $search->jenis_kegiatan }}</a></li>
-                </ul>
-            {{-- @endforeach   --}}
+            <ul>
+                <li><a href="#">{{ $search }}</a></li>
+            </ul>
         @endforeach
 
     </div> 

@@ -16,6 +16,7 @@ class Peraturan_LainSeeder extends Seeder
             'version_id'    => '1',
             'peraturan'     => 'Peraturan LALALA',
             'keterangan'    => 'http://google.com',
+            'kode_tabel'    => '10',
         ]);
     }
 }
