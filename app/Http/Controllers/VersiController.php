@@ -184,6 +184,7 @@ class VersiController extends Controller
                     ->with(['kegiatan' => function ($query) use ($key) {            
                         $query->where('jenis_kegiatan.jenis_kegiatan','like', "%{$key}%");
                         $query->orWhere('kegiatan.nama_kegiatan','like', "%{$key}%");
+                        // $query->orWhere('kategori.kategori_kegiatan','like', "%{$key}%");
                             // ->with(['kategori' => function ($query) use ($key) {            
                             //     $query->where('kategori_kegiatan','like', "%{$key}%");
                             // }])                                              
