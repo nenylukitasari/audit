@@ -3,12 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Searchable\SearchResult;
-use Spatie\Searchable\Searchable;
+// use Spatie\Searchable\SearchResult;
+// use Spatie\Searchable\Searchable;
 // use Nicolaslopezj\Searchable\SearchableTrait;
 // use Sofa\Eloquence\Eloquence;
 
-class Version extends Model implements Searchable
+class Version extends Model /*implements Searchable*/
 {
     // use SearchableTrait;
     // use Eloquence;
@@ -62,14 +62,14 @@ class Version extends Model implements Searchable
     {
         return $this->hasMany(Penjelasan::class,'version_id','id');
     }
-    public function getSearchResult(): SearchResult
-    {
-        // $url = url('/data/'.$this->kode_tabel . '/' .$this->kode_bagian );
+    // public function getSearchResult(): SearchResult
+    // {
+    //     // $url = url('/data/'.$this->kode_tabel . '/' .$this->kode_bagian );
 
-        return new SearchResult(
-            $this,
-            $this->status
-            // $url
-         );
-    }
+    //     return new SearchResult(
+    //         $this,
+    //         $this->status
+    //         // $url
+    //      );
+    // }
 }

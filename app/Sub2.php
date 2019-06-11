@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Searchable\Searchable;
-use Spatie\Searchable\SearchResult;
+// use Spatie\Searchable\Searchable;
+// use Spatie\Searchable\SearchResult;
 
-class Sub2 extends Model implements Searchable
+class Sub2 extends Model/* implements Searchable*/
 {
     protected $table = 'sub2';
     protected $primaryKey = 'id';
@@ -24,14 +24,14 @@ class Sub2 extends Model implements Searchable
     //         ['App\Kegiatan', 'App\Kategori', 'App\Uraian', 'App\Sub1']
     //     );
     // }
-    public function getSearchResult(): SearchResult
-    {
-        // $url = route('categories.show', $this->id);
+    // public function getSearchResult(): SearchResult
+    // {
+    //     // $url = route('categories.show', $this->id);
 
-        return new SearchResult(
-            $this,
-            $this->uraian_kegiatan
-            // $url
-         );
-    }
+    //     return new SearchResult(
+    //         $this,
+    //         $this->uraian_kegiatan
+    //         // $url
+    //      );
+    // }
 }

@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Searchable\Searchable;
-use Spatie\Searchable\SearchResult;
+// use Spatie\Searchable\Searchable;
+// use Spatie\Searchable\SearchResult;
 
-class Kategori extends Model implements Searchable
+class Kategori extends Model/* implements Searchable*/
 {
     protected $table = 'kategori';
     protected $primaryKey = 'id';
@@ -32,16 +32,16 @@ class Kategori extends Model implements Searchable
         return $this->hasManyThrough('App\PenjelasanSub1','App\Penjelasan');
     }
 
-    public function getSearchResult(): SearchResult
-    {
-        // $url = route('data.index', $this->kode_tabel, $this->kode_bagian);
+    // public function getSearchResult(): SearchResult
+    // {
+    //     // $url = route('data.index', $this->kode_tabel, $this->kode_bagian);
 
-        $url = url('/data/'.$this->kode_tabel . '/' .$this->kode_bagian );
+    //     $url = url('/data/'.$this->kode_tabel . '/' .$this->kode_bagian );
 
-        return new SearchResult(
-            $this,
-            $this->kategori_kegiatan,
-            $url
-         );
-    }
+    //     return new SearchResult(
+    //         $this,
+    //         $this->kategori_kegiatan,
+    //         $url
+    //      );
+    // }
 }

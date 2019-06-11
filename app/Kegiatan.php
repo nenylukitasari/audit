@@ -3,11 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Searchable\Searchable;
-use Spatie\Searchable\SearchResult;
+// use Spatie\Searchable\Searchable;
+// use Spatie\Searchable\SearchResult;
 
-class Kegiatan extends Model implements Searchable
+class Kegiatan extends Model /*implements Searchable*/
 {
     protected $table = 'kegiatan';
     protected $primaryKey = 'id';
@@ -41,15 +40,15 @@ class Kegiatan extends Model implements Searchable
         return $this->hasMany(berkas::class,'kegiatan_id','id');
     }
 
-    public function getSearchResult(): SearchResult
-    {
-        $url = url('/data/'.$this->kode_tabel . '/' .$this->kode_bagian );
+    // public function getSearchResult(): SearchResult
+    // {
+    //     $url = url('/data/'.$this->kode_tabel . '/' .$this->kode_bagian );
 
-        return new SearchResult(
-            $this,
-            $this->nama_kegiatan,
-            $url
-         );
-    }
+    //     return new SearchResult(
+    //         $this,
+    //         $this->nama_kegiatan,
+    //         $url
+    //      );
+    // }
 
 }
