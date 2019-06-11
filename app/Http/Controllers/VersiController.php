@@ -174,22 +174,42 @@ class VersiController extends Controller
         //     })
         //     ->get();
 
-        // $search = JenisKegiatan::where('jenis_kegiatan','like', "%{$key}%")
-        //                     ->with(['version' => function ($query) use ($key) {            
-        //                         $query->where('status','=', 0);
-        //                     }])                        
-        //                     ->get();
+        $version=Version::where('status',0)->first();
+        
+        // dd($version->id);
+        // dd($version->id);
 
-        $search = Version::where('status',0) 
-                    ->with(['kegiatan' => function ($query) use ($key) {            
-                        $query->where('jenis_kegiatan.jenis_kegiatan','like', "%{$key}%");
-                        $query->orWhere('kegiatan.nama_kegiatan','like', "%{$key}%");
-                        // $query->orWhere('kategori.kategori_kegiatan','like', "%{$key}%");
-                            // ->with(['kategori' => function ($query) use ($key) {            
-                            //     $query->where('kategori_kegiatan','like', "%{$key}%");
-                            // }])                                              
-                    }])                                              
-                    ->get();
+        $search = JenisKegiatan::where('version_id', '=', "{$version->id}")
+                            // ->where('version_id', '=', "{$version->id}")
+                            ->with(['kategori' => function ($query) use ($key) {            
+                                $query->where('kegiatan.nama_kegiatan','like', "%{$key}%");
+                                $query->orWhere('kategori.kategori_kegiatan','like', "%{$key}%");
+                            }])                        
+                            ->orWhere('jenis_kegiatan','like', "%{$key}%")
+                            ->get();
+
+        // $search = Version::where('status',0) 
+        //             ->with(['kegiatan' => function ($query) use ($key) {            
+        //                 $query->where('jenis_kegiatan.jenis_kegiatan','like', "%{$key}%");
+        //                 $query->orWhere('kegiatan.nama_kegiatan','like', "%{$key}%");
+        //                 // $query->orWhere('kategori.kategori_kegiatan','like', "%{$key}%");
+        //                     // ->with(['kategori' => function ($query) use ($key) {            
+        //                     //     $query->where('kategori_kegiatan','like', "%{$key}%");
+        //                     // }])                                              
+        //             }])                                              
+        //             ->get();
+
+
+         // $jenis_kegiatans = JenisKegiatan::whereMonth('updated_at','=', $bln)
+         //                    ->whereYear('updated_at','=', $thn) 
+         //                    ->where('version', '=', 0)
+         //                    ->orderBy('id', 'desc')
+         //                    ->with(['kegiatan' => function ($query) use ($thn,$bln) {            
+         //                        $query->whereMonth('updated_at','=', $bln);
+         //                        $query->whereYear('updated_at','=', $thn);
+         //                        $query->where('version', '=', 0);                            
+         //                    }])                        
+         //                    ->get();
 
         // dd($search);
         
