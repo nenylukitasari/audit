@@ -179,14 +179,14 @@ class VersiController extends Controller
         // dd($version->id);
         // dd($version->id);
 
-        $search = JenisKegiatan::where('version_id', '=', "{$version->id}")
-                            // ->where('version_id', '=', "{$version->id}")
-                            ->with(['kategori' => function ($query) use ($key) {            
-                                $query->where('kegiatan.nama_kegiatan','like', "%{$key}%");
-                                $query->orWhere('kategori.kategori_kegiatan','like', "%{$key}%");
-                            }])                        
-                            ->orWhere('jenis_kegiatan','like', "%{$key}%")
-                            ->get();
+        // $search = JenisKegiatan::where('version_id', '=', "{$version->id}")
+        //                     // ->where('version_id', '=', "{$version->id}")
+        //                     ->with(['kategori' => function ($query) use ($key) {            
+        //                         $query->where('kegiatan.nama_kegiatan','like', "%{$key}%");
+        //                         $query->orWhere('kategori.kategori_kegiatan','like', "%{$key}%");
+        //                     }])                        
+        //                     ->orWhere('jenis_kegiatan','like', "%{$key}%")
+        //                     ->get();
 
         // $search = Version::where('status',0) 
         //             ->with(['kegiatan' => function ($query) use ($key) {            
@@ -198,6 +198,17 @@ class VersiController extends Controller
         //                     // }])                                              
         //             }])                                              
         //             ->get();
+        $search = Version::where('status',0) 
+                    ->with(['jenis_kegiatan' => function ($query) use ($key) {            
+                        $query->where('jenis_kegiatan.jenis_kegiatan','like', "%{$key}%");
+                        $query->with(['kegiatan' => function($keg) use ($key){
+                            $keg->where('kegiatan.nama_kegiatan','like', "%{$key}%");
+                            $keg->with(['kategori' => function($kat) use ($key){
+                               $kat->where('kategori.kategori_kegiatan','like', "%{$key}%");
+                            }]);
+                        }]);
+                    }])                                              
+                    ->get();
 
 
          // $jenis_kegiatans = JenisKegiatan::whereMonth('updated_at','=', $bln)
@@ -212,6 +223,9 @@ class VersiController extends Controller
          //                    ->get();
 
         // dd($search);
+        //printf($search);
+        // return json_encode($search);
+        // exit;
         
         return view('hasil_sbi', compact('search', 'key'));
         
