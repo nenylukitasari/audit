@@ -87,12 +87,11 @@ td .kanan{
           <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" data-toggle="modal" data-target="#addModal"><span class="btn-label"><i class="fa fa-plus"></i></span>Add</button></br></br>
           @endif
            
-          <table id="berkas1" class="table table-bordered table-striped">
+          <table id="berkas1" class="table table-striped">
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Jenis</th>
-                  <th>Berkas</th>
+                  <th>Kategori Berkas</th>
                   @if(Auth::user()->role==1)
                   <th>Hapus</th>
                   @endif
@@ -104,30 +103,27 @@ td .kanan{
                 @foreach ($version->kegiatan as $key2 => $data)
                 <tr>
                   <td>{{$i++}}</td>
-                  <td>{{$data->nama_kegiatan}}</td>
-                  <td></td>
+                  <th style="text-align: left">{{$data->nama_kegiatan}}</th>
                   @if(Auth::user()->role==1)
                   <td></td>
                   @endif
                 </tr>
-                @foreach ($data->berkas as $item)
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>{{$item->berkas}}</td>
-                        @if(Auth::user()->role==1)
-                        <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs open-AddBookDialog" data-toggle="modal" data-target="#delete-modal" data-id="{{ $item->id }}"><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button></td>
-                        @endif
-                    </tr>
-                    @endforeach
+                  @foreach ($data->berkas as $item)
+                  <tr>
+                    <td></td>
+                    <td style="text-align: left"> {{$item->berkas}} </td>
+                    @if(Auth::user()->role==1)
+                    <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs open-AddBookDialog" data-toggle="modal" data-target="#delete-modal" data-id="{{ $item->id }}"><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button></td>
+                    @endif
+                  </tr>
+                @endforeach
                 @endforeach
                 @endforeach
               </tbody>
               <tfoot>
                 <tr>
                   <th>No</th>
-                  <th>Jenis</th>
-                  <th>Berkas</th>
+                  <th>Kategori Berkas</th>
                   @if(Auth::user()->role==1)
                   <th>Hapus</th>
                   @endif
@@ -230,7 +226,10 @@ td .kanan{
 </script>
 
 <script type="text/javascript">
-  $('#berkas1').dataTable();
+  $('#berkas1').dataTable({
+    // "order": [],
+      'ordering'    :false
+  });
   var keterangan1 = `<tr id="krow0">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Rekap Per Mak" /></td>  
                       <td><select name="kesediaan[]" class="form-control name_list">

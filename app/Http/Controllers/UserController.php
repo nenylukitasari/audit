@@ -39,7 +39,7 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        $rules["email"] = 'unique:users' /*. $request->edit_id_user*/;
+        $rules["edit_user_email"] = 'unique:users,email,'.$request->edit_id_user.',id' /*. $request->edit_id_user*/;
         $validator = Validator::make($request->all(), $rules);
         if ($validator->passes())
         {
