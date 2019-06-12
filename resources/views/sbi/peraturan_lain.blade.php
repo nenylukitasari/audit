@@ -67,14 +67,9 @@
           <form class="form-horizontal">
             <div class="box-body">
               <div class="form-group">
-                <label class="col-sm-3 control-label">Version</label>
-                <div class="col-sm-8">
-                  <input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="version" name="version" value="{{$version->id}}" required/>
-                </div>
-              </div>
-              <div class="form-group">
                 <label class="col-sm-3 control-label">Peraturan</label>
                 <div class="col-sm-9">
+                  <input class="form-control" type="hidden" id="version" name="version" value="{{$version->id}}"/>
                   <textarea class="form-control" rows="3" id="peraturan" name="peraturan" placeholder="Peraturan / Keterangan" required></textarea>
                 </div>
               </div>
@@ -85,7 +80,7 @@
                 </div>
               </div>
             </div>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="modal-footer">  
               <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
             </div>

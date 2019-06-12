@@ -20,12 +20,11 @@ class CreateSub1Table extends Migration
             $table->text('uraian_kegiatan');
             $table->string('satuan')->nullable();
             $table->string('keterangan')->nullable();
-            $table->integer('var1');
+            $table->integer('var1')->nullable();
             $table->integer('var2')->nullable();
             $table->integer('var3')->nullable();
             $table->integer('var4')->nullable();
             $table->integer('kode_tabel');
-            $table->integer('kode_bagian')->nullable();
             $table->timestamps();
         });
     }

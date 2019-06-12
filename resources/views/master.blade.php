@@ -125,6 +125,9 @@ else {
         <ul class="nav" id="side-menu">
             {{-- //semua --}}
             <li><a href="{{ url('home') }}" class="waves-effect"><i data-icon="Z" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Dashboard</span></a> </li>
+            
+            <li class="devider"></li>
+
             <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon=";" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Peraturan-Peraturan<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ url('dokumen') }}" class="waves-effect"><i data-icon="m" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Standar Biaya Institut</span></a> </li>

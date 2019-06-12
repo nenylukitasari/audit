@@ -91,7 +91,7 @@
                     <td>{{number_format($uraian->var3)}}</td>
                     <td>{{number_format($uraian->var4)}}</td>
                       <td> 
-                      <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+                      {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
                       @if(Auth::user()->role!=3)
                         <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
                       @endif
@@ -143,7 +143,7 @@
               <td></td>
               <td>{{$penjelasan->penjelasan}}</td>
               <td>
-              <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal4" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+              {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal4" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
               @if(Auth::user()->role!=3)
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal4" onclick="submitUpdate4({{ $penjelasan->id }},{{$penjelasan->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
               @endif
@@ -204,14 +204,9 @@
   <form class="form-horizontal">
     <div class="box-body">
       <div class="form-group">
-        <label class="col-sm-2 control-label">Version</label>
-        <div class="col-sm-10">
-          <input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="version" name="version" value="{{$version->id}}" required/>
-        </div>
-      </div>
-      <div class="form-group">
         <label class="col-sm-2 control-label">Penjelasan</label>
         <div class="col-sm-10">
+          <input class="form-control" type="hidden" id="version" name="version" value="{{$version->id}}"/>
           <textarea class="form-control" rows="3" id="penjelasan" name="penjelasan" placeholder="Penjelasan" required></textarea>
         </div>
       </div>

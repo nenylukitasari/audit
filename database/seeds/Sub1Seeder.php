@@ -1158,14 +1158,14 @@ class Sub1Seeder extends Seeder
             'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'Lintas Jalur Malam Hari',
             'satuan'                => 'SKS/Hadir',
-            'var2'                  => '200000',
+            'var1'                  => '200000',
         ]);
         Sub1::create([
             'uraian_id'             => '163',
             'kode_tabel'            => '5',
             'uraian_kegiatan'       => 'MMT',
             'satuan'                => 'SKS/Hadir',
-            'var3'                  => '250000',
+            'var1'                  => '250000',
         ]);
         Sub1::create([
             'uraian_id'             => '164',
@@ -1185,7 +1185,7 @@ class Sub1Seeder extends Seeder
             'var1'                  => '150000',
             'var2'                  => '150000',
             'var3'                  => '250000',
-            'var4'                  => '900000 *)',
+            'var4'                  => '900000',
         ]);
         Sub1::create([
             'uraian_id'             => '165',

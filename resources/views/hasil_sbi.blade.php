@@ -32,11 +32,26 @@
 
     <div class="card-body">
 
-        @foreach($search as $search)
+        @foreach($search as $res) 
+            @foreach($res->jenis_kegiatan as $jk) 
+               <li>Jenis Kegiatan:  {{$jk->jenis_kegiatan}}</li>
+
+               @foreach($jk->kegiatan as $kegiatan) 
+                    <li> -------------- Kegiatan: {{$kegiatan->nama_kegiatan}} . </li>
+               @foreach($kegiatan->kategori as $kategori) 
+                    <li> -------------- Kategori: {{$kategori->kategori_kegiatan}} . </li>
+
+               @endforeach
+               @endforeach
+          
+          @endforeach
+          @endforeach
+
+       {{--  @foreach($search as $search)
             <ul>
                 <li><a href="#">{{ $search }}</a></li>
             </ul>
-        @endforeach
+        @endforeach --}}
 
     </div> 
 </div>

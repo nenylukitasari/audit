@@ -70,7 +70,7 @@
           {{ number_format($kategori->var1)}}</a>
         </td>
         <td>
-          <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+          {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
           @if(Auth::user()->role!=3)
             <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
           @endif
@@ -117,14 +117,9 @@
           <form class="form-horizontal">
             <div class="box-body">
               <div class="form-group">
-                <label class="col-sm-3 control-label">Kode Bagian</label>
-                <div class="col-sm-9">
-                  <input type="text" style="border: none; box-shadow: none;" name="kode_bagian" value="{{$kode_bagian_kategori}}" class="form-control" required />
-                </div>
-              </div>
-              <div class="form-group">
                 <label class="col-sm-3 control-label">Uraian</label>
                 <div class="col-sm-9">
+                  <input type="hidden" name="kode_bagian" value="{{$kode_bagian_kategori}}" class="form-control"/>
                   <textarea class="form-control" rows="3" id="kategori_kegiatan" name="kategori_kegiatan" placeholder="Uraian Kegiatan" required></textarea>
                 </div>
               </div>
@@ -141,7 +136,7 @@
                 </div>
               </div>
             </div>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="modal-footer">  
               <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
             </div>
