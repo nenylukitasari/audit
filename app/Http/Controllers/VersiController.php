@@ -166,183 +166,24 @@ class VersiController extends Controller
 
     public function search(Request $request)
     {
-        $key=$request->keywordsbi;
-
-        // $search=Version::where('status',0)
-        // ->whereHas('jenis_kegiatan', function ($query) use ($key){
-        //     $query->where('jenis_kegiatan', 'like', "%{$key}%");
-        //     })
-        //     ->get();
-
-        $version=Version::where('status',0)->first();
-        
-        // dd($version->id);
-        // dd($version->id);
-
-        // $search = JenisKegiatan::where('version_id', '=', "{$version->id}")
-        //                     // ->where('version_id', '=', "{$version->id}")
-        //                     ->with(['kategori' => function ($query) use ($key) {            
-        //                         $query->where('kegiatan.nama_kegiatan','like', "%{$key}%");
-        //                         $query->orWhere('kategori.kategori_kegiatan','like', "%{$key}%");
-        //                     }])                        
-        //                     ->orWhere('jenis_kegiatan','like', "%{$key}%")
-        //                     ->get();
-
-        // $search = Version::where('status',0) 
-        //             ->with(['kegiatan' => function ($query) use ($key) {            
-        //                 $query->where('jenis_kegiatan.jenis_kegiatan','like', "%{$key}%");
-        //                 $query->orWhere('kegiatan.nama_kegiatan','like', "%{$key}%");
-        //                 // $query->orWhere('kategori.kategori_kegiatan','like', "%{$key}%");
-        //                     // ->with(['kategori' => function ($query) use ($key) {            
-        //                     //     $query->where('kategori_kegiatan','like', "%{$key}%");
-        //                     // }])                                              
-        //             }])                                              
-        //             ->get();
+        $key = $request->keywordsbi;
+        $version = Version::where('status',0)->first();
         $search = Version::where('status',0) 
                     ->with(['jenis_kegiatan' => function ($query) use ($key) {            
                         $query->where('jenis_kegiatan.jenis_kegiatan','like', "%{$key}%");
-                        $query->with(['kegiatan' => function($keg) use ($key){
-                            $keg->where('kegiatan.nama_kegiatan','like', "%{$key}%");
-                            $keg->with(['kategori' => function($kat) use ($key){
-                               $kat->where('kategori.kategori_kegiatan','like', "%{$key}%");
-                            }]);
+                    }])
+                    ->with(['kegiatan' => function ($query) use ($key) {            
+                        $query->where('kegiatan.nama_kegiatan','like', "%{$key}%");
+                    }])
+                    ->with(['kegiatan' => function ($query) use ($key) {            
+                        $query->whereHas('kategori' , function ($query) use ($key) {            
+                            $query->where('kategori.kategori_kegiatan','like', "%{$key}%");
+                        });
+                        $query->with(['kategori' => function ($query) use ($key) {            
+                            $query->where('kategori.kategori_kegiatan','like', "%{$key}%");
                         }]);
-                    }])                                              
+                    }])
                     ->get();
-
-
-         // $jenis_kegiatans = JenisKegiatan::whereMonth('updated_at','=', $bln)
-         //                    ->whereYear('updated_at','=', $thn) 
-         //                    ->where('version', '=', 0)
-         //                    ->orderBy('id', 'desc')
-         //                    ->with(['kegiatan' => function ($query) use ($thn,$bln) {            
-         //                        $query->whereMonth('updated_at','=', $bln);
-         //                        $query->whereYear('updated_at','=', $thn);
-         //                        $query->where('version', '=', 0);                            
-         //                    }])                        
-         //                    ->get();
-
-        // dd($search);
-        //printf($search);
-        // return json_encode($search);
-        // exit;
-        
-        return view('hasil_sbi', compact('search', 'key'));
-        
-        
+        return view('hasil_sbi', compact('search', 'key'));   
     }
-
-    // public function search(Request $request) {
-        // dd($request->kode)
-        // switch ($request->kode) {
-        //  case '2':
-        //     {
-        // dd($request->keywordsbi);
-                // $versions = Version::where('status','=', 0)->get();
-                // foreach ($versions as $version) {
-                //     foreach ($version->jenis_kegiatan as $jk) {
-                //         $search = JenisKegiatan::where('jenis_kegiatan','like', "%{$request->keywordsbi}%")->get();
-                //     }
-                // }
-
-                // $key=$request->keywordsbi;
-                // dd($key);
-                // $search = Version::where('status','=', 0)
-                // ->whereHas('jenis_kegiatan', function($jk) use ($key) {
-                //       $jk->where('jenis_kegiatan','like', "%{$key}%");  
-                // })
-
-                // ->get();
-
-                // $search = JenisKegiatan::query()
-                //    ->where('jenis_kegiatan', 'LIKE', "%{$key}%") 
-                //    // ->orWhere('email', 'LIKE', "%{$searchTerm}%") 
-                //    ->get();
-
-                // dd($search);
-                   
-
-
-
-                            // ->with(['jenis_kegiatan' => function ($query) use ($key) {            
-                            //     $query->where('jenis_kegiatan','like', "%{$key}%");  
-
-                            //     // ->with(['kegiatan' => function ($query) use ($key) {            
-                            //     //     $query->where('nama_kegiatan','like', "%{$key}%");  
-                            //     // }])
-
-                            // }])
-                            // ->get();
-
-                // dd($search);
-                // break;
-     //        }
-         
-     //     default:
-     //         # code...
-     //         break;
-     // }
-    //  return view('hasil_sbi', compact('search', 'key'));
-     
-    // }
-
-    // public function search(Request $request)
-    // {
-    //      $query=$request->keywordsbi;
-    //      // dd($query);
-    //     // $versions = Version::where('status','=', 0)->get();
-    //         // $searchResults = (new Search())
-    //         // // ->registerAspect(VersionSearchAspect::class)
-    //         // // ->where(Version::class, )
-    //         //     // ->registerAspect(JenisKegiatan::class)
-    //         //     //->registerModel(JenisKegiatan::class, 'jenis_kegiatan')
-    //         //     ->registerModel(Kegiatan::class, 'nama_kegiatan')
-    //         //     ->registerModel(Kategori::class, 'kategori_kegiatan')
-    //         //     // // ->registerModel(Uraian::class, 'uraian_kegiatan')
-    //         //     // // ->registerModel(Sub1::class, 'uraian_kegiatan')
-    //         //     // // ->registerModel(Sub2::class, 'uraian_kegiatan')
-    //         //     // // ->registerModel(Penjelasan::class, 'penjelasan')
-    //         //     // // ->registerModel(PenjelasanSub1::class, 'penjelasan')
-    //         //     // // ->registerModel(PenjelasanSub2::class, 'penjelasan')
-    //         //     // // ->perform(Version::where('status','=', 0))
-    //         //     ->perform($request->input('query'));
-    //     // $searchTerm = $request->query;
-
-
-    //     // $searchResults= Version::query()
-    //     //                 ->where('status' , 0)
-    //     //                 ->whereLike(['version'], $request->query)->get();
-
-
-    //             $searchResults = (new Search())
-    //                            ->registerAspect(VersionSearchAspect::class)
-    //                            ->search($query);
-
-    //     return view('hasil_sbi', compact('searchResults','query'));
-    // }
-
-    // public function search (Request $request)
-    // {
-    //     $query=$request->keywordsbi;
-    //     // dd($query);
-
-    //     // $search = Version::where('status', 0)
-    //     //     ->search($query, null, true)
-    //     //     ->with('jenis_kegiatan','kegiatan')
-    //     //     ->get();
-
-    //         // $users = User::search("John Doe", null, true)->get();
-
-          
-
-    //         // ->paginate(20);
-
-    //     // $search = Version::search($query)
-    //     //         ->with('jenis_kegiatan')
-    //     //         ->paginate(5);
-
-
-    //     return view('hasil_sbi', compact('search', 'query'));
-    // }
-            
 }

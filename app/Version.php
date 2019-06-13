@@ -45,6 +45,7 @@ class Version extends Model /*implements Searchable*/
     {
         return $this->hasManyThrough('App\Kegiatan','App\JenisKegiatan');
     }
+
     public function peraturan_lain()
     {
         return $this->hasMany(PeraturanLain::class,'version_id','id');

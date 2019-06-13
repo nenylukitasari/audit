@@ -12,27 +12,23 @@
 <br/><br/><br/>
 <div class="card">
   {{--   <div class="card-header"><b>{{ $searchResults->count() }} results found for "{{ $query }}"</b></div>
-
     <div class="card-body">
-
         @foreach($searchResults->groupByType() as $type => $modelSearchResults)
             <h2>{{ ucfirst($type) }}</h2>
-
             @foreach($modelSearchResults as $searchResult)
                 <ul>
                     <li><a href="{{ $searchResult->url }}">{{ $searchResult->title }}</a></li>
                 </ul>
             @endforeach
         @endforeach
-
     </div> --}}
     
     
     <div class="card-header"><b>Hasil pencarian dengan kata kunci "{{ $key }}"</b></div>
 
     <div class="card-body">
-
-        @foreach($search as $res) 
+{{-- 
+      @foreach($search as $res) 
             @foreach($res->jenis_kegiatan as $jk) 
                <li>Jenis Kegiatan:  {{$jk->jenis_kegiatan}}</li>
 
@@ -45,13 +41,13 @@
                @endforeach
           
           @endforeach
-          @endforeach
+          @endforeach --}}
 
-       {{--  @foreach($search as $search)
+        @foreach($search as $search)
             <ul>
                 <li><a href="#">{{ $search }}</a></li>
             </ul>
-        @endforeach --}}
+        @endforeach
 
     </div> 
 </div>

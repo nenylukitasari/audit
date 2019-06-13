@@ -243,10 +243,8 @@
           console.log('Error');
         },
         success: function(data) {
-          
+          window.location = '';
           $('#spinnerModal').modal('hide'); 
-          //window.location = '';
-
           $("#peringatan").append(`<div class="alert alert-success print-success-msg" style="display:none">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h4><i class="icon fa fa-check"></i> Sukses!</h4>
@@ -256,8 +254,6 @@
           $(".print-success-msg").css('display','block');
           $(".print-error-msg").css('display','none');
           $(".print-success-msg").find("ul").append('<li>Berhasil menambahkan versi</li>');
-
-
         }
       });
     }

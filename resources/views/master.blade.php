@@ -203,8 +203,7 @@ else {
         <!-- .row -->
     </div>
     <!-- /.container-fluid -->
-@yield('footer')
-{{-- <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by themedesigner.in </footer> --}}
+<footer class="footer text-center"> 2019 &copy; Kantor Audit Internal ITS </footer>
 </div>
 <!-- /#page-wrapper -->
 </div>
