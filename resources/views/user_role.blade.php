@@ -31,7 +31,7 @@
           <th class="col-sm-5">Nama</th>
           <th class="col-sm-3">Email</th>
           <th class="col-sm-1">Role</th>
-          <th class="col-sm-2"></th>
+          <th class="col-sm-2">Aksi</th>
         </tr>
       </thead>
      <tbody>

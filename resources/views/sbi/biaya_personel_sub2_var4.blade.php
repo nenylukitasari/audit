@@ -64,7 +64,7 @@
         <th rowspan="2" class="col-sm-6">Jenis Biaya</th>
         <th style="text-align: center" colspan="4" class="col-sm-3">Besaran Bruto Maksimum (Rp)</th>
         <th rowspan="2" class="col-sm-1">Keterangan</th>
-        <th rowspan="2" class="col-sm-1"></th>
+        <th rowspan="2" class="col-sm-1">Aksi</th>
       </tr>
       <tr>
         <th>Orang/Bulan</th>

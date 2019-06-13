@@ -64,7 +64,7 @@
         <th rowspan="2" class="col-sm-5">Negara</th>
         <th rowspan="2" class="col-sm-1">Satuan</th>
         <th style="text-align: center" colspan="4" class="col-sm-3">Golongan</th>
-        <th rowspan="2" class="col-sm-1"></th>
+        <th rowspan="2" class="col-sm-1">Aksi</th>
       </tr>
       <tr>
         <th>A</th>

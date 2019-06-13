@@ -52,7 +52,7 @@
       <th class="col-sm-6">Uraian Kegiatan</th>
       <th class="col-sm-1">Satuan</th>
       <th class="col-sm-3">Besaran Bruto Maksimum (Rp)</th>
-      <th class="col-sm-1"></th>
+      <th class="col-sm-1">Aksi</th>
     </tr>
     </thead>
    <tbody>

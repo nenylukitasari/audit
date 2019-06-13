@@ -66,7 +66,7 @@
       <th class="col-sm-1">Uang Harian (Rp)</th>
       <th class="col-sm-1">Biaya Penginapan</th>
       <th class="col-sm-1">Biaya Transport</th>
-      <th class="col-sm-1"></th>
+      <th class="col-sm-1">Aksi</th>
     </tr>
     </thead>
    <tbody>

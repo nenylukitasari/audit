@@ -50,7 +50,7 @@
           <th rowspan="2" class="col-sm-5">Uraian Kegiatan</th>
           <th rowspan="2" class="col-sm-1">Satuan</th>
           <th style="text-align: center" colspan="3" class="col-sm-2">Besaran Bruto Maksimum (Rp)</th>
-          <th rowspan="2" class="col-sm-1"></th>
+          <th rowspan="2" class="col-sm-1">Aksi</th>
         </tr>
         <tr>
           <th>Juara I</th>
