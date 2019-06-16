@@ -102,9 +102,9 @@ class PdfController extends Controller
 					->orderBy('kda.masa_audit')->get();
 					$temuan2 = json_decode($temuan1);
 					$table = '';
-					$katapembuka = '<ul><li style="text-align: justify; ">&nbsp; &nbsp; Hasil audit dokumen SPJ diketahui bahwa pengelolaan administrasi keuangan tahun tahun$ yang dilaksanakan BPP di Unit Kerja : unit$ yang belum ditindaklanjuti, antara lain:</li></ul>';
+					// $katapembuka = '<ul><li style="text-align: justify; ">&nbsp; &nbsp; Hasil audit dokumen SPJ diketahui bahwa pengelolaan administrasi keuangan tahun tahun$ yang dilaksanakan BPP di Unit Kerja : unit$ yang belum ditindaklanjuti, antara lain:</li></ul>';
 					if($temuan2){
-						$table .= $katapembuka;
+						//$table .= $katapembuka;
 						for ($i=1; $i < 13 ; $i++) { 
 						$temuanawal = 0;
 						foreach ($temuan2 as $key => $value) { 
@@ -115,7 +115,8 @@ class PdfController extends Controller
 								if ($temuanawal == 1)
 								{
 									$j = 1;
-									$table .= 'Masa Audit '.$bulannama;
+									$table .= '<div class ="temuanlamali"><li style="text-align: justify;">Hasil audit dokumen SPJ diketahui bahwa pengelolaan administrasi keuangan bulan' .$bulannama.' tahun tahun$ yang dilaksanakan BPP di Unit Kerja :  unit$ yang belum ditindaklanjuti temuan, yaitu:</li><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1.&nbsp;  Ketidakpatuhan terhadap aturan yang berlaku:</p></div>';
+									//$table .= 'Masa Audit '.$bulannama;
 									$table .= "<table class='tabel1' style='width:100%'>
 								<thead>
 								<tr>
@@ -172,11 +173,6 @@ class PdfController extends Controller
 					$summernotes = DB::table('kda_template')->where('id',3) ->first();
 					$view = view('pdf', ['summernotes' => $summernotes]);
 					$contents = $view->render();
-					$contents = str_replace("kondisi$", $ket->kondisi, $contents);
-					$contents = str_replace("kesimpulan$", $ket->kesimpulan, $contents);
-					$contents = str_replace("saran$", $ket->saran, $contents);
-					$contents = str_replace("rekomendasi$", $ket->rekomendasi, $contents);
-					$contents = str_replace("tanggapan$", $ket->tanggapan, $contents);
 				}
 				else {
 					$summernotes = DB::table('kda_template')->where('id',4) ->first();
@@ -201,7 +197,7 @@ class PdfController extends Controller
 				if ($kda_ket == NULL) {
 				}
 				else{
-					//untuk mencatat kda keterangan2
+					//untuk mencatat kda keterangan2/ kda pelengkap
 					
 					$i = 1;
 					$list_keterangan='';

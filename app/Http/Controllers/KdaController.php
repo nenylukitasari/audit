@@ -126,6 +126,7 @@ class KdaController extends Controller
 	public function tambahkda1(Request $request)
     {
     	$input = $request->all();
+    	dd($input);
     	$rules = [];
     	$rules["unit"] = 'required';
     	$rules["masa_audit"] = 'required';
@@ -159,8 +160,6 @@ class KdaController extends Controller
 	            $ket->kda_id= $kda->id_kda;
 	            $ket->save();  
 	        }
-	        
-	        //app('App\Http\Controllers\PdfController')->downloadpdf($kda->id_kda);
 	        return response()->json(['success'=>'done']);
 
     	}
@@ -236,6 +235,7 @@ class KdaController extends Controller
     public function tambahkda3(Request $request)
     {
     	$input = $request->all();
+    	$rules = [];
     	$rules["unit"] = 'required';
     	$rules["masa_audit"] = 'required';
     	$rules["bulan_audit"] = 'required';
@@ -245,29 +245,33 @@ class KdaController extends Controller
     	$validator = Validator::make($request->all(), $rules, $messages);
     	if ($validator->passes())
     	{
-		    $tanggaltampung = $input['masa_audit'];
-		    $tanggaltampung .="-01";
+    		$tanggaltampung = $input['masa_audit'];
+	        $tanggaltampung .="-01";
 
-		    $kda= new kda;
-		    $kda->unit = $input['unit'];
-		    $kda->masa_audit = $tanggaltampung;
-		    $kda->bulan_audit = $input['bulan_audit'];
-		    $kda->jenis = $input['jenis_kda3'];
-		    $kda->created_by = $input['auditor'];
-		    $kda->save();
+	        $kda= new kda;
+	        $kda->unit = $input['unit'];
+	        $kda->masa_audit = $tanggaltampung;
+	        $kda->bulan_audit = $input['bulan_audit'];
+	        $kda->jenis = 3;
+	        $kda->created_by = $input['auditor'];
+	        $kda->save();
 
-		    $ket = new kda_keterangan;
-		    $ket->kondisi = $input['kondisi'];
-		    $ket->kesimpulan = $input['kesimpulan'];
-		    $ket->saran = $input['saran'];
-		    $ket->rekomendasi = $input['rekomendasi'];
-		    $ket->tanggapan = $input['tanggapan'];
-		    $ket->kda_id = $kda->id_kda;
-		    $ket->save();
+	        $jumlah = count($input['kelengkapan']);
+	        for ($i=0; $i < $jumlah; ++$i) 
+	        {
 
-		    return response()->json(['success'=>'done']);
-		}
-		return response()->json(['error'=>$validator->errors()->all()]);
+	            $ket= new Kda_pelengkap;        
+	            $ket->kelengkapan = $input['kelengkapan'][$i];
+	            $ket->kesediaan= $input['kesediaan'][$i];
+	            $ket->jumlah= $input['jumlah'][$i];
+	            $ket->nominal = $input['nom'][$i];
+	            $ket->kda_id= $kda->id_kda;
+	            $ket->save();  
+	        }
+	        return response()->json(['success'=>'done']);
+
+    	}
+    	return response()->json(['error'=>$validator->errors()->all()]);
         
     }
     

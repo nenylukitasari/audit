@@ -48,6 +48,9 @@ div .penutup {
 div .temuan {
 	padding-left: 15px;
 }
+div .temuanlamali {
+	padding-left: 35px;
+}
 </style>
 
 {!! $summernotes->content !!}

@@ -19,7 +19,10 @@ else {
 @section('content')
 <style>
 div .biodata {
-  padding-left: 150px;
+  padding-left: 200px;
+}
+div.row1 {
+  line-height: 1.7;
 }
 th, td
 {
@@ -68,6 +71,10 @@ td .kanan{
 		@foreach( $summernote as $summernote)
                       {!! $summernote->content !!}
                       @endforeach
+
+
+
+
 
 
 
@@ -390,7 +397,8 @@ td .kanan{
       else if (pilihan == 3)
       {
         $('#add_kda3')[0].reset();
-        $('#judulform').text('Form Kda tanpa audit');
+        $(".keterangan1").empty();
+        $(".keterangan1").append(keterangan1);
         jenis_kda = 3 ;
         postURL = "<?php echo url('tambahkda3'); ?>";
         //$('#jenis_kda'+jenis_kda).val(pilihan);
@@ -481,6 +489,7 @@ td .kanan{
       $('.unit2').on('select2:select', function (e) {
         var isiunit = document.getElementsByClassName("unit");
         for(var i = 0; i< isiunit.length;i++){
+          var unittemuan = e.params.data.text;
           document.getElementsByClassName("unit")[i].value = e.params.data.text;
           $('#kondisi').val("Unit Kerja : "+e.params.data.text+" pada bulan "+bulan_ganti+" tahun "+tahun_ganti+ " tidak mencairkan UMK.");
         }
@@ -509,8 +518,7 @@ td .kanan{
               var katatemuan = ``;
               var temuansemua = ``;
               if (jumlah > 0){
-                $("#temuanlama").append(`<li style="text-align: justify;">&nbsp; &nbsp; Hasil audit dokumen SPJ diketahui bahwa pengelolaan administrasi keuangan tahun <input class="tahun" readonly="readonly" type="text" /> yang dilaksanakan BPP di Unit Kerja : <input class="unit" readonly="readonly" type="text" /> yang belum ditindaklanjuti, antara lain:</li><div></div>`);
-              for (var jbulan = 1; jbulan <= 12; jbulan++) {
+              for (var jbulan = 0; jbulan < 12; jbulan++) {
                 var flag =0;
                 temuansemua = `<table class="table table-bordered table-striped" style="width:100%">
                       <thead>
@@ -522,15 +530,18 @@ td .kanan{
                 for (var i = 0; i < jumlah; i++)
                 {
                   var nbulan = data1[i]['masa_audit'];
-                  nbulan = new Date (nbulan);
-                  nbulan = nbulan.getMonth();
+                  nbulanasli = new Date (nbulan);
+                  console.log("masa audit");
+                  console.log(nbulan);
+                  nbulan = nbulanasli.getMonth();
+                  ntahun = nbulanasli.getFullYear();
                   console.log("bulan");
                   console.log(nbulan);
 
                   if (nbulan == jbulan) {
                     flag =1;
                     nbulan = monthNames[nbulan];
-                    katatemuan = `Temuan Masa Audit ${nbulan}`;
+                    katatemuan = `<li style="text-align: justify;">&nbsp; &nbsp; Hasil audit dokumen SPJ diketahui bahwa pengelolaan administrasi keuangan bulan ${nbulan} tahun ${ntahun} yang dilaksanakan BPP di Unit Kerja :  ${unittemuan} yang belum ditindaklanjuti temuan, yaitu:</li><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1.&nbsp;  Ketidakpatuhan terhadap aturan yang berlaku:</p><div></div>`;
                     var kwitansi = data1[i]['kwitansi'];
                     var nominal = data1[i]['nominal'];
                     var keterangan = data1[i]['keterangan'];

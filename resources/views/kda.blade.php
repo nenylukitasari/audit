@@ -88,7 +88,7 @@
                       <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-pelengkap" onclick="kelengkapanupdate('{{ $kda->id_kda }}')">lihat</button></td>
                       @elseif ($kda->jenis == 3)
                       <td>KDA Unaudited</td>
-                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-keterangan" onclick="keteranganupdate('{{ $kda->id_kda }}')">lihat</button></td>
+                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-pelengkap" onclick="kelengkapanupdate('{{ $kda->id_kda }}')">lihat</button></td>
                       @else
                       <td>KDA tanpa pengajuan UMK</td>
                       <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-keterangan" onclick="keteranganupdate('{{ $kda->id_kda }}')">lihat</button></td>
@@ -402,7 +402,7 @@
             var kesediaan = data1[i]['kesediaan'];
             var jumlah = data1[i]['jumlah'];
             var id = data1[i]['id'];
-            if (kesediaan == null) {
+            if (kesediaan == null && jumlah ==null && nominal == null) {
              ketsemua = `<tr id="krow${i}"><td> <input type="hidden" name="id[${i}]" value="${id}"><input type="text" style='width:100%' name="kelengkapan[${i}]" value="${kelengkapan}"></td>
              <td><select name="kesediaan[${i}]" id="kesediaan">
                         <option value=""></option>
