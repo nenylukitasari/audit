@@ -61,7 +61,7 @@
         <th rowspan="2" class="col-sm-1">No.</th>
         <th colspan="2" class="col-sm-5" style="text-align: center">Kota</th>
         <th colspan="2" class="col-sm-5" style="text-align: center">Satuan Biaya Tiket (Rp)</th>
-        <th rowspan="2" class="col-sm-1"></th>
+        <th rowspan="2" class="col-sm-1">Aksi</th>
       </tr>
       <tr>
         <th>Asal</th>

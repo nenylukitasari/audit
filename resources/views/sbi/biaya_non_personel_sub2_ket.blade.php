@@ -64,7 +64,7 @@
           <th class="col-sm-1">Satuan</th>
           <th class="col-sm-2">Besaran Bruto Maksimum (Rp)</th>
           <th class="col-sm-2">Keterangan</th>
-          <th class="col-sm-1"></th>
+          <th class="col-sm-1">Aksi</th>
         </tr>
         </thead>
        <tbody>

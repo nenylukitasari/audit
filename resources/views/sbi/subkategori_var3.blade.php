@@ -66,7 +66,7 @@
       <th class="col-sm-1">Roda 4(Rp)</th>
       <th class="col-sm-1">Roda 6 / Bus Sedang (Rp)</th>
       <th class="col-sm-1">Roda 6 / Bus Besar (Rp)</th>
-      <th class="col-sm-1"></th>
+      <th class="col-sm-1">Aksi</th>
     </tr>
     </thead>
    <tbody>

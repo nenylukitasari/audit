@@ -11,45 +11,26 @@
 <button type="button" class="btn btn-default waves-effect waves-light"><span class="btn-label"><i class="fa fa-search"></i></span><a href= "{{url ('/datasbi') }}">Cari Data SBI</a></button>
 <br/><br/><br/>
 <div class="card">
-  {{--   <div class="card-header"><b>{{ $searchResults->count() }} results found for "{{ $query }}"</b></div>
-    <div class="card-body">
-        @foreach($searchResults->groupByType() as $type => $modelSearchResults)
-            <h2>{{ ucfirst($type) }}</h2>
-            @foreach($modelSearchResults as $searchResult)
-                <ul>
-                    <li><a href="{{ $searchResult->url }}">{{ $searchResult->title }}</a></li>
-                </ul>
-            @endforeach
-        @endforeach
-    </div> --}}
-    
-    
-    <div class="card-header"><b>Hasil pencarian dengan kata kunci "{{ $key }}"</b></div>
+    @if ($count==0)
+      <div class="card-header"><b>Hasil pencarian dengan kata kunci "{{ $key }}" tidak ditemukan.</b></div>  
+    @else
+    <div class="card-header"><b>Ditemukan &nbsp;{{$count}}&nbsp; hasil pencarian dengan kata kunci &nbsp;"{{ $key }}"</b></div>
 
     <div class="card-body">
-{{-- 
-      @foreach($search as $res) 
-            @foreach($res->jenis_kegiatan as $jk) 
-               <li>Jenis Kegiatan:  {{$jk->jenis_kegiatan}}</li>
-
-               @foreach($jk->kegiatan as $kegiatan) 
-                    <li> -------------- Kegiatan: {{$kegiatan->nama_kegiatan}} . </li>
-               @foreach($kegiatan->kategori as $kategori) 
-                    <li> -------------- Kategori: {{$kategori->kategori_kegiatan}} . </li>
-
-               @endforeach
-               @endforeach
-          
-          @endforeach
-          @endforeach --}}
-
+        </br>
         @foreach($search as $search)
             <ul>
-                <li><a href="#">{{ $search }}</a></li>
+              @if ($search->nama_kegiatan != null)
+                <li><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->nama_kegiatan }}</a></li>
+              @elseif ($search->kategori_kegiatan != null)
+                <li><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->kategori_kegiatan }}</a></li>
+              @elseif ($search->jenis_kegiatan != null)
+                <li><a href="{{ url('dokumen') }}">{{ $search->jenis_kegiatan }}</a></li>
+              @endif
             </ul>
         @endforeach
-
     </div> 
+    @endif
 </div>
 
 @endsection

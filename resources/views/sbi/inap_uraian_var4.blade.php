@@ -63,7 +63,7 @@
         <th rowspan="2" class="col-sm-1">No.</th>
         <th rowspan="2" class="col-sm-3">Provinsi</th>
         <th style="text-align: center" colspan="4" class="col-sm-7">Tarif Hotel (Rp)</th>
-        <th rowspan="2" class="col-sm-1"></th>
+        <th rowspan="2" class="col-sm-1">Aksi</th>
       </tr>
       <tr>
         <th class="col-sm-2">Rektor, Wakil Rektor, MWA, Ketua Senat, Sekretaris Senat</th>

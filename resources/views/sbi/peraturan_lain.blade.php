@@ -25,7 +25,7 @@
         <tr>
           <th class="col-sm-1">No.</th>
           <th class="col-sm-5">Peraturan</th>
-          <th class="col-sm-2"></th>
+          <th class="col-sm-2">Aksi</th>
         </tr>
       </thead>
      <tbody>

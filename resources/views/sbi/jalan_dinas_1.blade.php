@@ -65,7 +65,7 @@
       <th class="col-sm-1">Luar Kota (Rp)</th>
       <th class="col-sm-1">Dalam Kota Lebih dari 8 Jam (Rp)</th>
       <th class="col-sm-1">Diklat (Rp)</th>
-      <th class="col-sm-1"></th>
+      <th class="col-sm-1">Aksi</th>
     </tr>
     </thead>
    <tbody>

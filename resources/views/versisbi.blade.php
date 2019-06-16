@@ -50,7 +50,7 @@
             <th class="col-sm-1">Created at</th>
             <th class="col-sm-1">Updated at</th>
             <th class="col-sm-1">Aktif</th>
-            <th class="col-sm-1"></th>
+            <th class="col-sm-1">Aksi</th>
           </tr>
           </thead>
          <tbody>
@@ -75,7 +75,7 @@
                   </form> 
                   </td>
                   <td>
-                    <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $version->id }})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+                    {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $version->id }})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
                     <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $version->id }})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
                   </td>
               @endforeach

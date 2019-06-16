@@ -48,7 +48,7 @@
         <tr>
           <th class="col-sm-1">No.</th>
           <th class="col-sm-10">Kegiatan</th>
-          <th class="col-sm-1"></th>
+          <th class="col-sm-1">Aksi</th>
         </tr>
         </thead>
        <tbody>

@@ -50,7 +50,7 @@
       <th width="275">Uraian</th>
       <th width="80">Satuan</th>
       <th width="100">Besaran Bruto Maksimum (Rp)</th>
-      <th width="40"></th>
+      <th width="40">Aksi</th>
     </tr>
     </thead>
    <tbody>
