@@ -225,15 +225,10 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id_jk" name="edit_id_jk" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
                     <th class="col-sm-3 control-label">Jenis Kegiatan</th>
                     <td width="10">:</td>
                     <td>
+                        <input type="hidden" class="form-control" id="edit_id_jk" name="edit_id_jk"/>
                         <textarea class="form-control" rows="3" id="edit_jenis_kegiatan" name="edit_jenis_kegiatan"></textarea>
                     </td>
                   </tr>
@@ -263,12 +258,7 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id_kegiatan" name="edit_id_kegiatan" required/></td>
-                  </tr>
-                  <br/>
-                  <tr>
+                    <input type="hidden" class="form-control" id="edit_id_kegiatan" name="edit_id_kegiatan"/>
                     <th class="col-sm-3 control-label">Jenis Kegiatan</th>
                     <td width="10">:</td>
                     <td>

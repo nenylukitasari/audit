@@ -381,15 +381,28 @@
             <div class="box-body">
               <table border="0">
                 <tr>
-                  <th class="col-sm-3 control-label">ID</th>
-                  <td width="10">:</td>
-                  <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id2" name="edit_id2" required></td>
-                </tr>
-                <br/>
-                <tr>
+                  <input type="hidden" class="form-control" id="edit_id2" name="edit_id2"/>
                   <th class="col-sm-3 control-label">Kategori</th>
                   <td width="10">:</td>
-                  <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_kategori2" name="edit_kategori2" required></td>
+                  <td>
+                   <div class="form-group">
+                      <select class="form-control select2" style="width:385px" name="edit_kategori2" id="edit_kategori2" required>
+                        <option></option>
+                        @foreach($versions as $version)
+                          @foreach($version->kegiatan as $kegiatan)
+                          @if($kegiatan->kode_bagian==$kode_bagian_kegiatan)
+                            @foreach($kegiatan->kategori as $kategori)
+                              @if($kategori->kode_bagian==$kode_bagian_kategori)
+                              <option value="{{$kategori->id}}">{{$kategori->kategori_kegiatan}}</option>
+                              @endif
+                            @endforeach
+                          @endif
+                         @endforeach
+                        @endforeach
+                      </select>  
+                    </div>
+                  </td>
+                  </td>
                 </tr>
                 <tr>
                   <th class="col-sm-3 control-label">Asal</th>
@@ -444,12 +457,7 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id4" name="edit_id4" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
+                    <input type="hidden" class="form-control" id="edit_id4" name="edit_id4"/>
                     <th class="col-sm-3 control-label">Kategori</th>
                     <td width="10">:</td>
                     <td>
@@ -524,6 +532,7 @@
           $('#var2').val(data.var2);
           $('#edit_id2').val(data.id);
           $('#edit_kategori2').val(data.kategori_id);
+          $('#edit_kategori2').select2().trigger('change');
           $('#uraian_kegiatan2').val(data.uraian_kegiatan);
           $('#satuan2').val(data.satuan);
           $('#edit_var1').val(data.var1);

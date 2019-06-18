@@ -14,7 +14,30 @@
     @if ($count==0)
       <div class="card-header"><b>Hasil pencarian dengan kata kunci "{{ $key }}" tidak ditemukan.</b></div>  
     @else
-    <div class="card-header"><b>Ditemukan &nbsp;{{$count}}&nbsp; hasil pencarian dengan kata kunci &nbsp;"{{ $key }}"</b></div>
+    <div class="table-responsive">
+    <table id="example1" class="table table-striped">
+      <thead>
+        <tr>
+          <td><b>Ditemukan &nbsp;{{$count}}&nbsp; hasil pencarian dengan kata kunci &nbsp;"{{ $key }}"</b></td>
+        </tr>
+      </thead>
+      <tbody>
+       @foreach($search as $search)
+        <tr>
+          @if ($search->nama_kegiatan != null)
+            <td><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->nama_kegiatan }}</a></td>
+          @elseif ($search->kategori_kegiatan != null)
+            <td><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->kategori_kegiatan }}</a></td>
+          @elseif ($search->jenis_kegiatan != null)
+            <td><a href="{{ url('dokumen') }}">{{ $search->jenis_kegiatan }}</a></td>
+          @endif
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
+
+    {{-- <div class="card-header"><b>Ditemukan &nbsp;{{$count}}&nbsp; hasil pencarian dengan kata kunci &nbsp;"{{ $key }}"</b></div>
 
     <div class="card-body">
         </br>
@@ -29,8 +52,18 @@
               @endif
             </ul>
         @endforeach
-    </div> 
+    </div>  --}}
     @endif
 </div>
 
+@endsection
+@section('add-script')
+<!-- page script -->
+<script>
+  $(document).ready(function() {
+    $('#example1').DataTable({
+        'ordering'    :false
+    });
+  });
+</script>
 @endsection

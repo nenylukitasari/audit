@@ -254,12 +254,7 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id2" name="edit_id2" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
+                    <input type="hidden" class="form-control" id="edit_id2" name="edit_id2"/>
                     <th class="col-sm-3 control-label">Kategori</th>
                     <td width="10">:</td>
                     <td>

@@ -97,7 +97,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Version</label>
                   <div class="col-sm-10">
-                    <input type="text" name="versi" id="versibaru" placeholder="Nama Versi" class="form-control" required />
+                    <input type="text" name="versibaru" id="versibaru" placeholder="Nama Versi" class="form-control" required />
                   </div>
                 </div>
               </div>
@@ -171,11 +171,7 @@
             <div class="box-body">
               <table border="0">
                 <tr>
-                  <th class="col-sm-3 control-label">ID</th>
-                  <td width="10">:</td>
-                  <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="id2" name="id2" required> </td>
-                </tr>
-                <tr>
+                  <input class="form-control" type="hidden" id="id2" name="id2"/>
                   <th class="col-sm-3 control-label">Version</th>
                   <td width="10">:</td>
                   <td><input class="form-control" type="text" size="50" id="edit_version" name="edit_version" required> </td>
@@ -239,12 +235,12 @@
           '_token': "{{ csrf_token() }}",
           'versi' : versi
         },
-        error: function() {
-          console.log('Error');
-        },
         success: function(data) {
-          window.location = '';
           $('#spinnerModal').modal('hide'); 
+          if(data.error){
+          printErrorMsg(data.error);
+        }else{
+          // window.location = '';
           $("#peringatan").append(`<div class="alert alert-success print-success-msg" style="display:none">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h4><i class="icon fa fa-check"></i> Sukses!</h4>
@@ -254,9 +250,26 @@
           $(".print-success-msg").css('display','block');
           $(".print-error-msg").css('display','none');
           $(".print-success-msg").find("ul").append('<li>Berhasil menambahkan versi</li>');
+          $(".print-success-msg").find("ul").append('<li>Silahkan reload halaman</li>');
+          }
         }
       });
     }
+    function printErrorMsg (msg) {
+     $("#peringatan").append(`<div class="alert alert-danger print-error-msg" id="print-error-msg" style="display:none">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-ban"></i> Peringatan!</h4>
+        <ul></ul>
+      </div>`)
+     $(".print-error-msg").find("ul").html('');
+     $(".print-error-msg").css('display','block');
+     $(".print-success-msg").css('display','none');
+     $.each( msg, function( key, value ) {
+      $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+    });
+   } 
   });
+
+
 </script>
 @endsection

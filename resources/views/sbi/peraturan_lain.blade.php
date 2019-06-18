@@ -80,7 +80,12 @@
                 </div>
               </div>
             </div>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <h5>&ensp;&ensp;Contoh:</h5>
+            <ul>
+              <li>http://google.com</li>
+              <li>https://its.ac.id</li>
+            </ul>
+            {{-- <br/><br/><br/><br/><br/><br/><br/><br/><br/> --}}
             <div class="modal-footer">  
               <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Add" /> 
             </div>
@@ -128,6 +133,7 @@ Show Modal
         </div>
     </div>
  --}}
+
 <!-- Edit Modal -->
  <div class="modal fade" id="edit-modal">
           <div class="modal-dialog">
@@ -159,8 +165,15 @@ Show Modal
                     <th class="col-sm-3 control-label">Link</th>
                     <td width="10">:</td>
                     <td>
-                        <textarea class="form-control" rows="3" id="edit_keterangan" name="edit_keterangan"></textarea>
+                        <textarea class="form-control" rows="3" id="edit_keterangan" name="edit_keterangan" placeholder="Masukkan Link dengan Lengkap (termasuk http:// atau https:// sebagai awalan)"></textarea>
                     </td>
+                  </tr>
+                  <tr>
+                    <td class="col-sm-3 control-label">Contoh penulisan link:</th>
+                    <ul>
+                      <li>http://google.com</li>
+                      <li>https://its.ac.id</li>
+                    </ul>
                   </tr>
                 </table>
               </div>              

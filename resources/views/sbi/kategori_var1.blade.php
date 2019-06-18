@@ -209,11 +209,7 @@
             <div class="box-body">
               <table border="0">
                 <tr>
-                  <th class="col-sm-3 control-label">ID</th>
-                  <td width="10">:</td>
-                  <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id" name="edit_id" required></td>
-                </tr>
-                <tr>
+                  <input type="hidden" class="form-control" id="edit_id" name="edit_id"/>
                   <th class="col-sm-4 control-label">Uraian Kegiatan</th>
                   <td width="10">:&ensp;</td>
                   <td>

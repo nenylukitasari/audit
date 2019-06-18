@@ -53,7 +53,7 @@
               @endif
             </td>
               <td> 
-                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $user->id }})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button>
+                {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $user->id }})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $user->id }})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs open-AddBookDialog" data-toggle="modal" data-target="#delete-modal" data-id="{{ $user->id }}"><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button>
               </td>
@@ -163,11 +163,7 @@
               <div class="box-body">
                  <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="edit_id_user" name="edit_id_user" required> </td>
-                  </tr>
-                  <tr>
+                    <input class="form-control" type="hidden" id="edit_id_user" name="edit_id_user"/>
                     <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Nama</th>
                     <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
                     <td><input class="form-control" type="text" size="50" id="edit_user_nama" name="edit_user_nama" required> </td>

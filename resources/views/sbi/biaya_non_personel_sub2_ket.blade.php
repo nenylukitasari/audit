@@ -108,7 +108,7 @@
                           </td>
                           <td>
                             @if($sub1->var1 != null || $sub1->var1 !=0)
-                                {{number_format($sub1->var1)}}
+                               {{number_format($sub1->var1)}}
                             @endif
                           </td>
                           <td>
@@ -502,12 +502,7 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id2" name="edit_id2" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
+                    <input type="hidden" class="form-control" id="edit_id2" name="edit_id2"/>
                     <th class="col-sm-3 control-label">Kategori</th>
                     <td width="10">:</td>
                     <td>
@@ -561,12 +556,7 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id3" name="edit_id3" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
+                    <input type="hidden" class="form-control" id="edit_id3" name="edit_id3"/>
                     <th class="col-sm-3 control-label">Uraian</th>
                     <td width="10">:</td>
                     <td>
@@ -601,21 +591,21 @@
                     <th class="col-sm-3 control-label">Satuan</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="text" class="form-control" id="satuan3" name="satuan3" placeholder="Satuan" required>
+                    <input type="text" class="form-control" id="satuan3" name="satuan3" placeholder="Satuan (Biarkan kosong jika memang tidak memiliki data)">
                     </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Bruto</th>
                     <td width="10">:</td>
                     <td>
-                    <input type="number" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="Bruto" required>
+                    <input type="number" class="form-control" id="sub1_edit_var1" name="sub1_edit_var1" placeholder="Bruto (Biarkan kosong jika memang tidak memiliki data)">
                     </td>
                   </tr>
                   <tr>
                     <th class="col-sm-3 control-label">Keterangan</th>
                     <td width="10">:</td>
                     <td>
-                    <textarea class="form-control" rows="3" id="sub1_edit_keterangan" name="sub1_edit_keterangan" required></textarea>
+                    <textarea class="form-control" rows="3" id="sub1_edit_keterangan" name="sub1_edit_keterangan" placeholder="Keterangan (Biarkan kosong jika memang tidak memiliki data)"></textarea>
                     </td>
                   </tr>
                 </table>
@@ -643,12 +633,7 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id6" name="edit_id6" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
+                    <input type="hidden" class="form-control" id="edit_id6" name="edit_id6"/>
                     <th class="col-sm-3 control-label">Sub Uraian</th>
                     <td width="10">:</td>
                     <td>

@@ -14,7 +14,7 @@ class Peraturan_LainSeeder extends Seeder
     {
         PeraturanLain::create([
             'version_id'    => '1',
-            'peraturan'     => 'Peraturan LALALA',
+            'peraturan'     => 'Peraturan Rektor Tahun 2019',
             'keterangan'    => 'http://google.com',
             'kode_tabel'    => '10',
         ]);

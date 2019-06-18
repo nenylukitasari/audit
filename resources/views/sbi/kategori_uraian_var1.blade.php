@@ -666,11 +666,7 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id" name="edit_id" required></td>
-                  </tr>
-                  <tr>
+                    <input type="hidden" class="form-control" id="edit_id" name="edit_id"/>
                     <th class="col-sm-3 control-label">Uraian Kegiatan</th>
                     <td width="10">:&ensp;</td>
                     <td>
@@ -714,12 +710,7 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id2" name="edit_id2" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
+                    <input type="hidden" class="form-control" id="edit_id2" name="edit_id2"/>
                     <th class="col-sm-3 control-label">Kategori</th>
                     <td width="10">:</td>
                     <td>
@@ -785,12 +776,7 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id4" name="edit_id4" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
+                    <input type="hidden" class="form-control" id="edit_id4" name="edit_id4"/>
                     <th class="col-sm-3 control-label">Kategori</th>
                     <td width="10">:</td>
                     <td>
@@ -847,12 +833,7 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id5" name="edit_id5" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
+                    <input type="hidden" class="form-control" id="edit_id5" name="edit_id5"/>
                     <th class="col-sm-3 control-label">Penjelasan</th>
                     <td width="10">:</td>
                     <td>
@@ -917,12 +898,7 @@
               <div class="box-body">
                 <table border="0">
                   <tr>
-                    <th class="col-sm-3 control-label">ID</th>
-                    <td width="10">:</td>
-                    <td><input type="text" style="border: none; box-shadow: none;" class="form-control" id="edit_id7" name="edit_id7" required></td>
-                  </tr>
-                  <br/>
-                  <tr>
+                    <input type="hidden" class="form-control" id="edit_id7" name="edit_id7"/>
                     <th class="col-sm-3 control-label">Penjelasan</th>
                     <td width="10">:</td>
                     <td>
@@ -1211,6 +1187,7 @@ $('#list_all_penjelasan').on('change', function() {
           $('#var1').val(data.var1);
           $('#edit_id2').val(data.id);
           $('#edit_kategori2').val(data.kategori_id);
+          $('#edit_kategori2').select2().trigger('change');
           $('#uraian_kegiatan2').val(data.uraian_kegiatan);
           $('#satuan2').val(data.satuan);
           $('#edit_var1').val(data.var1);
