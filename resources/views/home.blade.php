@@ -35,7 +35,9 @@
                       <li><a href="#section-iconbox-2" class="sticon ti-search"><span>Cari Data</span></a></li>
                       <li><a href="#section-iconbox-3" class="sticon ti-pencil-alt"><span>Kertas Data Audit</span></a></li>
                       <li><a href="#section-iconbox-4" class="sticon ti-notepad"><span>Temuan KDA</span></a></li>
+                      @if(Auth::user()->role==1)
                       <li><a href="#section-iconbox-5" class="sticon ti-user"><span>User Role</span></a></li>
+                      @endif
                   </ul>
               </nav>
               <div class="content-wrap">

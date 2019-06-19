@@ -23,12 +23,6 @@ class Uraian extends Model /*implements Searchable*/
         return $this->hasManyThrough('App\Sub2','App\Sub1');
     }
 
-    
-    public function provinsi()
-    {
-    	return $this->belongsTo(Provinsi::class,'provinsi_id','id');
-    }
-
     // public function getSearchResult(): SearchResult
     // {
     //     // $url = route('categories.show', $this->id);

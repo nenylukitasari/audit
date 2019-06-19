@@ -27,6 +27,17 @@ Route::group(['middleware' => 'Admin'], function () {
 	Route::put('/summernote/update/{summernote}','SummernoteController@update')->name('summernoteUpdate');
 	Route::post('/berkas/add', 'KdaController@BerkasAdd');
 	Route::post('/berkas/delete/{id}', 'KdaController@BerkasDelete');
+
+	Route::get('/users', 'UserController@index');
+	Route::post('/users', 'UserController@store');
+	Route::post('/data/user','UserController@getData');
+	Route::post('/user/update','UserController@update');
+	Route::post('/user/delete/{id}','UserController@destroy');
+	Route::post('/versi','VersiController@store');
+	Route::get('/versisbi','VersiController@index');
+	Route::post('/pilihversi','VersiController@pilihversi');
+	Route::post('/data/version','VersiController@getData');
+	Route::post('/sbi/update','VersiController@update');
 });
 Route::group(['middleware' => 'Pimpinan'], function () {
 
@@ -46,19 +57,10 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 // 	// punya neny
 	Route::get('/dokumen', 'DataController@index')->name('dokumen');
 	Route::get('/datapegawai', function () {return view('cari_pegawai');});
-
 	Route::get('/peraturanlain','DataController@index2');
-
 	Route::get('/home', function () {return view('home');});
-	Route::get('/users', 'UserController@index');
-	Route::post('/users', 'UserController@store');
-	Route::post('/data/user','UserController@getData');
-	Route::post('/user/update','UserController@update');
-	Route::post('/user/delete/{id}','UserController@destroy');
-
 	Route::get('/datasbi', function () {return view('cari_sbi');});
 	Route::post('/data/search','VersiController@search');
-
 	Route::get('/berkas', 'KdaController@berkas');
 	Route::post('/dokumen/{kode_tabel}','DataController@store');
 	Route::post('/data/kegiatan','DataController@getData');
@@ -68,14 +70,8 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/data/update/{kode_tabel}','DataController@update');
 	Route::post('/data/add/{kode_tabel}','DataController@store');
 	Route::get('getDataId/{id}','DataController@getDataId');
-	
 	Route::post('/data/update/{kode_tabel}','DataController@update');
-	Route::post('/versi','VersiController@store');
-	Route::get('/versisbi','VersiController@index');
-	Route::post('/pilihversi','VersiController@pilihversi');
-	Route::post('/data/version','VersiController@getData');
-	Route::post('/sbi/update','VersiController@update');
-
+	
 	// punya yasin
 	Route::get('/buatkda', 'KdaController@buatkda');
 	Route::post("tambahkda1","KdaController@tambahkda1");
@@ -99,7 +95,4 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/kda/temuan', 'TemuanController@gettemuan');
 
 	Route::get('/penjelasan', 'PenjelasanController@index');
-
-	
-
 });

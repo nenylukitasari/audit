@@ -50,15 +50,6 @@ class Version extends Model /*implements Searchable*/
     {
         return $this->hasMany(PeraturanLain::class,'version_id','id');
     }
-
-    public function provinsi()
-    {
-        return $this->hasMany(Provinsi::class,'version_id','id');
-    }
-    public function uraian()
-    {
-        return $this->hasManyThrough('App\Uraian','App\Provinsi');
-    }
     public function penjelasan()
     {
         return $this->hasMany(Penjelasan::class,'version_id','id');

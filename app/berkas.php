@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class berkas extends Model
 {
-   public $table = "berkas";
+   public $table = 'berkas';
+   protected $primaryKey = 'id';
    public $fillable = ['id','kegiatan_id', 'berkas'];
 
    public function kegiatan(){
