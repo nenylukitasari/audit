@@ -77,6 +77,7 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post("tambahkda1","KdaController@tambahkda1");
 	Route::post("tambahkda2","KdaController@tambahkda2");
 	Route::post("tambahkda3","KdaController@tambahkda3");
+	Route::post("tambahkda4","KdaController@tambahkda4");
 	Route::post('/kda/data', 'KdaController@getkda');
 	Route::post('/kda/kelengkapan', 'KdaController@getkelengkapan');
 	Route::post('/kda/kelengkapan/update', 'KdaController@updatekelengkapan');

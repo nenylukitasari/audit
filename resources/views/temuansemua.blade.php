@@ -73,8 +73,9 @@
                       <td>{{ $kda->bulan}}</td>
                       <td>{{ $kda->tahun}}</td>
                       <td>KDA dengan temuan</td>
-                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-temuan" onclick="temuanupdate('{{ $kda->id_kda }}')">Edit</button></td>
-                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-konfirmasi" onclick="temuankonfirmasi('{{ $kda->id_kda }}')">lihat</button></td>
+                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-temuan" onclick="temuanupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                      </td>
+                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-konfirmasi" onclick="temuankonfirmasi('{{ $kda->id_kda }}')">Konfirmasi</button></td>
                       <td>{{ $kda->created_by}}</td>
                       <td><a href="{{ url('pdf/'.$kda->id_kda) }}"><button class="btn btn-xs btn-primary">Download</button></a> </td>
                     </tr>

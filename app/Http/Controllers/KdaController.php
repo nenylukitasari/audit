@@ -102,10 +102,10 @@ class KdaController extends Controller
 	{
 		$unit = DB::table('unit')->get();
 
-		$berkas = kegiatan::all();
+		//$berkas = kegiatan::all();
 		$versions = Version::where('id',1)->get();
 		$summernote = DB::table('Kda_template')->where('id','>' ,4)->get();
-        return view("buatkda", compact('unit','summernote', 'berkas', 'versions'));
+        return view("buatkda", compact('unit','summernote', 'versions'));
 	}
 	public function triwulan()
 	{
@@ -126,7 +126,7 @@ class KdaController extends Controller
 	public function tambahkda1(Request $request)
     {
     	$input = $request->all();
-    	dd($input);
+    	//dd($input);
     	$rules = [];
     	$rules["unit"] = 'required';
     	$rules["masa_audit"] = 'required';
@@ -268,6 +268,46 @@ class KdaController extends Controller
 	            $ket->kda_id= $kda->id_kda;
 	            $ket->save();  
 	        }
+	        return response()->json(['success'=>'done']);
+
+    	}
+    	return response()->json(['error'=>$validator->errors()->all()]);
+        
+    }
+    public function tambahkda4(Request $request)
+    {
+    	$input = $request->all();
+    	$rules = [];
+    	$rules["unit"] = 'required';
+    	$rules["masa_audit"] = 'required';
+    	$rules["bulan_audit"] = 'required';
+    	$rules["kondisi"] = 'required';
+    	$messages = [
+		    'required' => 'Lengkapi dahulu data :attribute .',
+		];
+    	$validator = Validator::make($request->all(), $rules, $messages);
+    	if ($validator->passes())
+    	{
+    		$tanggaltampung = $input['masa_audit'];
+	        $tanggaltampung .="-01";
+
+	        $kda= new kda;
+	        $kda->unit = $input['unit'];
+	        $kda->masa_audit = $tanggaltampung;
+	        $kda->bulan_audit = $input['bulan_audit'];
+	        $kda->jenis = 4;
+	        $kda->created_by = $input['auditor'];
+	        $kda->save();
+
+            $ket= new kda_keterangan;        
+           	$ket->kondisi = $input['kondisi'];
+           	$ket->kesimpulan = $input['kesimpulan'];
+           	$ket->saran = $input['saran'];
+           	$ket->rekomendasi = $input['rekomendasi'];
+           	$ket->tanggapan = $input['tanggapan'];
+            $ket->kda_id= $kda->id_kda;
+            $ket->save();
+
 	        return response()->json(['success'=>'done']);
 
     	}

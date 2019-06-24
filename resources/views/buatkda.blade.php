@@ -411,7 +411,7 @@ td .kanan{
       {
         $('#add_kda4')[0].reset();
         jenis_kda = 4 ;
-        postURL = "<?php echo url('tambahkda3'); ?>";
+        postURL = "<?php echo url('tambahkda4'); ?>";
         $('#judulform'+jenis_kda+'').text('Form Kda tanpa pengajuan UMK');
         // $('#jenis_kda'+jenis_kda+'').val(pilihan);
         $("#kda4").show();
