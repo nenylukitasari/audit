@@ -134,14 +134,14 @@
                                   </tr>
                                   @if(Auth::user()->role!=3)
                                   <tr class="advance-table-row">
-                                    <td><a href="/kda">
+                                    <td><a href="/kda/semua">
                                       Data Kertas Data Audit Semua</a>
                                     </td>
                                     <td>Menu untuk melihat seluruh data Kertas Data Audit yang telah diaudit oleh semua auditor</td>
                                   </tr>
                                   @endif
                                   <tr class="advance-table-row">
-                                    <td><a href="/kdasendiri">
+                                    <td><a href="/kda/sendiri">
                                       Data Kertas Data Audit Sendiri</a>
                                     </td>
                                     <td>Menu untuk melihat data Kertas Data Audit yang telah diaudit</td>
@@ -156,7 +156,7 @@
                                   @endif
                                   @if(Auth::user()->role!=3)
                                   <tr class="advance-table-row">
-                                    <td><a href="/kdatriwulan">
+                                    <td><a href="/kda/laporan">
                                       Laporan Kertas Data Audit</a>
                                     </td>
                                     <td>Menu untuk melihat laporan Kertas Data Audit dan mengunduh laporan yang dibutuhkan</td>
@@ -183,14 +183,14 @@
                               <tbody>
                                   @if(Auth::user()->role!=3)
                                   <tr class="advance-table-row">
-                                    <td><a href="/temuankda">
+                                    <td><a href="/temuankda/semua">
                                       Data Temuan Kertas Data Audit Semua</a>
                                     </td>
                                     <td>Menu untuk melihat seluruh data temuan Kertas Data Audit yang telah diaudit oleh semua auditor</td>
                                   </tr>
                                   @endif
                                   <tr class="advance-table-row">
-                                    <td><a href="/temuankdasendiri">
+                                    <td><a href="/temuankda/sendiri">
                                       Data Temuan Kertas Data Audit Sendiri</a>
                                     </td>
                                     <td>Menu untuk melihat data temuan Kertas Data Audit yang telah diaudit</td>

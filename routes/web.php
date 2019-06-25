@@ -43,9 +43,9 @@ Route::group(['middleware' => 'Pimpinan'], function () {
 
 });
 Route::group(['middleware' => 'BukanAuditor'], function () {
-	Route::get('/kda', 'KdaController@index');
-	Route::get('/temuankda', 'TemuanController@index');
-	Route::get('/kdatriwulan', 'KdaController@triwulan');
+	Route::get('/kda/semua', 'KdaController@index');
+	Route::get('/kda/laporan', 'KdaController@triwulan');
+	Route::get('/temuankda/semua', 'TemuanController@index');
 	Route::get('download/triwulan/{tahun}/{sesi?}', [
     'as' => 'downloadtriwulan',
     'uses' => 'PdfController@downloadkdatriwulanfix',
@@ -91,8 +91,8 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::get('pdf/{id}',  'PdfController@downloadpdf');
 	Route::get('print',  'PdfController@print');
 
-	Route::get('/kdasendiri', 'KdaController@indexmember');
-	Route::get('/temuankdasendiri', 'TemuanController@indexmember');
+	Route::get('/kda/sendiri', 'KdaController@indexmember');
+	Route::get('/temuankda/sendiri', 'TemuanController@indexmember');
 	Route::post('/kda/temuan', 'TemuanController@gettemuan');
 
 	Route::get('/penjelasan', 'PenjelasanController@index');

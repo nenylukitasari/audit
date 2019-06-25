@@ -138,15 +138,15 @@ else {
             <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="<" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
-                    <li><a href="{{ url('kda') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA Semua</span></a></li>
-                    <li><a href="{{ url('kdasendiri') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA Sendiri</span></a></li>
-                    <li><a href="{{ url('kdatriwulan') }}" class="waves-effect"><i data-icon="}" class="linea-icon linea-elaborate fa-fw"></i><span class="hide-menu">Laporan KDA</span></a> </li>
+                    <li><a href="{{ url('kda/semua') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA Semua</span></a></li>
+                    <li><a href="{{ url('kda/sendiri') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA Sendiri</span></a></li>
+                    <li><a href="{{ url('kda/laporan') }}" class="waves-effect"><i data-icon="}" class="linea-icon linea-elaborate fa-fw"></i><span class="hide-menu">Laporan KDA</span></a> </li>
                 </ul>
             </li>
             <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="H" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan KDA<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="{{ url('temuankda') }}"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan Semua</span></a></li>
-                    <li><a href="{{ url('temuankdasendiri') }}"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan Sendiri</span></a></li>
+                    <li><a href="{{ url('temuankda/semua') }}"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan Semua</span></a></li>
+                    <li><a href="{{ url('temuankda/sendiri') }}"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan Sendiri</span></a></li>
                 </ul>
             </li>
         @endif
@@ -159,10 +159,10 @@ else {
              <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Kertas Data Audit<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="<" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
-                    <li><a href="{{ url('kdasendiri') }}" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">History KDA</span></a> </li>
+                    <li><a href="{{ url('kda/sendiri') }}" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">History KDA</span></a> </li>
                 </ul>
             </li>
-            <li><a href="{{ url('temuankdasendiri') }}" class="waves-effect"><i data-icon="H" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan</span></a> </li>
+            <li><a href="{{ url('temuankda/sendiri') }}" class="waves-effect"><i data-icon="H" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan</span></a> </li>
         @endif
         </ul>
     </div>
