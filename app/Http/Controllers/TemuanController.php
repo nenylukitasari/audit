@@ -33,14 +33,14 @@ class TemuanController extends Controller
                                 '11' => 'November',
                                 '12' => 'Desember',
                         );
-        $kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where('kda.jenis', 2)->orderBy('kda.masa_audit','DESC')->get();
+        $kda = DB::table('kda')->where('kda.jenis', 2)->orderBy('kda.masa_audit','DESC')->get();
         foreach ($kda as $key => $value) {
             $tahun = date("y",strtotime($value->masa_audit));
             $value->bulan = $namabulan[date("m",strtotime($value->masa_audit))];
             $value->tahun = "20${tahun}";
         }
-        $unit = DB::table('unit')->get();
-        return view ("temuansemua", compact('kda','unit'));
+        // $unit = DB::table('unit')->get();
+        return view ("temuansemua", compact('kda'));
     }
     public function indexmember()
     {
@@ -59,14 +59,14 @@ class TemuanController extends Controller
                                 '12' => 'Desember',
                         );
 
-        $kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where(['kda.jenis' => 2, 'kda.created_by' => $_SESSION['username']])->orderBy('kda.masa_audit','DESC')->get();
+        $kda = DB::table('kda')->where(['kda.jenis' => 2, 'kda.created_by' => $_SESSION['username']])->orderBy('kda.masa_audit','DESC')->get();
         foreach ($kda as $key => $value) {
             $tahun = date("y",strtotime($value->masa_audit));
             $value->bulan = $namabulan[date("m",strtotime($value->masa_audit))];
             $value->tahun = "20${tahun}";
         }
-        $unit = DB::table('unit')->get();
-        return view ("temuan", compact('kda','unit'));
+        // $unit = DB::table('unit')->get();
+        return view ("temuan", compact('kda'));
     }
     public function gettemuan(Request $request)
 	{

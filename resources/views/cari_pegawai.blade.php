@@ -22,16 +22,13 @@
             <tr>
                 <td>Pegawai</td>
                    <div class="form-group" id="form-kegiatan">
-                    <form action="#" method="POST"> 
-                      {{csrf_field()}} 
                     <td>                           
-                      <input type="text" name="versi" placeholder="Masukkan Nomor Induk Pegawai" class="form-control" required />
+                      <input type="text" name="cari" id="cari" placeholder="Masukkan Nomor Induk Pegawai" class="form-control" required />
                     </td>
                     <td>
                       &ensp;
-                      <input type="submit" name="submit" id="submit" class="btn btn-primary btn-md btn-rounded" value="Search" /> 
+                      <input type="button" name="submitcari" id="submitcari" class="btn btn-primary btn-md btn-rounded" value="Search" />
                     </td>
-                  </form>
                 </div>
             </tr>
         </tbody>
@@ -39,20 +36,55 @@
   </br>
   <div class="panel-footer">
   <h4 style="margin-left: 36%;">Hasil pencarian data pegawai</h4>
-  <table border="0" style="margin-left: 35%;">
-    <tr>
-      <th class="col-sm-2">NIP</th>
-      <td class="col-sm-5">NIP</td>
-    </tr>
-    <tr>
-      <th class="col-sm-2">Nama</th>
-      <td class="col-sm-5">Nama</td>
-    </tr>
-    <tr>
-      <th class="col-sm-2">Jabatan</th>
-      <td class="col-sm-5">Jabatan</td>
-    </tr>
+  <table id="tabelcari" class="table table-striped">
+    <thead>
+      <tr>
+        <th>NIP</th>
+        <th>Nama</th>
+        <th>Jabatan</th>
+      </tr>
+    </thead>
   </table>
 </div>
 </div>
+@endsection
+
+@section('add-script')
+<script>
+  $("#submitcari").click(function(){
+    var cari = $( "#cari" ).val();
+    console.log(cari);
+    $.ajax({
+        //197205281997021001
+        url: "https://api.its.ac.id:8243/audit/pegawai/"+cari,
+        headers: {"Authorization": "Bearer 13a5750b-a51c-3193-9904-6b943ff95ee8"},
+        type: 'GET',
+        error: function() {
+              console.log('Error');
+            },
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            var dataTable = $("#tabelcari").DataTable();
+              /////////////////////////////////////////////
+              dataTable.clear().draw();
+              $.each(data, function(index, value) {
+                // console.log(idklik);
+                // console.log(value);
+                // var idbaps= value.BAPS_ID;
+                // urutan = value.BAPS_URUTAN;
+                // console.log(idbaps);
+                // console.log(urutan);
+                // var nama = value.BAPS_FILE;
+                // use data table row.add, then .draw for table refresh
+                var nip = value.nip;
+                var nama = value.nama;
+                var jabatan = value.jabatan;
+                
+                dataTable.row.add([nip, nama, jabatan ]).draw(true);
+              });
+        }
+    });
+  });
+</script>
 @endsection

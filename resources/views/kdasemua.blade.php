@@ -20,11 +20,8 @@
             </div> --}}
               <div class="row">
                 <div class="col-sm-3">
-                  <select id="col1_filter" class="column_filter form-control select2" data-column="1" style="width: 100%;">
+                  <select id="col1_filter" class=" unit column_filter form-control select2" data-column="1" style="width: 100%;">
                     <option value="">Unit</option>
-                    @foreach($unit as $data => $value)
-                     <option value="{{$value->nama}}">{{$value->nama}}</option>
-                     @endforeach
                   </select>
                 </div>
                 <div class="col-sm-3">
@@ -76,7 +73,7 @@
                     @foreach($kda as $key => $kda)
                     <tr>
                       <td>{{$i++}}</td>
-                      <td>{{ $kda->nama}}</td>
+                      <td>{{ $kda->unit}}</td>
                       <td>{{ $kda->bulan}}</td>
                       <td>{{ $kda->tahun}}</td>
                       @if ($kda->jenis == 1)
@@ -258,11 +255,40 @@
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $('#col1_filter').select2(
-    {
-      placeholder: "Unit",
-      allowClear: true
-    })
+    $('.unit').select2(
+        {
+          placeholder: "Pilih Unit",
+          allowClear: true,
+          ajax: {
+            url: "https://api.its.ac.id:8243/audit/unit",
+            //params: { headers: { "Authorization": "Bearer 13a5750b-a51c-3193-9904-6b943ff95ee8" } },
+            headers: {"Authorization": "Bearer 13a5750b-a51c-3193-9904-6b943ff95ee8"},
+            dataType: "json",
+            type: "GET",
+            data: function (params) {
+              if (params.term == null)
+              return {
+                query: "",
+              };
+              else
+              return {
+                query: params.term,
+              };
+
+            },
+            processResults: function (data) {
+              //console.log(data);
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.namasatker,
+                            id: item.namasatker
+                        }
+                    })
+                };
+            }
+          }
+        })
   })
 </script>
 <script>
@@ -343,7 +369,7 @@
         success: function(data) {
           console.log(data);
           $('#idkda').val(data.id_kda);
-          $('#unit').val(data.nama);
+          $('#unit').val(data.unit);
           if (data.jenis == 1) $('#jenis').val("KDA Tanpa Temuan");
           else if(data.jenis == 2) $('#jenis').val("KDA Dengan Temuan");
           else if(data.jenis == 3) $('#jenis').val("KDA Unaudited");
@@ -406,45 +432,60 @@
             var kesediaan = data1[i]['kesediaan'];
             var jumlah = data1[i]['jumlah'];
             var id = data1[i]['id'];
-            if (kesediaan == null && jumlah ==null && nominal == null) {
-             ketsemua = `<tr id="krow${i}"><td> <input type="hidden" name="id[${i}]" value="${id}"><input type="text" style='width:100%' name="kelengkapan[${i}]" value="${kelengkapan}"></td>
-             <td><select name="kesediaan[${i}]" id="kesediaan">
+            var tampung = '';
+            ketsemua = `<tr id="krow${i}"><td> <input type="hidden" name="id[${i}]" value="${id}"><input type="text" style='width:100%' name="kelengkapan[${i}]" value="${kelengkapan}"></td>`;
+            tampung = tampung + ketsemua;
+            //$(tampung).append(ketsemua);
+            if (kesediaan == null) {
+              ketsemua = `<td><select name="kesediaan[${i}]" id="kesediaan" style='width:100%'>
                         <option value=""></option>
                         <option value="Ada">Ada</option>
-                        <option value="Tidak Ada">Tidak</option>
-                      </select></td>
-             <td><input type="text" style='width:100%' name="jumlah[${i}]" value="" size="10"></td>
-             <td><input type="text" style='width:100%' name="nominal[${i}]" value="">
+                        <option value="Tidak Ada">Tidak Ada</option>
+                      </select></td>`
+            }
+            else
+            {
+             ketsemua = `<td><select name="kesediaan[${i}]" id="kesediaan[${i}]" style='width:100%'>
+                        <option value=""></option>
+                        <option value="Ada">Ada</option>
+                        <option value="Tidak Ada">Tidak Ada</option>
+                      </select></td>` 
+            }
+            tampung = tampung + ketsemua;
+            if (jumlah == null) {
+              ketsemua = `<td><input type="number" style='width:100%' name="jumlah[${i}]" value="" size="10"></td>`;
+            }
+            else
+            {
+              ketsemua = `<td><input type="number" style='width:100%' name="jumlah[${i}]" value="${jumlah}" size ="10"></td>`;
+            }
+            tampung = tampung + ketsemua;
+            if (nominal == null) {
+              ketsemua = `<td><input type="number" style='width:100%' name="nominal[${i}]" value="">
              <td><button type="button" name="remove" id="${i}" class="btn btn-danger btn-sm hapus_palsu">X</button></td></tr>
              <input type="hidden" name="hapus[${i}]" id="hapus${i}" value="0">`;
-              $("#kelengkapan").append(ketsemua);
             }
             else{
-              ketsemua = `<tr id="krow${i}"><td> <input type="hidden" name="id[${i}]" value="${id}"><input type="text" style='width:100%' name="kelengkapan[${i}]" value="${kelengkapan}"></td>
-              <td><select name="kesediaan[${i}]" id="kesediaan[${i}]">
-                        <option value=""></option>
-                        <option value="Ada">Ada</option>
-                        <option value="Tidak Ada">Tidak</option>
-                      </select></td>
-             <td><input type="text" style='width:100%' name="jumlah[${i}]" value="${jumlah}" size ="10"></td>
-             <td><input type="text" style='width:100%' name="nominal[${i}]" value="${nominal}">
+              ketsemua = `<td><input type="number" style='width:100%' name="nominal[${i}]" value="${nominal}">
              <td><button type="button" name="remove" id="${i}" class="btn btn-danger btn-sm hapus_palsu">X</button></td></tr>
              <input type="hidden" name="hapus[${i}]" id="hapus${i}" value="0">`;
-             $("#kelengkapan").append(ketsemua);
-             document.getElementById(`kesediaan[${i}]`).value = kesediaan;
+            }
+            tampung = tampung + ketsemua;
+            $("#kelengkapan").append(tampung);
+            if (kesediaan != null) {
+              document.getElementById(`kesediaan[${i}]`).value = kesediaan;
             }
           }
         }
       });
     }
-
     temuanclose = function(){
       $("#kelengkapan").empty();
     };
 
     $('.add1').click(function(){  
      i++;  
-     $('#kelengkapan').append('<tr id="krow'+i+'" class="dynamic-added1"><td><input type="text" style="width:100%" name="kelengkapan[]" placeholder="jenis Kelengkapan" /></td><td><select name="kesediaan[]"><option value=""></option><option value="Ada">Ada</option><option value="Tidak Ada">Tidak</option></select></td> <td><input type="text" style="width:100%" name="jumlah[]" placeholder="jumlah" size ="10"/></td><td><input type="text" style="width:100%" name="nominal[]" placeholder="masukkan nominal" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn-sm btn_remove1">X</button></td></tr>');  
+     $('#kelengkapan').append('<tr id="krow'+i+'" class="dynamic-added1"><td><input type="text" style="width:100%" name="kelengkapan[]" placeholder="jenis Kelengkapan" /></td><td><select name="kesediaan[]" style="width:100%"><option value=""></option><option value="Ada">Ada</option><option value="Tidak Ada">Tidak Ada</option></select></td> <td><input type="number" style="width:100%" name="jumlah[]" placeholder="jumlah" size ="10"/></td><td><input type="number" style="width:100%" name="nominal[]" placeholder="masukkan nominal" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn-sm btn_remove1">X</button></td></tr>');  
    });  
 
 

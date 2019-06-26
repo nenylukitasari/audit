@@ -55,7 +55,7 @@ class PdfController extends Controller
 	}
 	public function filepdf($id)
     {
-        $kda = DB::table('kda')->where('id_kda',$id)->leftjoin('unit','kda.unit','=','unit.id_unit')->first();
+        $kda = DB::table('kda')->where('id_kda',$id)->first();
         // $data = DB::table('kda_data')->where('kda_id',$id)->first();
         $temuan = DB::table('kda_temuan')->where('kda_id',$id)->where('status',0)->get();
         $kda_ket = DB::table('kda_pelengkap')->where('kda_id',$id)->get();
@@ -80,7 +80,7 @@ class PdfController extends Controller
 				                '12' => 'Desember',
 				        );
   
-        $pdfnama = $kda->nama."-".$kda->masa_audit.".pdf";
+        $pdfnama = $kda->unit."-".$kda->masa_audit.".pdf";
         if ($kda->jenis == 1)
 				{
 					$summernotes = DB::table('kda_template')->where('id',1)->first();
@@ -185,7 +185,7 @@ class PdfController extends Controller
 					$contents = str_replace("tanggapan$", $ket->tanggapan, $contents);
 				}
 
-				$contents = str_replace("unit$", $kda->nama, $contents);
+				$contents = str_replace("unit$", $kda->unit, $contents);
 				$contents = str_replace("masaaudit$", "{$namabulan[$masaaudit]} 20{$tahun}", $contents);
 				$contents = str_replace("bulanaudit$", "{$namabulan[$bulan]} 20{$tahun}", $contents);
 				$contents = str_replace("bulan$", $namabulan[$masaaudit], $contents);

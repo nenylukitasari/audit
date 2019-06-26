@@ -350,10 +350,7 @@ td .kanan{
       $("#peringatan").empty();
       $("#temuanlama").empty();
       var listunit = `<select id="unit" class="unit2" name="unit"  style="width:170px">>
-                      <option></option>
-                      @foreach($unit as $data => $value)
-                      <option value="{{$value->id_unit}}">{{$value->nama}}</option>
-                      @endforeach</select>`;
+                      <option></option></select>`;
       $(".listunit").empty();
       $(".listunit").append(`${listunit}`);
       // document.getElementById('bulan_audit').valueAsDate = new Date();
@@ -362,7 +359,36 @@ td .kanan{
         $('.unit2').select2(
         {
           placeholder: "Pilih Unit",
-          allowClear: true
+          allowClear: true,
+          ajax: {
+            url: "https://api.its.ac.id:8243/audit/unit",
+            //params: { headers: { "Authorization": "Bearer 13a5750b-a51c-3193-9904-6b943ff95ee8" } },
+            headers: {"Authorization": "Bearer 13a5750b-a51c-3193-9904-6b943ff95ee8"},
+            dataType: "json",
+            type: "GET",
+            data: function (params) {
+              if (params.term == null)
+              return {
+                query: "",
+              };
+              else
+              return {
+                query: params.term,
+              };
+
+            },
+            processResults: function (data) {
+              //console.log(data);
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.namasatker,
+                            id: item.namasatker
+                        }
+                    })
+                };
+            }
+          }
         })
       })
       var pilihan = $( "#pilihkda" ).val();
@@ -582,17 +608,20 @@ td .kanan{
       });
       
     });
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
+    // $.ajaxSetup({
+    //   headers: {
+    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //   }
+    // });
 
      $('.submitkda').click(function(){  
       $("#peringatan").empty();
       $.ajax({  
       url:postURL,  
-      method:"POST",  
+      method:"POST",
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
       data:$('#add_kda'+jenis_kda).serialize(),
       type:'json',
       success:function(data)  

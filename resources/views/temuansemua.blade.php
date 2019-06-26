@@ -22,11 +22,8 @@
             </div> --}}
               <div class="row">
                 <div class="col-sm-4">
-                  <select id="col1_filter" class="column_filter form-control select2" data-column="1" style="width: 100%;">
+                  <select id="col1_filter" class=" unit column_filter form-control select2" data-column="1" style="width: 100%;">
                     <option value="">Unit</option>
-                    @foreach($unit as $data => $value)
-                     <option value="{{$value->nama}}">{{$value->nama}}</option>
-                     @endforeach
                   </select>
                 </div>
                 <div class="col-sm-4">
@@ -69,7 +66,7 @@
                     @foreach($kda as $key => $kda)
                     <tr>
                       <td>{{$i++}}</td>
-                      <td>{{ $kda->nama}}</td>
+                      <td>{{ $kda->unit}}</td>
                       <td>{{ $kda->bulan}}</td>
                       <td>{{ $kda->tahun}}</td>
                       <td>KDA dengan temuan</td>
@@ -188,11 +185,40 @@
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $('#col1_filter').select2(
-    {
-      placeholder: "Unit",
-      allowClear: true
-    })
+    $('.unit').select2(
+        {
+          placeholder: "Pilih Unit",
+          allowClear: true,
+          ajax: {
+            url: "https://api.its.ac.id:8243/audit/unit",
+            //params: { headers: { "Authorization": "Bearer 13a5750b-a51c-3193-9904-6b943ff95ee8" } },
+            headers: {"Authorization": "Bearer 13a5750b-a51c-3193-9904-6b943ff95ee8"},
+            dataType: "json",
+            type: "GET",
+            data: function (params) {
+              if (params.term == null)
+              return {
+                query: "",
+              };
+              else
+              return {
+                query: params.term,
+              };
+
+            },
+            processResults: function (data) {
+              //console.log(data);
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.namasatker,
+                            id: item.namasatker
+                        }
+                    })
+                };
+            }
+          }
+        })
   })
 </script>
 <script>

@@ -34,17 +34,17 @@ class KdaController extends Controller
 				                '11' => 'November',
 				                '12' => 'Desember',
 				        );
-		$kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->orderBy('kda.masa_audit','DESC')->get();
+		$kda = DB::table('kda')->orderBy('kda.masa_audit','DESC')->get();
 		foreach ($kda as $key => $value) {
 			$tahun = date("y",strtotime($value->masa_audit));
 			$value->bulan = $namabulan[date("m",strtotime($value->masa_audit))];
 			$value->tahun = "20${tahun}";
 		}
 		//dd($kda);
-		$unit = DB::table('unit')->get();
+		// $unit = DB::table('unit')->get();
     	//$kda = DB::table('kda')->get();
     	//return response()->json($kda);
-		return view ("kdasemua", compact('kda','unit'));
+		return view ("kdasemua", compact('kda'));
 	}
 	public function indexmember()
 	{
@@ -62,17 +62,17 @@ class KdaController extends Controller
 				                '11' => 'November',
 				                '12' => 'Desember',
 				        );
-		$kda = DB::table('kda')->leftjoin('unit','kda.unit','=','unit.id_unit')->where('kda.created_by', $_SESSION['username'])->orderBy('kda.masa_audit','DESC')->get();
+		$kda = DB::table('kda')->where('kda.created_by', $_SESSION['username'])->orderBy('kda.masa_audit','DESC')->get();
 		foreach ($kda as $key => $value) {
 			$tahun = date("y",strtotime($value->masa_audit));
 			$value->bulan = $namabulan[date("m",strtotime($value->masa_audit))];
 			$value->tahun = "20${tahun}";
 		}
 		//dd($kda);
-		$unit = DB::table('unit')->get();
+		// $unit = DB::table('unit')->get();
     	//$kda = DB::table('kda')->get();
     	//return response()->json($kda);
-		return view ("kda", compact('kda','unit'));
+		return view ("kda", compact('kda'));
 	}
 	public function berkas()
 	{
@@ -337,8 +337,7 @@ class KdaController extends Controller
 	{
 		$id = $request->input('id');
 		//$kda = kda::find($id)->join('unit');
-		$kda = db::table('kda')->join('unit','kda.unit','=','unit.id_unit')
-        ->where('kda.id_kda',$id)->first();
+		$kda = db::table('kda')->where('kda.id_kda',$id)->first();
 		return response()->json($kda);
 	}
 	public function getkelengkapan(Request $request)
