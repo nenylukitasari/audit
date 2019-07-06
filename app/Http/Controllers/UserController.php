@@ -10,25 +10,25 @@ use Validator;
 class UserController extends Controller
 {
     public function index() {
-        $users = DB::table('users')
-        ->orderBy('created_at', 'asc')
+        $users = User::withTrashed()
+        ->orderBy('deleted_at', 'asc')
         ->get();
         return view('user_role', compact('users'));
     }
     public function store(Request $request)
     {
-    	$rules["email"] = 'unique:users';
+    	$rules["nip"] = 'unique:users';
         $validator = Validator::make($request->all(), $rules);
         if ($validator->passes())
         {
             $user = new User;
             $user->nama = $request->nama;
-            $user->email = $request->email;
+            $user->nip = $request->nip;
             $user->role = $request->role;
             $user->save();
             return redirect()->back()->with('message_success',"Berhasil menambahkan data");
         }
-        return redirect()->back()->with('message_error',"Gagal menambahkan data. Email telah terpakai.");
+        return redirect()->back()->with('message_error',"Gagal menambahkan data. NIP telah terpakai.");
     }
     public function getData(Request $request)
     {
@@ -39,25 +39,32 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        $rules["edit_user_email"] = 'unique:users,email,'.$request->edit_id_user.',id' /*. $request->edit_id_user*/;
+        $rules["edit_user_nip"] = 'unique:users,nip,'.$request->edit_id_user.',id';
         $validator = Validator::make($request->all(), $rules);
         if ($validator->passes())
         {
 
             $user = User::find($request->edit_id_user);
     	    $user->nama = $request->edit_user_nama;
-            $user->email = $request->edit_user_email;
+            $user->nip = $request->edit_user_nip;
             $user->role = $request->edit_user_role;
             $user->save();
     	    return redirect()->back()->with('message_success',"Berhasil mengubah data");
         }
-        return redirect()->back()->with('message_error',"Gagal menambahkan data. Email telah terpakai.");
+        return redirect()->back()->with('message_error',"Gagal menambahkan data. NIP telah terpakai.");
     }
     public function destroy($id)
     {
         $user = User::find($id);
         $user->delete();
         return redirect()->back()->with('message_success',"Berhasil menghapus data");
+    }
+
+    public function restore($id)
+    {
+        $user = User::onlyTrashed()->find($id);
+        $user->restore();
+        return redirect()->back()->with('message_success',"Berhasil mengembalikan data");       
     }
             
 }

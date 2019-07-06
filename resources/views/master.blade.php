@@ -1,10 +1,9 @@
 <?php
-if (!isset($_SESSION['userinfo2']))
+if (!isset($_SESSION['user_id']))
         {
             return redirect('/login2');
         }
 else {
-  $userinfo = $_SESSION['userinfo2'];
   $username = $_SESSION['username'];
   $user_id = $_SESSION['user_id'];
   $picture = $_SESSION['picture'];

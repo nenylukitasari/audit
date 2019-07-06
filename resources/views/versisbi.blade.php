@@ -197,6 +197,8 @@
     });  
 });
 </script>
+<script href="https://cdn.datatables.net/plug-ins/1.10.15/api/fnReloadAjax.js"></script>
+
 <script>
   $(document).ready(function(){
     submitUpdate = function(id){
@@ -229,6 +231,7 @@
       console.log("sudah muncul");
       var versi = $('#versibaru').val();
       $.ajax({
+        async: true,
         url: '/versi',
         type: 'POST',
         data: {
@@ -240,7 +243,8 @@
           if(data.error){
           printErrorMsg(data.error);
         }else{
-          // window.location = '';
+          $('#example1').load('/loadversi');
+          console.log(data);
           $("#peringatan").append(`<div class="alert alert-success print-success-msg" style="display:none">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h4><i class="icon fa fa-check"></i> Sukses!</h4>
@@ -250,7 +254,7 @@
           $(".print-success-msg").css('display','block');
           $(".print-error-msg").css('display','none');
           $(".print-success-msg").find("ul").append('<li>Berhasil menambahkan versi</li>');
-          $(".print-success-msg").find("ul").append('<li>Silahkan reload halaman</li>');
+         
           }
         }
       });

@@ -99,7 +99,7 @@
                                     <td><a href="/datapegawai">
                                       Cari Data Pegawai</a>
                                     </td>
-                                    <td>Mencari data pegawai berdasarkan nama/NIP</td>
+                                    <td>Mencari data pegawai berdasarkan Nomor Induk Pegawai (NIP)</td>
                                   </tr>
                                   <tr class="advance-table-row">
                                     <td><a href="/datasbi">

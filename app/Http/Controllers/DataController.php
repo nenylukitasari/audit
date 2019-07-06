@@ -385,12 +385,6 @@ class DataController extends Controller
                 break;
         }
     }
-
-    public function index2()
-    {   
-        $versions = Version::where('status',0)->get();
-        return view('sbi.peraturan_lain', compact('versions'));
-    }
    
     public function getDataId(Request $request) {
         switch ($request->kode_tabel) {
@@ -544,18 +538,6 @@ class DataController extends Controller
                     $penjelasan_sub2->save();
                     break;
                 }
-            case '10':
-                {
-                    $peraturan_lain= new PeraturanLain;
-                    $peraturan_lain->version_id = $request->version;
-                    $peraturan_lain->peraturan = $request->peraturan;
-                    $peraturan_lain->keterangan = $request->keterangan;
-                    $peraturan_lain->kode_tabel=10;
-                    $peraturan_lain->save();
-                    break;
-                }
-                
-                
                 
             default:
                 # code...
@@ -623,13 +605,6 @@ class DataController extends Controller
                     $data = PenjelasanSub2::find($id);
                     break;
                 }
-            case '10':
-                {
-                    $id = $request->input('id');
-                    $data = PeraturanLain::find($id);
-                    break;
-                }
-             
              default:
                  # code...
                  break;
@@ -728,16 +703,7 @@ class DataController extends Controller
                     $penjelasan_sub2->penjelasan = $request->edit_penjelasan_sub2;
                     $penjelasan_sub2->save();
                     break;
-                }
-             case '10':
-                {
-                    $peraturan_lain = PeraturanLain::find($request->edit_id_peraturan);
-                    $peraturan_lain->peraturan = $request->edit_peraturan;
-                    $peraturan_lain->keterangan = $request->edit_keterangan;
-                    $peraturan_lain->save();
-                    break;
-                }
-                
+                }                
             default:
                 # code...
                 break;

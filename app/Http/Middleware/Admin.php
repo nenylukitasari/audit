@@ -17,7 +17,7 @@ class Admin
     {
         //$user = Auth::user();
         //dd($user);
-        if (!isset($_SESSION['userinfo2']))
+        if (!isset($_SESSION['user_id']))
         {
             return redirect('/');
         }

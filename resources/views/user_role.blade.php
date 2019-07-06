@@ -29,8 +29,9 @@
         <tr>
           <th class="col-sm-1">No.</th>
           <th class="col-sm-5">Nama</th>
-          <th class="col-sm-3">Email</th>
+          <th class="col-sm-3">NIP</th>
           <th class="col-sm-1">Role</th>
+          <th class="col-sm-1">Status</th>
           <th class="col-sm-2">Aksi</th>
         </tr>
       </thead>
@@ -44,7 +45,7 @@
               {{ $user->nama}}
             </td>
             <td>
-              {{ $user->email}}
+              {{ $user->nip}}
             </td>
             <td>
               @if($user->role == 1) Admin
@@ -52,11 +53,19 @@
               @else Auditor
               @endif
             </td>
-              <td> 
-                {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $user->id }})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
+            @if($user->deleted_at == null) 
+              <td><button class="btn-sm btn btn-rounded btn-success">Aktif</button></td>
+              <td>
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $user->id }})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs open-AddBookDialog" data-toggle="modal" data-target="#delete-modal" data-id="{{ $user->id }}"><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button>
               </td>
+            @else 
+              <td><button class="btn-sm btn btn-rounded btn-danger">Tidak Aktif</button></td>
+              <td>
+                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#restore-modal" data-id="{{ $user->id }}"><i class="ti-settings" data-toggle="tooltip" title="Restore Data"></i></button>
+              </td>
+            @endif
+                {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $user->id }})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
             </tr>
         @endforeach
         </tbody>
@@ -84,9 +93,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">E-mail</label>
+                  <label class="col-sm-2 control-label">NIP</label>
                   <div class="col-sm-10">
-                     <input class="form-control" type="text" size="50" id="email" name="email" placeholder="Masukkan E-mail" required/>
+                     <input class="form-control" type="text" size="50" id="nip" name="nip" placeholder="Masukkan NIP" required/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -131,9 +140,9 @@
                     <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="user_nama" name="user_nama" disabled> </td>
                   </tr>
                   <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Email</th>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">NIP</th>
                     <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="user_email" name="user_email" disabled> </td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="user_nip" name="user_nip" disabled> </td>
                   </tr>
                   <tr>
                     <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Role</th>
@@ -169,9 +178,9 @@
                     <td><input class="form-control" type="text" size="50" id="edit_user_nama" name="edit_user_nama" required> </td>
                   </tr>
                   <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Email</th>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">NIP</th>
                     <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><input class="form-control" type="text" size="50" id="edit_user_email" name="edit_user_email" required> </td>
+                    <td><input class="form-control" type="text" size="50" id="edit_user_nip" name="edit_user_nip" required> </td>
                   </tr>
                   <tr>
                     <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Role</th>
@@ -206,11 +215,33 @@
   <div class="modal-body">
     <form class="form-inline"  method="POST" id="fuser">
     {{csrf_field()}}
-    <h5 style="text-align: center;">Apakah akan menghapus data? Data yang telah dihapus tidak dapat dikembalikan.</h5>
+    <h5 style="text-align: center;">Apakah anda akan menghapus data?</h5>
   </div> 
     <div class="modal-footer">
       <button type="button" class="btn btn-success" data-dismiss="modal">Tidak</button>
-      <button type="submit" class="btn btn-warning">Ya, Hapus</button>
+      <button type="submit" class="btn btn-warning">Ya</button>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+
+<!--Restore Modal-->
+<div class="modal modal-danger fade" id="restore-modal">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title text-center" id="myModalLabel">Konfirmasi</h4>
+  </div>
+  <div class="modal-body">
+    <form action="{{url('/user/restore/'.$user->id)}}" method="POST"> 
+    {{csrf_field()}}
+    <h5 style="text-align: center;">Apakah anda akan mengembalikan data dan mengubah status menjadi aktif?</h5>
+  </div> 
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" data-dismiss="modal">Tidak</button>
+      <button type="submit" class="btn btn-warning">Ya</button>
     </div>
   </form>
 </div>
@@ -231,7 +262,7 @@
    var id = $(this).data('id');
   $(".modal-body #fuser").attr("action");
   $(".modal-body #fuser").attr("action", '/user/delete/'+id);
-});
+  });
 
   });
 </script>
@@ -252,13 +283,13 @@
           console.log(data);
           $('#id_user').val(data.id);
           $('#user_nama').val(data.nama);
-          $('#user_email').val(data.email);
-          if (data.role == 1) $('#user_role').val("Admin");
-          if (data.role == 2) $('#user_role').val("Pimpinan");
-          if (data.role == 3) $('#user_role').val("Auditor");
+          $('#user_nip').val(data.nip);
+          // if (data.role == 1) $('#user_role').val("Admin");
+          // if (data.role == 2) $('#user_role').val("Pimpinan");
+          // if (data.role == 3) $('#user_role').val("Auditor");
           $('#edit_id_user').val(data.id);
           $('#edit_user_nama').val(data.nama);
-          $('#edit_user_email').val(data.email);
+          $('#edit_user_nip').val(data.nip);
           $('#edit_user_role').val(data.role);
           $('#edit_user_role').select2().trigger('change');
         }

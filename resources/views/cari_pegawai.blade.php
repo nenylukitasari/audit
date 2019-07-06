@@ -33,9 +33,9 @@
             </tr>
         </tbody>
     </table>
-  </br>
+  </br></br></br>
   <div class="panel-footer">
-  <h4 style="margin-left: 36%;">Hasil pencarian data pegawai</h4>
+  <h4>Hasil pencarian data pegawai</h4>
   <table id="tabelcari" class="table table-striped">
     <thead>
       <tr>

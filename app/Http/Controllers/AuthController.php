@@ -38,7 +38,7 @@ class AuthController extends Controller
 
         //set scope yang diinginkan
         $oidc->addScope('openid profile email roleunit integra');
-
+            
         //set auth param jika diperlukan
         // $oidc->addAuthParam(array(
         //  'prompt' => 'none'
@@ -65,7 +65,7 @@ class AuthController extends Controller
         //session_start();
 
         $_SESSION['userinfo'] = $userInfo;
-        $_SESSION['userinfo2'] = $userInfo->email;
+        // $_SESSION['userinfo2'] = $userInfo->email;
         $_SESSION['username'] = $userInfo->name;
         $_SESSION['user_id'] = $userInfo->username;
         $_SESSION['picture'] = $userInfo->picture;
@@ -78,7 +78,7 @@ class AuthController extends Controller
         //     return redirect('/home');   
         // }
         //return redirect('/home');
-        $user = User::where('email', $userInfo->email)->first();
+        $user = User::where('nip', $userInfo->username)->first();
         if (!$user) {
             return redirect('/')->withError('user not found');;
         }

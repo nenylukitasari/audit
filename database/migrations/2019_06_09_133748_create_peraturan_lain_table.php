@@ -17,9 +17,9 @@ class CreatePeraturanLainTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('version_id')->unsigned();
             $table->foreign('version_id')->references('id')->on('version');
-            $table->text('peraturan');
-            $table->text('keterangan');
-            $table->integer('kode_tabel');
+            $table->text('nama_peraturan');
+            $table->text('link_keterangan');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

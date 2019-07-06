@@ -15,7 +15,7 @@ Route::get('/', 'AuthController@login2');
 Auth::routes();
 
 //yasin
-Route::get('/login', 'AuthController@showLogin')->name('login');
+Route::get('/login', 'AuthController@login2')->name('login');
 Route::get('/tujuan', 'AuthController@tujuan');
 Route::get('/logout2', 'AuthController@logout2')->name('logout2');
 Route::get('/hak', function () { return view('hak');});
@@ -33,8 +33,10 @@ Route::group(['middleware' => 'Admin'], function () {
 	Route::post('/data/user','UserController@getData');
 	Route::post('/user/update','UserController@update');
 	Route::post('/user/delete/{id}','UserController@destroy');
+	Route::post('/user/restore/{id}','UserController@restore');
 	Route::post('/versi','VersiController@store');
 	Route::get('/versisbi','VersiController@index');
+	Route::get('/loadversi','VersiController@index2');
 	Route::post('/pilihversi','VersiController@pilihversi');
 	Route::post('/data/version','VersiController@getData');
 	Route::post('/sbi/update','VersiController@update');
@@ -54,10 +56,17 @@ Route::group(['middleware' => 'BukanAuditor'], function () {
 });
 
 Route::group(['middleware' => 'SemuaRole'], function () {
-// 	// punya neny
+ 	// punya neny
 	Route::get('/dokumen', 'DataController@index')->name('dokumen');
 	Route::get('/datapegawai', function () {return view('cari_pegawai');});
-	Route::get('/peraturanlain','DataController@index2');
+	Route::get('/peraturanlain','PeraturanController@index');
+	Route::post('/upload', 'PeraturanController@upload');
+	Route::get('download/{filename}', 'PeraturanController@download');
+	Route::post('/peraturan/update/{kode}','PeraturanController@update');
+	Route::post('/getdataPeraturan','PeraturanController@getData');
+	Route::post('/peraturan/store','PeraturanController@store');
+	Route::post('/peraturan/delete/{id}','PeraturanController@destroy');
+	Route::post('/peraturan/restore/{id}','PeraturanController@restore');
 	Route::get('/home', function () {return view('home');});
 	Route::get('/datasbi', function () {return view('cari_sbi');});
 	Route::post('/data/search','VersiController@search');

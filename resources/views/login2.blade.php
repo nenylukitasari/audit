@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>myITS Client Sample App</title>
-    <link rel="stylesheet" href="{{URL::asset('css/myits-button.css')}}">
+    <link rel="stylesheet" href="{{url('assets/css/myits-button.css')}}">
 </head>
 <body>
 

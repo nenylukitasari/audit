@@ -16,7 +16,7 @@ class BukanAuditor
      */
     public function handle($request, Closure $next)
     {
-        if (!isset($_SESSION['userinfo2']))
+        if (!isset($_SESSION['user_id']))
         {
             return redirect('/');
         }

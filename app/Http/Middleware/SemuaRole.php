@@ -18,11 +18,11 @@ class SemuaRole
     {
         $user = Auth::user();
         //dd($user);
-         if (!isset($_SESSION['userinfo2']))
+         if (!isset($_SESSION['user_id']))
         {
             return redirect('/');
         }
-        elseif(isset($_SESSION['userinfo2']))
+        elseif(isset($_SESSION['user_id']))
         {
             return $next($request);
         }

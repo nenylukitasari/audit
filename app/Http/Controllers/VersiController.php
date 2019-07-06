@@ -30,7 +30,12 @@ class VersiController extends Controller
         ->get();
         return view('versisbi', compact('versions'));
     }
-
+    public function index2() {
+        $versions = DB::table('version')
+        ->orderBy('status', 'asc')
+        ->get();
+        return view('versitableload', compact('versions'));
+    }
     public function store(Request $request)
     {
         $rules["versi"] = 'required';
@@ -176,10 +181,11 @@ class VersiController extends Controller
         $key=$request->keywordsbi;
         $version=Version::where('status',0)->first();
         $jenis_kegiatan= JenisKegiatan::select('id')->where('version_id', $version->id)->get()->toArray();
-
+        
         $tampung_jenis_kegiatan = array();
         for ($i=0; $i < count($jenis_kegiatan); $i++) { 
             $tampung_jenis_kegiatan[$i] = $jenis_kegiatan[$i]['id'];
+        // dd($tampung_jenis_kegiatan);
         }
 
         $kegiatan = Kegiatan::select('id')->wherein('jenis_kegiatan_id', $tampung_jenis_kegiatan)->get()->toArray();
