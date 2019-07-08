@@ -94,7 +94,7 @@ class TemuanController extends Controller
         ->update([
             'status' => '1'
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('message_success',"Berhasil mengkonfirmasi temuan");
         //return redirect('/temuankda');
 
     }
@@ -134,7 +134,7 @@ class TemuanController extends Controller
             
         
         }
-        return redirect()->back();
+        return redirect()->back()->with('message_success',"Berhasil mengupdate data temuan");
         //return redirect('/temuankda');
 
     }

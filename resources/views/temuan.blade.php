@@ -12,6 +12,19 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
+          @if (session('message_success'))
+      <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <strong><h4><i class="icon fa fa-check"></i> Sukses!</strong></h4>
+          {{ session('message_success') }}
+      </div>
+  @elseif (session('message_error'))
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong><h4><i class="icon fa fa-close"></i> Error!</strong></h4>
+        {{ session('message_error') }}
+    </div>
+  @endif
           <div class="box-header">
               <h3 class="box-title">Temuan</h3>
           </div>
@@ -69,8 +82,9 @@
                       <td>{{ $kda->bulan}}</td>
                       <td>{{ $kda->tahun}}</td>
                       <td>KDA dengan temuan</td>
-                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-temuan" onclick="temuanupdate('{{ $kda->id_kda }}')">Edit</button></td>
-                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-konfirmasi" onclick="temuankonfirmasi('{{ $kda->id_kda }}')">lihat</button></td>
+                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-temuan" onclick="temuanupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                      </td>
+                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-konfirmasi" onclick="temuankonfirmasi('{{ $kda->id_kda }}')">Konfirmasi</button></td>
                       <td><a href="{{ url('pdf/'.$kda->id_kda) }}"><button class="btn btn-xs btn-primary">Download</button></a> </td>
                     </tr>
                     @endforeach
@@ -145,7 +159,8 @@
           <div id="test"></div>
       </div>
         <div class="modal-body">
-          <form action="{{url('/temuan/konfirmasi')}}" method="get" id="tambah_kda" enctype="multipart/form-data">
+          <form action="{{url('/temuan/konfirmasi')}}" method="post" id="tambah_kda" enctype="multipart/form-data">
+            {{csrf_field()}}
             <div>
              <table class="table table-bordered table-striped" style='width:100%'>
                 <thead>

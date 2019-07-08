@@ -48,9 +48,10 @@ class PdfController extends Controller
 		}
 		else
 		{
-			Session::flash('message', 'Tidak ada data KDA'); 
-			Session::flash('alert-class', 'alert-danger');
-			return Redirect::back(); 
+			// Session::flash('message', 'Tidak ada data KDA'); 
+			// Session::flash('alert-class', 'alert-danger');
+			// return Redirect::back(); 
+			return redirect()->back()->with('message_error',"Tidak ada data kda");
 		}
 	}
 	public function filepdf($id)

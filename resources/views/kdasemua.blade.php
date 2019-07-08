@@ -10,6 +10,19 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
+          @if (session('message_success'))
+      <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <strong><h4><i class="icon fa fa-check"></i> Sukses!</strong></h4>
+          {{ session('message_success') }}
+      </div>
+  @elseif (session('message_error'))
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong><h4><i class="icon fa fa-close"></i> Error!</strong></h4>
+        {{ session('message_error') }}
+    </div>
+  @endif
           <div class="box-header">
               <h3 class="box-title">Filter</h3>
           </div>

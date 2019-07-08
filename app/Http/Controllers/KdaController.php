@@ -88,7 +88,7 @@ class KdaController extends Controller
         $berkas->kegiatan_id = $request->kegiatan;
         $berkas->berkas = $request->berkas;
         $berkas->save();
-		return redirect()->back();
+		return redirect()->back()->with('message_success',"Berhasil menambah data berkas");
 
 	}
 	public function BerkasDelete($id)
@@ -322,7 +322,7 @@ class KdaController extends Controller
         $kda = kda::find($request->idkda);
         //$kda->update($data, ['except'=>'_token']);
         $kda->update(['bulan_audit' => $request->bulan_audit]);
-        return redirect()->back();
+        return redirect()->back()->with('message_success',"Berhasil mengupdate data kda");
         //return redirect('/kda');
 
     }
@@ -400,7 +400,7 @@ class KdaController extends Controller
 			
 		
 		}
-		return redirect()->back();
+		return redirect()->back()->with('message_success',"Berhasil mengupdate data kelengkapan");
 		//return redirect('/kda');
 	}
 	public function updateketerangan(Request $request)

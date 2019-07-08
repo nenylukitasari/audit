@@ -65,7 +65,7 @@ class SummernoteController extends Controller
         $summernote->tipe = $request->tipe;
         $summernote->content = $request->konten;
         $summernote->save();
-        return redirect('/templatekda');
+        return redirect()->back()->with('message_success',"Berhasil mengupdate template kda");
     }
 
     public function pilihtemplate(Request $request)

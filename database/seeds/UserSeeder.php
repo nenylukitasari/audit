@@ -17,6 +17,11 @@ class UserSeeder extends Seeder
     		'nip'           => '5115100018',
     		'role'          => '1',
     	]);
+        User::create([
+            'nama'          => 'M. Azka Yasin',
+            'nip'           => '5115100038',
+            'role'          => '1',
+        ]);
         // User::create([
         //     'nama'          => 'Ifa Nuraisyah, A.Md.',
         //     'nip'           => '',
@@ -102,5 +107,6 @@ class UserSeeder extends Seeder
         //     'nip'           => '',
         //     'role'          => '3',
         // ]);
+
     }
 }

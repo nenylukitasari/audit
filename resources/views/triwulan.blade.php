@@ -12,6 +12,13 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
+          @if (session('message_error'))
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong><h4><i class="icon fa fa-close"></i> Error!</strong></h4>
+        {{ session('message_error') }}
+    </div>
+  @endif
           <div class="box-header">
               <h3 class="box-title">Laporan KDA</h3>
           </div>
@@ -23,12 +30,6 @@
             $i =1;
             $konstanta = 1;
             ?>
-            @if(Session::has('message'))
-              <div class="alert alert-danger alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button> 
-                      <strong>{{ Session::get('message') }}</strong>
-              </div>
-              @endif
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>

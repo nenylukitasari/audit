@@ -60,6 +60,19 @@ div .temuan {
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
+          @if (session('message_success'))
+      <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <strong><h4><i class="icon fa fa-check"></i> Sukses!</strong></h4>
+          {{ session('message_success') }}
+      </div>
+  @elseif (session('message_error'))
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong><h4><i class="icon fa fa-close"></i> Error!</strong></h4>
+        {{ session('message_error') }}
+    </div>
+  @endif
           <div class="box-header">
               <h3 class="box-title">Template KDA</h3>
           </div>
@@ -94,7 +107,7 @@ div .temuan {
             <br>
             <h4>Edit Template</h4>
             <ul>
-              <li>Edit hanya bagian2 tanpa simbol khusus (Abaikan Formating)</li>
+              <li>Edit hanya bagian-bagian tanpa simbol khusus (Abaikan Formating)</li>
               <li>Edit pada masing-masing Template Print dan Template Website pada kategori yang sama</li>
             </ul>
               <form class="form-horizontal" method="POST"
@@ -156,6 +169,7 @@ div .temuan {
               $("#fsummernote").attr("action"); //Will retrieve it
               $("#fsummernote").attr("action", '/summernote/update/'+id); //Will set it
               //$("#summernote'").summernote("code", response[0].UnitsDescription);
+              document.getElementById('fsummernote').scrollIntoView();
 
             }
           });
