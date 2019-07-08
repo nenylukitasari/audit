@@ -23,7 +23,7 @@
                 <td>Pegawai</td>
                    <div class="form-group" id="form-kegiatan">
                     <td>                           
-                      <input type="text" name="cari" id="cari" placeholder="Masukkan Nomor Induk Pegawai" class="form-control" required />
+                      <input type="text" name="cari" id="cari" placeholder="Masukkan Nomor Induk Pegawai (tanpa ada spasi)" class="form-control" required />
                     </td>
                     <td>
                       &ensp;

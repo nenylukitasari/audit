@@ -17,18 +17,18 @@ class UserController extends Controller
     }
     public function store(Request $request)
     {
-    	$rules["nip"] = 'unique:users';
+    	$rules["username"] = 'unique:users';
         $validator = Validator::make($request->all(), $rules);
         if ($validator->passes())
         {
             $user = new User;
             $user->nama = $request->nama;
-            $user->nip = $request->nip;
+            $user->username = $request->username;
             $user->role = $request->role;
             $user->save();
             return redirect()->back()->with('message_success',"Berhasil menambahkan data");
         }
-        return redirect()->back()->with('message_error',"Gagal menambahkan data. NIP telah terpakai.");
+        return redirect()->back()->with('message_error',"Gagal menambahkan data. Username telah terpakai.");
     }
     public function getData(Request $request)
     {
@@ -39,19 +39,19 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        $rules["edit_user_nip"] = 'unique:users,nip,'.$request->edit_id_user.',id';
+        $rules["edit_user_username"] = 'unique:users,username,'.$request->edit_id_user.',id';
         $validator = Validator::make($request->all(), $rules);
         if ($validator->passes())
         {
 
             $user = User::find($request->edit_id_user);
     	    $user->nama = $request->edit_user_nama;
-            $user->nip = $request->edit_user_nip;
+            $user->username = $request->edit_user_username;
             $user->role = $request->edit_user_role;
             $user->save();
     	    return redirect()->back()->with('message_success',"Berhasil mengubah data");
         }
-        return redirect()->back()->with('message_error',"Gagal menambahkan data. NIP telah terpakai.");
+        return redirect()->back()->with('message_error',"Gagal menambahkan data. Username telah terpakai.");
     }
     public function destroy($id)
     {

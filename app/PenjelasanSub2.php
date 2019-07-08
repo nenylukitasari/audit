@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 // use Spatie\Searchable\Searchable;
 // use Spatie\Searchable\SearchResult;
 
 class PenjelasanSub2 extends Model /*implements Searchable*/
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $table = 'penjelasan_sub2';
     protected $primaryKey = 'id';
 

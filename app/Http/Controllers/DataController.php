@@ -422,6 +422,53 @@ class DataController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        $key=$request->keywordsbi;
+        $version=Version::where('status',0)->first();
+        $jenis_kegiatan= JenisKegiatan::select('id')->where('version_id', $version->id)->get()->toArray();
+        // dd($jenis_kegiatan);
+        $tampung_jenis_kegiatan = array();
+        for ($i=0; $i < count($jenis_kegiatan); $i++) { 
+            $tampung_jenis_kegiatan[$i] = $jenis_kegiatan[$i]['id'];
+        // dd($tampung_jenis_kegiatan);
+        }
+
+        $kegiatan = Kegiatan::select('id')->wherein('jenis_kegiatan_id', $tampung_jenis_kegiatan)->get()->toArray();
+        $tampung_kegiatan = array();
+        for ($i=0; $i < count($kegiatan); $i++) { 
+            $tampung_kegiatan[$i] = $kegiatan[$i]['id'];
+        }
+            // dd($tampung_kegiatan);
+
+        $search1 = JenisKegiatan::where('version_id', '=', "{$version->id}")
+                ->where('jenis_kegiatan','like', "%{$key}%")
+                ->get();
+        $search2 = Kegiatan::wherein('jenis_kegiatan_id', $tampung_jenis_kegiatan)
+                ->where('nama_kegiatan','like', "%{$key}%")
+                ->get();
+        $search_tampung = $search2->merge($search1);
+        // dd($search_tampung);
+        $search3 = Kategori::wherein('kegiatan_id', $tampung_kegiatan)
+                ->where('kategori_kegiatan','like', "%{$key}%")
+                ->get();
+
+        // $new = new Collection;
+                // dd($search3);
+        // if($search_tampung == $search3)
+        // $search = $new->merge($search1)->merge($search2)->merge($search3);
+        // $searchs = $searchs->merge($search2);
+        // // $search->all();
+        // $search = $search->merge($search3);
+        
+        $search = $search_tampung->merge($search3);
+        // $search->all();
+        // dd($search);
+        $count=count($search);
+        
+        return view('hasil_sbi', compact('search', 'key','count'));   
+    }
+
     public function store(Request $request)
     {
         switch ($request->kode_tabel) {
@@ -710,5 +757,21 @@ class DataController extends Controller
         }
         return redirect()->back()->with('message_success',"Berhasil mengubah data");
     }
+
+    public function destroy(Request $request)
+    {
+        switch ($request->kode_tabel) {
+            case '3':
+                $kategori = Kategori::find($request->id);
+                $kategori->delete();
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+        return redirect()->back()->with('message_success',"Berhasil menghapus data");
+    }
+
 }
     

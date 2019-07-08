@@ -22,7 +22,7 @@ class User extends Authenticatable
     protected $primaryKey = 'id';
 
     protected $fillable = [
-       'nama','nip','role',
+       'nama','username','role',
     ];
     protected $dates = ['deleted_at'];
 }

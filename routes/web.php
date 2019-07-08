@@ -69,7 +69,10 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/peraturan/restore/{id}','PeraturanController@restore');
 	Route::get('/home', function () {return view('home');});
 	Route::get('/datasbi', function () {return view('cari_sbi');});
-	Route::post('/data/search','VersiController@search');
+	Route::post('/data/search','DataController@search');
+
+	Route::post('/data/delete','DataController@destroy');
+
 	Route::get('/berkas', 'KdaController@berkas');
 	Route::post('/dokumen/{kode_tabel}','DataController@store');
 	Route::post('/data/kegiatan','DataController@getData');

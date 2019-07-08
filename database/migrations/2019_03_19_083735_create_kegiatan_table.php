@@ -20,6 +20,7 @@ class CreateKegiatanTable extends Migration
             $table->text('nama_kegiatan');
             $table->integer('kode_tabel');
             $table->integer('kode_bagian')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             // $table->softDeletes();
         });

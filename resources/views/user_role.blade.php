@@ -29,7 +29,7 @@
         <tr>
           <th class="col-sm-1">No.</th>
           <th class="col-sm-5">Nama</th>
-          <th class="col-sm-3">NIP</th>
+          <th class="col-sm-3">Username</th>
           <th class="col-sm-1">Role</th>
           <th class="col-sm-1">Status</th>
           <th class="col-sm-2">Aksi</th>
@@ -45,7 +45,7 @@
               {{ $user->nama}}
             </td>
             <td>
-              {{ $user->nip}}
+              {{ $user->username}}
             </td>
             <td>
               @if($user->role == 1) Admin
@@ -93,9 +93,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">NIP</label>
+                  <label class="col-sm-2 control-label">Username</label>
                   <div class="col-sm-10">
-                     <input class="form-control" type="text" size="50" id="nip" name="nip" placeholder="Masukkan NIP" required/>
+                     <input class="form-control" type="text" size="50" id="username" name="username" placeholder="Masukkan username" required/>
                   </div>
                 </div>
                 <div class="form-group">
@@ -140,9 +140,9 @@
                     <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="user_nama" name="user_nama" disabled> </td>
                   </tr>
                   <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">NIP</th>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Username</th>
                     <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="user_nip" name="user_nip" disabled> </td>
+                    <td><input style="border: none; box-shadow: none;" class="form-control" type="text" size="50" id="user_username" name="user_username" disabled> </td>
                   </tr>
                   <tr>
                     <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Role</th>
@@ -178,9 +178,9 @@
                     <td><input class="form-control" type="text" size="50" id="edit_user_nama" name="edit_user_nama" required> </td>
                   </tr>
                   <tr>
-                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">NIP</th>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Username</th>
                     <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
-                    <td><input class="form-control" type="text" size="50" id="edit_user_nip" name="edit_user_nip" required> </td>
+                    <td><input class="form-control" type="text" size="50" id="edit_user_username" name="edit_user_username" required> </td>
                   </tr>
                   <tr>
                     <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Role</th>
@@ -283,13 +283,13 @@
           console.log(data);
           $('#id_user').val(data.id);
           $('#user_nama').val(data.nama);
-          $('#user_nip').val(data.nip);
+          $('#user_username').val(data.username);
           // if (data.role == 1) $('#user_role').val("Admin");
           // if (data.role == 2) $('#user_role').val("Pimpinan");
           // if (data.role == 3) $('#user_role').val("Auditor");
           $('#edit_id_user').val(data.id);
           $('#edit_user_nama').val(data.nama);
-          $('#edit_user_nip').val(data.nip);
+          $('#edit_user_username').val(data.username);
           $('#edit_user_role').val(data.role);
           $('#edit_user_role').select2().trigger('change');
         }

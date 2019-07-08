@@ -26,8 +26,22 @@
         <tr>
           @if ($search->nama_kegiatan != null)
             <td><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->nama_kegiatan }}</a></td>
-          @elseif ($search->kategori_kegiatan != null)
-            <td><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->kategori_kegiatan }}</a></td>
+          @elseif ($search->kategori_kegiatan != null )
+            @if ($search->kode_bagian==1)
+              <td><a href="{{ url('/data/2/1') }}">{{ $search->kategori_kegiatan }}</a></td>
+            @elseif ($search->kode_bagian==9)
+              <td><a href="{{ url('/data/2/3') }}">{{ $search->kategori_kegiatan }}</a></td>
+            @elseif ($search->kode_bagian==18)
+              <td><a href="{{ url('/data/2/5') }}">{{ $search->kategori_kegiatan }}</a></td>
+            @elseif ($search->kode_bagian==19)
+              <td><a href="{{ url('/data/2/6') }}">{{ $search->kategori_kegiatan }}</a></td>
+            @elseif ($search->kode_bagian==20)
+              <td><a href="{{ url('/data/2/7') }}">{{ $search->kategori_kegiatan }}</a></td>
+            @elseif ($search->kode_bagian==21)
+              <td><a href="{{ url('/data/2/8') }}">{{ $search->kategori_kegiatan }}</a></td>
+            @else
+              <td><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->kategori_kegiatan }}</a></td>
+            @endif
           @elseif ($search->jenis_kegiatan != null)
             <td><a href="{{ url('dokumen') }}">{{ $search->jenis_kegiatan }}</a></td>
           @endif

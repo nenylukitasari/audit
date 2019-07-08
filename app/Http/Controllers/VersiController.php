@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 use DB;
 use Validator;
 use App\Version;
@@ -174,39 +175,5 @@ class VersiController extends Controller
         $version->version = $request->edit_version;        
         $version->save();
         return redirect('/versisbi')->with('message_success',"Berhasil mengubah versi"); 
-    }
-
-    public function search(Request $request)
-    {
-        $key=$request->keywordsbi;
-        $version=Version::where('status',0)->first();
-        $jenis_kegiatan= JenisKegiatan::select('id')->where('version_id', $version->id)->get()->toArray();
-        
-        $tampung_jenis_kegiatan = array();
-        for ($i=0; $i < count($jenis_kegiatan); $i++) { 
-            $tampung_jenis_kegiatan[$i] = $jenis_kegiatan[$i]['id'];
-        // dd($tampung_jenis_kegiatan);
-        }
-
-        $kegiatan = Kegiatan::select('id')->wherein('jenis_kegiatan_id', $tampung_jenis_kegiatan)->get()->toArray();
-        $tampung_kegiatan = array();
-        for ($i=0; $i < count($kegiatan); $i++) { 
-            $tampung_kegiatan[$i] = $kegiatan[$i]['id'];
-        }
-
-        $search1 = JenisKegiatan::where('version_id', '=', "{$version->id}")
-                ->where('jenis_kegiatan','like', "%{$key}%")
-                ->get();
-        $search2 = Kegiatan::wherein('jenis_kegiatan_id', $tampung_jenis_kegiatan)
-                ->where('nama_kegiatan','like', "%{$key}%")
-                ->get();
-        $search_tampung = $search2->merge($search1);
-        $search3 = Kategori::wherein('kegiatan_id', $tampung_kegiatan)
-                ->where('kategori_kegiatan','like', "%{$key}%")
-                ->get();
-        $search = $search3->merge($search_tampung);
-        $count=count($search);
-        
-        return view('hasil_sbi', compact('search', 'key','count'));   
     }
 }

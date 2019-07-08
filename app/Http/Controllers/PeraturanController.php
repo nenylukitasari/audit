@@ -25,7 +25,7 @@ class PeraturanController extends Controller
     }
 
     public function upload(Request $request){
-        $rules["file"] = 'required|mimes:pdf,jpeg,png,jpg,doc,docx,xlsx,xls,ppt,pptx,zip|size:21000';
+        $rules["file"] = 'required|file|mimes:pdf,jpeg,png,jpg,doc,docx,xlsx,xls,ppt,pptx,zip|size:8100';
         $validator = Validator::make($request->all(), $rules);
         if ($validator->passes())
         {
@@ -43,7 +43,12 @@ class PeraturanController extends Controller
             $peraturan_lain->save();
             return redirect()->back()->with('message_success',"Berhasil mengupload file");
         }
-        return redirect()->back()->with('message_error',"Gagal menambahkan data. Ekstensi file tidak didukung.");
+        else
+        {
+            $messages=$validator->messages();
+            return redirect()->back()->withErrors($validator);
+        }
+        // return redirect()->back()->with('message_error',"Gagal menambahkan data. Ekstensi file tidak didukung.");
     }
 
     public function download($filename)
