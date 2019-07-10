@@ -51,11 +51,10 @@
       <th class="col-sm-1">No.</th>
       <th class="col-sm-6">Uraian Kegiatan</th>
       <th class="col-sm-1">Satuan</th>
-      <th class="col-sm-2">Besaran Bruto Maksimum (Rp)</th>
+      <th class="col-sm-3">Besaran Bruto Maksimum (Rp)</th>
       @if(Auth::user()->role!=3)
-        <th class="col-sm-1">Status</th>
-      @endif
       <th class="col-sm-1">Aksi</th>
+      @endif
     </tr>
     </thead>
    <tbody>
@@ -70,18 +69,10 @@
         <th>{{ $kategori->kategori_kegiatan}}</th>
         <td></td>
         <td></td>
-        @if($kategori->deleted_at == null) 
-          <td><button class="btn-sm btn btn-rounded btn-success">Aktif</button></td>
-          <td>
-            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-
-            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs open-AddBookDialog" data-toggle="modal" data-target="#delete-modal" onclick="submitDelete({{ $kategori->id }},{{$kategori->kode_tabel}})" {{-- data-id="{{ $kategori->id }},{{$kategori->kode_tabel}}" --}}><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button>
+        @if(Auth::user()->role!=3)
+          <td> 
             {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-          </td>
-        @else 
-          <td><button class="btn-sm btn btn-rounded btn-danger">Tidak Aktif</button></td>
-          <td>
-            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#restore-modal" data-id="{{ $kategori->id }}"><i class="ti-settings" data-toggle="tooltip" title="Restore Data"></i></button>
+                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
           </td>
         @endif
         </tr>
@@ -104,20 +95,12 @@
           <td>
           {{number_format($uraian->var1)}}</td>
           @endif 
-          @if($uraian->deleted_at == null) 
-          <td><button class="btn-sm btn btn-rounded btn-success">Aktif</button></td>
+          @if(Auth::user()->role!=3)
           <td>
-            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-
-            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs open-AddBookDialog" data-toggle="modal" data-target="#delete-modal" data-id="{{ $uraian->id }}"><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button>
             {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
+                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
           </td>
-        @else 
-          <td><button class="btn-sm btn btn-rounded btn-danger">Tidak Aktif</button></td>
-          <td>
-            <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#restore-modal" data-id="{{ $uraian->id }}"><i class="ti-settings" data-toggle="tooltip" title="Restore Data"></i></button>
-          </td>
-        @endif
+          @endif
         </tr>
         @foreach ($uraian->sub1 as $sub1)
           <tr> 
@@ -135,21 +118,13 @@
             @else
             <td>
               {{number_format($sub1->var1)}}</td>
-            @endif
-            @if($sub1->deleted_at == null) 
-              <td><button class="btn-sm btn btn-rounded btn-success">Aktif</button></td>
-              <td>
-                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal3" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-
-                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs open-AddBookDialog" data-toggle="modal" data-target="#delete-modal" data-id="{{ $sub1->id }}"><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button>
-                {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal3" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-              </td>
-            @else 
-              <td><button class="btn-sm btn btn-rounded btn-danger">Tidak Aktif</button></td>
-              <td>
-                <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#restore-modal" data-id="{{ $sub1->id }}"><i class="ti-settings" data-toggle="tooltip" title="Restore Data"></i></button>
-              </td>
-            @endif
+            @endif 
+            <td>
+              {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal3" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
+              @if(Auth::user()->role!=3)
+                  <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal3" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+              @endif
+            </td>
           </tr>
             @endforeach
             @endforeach
@@ -808,50 +783,6 @@
           </div>
         </div>
     </div>
-
-<!--Delete Modal-->
-<div class="modal modal-danger fade" id="delete-modal">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title text-center" id="myModalLabel">Konfirmasi</h4>
-  </div>
-  <div class="modal-body">
-    <form class="form-inline"  method="POST" id="fdelete">
-    {{csrf_field()}}
-    <h5 style="text-align: center;">Apakah anda akan menghapus data?</h5>
-  </div> 
-    <div class="modal-footer">
-      <button type="button" class="btn btn-success" data-dismiss="modal">Tidak</button>
-      <button type="submit" class="btn btn-warning">Ya</button>
-    </div>
-  </form>
-</div>
-</div>
-</div>
-
-<!--Restore Modal-->
-<div class="modal modal-danger fade" id="restore-modal">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title text-center" id="myModalLabel">Konfirmasi</h4>
-  </div>
-  <div class="modal-body">
-    <form class="form-inline"  method="POST" id="frestore">
-    {{csrf_field()}}
-    <h5 style="text-align: center;">Apakah anda akan mengembalikan data dan mengubah status menjadi aktif?</h5>
-  </div> 
-    <div class="modal-footer">
-      <button type="button" class="btn btn-success" data-dismiss="modal">Tidak</button>
-      <button type="submit" class="btn btn-warning">Ya</button>
-    </div>
-  </form>
-</div>
-</div>
-</div>
 @endsection
 
 @section('add-script')
@@ -862,13 +793,7 @@
     });  
     $('#example2').DataTable({
       'ordering'    :false
-    }); 
-    $(document).on("click", ".open-AddBookDialog", function () {
-    var kode_tabel = $(this).data('kode_tabel');
-    var id = $(this).data('id');
-    $(".modal-body #fdelete").attr("action");
-    $(".modal-body #fdelete").attr("action", '/data/delete/'+kode_tabel'/'+id);
-    }); 
+    });  
 });
 </script>
 <script>
@@ -1065,28 +990,6 @@
           $('#edit_kategori4').val(data.kategori_id);
           $('#edit_kategori4').select2().trigger('change');
           $('#edit_penjelasan').val(data.penjelasan);
-        }
-      });
-    }
-    submitDelete = function(id, kode_tabel){
-      $.ajax({
-        url: '/data/delete',
-        type: 'POST',
-        data: {
-          '_token': "{{ csrf_token() }}",
-          'id' : id,
-          'kode_tabel' : kode_tabel
-        },
-        error: function() {
-          console.log('Error');
-        },
-        dataType: 'json',
-        success: function(data) {
-          console.log("sudah berhasil");
-          // $('#id').val(data.id);
-          // $('#kategori').val(data.kategori_kegiatan);
-          // $('#edit_id').val(data.id);
-          // $('#kategori_kegiatan1').val(data.kategori_kegiatan);
         }
       });
     }

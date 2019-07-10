@@ -25,7 +25,7 @@ class PeraturanController extends Controller
     }
 
     public function upload(Request $request){
-        $rules["file"] = 'required|file|mimes:pdf,jpeg,png,jpg,doc,docx,xlsx,xls,ppt,pptx,zip|size:8100';
+        $rules["file"] = 'required|file|mimes:pdf,jpeg,png,jpg,doc,docx,xlsx,xls,ppt,pptx,zip';
         $validator = Validator::make($request->all(), $rules);
         if ($validator->passes())
         {

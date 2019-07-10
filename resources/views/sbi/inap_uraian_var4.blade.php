@@ -63,7 +63,9 @@
         <th rowspan="2" class="col-sm-1">No.</th>
         <th rowspan="2" class="col-sm-3">Provinsi</th>
         <th style="text-align: center" colspan="4" class="col-sm-7">Tarif Hotel (Rp)</th>
+        @if(Auth::user()->role!=3)
         <th rowspan="2" class="col-sm-1">Aksi</th>
+        @endif
       </tr>
       <tr>
         <th class="col-sm-2">Rektor, Wakil Rektor, MWA, Ketua Senat, Sekretaris Senat</th>
@@ -90,10 +92,11 @@
                     <td>{{number_format($uraian->var2)}}</td>
                     <td>{{number_format($uraian->var3)}}</td>
                     <td>{{number_format($uraian->var4)}}</td>
+                      @if(Auth::user()->role!=3)
                       <td> 
                       {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-                      @if(Auth::user()->role!=3)
                         <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                      </td>
                       @endif
                     </tr>
                    @endforeach

@@ -333,7 +333,9 @@ Show Modal
 </div>
 </div>
 
+
 <!--Restore Modal-->
+@if(Auth::user()->role!=3)
 <div class="modal modal-danger fade" id="restore-modal">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
@@ -354,7 +356,7 @@ Show Modal
 </div>
 </div>
 </div>
-
+@endif
 </div>
 @endsection
 

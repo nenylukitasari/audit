@@ -760,6 +760,7 @@ class DataController extends Controller
 
     public function destroy(Request $request)
     {
+        // dd($request->kode_tabel);
         switch ($request->kode_tabel) {
             case '3':
                 $kategori = Kategori::find($request->id);

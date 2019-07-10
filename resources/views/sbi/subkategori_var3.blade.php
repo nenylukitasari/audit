@@ -66,7 +66,9 @@
       <th class="col-sm-1">Roda 4(Rp)</th>
       <th class="col-sm-1">Roda 6 / Bus Sedang (Rp)</th>
       <th class="col-sm-1">Roda 6 / Bus Besar (Rp)</th>
+      @if(Auth::user()->role!=3)
       <th class="col-sm-1">Aksi</th>
+      @endif
     </tr>
     </thead>
    <tbody>
@@ -87,12 +89,12 @@
         <td>{{number_format($uraian->var1)}}</td>
         <td>{{number_format($uraian->var2)}}</td>
         <td>{{number_format($uraian->var3)}}</td>
+        @if(Auth::user()->role!=3)
         <td>
           {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-          @if(Auth::user()->role!=3)
             <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-          @endif
         </td>
+      @endif
       </tr>
       @endforeach
       @endif
