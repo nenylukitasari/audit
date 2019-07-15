@@ -112,9 +112,9 @@ td .kanan{
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Kategori Berkas</th>
+                  <th>Berkas</th>
                   @if(Auth::user()->role==1)
-                  <th>Hapus</th>
+                  <th>Edit</th>
                   @endif
                 </tr>
               </thead>
@@ -134,7 +134,7 @@ td .kanan{
                     <td></td>
                     <td style="text-align: left"> {{$item->berkas}} </td>
                     @if(Auth::user()->role==1)
-                    <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs open-AddBookDialog" data-toggle="modal" data-target="#delete-modal" data-id="{{ $item->id }}"><i class="ti-trash" data-toggle="tooltip" title="Delete Data"></i></button></td>
+                    <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs open-AddBookDialog" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $item->id }})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
                     @endif
                   </tr>
                 @endforeach
@@ -144,9 +144,9 @@ td .kanan{
               <tfoot>
                 <tr>
                   <th>No</th>
-                  <th>Kategori Berkas</th>
+                  <th>Berkas</th>
                   @if(Auth::user()->role==1)
-                  <th>Hapus</th>
+                  <th>Edit</th>
                   @endif
                 </tr>
               </tfoot>
@@ -208,7 +208,38 @@ td .kanan{
         </div>
       </div>
     </div>
-
+<!-- Edit Modal -->
+ <div class="modal fade" id="edit-modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Ubah Berkas</h4>
+              </div>
+              <div class="modal-body">
+              <form action="{{url('/berkas/update')}}" method="POST"> 
+              {{csrf_field()}} 
+              <div class="box-body">
+                 <table border="0">
+                  <tr>
+                    <input class="form-control" type="hidden" id="edit_id_berkas" name="edit_id_berkas"/>
+                    <input class="form-control" type="hidden" id="edit_id_kegiatan" name="edit_id_kegiatan"/>
+                    <th style="vertical-align: top; padding-top: 5px;" class="col-sm-3 control-label">Berkas</th>
+                    <td style="vertical-align: top; padding-top: 5px;" width="10">:</td>
+                    <td><input class="form-control" type="text" size="50" id="edit_berkas" name="edit_berkas" required> </td>
+                  </tr>
+                </table>
+              </div>              
+              </div>
+               <div class="modal-footer">  
+                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Update" /> 
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+    </div>
     <!--Delete Modal-->
 <div class="modal modal-danger fade" id="delete-modal">
 <div class="modal-dialog" role="document">
@@ -247,6 +278,26 @@ td .kanan{
 </script>
 
 <script type="text/javascript">
+  submitUpdate = function(id){
+    console.log(id);
+      $.ajax({
+        url: '/berkas/data',
+        type: 'GET',
+        data: {
+          'id' : id
+        },
+        error: function() {
+          console.log('Error');
+        },
+        dataType: 'json',
+        success: function(data) {
+          console.log(data);
+          $('#edit_id_berkas').val(data.id);
+          $('#edit_id_kegiatan').val(data.kegiatan_id);
+          $('#edit_berkas').val(data.berkas);
+        }
+      });
+    };
   $('#berkas1').dataTable({
     // "order": [],
       'ordering'    :false

@@ -27,6 +27,8 @@ Route::group(['middleware' => 'Admin'], function () {
 	Route::put('/summernote/update/{summernote}','SummernoteController@update')->name('summernoteUpdate');
 	Route::post('/berkas/add', 'KdaController@BerkasAdd');
 	Route::post('/berkas/delete/{id}', 'KdaController@BerkasDelete');
+	Route::post('/berkas/update','KdaController@updateBerkas');
+	Route::get('/berkas/data','KdaController@dataBerkas');
 
 	Route::get('/users', 'UserController@index');
 	Route::post('/users', 'UserController@store');

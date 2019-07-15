@@ -97,6 +97,21 @@ class KdaController extends Controller
         $berkas->delete();
         return redirect()->back()->with('message_success',"Berhasil menghapus data");
     }
+    public function dataBerkas(Request $request)
+    {
+        $id = $request->input('id');
+        $data = Berkas::find($id);
+        return response()->json($data);
+    }
+    public function updateBerkas(Request $request)
+    {
+        
+            $berkas = Berkas::find($request->edit_id_berkas);
+    	    $berkas->kegiatan_id = $request->edit_id_kegiatan;
+            $berkas->berkas = $request->edit_berkas;
+            $berkas->save();
+    	    return redirect()->back()->with('message_success',"Berhasil mengubah data berkas");
+    }
 
 	public function buatkda()
 	{
