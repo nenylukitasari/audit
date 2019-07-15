@@ -137,8 +137,8 @@ else {
             <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="<" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
-                    <li><a href="{{ url('kda/semua') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA Semua</span></a></li>
-                    <li><a href="{{ url('kda/sendiri') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA Sendiri</span></a></li>
+                    <li><a href="{{ url('kda/semua') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Hasil KDA Semua</span></a></li>
+                    <li><a href="{{ url('kda/sendiri') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Hasil KDA Sendiri</span></a></li>
                     <li><a href="{{ url('kda/laporan') }}" class="waves-effect"><i data-icon="}" class="linea-icon linea-elaborate fa-fw"></i><span class="hide-menu">Laporan KDA</span></a> </li>
                 </ul>
             </li>
@@ -155,10 +155,10 @@ else {
             <li><a href="{{ url('users') }}" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">User Role</span></a> </li>
         @endif
         @if(Auth::user()->role==3)
-             <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Kertas Data Audit<span class="fa arrow"></span></span></a>
+             <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA<span class="fa arrow"></span></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="<" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
-                    <li><a href="{{ url('kda/sendiri') }}" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">History KDA</span></a> </li>
+                    <li><a href="{{ url('kda/sendiri') }}" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Hasil KDA</span></a> </li>
                 </ul>
             </li>
             <li><a href="{{ url('temuankda/sendiri') }}" class="waves-effect"><i data-icon="H" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan</span></a> </li>

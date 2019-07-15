@@ -416,9 +416,9 @@
             var status = data1[i]['status'];
             var id = data1[i]['id'];
              ketsemua = `<tr id="krow${i}"><td> <input type="hidden" name="id[${i}]" value="${id}">
-             <input style='width:100%' type="text" name="kwitansi[${i}]" value="${kwitansi}"></td>
-             <td><input style='width:100%' type="number" name="nominal[${i}]" value="${nominal}"></td>
-             <td><input style='width:100%' type="text" name="keterangan[${i}]" value="${keterangan}"></td>
+             <input style='width:100%' type="text" class="form-control" name="kwitansi[${i}]" value="${kwitansi}"></td>
+             <td><input style='width:100%' type="number" class="form-control" name="nominal[${i}]" value="${nominal}"></td>
+             <td><input style='width:100%' type="text" class="form-control" name="keterangan[${i}]" value="${keterangan}"></td>
              <td><button type="button" name="remove" id="${i}" class="btn btn-danger btn-sm hapus_palsu">X</button></td></tr>
              <input type="hidden" name="hapus[${i}]" id="hapus${i}" value="0">`;
               $("#temuanedit").append(ketsemua);
@@ -429,8 +429,8 @@
 
     $('.add1').click(function(){  
      i++;  
-     $('#temuanedit').append('<tr id="krow'+i+'" class="dynamic-added1"><td><input style="width:100%" type="text" name="kwitansi[]" placeholder="no. kwitansi" /></td><td><input style="width:100%" type="number" name="nominal[]" placeholder="nominal"/></td><td><input type="text" style="width:100%" name="keterangan[]" placeholder="masukkan keterangan" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn-sm btn_remove1">X</button></td></tr>');  
-   });  
+     $('#temuanedit').append('<tr id="krow'+i+'" class="dynamic-added1"><td><input style="width:100%" type="text" class="form-control" name="kwitansi[]" placeholder="no. kwitansi" /></td><td><input style="width:100%" type="number" class="form-control" name="nominal[]" placeholder="nominal"/></td><td><input type="text" style="width:100%" class="form-control" name="keterangan[]" placeholder="masukkan keterangan" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn-sm btn_remove1">X</button></td></tr>');  
+   });   
 
 
     $(document).on('click', '.btn_remove1', function(){  

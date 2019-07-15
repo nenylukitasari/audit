@@ -443,11 +443,11 @@
             var jumlah = data1[i]['jumlah'];
             var id = data1[i]['id'];
             var tampung = '';
-            ketsemua = `<tr id="krow${i}"><td> <input type="hidden" name="id[${i}]" value="${id}"><input type="text" style='width:100%' name="kelengkapan[${i}]" value="${kelengkapan}"></td>`;
+            ketsemua = `<tr id="krow${i}"><td> <input type="hidden" name="id[${i}]" value="${id}"><input type="text" class="form-control" style='width:100%' name="kelengkapan[${i}]" value="${kelengkapan}"></td>`;
             tampung = tampung + ketsemua;
             //$(tampung).append(ketsemua);
             if (kesediaan == null) {
-              ketsemua = `<td><select name="kesediaan[${i}]" id="kesediaan" style='width:100%'>
+              ketsemua = `<td><select name="kesediaan[${i}]" id="kesediaan" class="form-control" style='width:100%'>
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak Ada</option>
@@ -455,7 +455,7 @@
             }
             else
             {
-             ketsemua = `<td><select name="kesediaan[${i}]" id="kesediaan[${i}]" style='width:100%'>
+             ketsemua = `<td><select name="kesediaan[${i}]" id="kesediaan[${i}]" class="form-control" style='width:100%'>
                         <option value=""></option>
                         <option value="Ada">Ada</option>
                         <option value="Tidak Ada">Tidak Ada</option>
@@ -463,20 +463,20 @@
             }
             tampung = tampung + ketsemua;
             if (jumlah == null) {
-              ketsemua = `<td><input type="number" style='width:100%' name="jumlah[${i}]" value="" size="10"></td>`;
+              ketsemua = `<td><input type="number" style='width:100%' class="form-control" name="jumlah[${i}]" value="" size="10"></td>`;
             }
             else
             {
-              ketsemua = `<td><input type="number" style='width:100%' name="jumlah[${i}]" value="${jumlah}" size ="10"></td>`;
+              ketsemua = `<td><input type="number" style='width:100%' class="form-control" name="jumlah[${i}]" value="${jumlah}" size ="10"></td>`;
             }
             tampung = tampung + ketsemua;
             if (nominal == null) {
-              ketsemua = `<td><input type="number" style='width:100%' name="nominal[${i}]" value="">
+              ketsemua = `<td><input type="number" class="form-control" style='width:100%' name="nominal[${i}]" value="">
              <td><button type="button" name="remove" id="${i}" class="btn btn-danger btn-sm hapus_palsu">X</button></td></tr>
              <input type="hidden" name="hapus[${i}]" id="hapus${i}" value="0">`;
             }
             else{
-              ketsemua = `<td><input type="number" style='width:100%' name="nominal[${i}]" value="${nominal}">
+              ketsemua = `<td><input type="number" class="form-control" style='width:100%' name="nominal[${i}]" value="${nominal}">
              <td><button type="button" name="remove" id="${i}" class="btn btn-danger btn-sm hapus_palsu">X</button></td></tr>
              <input type="hidden" name="hapus[${i}]" id="hapus${i}" value="0">`;
             }
@@ -495,8 +495,9 @@
     }
     $('.add1').click(function(){  
      i++;  
-     $('#kelengkapan').append('<tr id="krow'+i+'" class="dynamic-added1"><td><input type="text" style="width:100%" name="kelengkapan[]" placeholder="jenis Kelengkapan" /></td><td><select name="kesediaan[]" style="width:100%"><option value=""></option><option value="Ada">Ada</option><option value="Tidak Ada">Tidak Ada</option></select></td> <td><input type="number" style="width:100%" name="jumlah[]" placeholder="jumlah" size ="10"/></td><td><input type="number" style="width:100%" name="nominal[]" placeholder="masukkan nominal" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn-sm btn_remove1">X</button></td></tr>'); 
-     });  
+     $('#kelengkapan').append('<tr id="krow'+i+'" class="dynamic-added1"><td><input type="text" class="form-control" style="width:100%" name="kelengkapan[]" placeholder="jenis Kelengkapan" /></td><td><select name="kesediaan[]" class="form-control" style="width:100%"><option value=""></option><option value="Ada">Ada</option><option value="Tidak Ada">Tidak Ada</option></select></td> <td><input type="number" class="form-control" style="width:100%" name="jumlah[]" placeholder="jumlah" size ="10"/></td><td><input type="number" class="form-control" style="width:100%" name="nominal[]" placeholder="masukkan nominal" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn-sm btn_remove1">X</button></td></tr>');  
+   });  
+ 
 
 
       $(document).on('click', '.btn_remove1', function(){  
