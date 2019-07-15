@@ -19,6 +19,7 @@ class CreateJenisKegiatanTable extends Migration
             $table->foreign('version_id')->references('id')->on('version');
             $table->text('jenis_kegiatan');
             $table->integer('kode_tabel');
+            $table->softDeletes();
             $table->timestamps();
             // $table->softDeletes();
         });

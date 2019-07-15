@@ -51,7 +51,9 @@
         <th class="col-sm-5">Uraian Kegiatan</th>
         <th class="col-sm-1">Satuan</th>
         <th class="col-sm-1">Besaran Bruto Maksimum (Rp)</th>
+        @if(Auth::user()->role!=3)
         <th class="col-sm-1">Aksi</th>
+        @endif
       </tr>
       </thead>
      <tbody>
@@ -75,12 +77,12 @@
               {{number_format($kategori->var1)}}
             @endif
           </td>
+            @if(Auth::user()->role!=3)
             <td> 
              {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-             @if(Auth::user()->role!=3)
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-              @endif
               </td>
+           @endif
           </tr>
           @foreach ($kategori->uraian as $uraian)
           <tr>
@@ -96,12 +98,12 @@
                 {{number_format($uraian->var1)}}
             @endif
             </td>
+            @if(Auth::user()->role!=3)
             <td>
               {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-              @if(Auth::user()->role!=3)
                 <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-              @endif
             </td>
+            @endif
             </tr>
             @endforeach 
             @endforeach

@@ -19,6 +19,7 @@ class CreatePenjelasanSub1Table extends Migration
             $table->foreign('penjelasan_id')->references('id')->on('penjelasan');
             $table->text('penjelasan');
             $table->integer('kode_tabel');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

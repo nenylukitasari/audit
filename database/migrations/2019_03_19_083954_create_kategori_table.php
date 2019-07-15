@@ -22,6 +22,7 @@ class CreateKategoriTable extends Migration
             $table->integer('var1')->nullable();
             $table->integer('kode_tabel');
             $table->integer('kode_bagian')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

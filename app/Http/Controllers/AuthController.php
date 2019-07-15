@@ -78,9 +78,9 @@ class AuthController extends Controller
         //     return redirect('/home');   
         // }
         //return redirect('/home');
-        $user = User::where('nip', $userInfo->username)->first();
+        $user = User::where('username', $userInfo->username)->first();
         if (!$user) {
-            return redirect('/')->withError('user not found');;
+            return redirect('/');
         }
         Auth::login($user);
         // if (Auth::User()->role == 1)
@@ -115,7 +115,7 @@ class AuthController extends Controller
         return redirect('/tujuan');
 	    }
 	    else{
-	        dd("belum ada akun login");
+	        dd("Belum ada akun login");
 	    }
     }
 }

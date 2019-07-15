@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 // use Spatie\Searchable\Searchable;
 // use Spatie\Searchable\SearchResult;
 
@@ -10,6 +11,8 @@ class JenisKegiatan extends Model /*implements Searchable*/
 {
 	// use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $table = 'jenis_kegiatan';
     protected $primaryKey = 'id';
     // use SoftDeletes;

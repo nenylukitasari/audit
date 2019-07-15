@@ -18,11 +18,11 @@
           <strong><h4><i class="icon fa fa-check"></i> Sukses!</strong></h4>
           {{ session('message_success') }}
       </div>
-  @elseif (session('message_error'))
+  @elseif ($errors->has('file'))
     <div class="alert alert-danger">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       <strong><h4><i class="icon fa fa-close"></i> Error!</strong></h4>
-        {{ session('message_error') }}
+        {{ $errors->first('file')}}
     </div>
   @endif
    <div class="table-responsive">
@@ -333,6 +333,7 @@ Show Modal
 </div>
 </div>
 
+
 <!--Restore Modal-->
 @if(Auth::user()->role!=3)
 <div class="modal modal-danger fade" id="restore-modal">
@@ -356,7 +357,6 @@ Show Modal
 </div>
 </div>
 @endif
-
 </div>
 @endsection
 

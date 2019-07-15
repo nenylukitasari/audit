@@ -14,97 +14,97 @@ class UserSeeder extends Seeder
     {
         User::create([
     		'nama'          => 'Neny Lukitasari',
-    		'nip'           => '5115100018',
+    		'username'      => '5115100018',
     		'role'          => '1',
     	]);
         User::create([
             'nama'          => 'M. Azka Yasin',
-            'nip'           => '5115100038',
+            'username'      => '5115100038',
             'role'          => '1',
         ]);
         // User::create([
         //     'nama'          => 'Ifa Nuraisyah, A.Md.',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '1',
         // ]);
         // User::create([
         //     'nama'          => 'Ir. Mutiah Salamah Chamid, M.Kes.',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '2',
         // ]);
         // User::create([
         //     'nama'          => 'Ir.Tony Bambang Musriyadi, PGDip',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '2',
         // ]);
         // User::create([
         //     'nama'          => 'Ir. Yusuf Kaelani, MSc.E.',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '2',
         // ]);
         // User::create([
         //     'nama'          => 'Rena Rosyiardani,SE.Ak.',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '2',
         // ]);
         // User::create([
         //     'nama'          => 'Muchammad Nurif, SE.MT',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
         // User::create([
         //     'nama'          => 'Dra. Farida Agustini Wijayati, MS',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
         // User::create([
         //     'nama'          => 'Dra. Harmami, MS',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
         // User::create([
         //     'nama'          => 'Ir. Hesty Anita Kurniawati, MSc',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
         // User::create([
         //     'nama'          => 'Drs. Mahmud Mustain,MSc.Ph.D',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
         // User::create([
         //     'nama'          => 'Sarwosri,S.Kom.MT',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
         // User::create([
         //     'nama'          => 'Ir. Zulkifli, MSc',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
         // User::create([
         //     'nama'          => 'Ir. Moh. Farid, DEA',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
         // User::create([
         //     'nama'          => 'Dra. Ita Ulfin, Msi',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
         // User::create([
         //     'nama'          => 'Ir. Atiek Moesriati, M.Kes.',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
         // User::create([
         //     'nama'          => 'Dr.Ir. Kuswandi, DEA',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
         // User::create([
         //     'nama'          => 'Ridho Bayuaji,ST.MT.PhD.',
-        //     'nip'           => '',
+        //     'username'      => '',
         //     'role'          => '3',
         // ]);
 

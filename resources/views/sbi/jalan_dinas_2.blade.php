@@ -64,7 +64,9 @@
         <th class="col-sm-1">Satuan</th>
         <th class="col-sm-1">Luar Kota (Rp)</th>
         <th class="col-sm-1">Dalam Kota Lebih dari 8 Jam (Rp)</th>
+        @if(Auth::user()->role!=3)
         <th class="col-sm-1">Aksi</th>
+        @endif
       </tr>
       </thead>
      <tbody>
@@ -84,10 +86,11 @@
                     <td>{{$uraian->satuan}}</td>
                     <td>{{number_format($uraian->var1)}}</td>
                     <td>{{number_format($uraian->var2)}}</td>
+                      @if(Auth::user()->role!=3)
                       <td> 
                       {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-                      @if(Auth::user()->role!=3)
                         <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
+                      </td>
                       @endif
                     </tr>
                    @endforeach

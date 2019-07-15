@@ -23,6 +23,7 @@ class CreatePenjelasanTable extends Migration
             $table->foreign('kategori_id')->references('id')->on('kategori');
             $table->text('penjelasan');
             $table->integer('kode_tabel');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -32,7 +32,9 @@
         <tr>
           <th class="col-sm-1">No.</th>
           <th class="col-sm-10">Kegiatan</th>
-          <th class="col-sm-1">Aksi</th>
+          @if(Auth::user()->role!=3)
+            <th class="col-sm-1">Aksi</th>
+          @endif
         </tr>
       </thead>
      <tbody>
@@ -45,12 +47,12 @@
             <th>
               {{ $jenis_kegiatan->jenis_kegiatan}}
             </th>
+            @if(Auth::user()->role!=3)
               <td> 
                 {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal" onclick="submitUpdate({{ $jenis_kegiatan->id }},{{$jenis_kegiatan->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-                @if(Auth::user()->role!=3)
                   <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal" onclick="submitUpdate({{ $jenis_kegiatan->id }},{{$jenis_kegiatan->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-                @endif
               </td>
+            @endif
             </tr>
         @foreach ($jenis_kegiatan->kegiatan as $kegiatan)
           <tr>
@@ -58,12 +60,12 @@
               <td>
                 <a href="{{ url('/data/'.$kegiatan->kode_tabel . '/' .$kegiatan->kode_bagian ) }}">{{ $kegiatan->nama_kegiatan}}</a>
               </td>
+              @if(Auth::user()->role!=3)
               <td>
                 {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal2" onclick="submitUpdate2({{ $kegiatan->id }},{{$kegiatan->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-                @if(Auth::user()->role!=3)
                   <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $kegiatan->id }},{{$kegiatan->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-                @endif
               </td>
+              @endif
             </tr>
         @endforeach
       @endforeach

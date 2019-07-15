@@ -69,7 +69,7 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/peraturan/restore/{id}','PeraturanController@restore');
 	Route::get('/home', function () {return view('home');});
 	Route::get('/datasbi', function () {return view('cari_sbi');});
-	Route::post('/data/search','VersiController@search');
+	Route::post('/data/search','DataController@search');
 	Route::get('/berkas', 'KdaController@berkas');
 	Route::post('/dokumen/{kode_tabel}','DataController@store');
 	Route::post('/data/kegiatan','DataController@getData');
@@ -80,6 +80,7 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/data/add/{kode_tabel}','DataController@store');
 	Route::get('getDataId/{id}','DataController@getDataId');
 	Route::post('/data/update/{kode_tabel}','DataController@update');
+	// Route::post('/data/delete/{id}/{kode_tabel}','DataController@destroy');
 	
 	// punya yasin
 	Route::get('/buatkda', 'KdaController@buatkda');

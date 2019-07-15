@@ -50,7 +50,9 @@
           <th rowspan="2" class="col-sm-5">Uraian Kegiatan</th>
           <th rowspan="2" class="col-sm-1">Satuan</th>
           <th style="text-align: center" colspan="3" class="col-sm-2">Besaran Bruto Maksimum (Rp)</th>
+          @if(Auth::user()->role!=3)
           <th rowspan="2" class="col-sm-1">Aksi</th>
+          @endif
         </tr>
         <tr>
           <th>Juara I</th>
@@ -73,12 +75,12 @@
               <td></td>
               <td></td>
               <td></td>
+              @if(Auth::user()->role!=3)
               <td> 
                {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-               @if(Auth::user()->role!=3)
                   <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal1" onclick="submitUpdate1({{ $kategori->id }},{{$kategori->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-                @endif
                 </td>
+              @endif
             </tr>
             @foreach ($kategori->uraian as $key2 => $uraian)
             <tr>
@@ -93,12 +95,12 @@
               <td></td>
               <td></td>
               <td></td>
+              @if(Auth::user()->role!=3)
               <td>
                  {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-                 @if(Auth::user()->role!=3)
                   <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal2" onclick="submitUpdate2({{ $uraian->id }},{{$uraian->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-                @endif
               </td>
+              @endif
             </tr>
             @foreach ($uraian->sub1 as $sub1)
               <tr> 
@@ -113,12 +115,12 @@
                 <td>{{number_format($sub1->var1)}}</td>
                 <td>{{number_format($sub1->var2)}}</td>
                 <td>{{number_format($sub1->var3)}}</td>
+                @if(Auth::user()->role!=3)
                 <td>
                    {{-- <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#show-modal3" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-eye" data-toggle="tooltip" title="View Data"></i></button> --}}
-                   @if(Auth::user()->role!=3)
                     <button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#edit-modal3" onclick="submitUpdate3({{ $sub1->id }},{{$sub1->kode_tabel}})"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
-                  @endif
                 </td>
+                @endif
               </tr>
                 @endforeach
                 @endforeach 
