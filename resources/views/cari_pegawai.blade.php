@@ -48,7 +48,6 @@
 </div>
 </div>
 @endsection
-
 @section('add-script')
 <script>
   $("#submitcari").click(function(){
