@@ -129,7 +129,7 @@ class KdaController extends Controller
     	//return response()->json($kda);
 		$now = Carbon::now();
 		$tahun = $now->year;
-		$bulan = 12;
+		$bulan = $now->month;
 		// echo $now->month;
 		// echo $now->weekOfYear;
 		// echo $now->day;

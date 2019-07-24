@@ -432,39 +432,73 @@ class DataController extends Controller
         for ($i=0; $i < count($jenis_kegiatan); $i++) { 
             $tampung_jenis_kegiatan[$i] = $jenis_kegiatan[$i]['id'];
         }
-        // dd($tampung_jenis_kegiatan);
 
         $kegiatan = Kegiatan::select('id')->wherein('jenis_kegiatan_id', $tampung_jenis_kegiatan)->get()->toArray();
         $tampung_kegiatan = array();
         for ($i=0; $i < count($kegiatan); $i++) { 
             $tampung_kegiatan[$i] = $kegiatan[$i]['id'];
         }
-            // dd($tampung_kegiatan);
+
+        $kategori = Kategori::select('id')->wherein('kegiatan_id', $tampung_kegiatan)->get()->toArray();
+        $tampung_kategori = array();
+        for ($i=0; $i < count($kategori); $i++) { 
+            $tampung_kategori[$i] = $kategori[$i]['id'];
+        }
+
+        $uraian = Uraian::select('id')->wherein('kategori_id', $tampung_kategori)->get()->toArray();
+        $tampung_uraian = array();
+        for ($i=0; $i < count($uraian); $i++) { 
+            $tampung_uraian[$i] = $uraian[$i]['id'];
+        }
+
+        $sub1 = Sub1::select('id')->wherein('uraian_id', $tampung_uraian)->get()->toArray();
+        $tampung_sub1 = array();
+        for ($i=0; $i < count($sub1); $i++) { 
+            $tampung_sub1[$i] = $sub1[$i]['id'];
+        }
 
         $search1 = JenisKegiatan::where('version_id', '=', "{$version->id}")
                 ->where('jenis_kegiatan','like', "%{$key}%")
                 ->get();
-        // dd($search1);
+                // dd($search1);
         $search2 = Kegiatan::wherein('jenis_kegiatan_id', $tampung_jenis_kegiatan)
                 ->where('nama_kegiatan','like', "%{$key}%")
                 ->get();
                 // dd($search2);
         $search_tampung = $search2->merge($search1);
-        // dd($search_tampung);
         $search3 = Kategori::wherein('kegiatan_id', $tampung_kegiatan)
                 ->where('kategori_kegiatan','like', "%{$key}%")
-                ->get();
+                ->get();        
+        $search_tampung2 = $search_tampung->merge($search3);
 
-        // $new = new Collection;
-                // dd($search3);
-        // if($search_tampung == $search3)
-        // $search = $new->merge($search1)->merge($search2)->merge($search3);
-        // $searchs = $searchs->merge($search2);
-        // // $search->all();
-        // $search = $search->merge($search3);
-        
-        $search = $search_tampung->merge($search3);
-        // $search->all();
+        $search4 = DB::table('kategori')->join('uraian','kategori.id','=','uraian.kategori_id')
+        ->select('kategori.kategori_kegiatan','kategori.kode_tabel','kategori.kode_bagian','uraian.uraian_kegiatan')
+        ->wherein('uraian.kategori_id',$tampung_kategori)
+        ->where('uraian.uraian_kegiatan','like', "%{$key}%")
+        ->get();
+
+        $search5 = DB::table('kategori')->join('uraian','kategori.id','=','uraian.kategori_id')
+        ->join('sub1','uraian.id','=','sub1.uraian_id')
+        ->select('kategori.kategori_kegiatan','kategori.kode_tabel','kategori.kode_bagian','sub1.uraian_kegiatan')
+        ->wherein('sub1.uraian_id',$tampung_uraian)
+        ->where('sub1.uraian_kegiatan','like', "%{$key}%")
+        ->get();
+        $search_45 = $search4->merge($search5);
+
+        $search6 = DB::table('kategori')->join('uraian','kategori.id','=','uraian.kategori_id')
+        ->join('sub1','uraian.id','=','sub1.uraian_id')
+        ->join('sub2','sub1.id','=','sub2.sub1_id')
+        ->select('kategori.kategori_kegiatan','kategori.kode_tabel','kategori.kode_bagian','sub2.uraian_kegiatan')
+        ->wherein('sub2.sub1_id',$tampung_sub1)
+        ->where('sub2.uraian_kegiatan','like', "%{$key}%")
+        ->get();
+        $search_tampung_45 = $search_45->merge($search6);
+
+        // dd($search4);
+
+        // $search = $search_tampung2->merge($search_tampung_45);
+        $search = $search_tampung2->union($search_tampung_45);
+
         // dd($search);
         $count=count($search);
         

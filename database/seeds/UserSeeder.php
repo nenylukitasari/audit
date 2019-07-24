@@ -20,8 +20,14 @@ class UserSeeder extends Seeder
         User::create([
             'nama'          => 'M. Azka Yasin',
             'username'      => '5115100038',
-            'role'          => '1',
+            'role'          => '2',
         ]);
+        User::create([
+            'nama'          => 'Dwi Irsalina',
+            'username'      => '5115100004',
+            'role'          => '3',
+        ]);
+
         // User::create([
         //     'nama'          => 'Ifa Nuraisyah, A.Md.',
         //     'username'      => '',

@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             Unitseeder::class,
             UserSeeder::class,
             Peraturan_LainSeeder::class,
-            KdaSeeder::class,
+            datakdaseeder::class,
             KdaPelengkapSeeder::class,
             KdaKeteranganSeeder::class,
             KdaTemuanSeeder::class,

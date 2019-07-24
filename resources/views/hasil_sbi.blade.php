@@ -24,8 +24,22 @@
       <tbody>
        @foreach($search as $search)
         <tr>
-          @if ($search->nama_kegiatan != null)
-            <td><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->nama_kegiatan }}</a></td>
+          @if ($search->uraian_kegiatan != null)
+              @if ($search->kode_bagian==1)
+                <td><a href="{{ url('/data/2/1') }}">{{ $search->uraian_kegiatan }}</a> pada <b>{{ $search->kategori_kegiatan }}</b></td>
+              @elseif ($search->kode_bagian==9)
+                <td><a href="{{ url('/data/2/3') }}">{{ $search->uraian_kegiatan }}</a> pada <b>{{ $search->kategori_kegiatan }}</b></td>
+              @elseif ($search->kode_bagian==18)
+                <td><a href="{{ url('/data/2/5') }}">{{ $search->uraian_kegiatan }}</a> pada <b>{{ $search->kategori_kegiatan }}</b></td>
+              @elseif ($search->kode_bagian==19)
+                <td><a href="{{ url('/data/2/6') }}">{{ $search->uraian_kegiatan }}</a> pada <b>{{ $search->kategori_kegiatan }}</b></td>
+              @elseif ($search->kode_bagian==20)
+                <td><a href="{{ url('/data/2/7') }}">{{ $search->uraian_kegiatan }}</a> pada <b>{{ $search->kategori_kegiatan }}</b></td>
+              @elseif ($search->kode_bagian==21)
+                <td><a href="{{ url('/data/2/8') }}">{{ $search->uraian_kegiatan }}</a> pada <b>{{ $search->kategori_kegiatan }}</b></td>
+              @else
+                <td><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->uraian_kegiatan }}</a> pada <b>{{ $search->kategori_kegiatan }}</b></td>
+              @endif
           @elseif ($search->kategori_kegiatan != null )
             @if ($search->kode_bagian==1)
               <td><a href="{{ url('/data/2/1') }}">{{ $search->kategori_kegiatan }}</a></td>
@@ -42,6 +56,8 @@
             @else
               <td><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->kategori_kegiatan }}</a></td>
             @endif
+          @elseif ($search->nama_kegiatan != null)
+            <td><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->nama_kegiatan }}</a></td>
           @elseif ($search->jenis_kegiatan != null)
             <td><a href="{{ url('dokumen') }}">{{ $search->jenis_kegiatan }}</a></td>
           @endif
@@ -50,23 +66,6 @@
       </tbody>
     </table>
   </div>
-
-    {{-- <div class="card-header"><b>Ditemukan &nbsp;{{$count}}&nbsp; hasil pencarian dengan kata kunci &nbsp;"{{ $key }}"</b></div>
-
-    <div class="card-body">
-        </br>
-        @foreach($search as $search)
-            <ul>
-              @if ($search->nama_kegiatan != null)
-                <li><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->nama_kegiatan }}</a></li>
-              @elseif ($search->kategori_kegiatan != null)
-                <li><a href="{{ url('/data/'.$search->kode_tabel . '/' .$search->kode_bagian ) }}">{{ $search->kategori_kegiatan }}</a></li>
-              @elseif ($search->jenis_kegiatan != null)
-                <li><a href="{{ url('dokumen') }}">{{ $search->jenis_kegiatan }}</a></li>
-              @endif
-            </ul>
-        @endforeach
-    </div>  --}}
     @endif
 </div>
 
