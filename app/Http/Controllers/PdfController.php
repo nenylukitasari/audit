@@ -54,6 +54,40 @@ class PdfController extends Controller
 			return redirect()->back()->with('message_error',"Tidak ada data kda");
 		}
 	}
+	public function downloadkdaperbulanfix($tahun, $bulan)
+	{
+
+		$path = "zip/";
+		$zipnama = "Bulan_{$bulan}_{$tahun}.zip";
+		$path .= $zipnama;
+		$data = kda::select('id_kda', 'jenis','masa_audit')
+		->whereRaw("MONTH(masa_audit) = {$bulan} AND YEAR(masa_audit) =  {$tahun}")
+		->get();
+
+		foreach ($data as $id) {
+			$download = $this->filepdf($id->id_kda);
+	    	$file = $download[0];
+	    	$nama = $download[1];
+			$pdfnama = "file_kda/bulan_{$bulan}_{$tahun}/";
+			File::isDirectory($pdfnama) or File::makeDirectory($pdfnama);
+			$pdfnama .= $nama;
+			$file->save($pdfnama);
+		}
+		$files = glob("file_kda/bulan_{$bulan}_{$tahun}/*");
+		Zipper::make($path)->add($files)->close();
+		if(file_exists($path))
+		{
+			return response()->download($path);
+
+		}
+		else
+		{
+			// Session::flash('message', 'Tidak ada data KDA'); 
+			// Session::flash('alert-class', 'alert-danger');
+			// return Redirect::back(); 
+			return redirect()->back()->with('message_error',"Tidak ada data kda");
+		}
+	}
 	public function filepdf($id)
     {
         $kda = DB::table('kda')->where('id_kda',$id)->first();
@@ -100,13 +134,13 @@ class PdfController extends Controller
 					//dd($semuakda);
 					$temuan1 = db::table('kda_temuan')->leftjoin('kda','kda_temuan.kda_id','=','kda.id_kda')->whereIn('kda_id', $semuakda)
 					->where('kda_temuan.status',0)
-					->orderBy('kda.masa_audit')->get();
+					->orderBy('kda.masa_audit','DESC')->get();
 					$temuan2 = json_decode($temuan1);
 					$table = '';
 					// $katapembuka = '<ul><li style="text-align: justify; ">&nbsp; &nbsp; Hasil audit dokumen SPJ diketahui bahwa pengelolaan administrasi keuangan tahun tahun$ yang dilaksanakan BPP di Unit Kerja : unit$ yang belum ditindaklanjuti, antara lain:</li></ul>';
 					if($temuan2){
 						//$table .= $katapembuka;
-						for ($i=1; $i < 13 ; $i++) { 
+						for ($i=12; $i > 0 ; $i--) { 
 						$temuanawal = 0;
 						foreach ($temuan2 as $key => $value) { 
 						$month = date("m",strtotime($value->masa_audit));
@@ -116,7 +150,7 @@ class PdfController extends Controller
 								if ($temuanawal == 1)
 								{
 									$j = 1;
-									$table .= '<div class ="temuanlamali"><li style="text-align: justify;">Hasil audit dokumen SPJ diketahui bahwa pengelolaan administrasi keuangan bulan' .$bulannama.' tahun tahun$ yang dilaksanakan BPP di Unit Kerja :  unit$ yang belum ditindaklanjuti temuan, yaitu:</li><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1.&nbsp;  Ketidakpatuhan terhadap aturan yang berlaku:</p></div>';
+									$table .= '<div class ="temuanlamali"><li style="text-align: justify;">Hasil audit dokumen SPJ diketahui bahwa pengelolaan administrasi keuangan bulan ' .$bulannama.' tahun tahun$ yang dilaksanakan BPP di Unit Kerja :  unit$ yang belum ditindaklanjuti temuan, yaitu:</li><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1.&nbsp;  Ketidakpatuhan terhadap aturan yang berlaku:</p></div>';
 									//$table .= 'Masa Audit '.$bulannama;
 									$table .= "<table class='tabel1' style='width:100%'>
 								<thead>
@@ -217,17 +251,14 @@ class PdfController extends Controller
 								</thead>
 								<tbody>';
 					if ($kda_ket->count() > 0) {
-						foreach ($kda_ket as $kda_ket) {
-							if ($kda_ket->nominal == null) {
+						foreach ($kda_ket as $kda_ket) 
+						{
+							if ($kda_ket->kesediaan == null) {
 								$list_keterangan .=
 									'<tr>
 										<td align="center">'.$i.'</td>
 										<td align="left">&nbsp;&nbsp;'.$kda_ket->kelengkapan.'</td>
-										<td align="center">'.$kda_ket->kesediaan.'</td>
-										<td align="center">'.$kda_ket->jumlah.'</td>
-										<td align="right">'.$kda_ket->nominal.'&nbsp;&nbsp;</td>
-									</tr>';
-									$i++;		
+										<td bgcolor="#807878"></td>';
 							}
 							else
 							{
@@ -235,14 +266,40 @@ class PdfController extends Controller
 									'<tr>
 										<td align="center">'.$i.'</td>
 										<td align="left">&nbsp;&nbsp;'.$kda_ket->kelengkapan.'</td>
-										<td align="center">'.$kda_ket->kesediaan.'</td>
-										<td align="center">'.$kda_ket->jumlah.'</td>
-										<td align="right">'.number_format($kda_ket->nominal, 0, ',', '.').'&nbsp;&nbsp;</td>
+										<td align="center">'.$kda_ket->kesediaan.'</td>';
+							}
+							if ($kda_ket->jumlah == null) {
+								$list_keterangan .=
+									'<td bgcolor="#807878"></td>';		
+							}
+							else
+							{
+								$list_keterangan .=
+									'<td align="center">'.$kda_ket->jumlah.'</td>';
+							}
+							if ($kda_ket->nominal == null) {
+								$list_keterangan .=
+									'<td bgcolor="#807878"></td>
 									</tr>';
 									$i++;
 							}
-						
+							else
+							{
+								if ($kda_ket->nominal == "-") {
+									$list_keterangan .=
+									'<td align="right">'.$kda_ket->nominal.'&nbsp;&nbsp;</td>
+									</tr>';	
 								}
+								else
+								{
+									$list_keterangan .=
+									'<td align="right">'.number_format($kda_ket->nominal, 0, ',', '.').'&nbsp;&nbsp;</td>
+									</tr>';	
+								}
+									$i++;
+							}
+						
+						}
 					$keterangans .= $list_keterangan;
 					$keterangans .= '</tbody>
 							</table>';
@@ -341,6 +398,7 @@ class PdfController extends Controller
     	$download = $this->filepdf($id);
     	$file = $download[0];
     	$nama = $download[1];
+    	return response()->download($nama, 'new_name.docx');
     	return $file->download($nama);
 
     }

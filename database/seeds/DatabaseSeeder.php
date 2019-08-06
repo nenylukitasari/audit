@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             JenisKegiatanSeeder::class,
             KegiatanSeeder::class,
             KategoriSeeder::class,
-            ProvinsiSeeder::class,
+            //ProvinsiSeeder::class,
             UraianSeeder::class,
             Sub1Seeder::class,
             Sub2Seeder::class,
@@ -28,10 +28,11 @@ class DatabaseSeeder extends Seeder
             Unitseeder::class,
             UserSeeder::class,
             Peraturan_LainSeeder::class,
-            datakdaseeder::class,
-            KdaPelengkapSeeder::class,
-            KdaKeteranganSeeder::class,
-            KdaTemuanSeeder::class,
+            SumberdanaSeeder::class,
+            // datakdaseeder::class,
+            // KdaPelengkapSeeder::class,
+            // KdaKeteranganSeeder::class,
+            // KdaTemuanSeeder::class,
 
         ]);
     }

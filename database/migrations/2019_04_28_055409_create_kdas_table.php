@@ -18,8 +18,10 @@ class CreateKdasTable extends Migration
             $table->string('unit');
             $table->date('masa_audit');
             $table->date('bulan_audit');
+            $table->integer('jenis_dana');
             $table->integer('jenis');
             $table->string('kode_temuan')->nullable();
+            $table->string('kda_saran')->nullable();
             $table->string('created_by');
             $table->timestamps();
         });

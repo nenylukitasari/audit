@@ -37,7 +37,7 @@
                     <option value="">Unit</option>
                   </select>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                   <select id="col2_filter" class="column_filter form-control" data-column="2">
                     <option value="">Bulan</option>
                     <option>Januari</option><option>Februari</option><option>Maret</option>
@@ -46,7 +46,7 @@
                     <option>Oktober</option><option>November</option><option>Desember</option>
                     </select>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <select id="col3_filter" class="column_filter form-control" data-column="3">
                     <option value="">Tahun</option>
                     <option>2018</option><option>2019</option><option>2020</option>
@@ -54,7 +54,7 @@
                     <option>2024</option><option>2025</option><option>2026</option>
                     </select>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <select id="col4_filter" class="column_filter form-control" data-column="4">
                     <option value="">Jenis Kda</option>
                     <option>KDA tanpa temuan</option>
@@ -62,6 +62,9 @@
                     <option>KDA Unaudited</option>
                     <option>KDA tanpa pengajuan UMK</option>
                     </select>
+                </div>
+                <div class="col-sm-3">
+                    <input type="text" id="col7_filter" class="column_filter form-control" data-column="7" placeholder="Auditor">
                 </div>
               </div>
           </div>
@@ -97,7 +100,7 @@
                       <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-pelengkap" onclick="kelengkapanupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
                       @elseif ($kda->jenis == 3)
                       <td>KDA Unaudited</td>
-                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-pelengkap" onclick="kelengkapanupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
+                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-pelengkap" onclick="kelengkapanupdate3('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
                       @else
                       <td>KDA tanpa pengajuan UMK</td>
                       <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-keterangan" onclick="keteranganupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
@@ -331,6 +334,9 @@
     $('select.column_filter').on( 'keyup click', function () {
         filterColumn( $(this).attr('data-column') );
     } );
+    $('.column_filter').on( 'keyup', function () {
+        filterColumn( $(this).attr('data-column') );
+    } );
     $('#col1_filter').on( 'change', function () {
         filterColumn( $(this).attr('data-column') );
     } );
@@ -480,6 +486,79 @@
             }
             else{
               ketsemua = `<td><input type="number" class="form-control" style='width:100%' name="nominal[${i}]" value="${nominal}">
+             <td><button type="button" name="remove" id="${i}" class="btn btn-danger btn-sm hapus_palsu">X</button></td></tr>
+             <input type="hidden" name="hapus[${i}]" id="hapus${i}" value="0">`;
+            }
+            tampung = tampung + ketsemua;
+            $("#kelengkapan").append(tampung);
+            if (kesediaan != null) {
+              document.getElementById(`kesediaan[${i}]`).value = kesediaan;
+            }
+          }
+        }
+      });
+    }
+    kelengkapanupdate3 = function(id){
+      $('#id_kda').val(id);
+      $.ajax({
+        url: '/kda/kelengkapan',
+        type: 'POST',
+        data: {
+          '_token': "{{ csrf_token() }}",
+          'id' : id
+        },
+        error: function() {
+          console.log('Error');
+        },
+        dataType: 'json',
+        success: function(data1) {
+          console.log(data1);      
+          var ketsemua = '';
+
+          //var data1 = $.parseJSON(data1);
+          i =0;
+          for (i; i < data1.length; i++)
+          {
+            var kelengkapan = data1[i]['kelengkapan'];
+            var nominal = data1[i]['nominal'];
+            var kesediaan = data1[i]['kesediaan'];
+            var jumlah = data1[i]['jumlah'];
+            var id = data1[i]['id'];
+            var tampung = '';
+            ketsemua = `<tr id="krow${i}"><td> <input type="hidden" name="id[${i}]" value="${id}"><input type="text" class="form-control" style='width:100%' name="kelengkapan[${i}]" value="${kelengkapan}"></td>`;
+            tampung = tampung + ketsemua;
+            //$(tampung).append(ketsemua);
+            if (kesediaan == null) {
+              ketsemua = `<td><select name="kesediaan[${i}]" id="kesediaan" class="form-control" style='width:100%'>
+                        <option value=""></option>
+                        <option value="Ada">Ada</option>
+                        <option value="Tidak Ada">Tidak Ada</option>
+                      </select></td>`
+            }
+            else
+            {
+             ketsemua = `<td><select name="kesediaan[${i}]" id="kesediaan[${i}]" class="form-control" style='width:100%'>
+                        <option value=""></option>
+                        <option value="Ada">Ada</option>
+                        <option value="Tidak Ada">Tidak Ada</option>
+                      </select></td>` 
+            }
+            tampung = tampung + ketsemua;
+            if (jumlah == null) {
+              ketsemua = `<td><input type="number" style='width:100%' class="form-control" name="jumlah[${i}]" value="" size="10"></td>`;
+            }
+            else
+            {
+              ketsemua = `<td><input type="text" style='width:100%' class="form-control" name="jumlah[${i}]" value="${jumlah}" size ="10"></td>`;
+            }
+            tampung = tampung + ketsemua;
+            if (nominal == null) {
+              ketsemua = `<td><input type="number" class="form-control" style='width:100%' name="nominal[${i}]" value="">
+             <td><button type="button" name="remove" id="${i}" class="btn btn-danger btn-sm hapus_palsu">X</button></td></tr>
+             <input type="hidden" name="hapus[${i}]" id="hapus${i}" value="0">`;
+            }
+            else{
+              ketsemua = `<td><input type="text" class="form-control" style='width:100%' name="nominal[${i}]" value="${nominal}">
              <td><button type="button" name="remove" id="${i}" class="btn btn-danger btn-sm hapus_palsu">X</button></td></tr>
              <input type="hidden" name="hapus[${i}]" id="hapus${i}" value="0">`;
             }

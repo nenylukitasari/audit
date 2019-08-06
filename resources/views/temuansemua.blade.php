@@ -34,12 +34,12 @@
               <label for="inputEmail3" class="col-sm-3 control-label">Filter</label>  
             </div> --}}
               <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <select id="col1_filter" class=" unit column_filter form-control select2" data-column="1" style="width: 100%;">
                     <option value="">Unit</option>
                   </select>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <select id="col2_filter" class="column_filter form-control" data-column="2">
                     <option value="">Bulan</option>
                     <option>Januari</option><option>Februari</option><option>Maret</option>
@@ -48,13 +48,16 @@
                     <option>Oktober</option><option>November</option><option>Desember</option>
                     </select>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <select id="col3_filter" class="column_filter form-control" data-column="3">
                     <option value="">Tahun</option>
                     <option>2018</option><option>2019</option><option>2020</option>
                     <option>2021</option><option>2022</option><option>2023</option>
                     <option>2024</option><option>2025</option><option>2026</option>
                     </select>
+                </div>
+                <div class="col-sm-3">
+                    <input type="text" id="col7_filter" class="column_filter form-control" data-column="7" placeholder="Auditor">
                 </div>
               </div>
           </div>
@@ -258,6 +261,9 @@
     } );
 
     $('select.column_filter').on( 'keyup click', function () {
+        filterColumn( $(this).attr('data-column') );
+    } );
+    $('.column_filter').on( 'keyup', function () {
         filterColumn( $(this).attr('data-column') );
     } );
 

@@ -18,8 +18,8 @@ class CreateKdaPelengkapsTable extends Migration
             $table->integer('kda_id');
             $table->string('kelengkapan');
             $table->string('kesediaan')->nullable();
-            $table->integer('jumlah')->nullable();
-            $table->double('nominal')->nullable();
+            $table->string('jumlah')->nullable();
+            $table->string('nominal')->nullable();
             $table->timestamps();
         });
     }

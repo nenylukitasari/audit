@@ -49,10 +49,15 @@ Route::group(['middleware' => 'Pimpinan'], function () {
 Route::group(['middleware' => 'BukanAuditor'], function () {
 	Route::get('/kda/semua', 'KdaController@index');
 	Route::get('/kda/laporan', 'KdaController@triwulan');
+	Route::get('/kda/perbulan', 'KdaController@perbulan');
 	Route::get('/temuankda/semua', 'TemuanController@index');
 	Route::get('download/triwulan/{tahun}/{sesi?}', [
     'as' => 'downloadtriwulan',
     'uses' => 'PdfController@downloadkdatriwulanfix',
+	]);
+	Route::get('download/perbulan/{tahun}/{bulan?}', [
+    'as' => 'downloadperbulan',
+    'uses' => 'PdfController@downloadkdaperbulanfix',
 	]);
 
 });

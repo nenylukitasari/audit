@@ -14,6 +14,7 @@ use App\Kda_temuan;
 use App\Berkas;
 use App\Kegiatan;
 use App\Version;
+use App\Sumberdana;
 use Carbon;
 
 class KdaController extends Controller
@@ -115,12 +116,13 @@ class KdaController extends Controller
 
 	public function buatkda()
 	{
-		$unit = DB::table('unit')->get();
+		// $unit = DB::table('unit')->get();
+		$sumberdana = DB::table('sumberdana')->get();
 
 		//$berkas = kegiatan::all();
 		$versions = Version::where('id',1)->get();
 		$summernote = DB::table('Kda_template')->where('id','>' ,4)->get();
-        return view("buatkda", compact('unit','summernote', 'versions'));
+        return view("buatkda", compact('sumberdana','summernote', 'versions'));
 	}
 	public function triwulan()
 	{
@@ -137,6 +139,28 @@ class KdaController extends Controller
 
 		//printf("Now: %s", Carbon::now());
 		return view ("triwulan", compact('tahun','bulan'));
+	}
+	public function perbulan()
+	{
+		$namabulan = array(
+				                
+				                '12' => 'Desember',
+				                '11' => 'November',
+				                '10' => 'Oktober',
+				                '09' => 'September',
+				                '08' => 'Agustus',
+				                '07' => 'Juli',
+				                '06' => 'Juni',
+				                '05' => 'Mei',
+				                '04' => 'April',
+				                '03' => 'Maret',
+				                '02' => 'Februari',
+				                '01' => 'Januari',
+				        );
+		$now = Carbon::now();
+		$tahun = $now->year;
+		$bulan = $now->month;
+		return view ("perbulan", compact('tahun','bulan', 'namabulan'));
 	}
 	public function tambahkda1(Request $request)
     {
@@ -250,6 +274,7 @@ class KdaController extends Controller
     public function tambahkda3(Request $request)
     {
     	$input = $request->all();
+    	// dd($input);
     	$rules = [];
     	$rules["unit"] = 'required';
     	$rules["masa_audit"] = 'required';
@@ -258,35 +283,35 @@ class KdaController extends Controller
 		    'required' => 'Lengkapi dahulu data :attribute .',
 		];
     	$validator = Validator::make($request->all(), $rules, $messages);
-    	if ($validator->passes())
-    	{
-    		$tanggaltampung = $input['masa_audit'];
-	        $tanggaltampung .="-01";
+if ($validator->passes())
+{
+	$tanggaltampung = $input['masa_audit'];
+    $tanggaltampung .="-01";
 
-	        $kda= new kda;
-	        $kda->unit = $input['unit'];
-	        $kda->masa_audit = $tanggaltampung;
-	        $kda->bulan_audit = $input['bulan_audit'];
-	        $kda->jenis = 3;
-	        $kda->created_by = $input['auditor'];
-	        $kda->save();
+    $kda= new kda;
+    $kda->unit = $input['unit'];
+    $kda->masa_audit = $tanggaltampung;
+    $kda->bulan_audit = $input['bulan_audit'];
+    $kda->jenis = 3;
+    $kda->created_by = $input['auditor'];
+    $kda->save();
 
-	        $jumlah = count($input['kelengkapan']);
-	        for ($i=0; $i < $jumlah; ++$i) 
-	        {
+    $jumlah = count($input['kelengkapan']);
+    for ($i=0; $i < $jumlah; ++$i) 
+    {
 
-	            $ket= new Kda_pelengkap;        
-	            $ket->kelengkapan = $input['kelengkapan'][$i];
-	            $ket->kesediaan= $input['kesediaan'][$i];
-	            $ket->jumlah= $input['jumlah'][$i];
-	            $ket->nominal = $input['nom'][$i];
-	            $ket->kda_id= $kda->id_kda;
-	            $ket->save();  
-	        }
-	        return response()->json(['success'=>'done']);
+        $ket= new Kda_pelengkap;        
+        $ket->kelengkapan = $input['kelengkapan'][$i];
+        $ket->kesediaan= $input['kesediaan'][$i];
+        $ket->jumlah= $input['jumlah'][$i];
+        $ket->nominal = $input['nom'][$i];
+        $ket->kda_id= $kda->id_kda;
+        $ket->save();  
+    }
+    return response()->json(['success'=>'done']);
 
-    	}
-    	return response()->json(['error'=>$validator->errors()->all()]);
+}
+return response()->json(['error'=>$validator->errors()->all()]);
         
     }
     public function tambahkda4(Request $request)
@@ -362,7 +387,7 @@ class KdaController extends Controller
 		$kda_ket = db::table('Kda_pelengkap')->where('kda_id',$id)->get();
 
 		foreach ($kda_ket as $key => $data) {
-			if ($data->nominal != null) {
+			if ($data->nominal != null and $data->nominal != "-") {
 				$data->nominal = round($data->nominal, 0);	
 			}
 			$data = $kda_ket;

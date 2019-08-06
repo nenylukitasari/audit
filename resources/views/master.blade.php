@@ -139,7 +139,8 @@ else {
                     <li><a href="{{ url('buatkda') }}" class="waves-effect"><i data-icon="<" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Buat KDA</span></a> </li>
                     <li><a href="{{ url('kda/semua') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Hasil KDA Semua</span></a></li>
                     <li><a href="{{ url('kda/sendiri') }}"><i data-icon="&#xe019;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Hasil KDA Sendiri</span></a></li>
-                    <li><a href="{{ url('kda/laporan') }}" class="waves-effect"><i data-icon="}" class="linea-icon linea-elaborate fa-fw"></i><span class="hide-menu">Laporan KDA</span></a> </li>
+                    <li><a href="{{ url('kda/perbulan') }}" class="waves-effect"><i data-icon="}" class="linea-icon linea-elaborate fa-fw"></i><span class="hide-menu">Laporan KDA Per Bulan</span></a> </li>
+                    <li><a href="{{ url('kda/laporan') }}" class="waves-effect"><i data-icon="}" class="linea-icon linea-elaborate fa-fw"></i><span class="hide-menu">Laporan KDA Triwulan</span></a> </li>
                 </ul>
             </li>
             <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="H" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Temuan KDA<span class="fa arrow"></span></span></a>

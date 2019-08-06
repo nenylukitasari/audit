@@ -1,11 +1,11 @@
 @extends('master')
 
 @section('title')
-    Laporan KDA Triwulan
+    Laporan KDA Per Bulan
 @endsection
 
 @section('right_title')
-    <li class="active">Laporan KDA Triwulan</li>
+    <li class="active">Laporan KDA Per Bulan</li>
 @endsection
 @section('content')
 <br/>
@@ -39,33 +39,29 @@
                 </tr>
                 </thead>
                 <tbody>
-                  @while ($awal <= $tahun)
+                  @for ($tahun; $tahun >= $awal; $tahun--)
+                  @foreach ($namabulan as $key => $value)
+                  @if ($key <= $bulan or $i > 1)
                 <tr>
                   <?php
-
-                  echo "
-                  <td>$no</td>
-                  <td>Triwulan $i $awal </td>"; ?>
-                  <td><a href="{{ route('downloadtriwulan', ['tahun' => $awal, 'sesi' => $i]) }}"><button class="btn btn-xs btn-primary">download</button> </a></td>
-                  <?php 
+                  
+                  
+                    echo "
+                    <td>$no</td>
+                    <td>Bulan $value $tahun </td>"; ?>
+                    <td><a href="{{ route('downloadperbulan', ['tahun' => $tahun, 'bulan' => $key]) }}"><button class="btn btn-xs btn-primary">download</button> </a></td>  
+                  
+                  <?php
                   $no++;
-                  $i++;
-                  if ($awal == $tahun)
-                  {
-                    if ($konstanta+3 >= $bulan)
-                      break;
-                    else
-                      $konstanta = $konstanta +2;
-
-                  }
-                  if ($i > 4)
-                  {
-                    $i = 1;
-                    $awal ++;
-                  }
                   ?>
                 </tr>
-                @endwhile
+                @endif
+                 
+                @endforeach
+                <?php
+                  $i++;
+                  ?>
+                @endfor
                 </tfoot>
               </table>
           </div>
