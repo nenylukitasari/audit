@@ -25,7 +25,7 @@ class Kda_templateSeeder extends Seeder
 
 <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sasaran</label>: Pengelolaan Keuangan</span></strong></p>
 
-<p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sumber Dana</label>: Non PNBP</span></strong></p>
+<p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sumber Dana</label>: jenis_dana$</span></strong></p>
 
 <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Masa Audit</label>: masaaudit$</span></strong></p>
 
@@ -84,7 +84,7 @@ class Kda_templateSeeder extends Seeder
 <div class="box-body menu"><strong>e. Saran</strong></div>
 
 <div class="box-body tab1">
-<p>Untuk dipertahankan agar pengelolaan keuangan tetap tertib.</p>
+<p>kda_saran$</p>
 </div>
 
 <p>&nbsp;</p>
@@ -126,7 +126,7 @@ class Kda_templateSeeder extends Seeder
 <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Unit Kerja</label>: unit$</span></strong></p>
 
 <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sasaran</label>: Pengelolaan Keuangan</span></strong></p>
-<p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sumber Dana</label>: Non PNBP</span></strong></p>
+<p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sumber Dana</label>: jenis_dana$</span></strong></p>
 
 <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Masa Audit</label>: masaaudit$</span></strong></p>
 
@@ -169,7 +169,13 @@ class Kda_templateSeeder extends Seeder
 
 <div>temuanlama$</div>
 
-<div class="box-body menu"><strong>b. Kriteria</strong></div>
+<div class="box-body menu"><strong>b. Saran</strong></div>
+
+<div class="box-body tab1">
+<p>kda_saran$</p>
+</div>
+
+<div class="box-body menu"><strong>c. Kriteria</strong></div>
 
 <div class="box-body tab2">
 <ol>
@@ -180,19 +186,19 @@ class Kda_templateSeeder extends Seeder
 </ol>
 </div>
 
-<div class="box-body menu"><strong>c. Kesimpulan</strong></div>
+<div class="box-body menu"><strong>d. Kesimpulan</strong></div>
 
 <div class="box-body tab1">
 <p>Pengelolaan administrasi di Unit Kerja : unit$ belum tertib karena kurangnya pengendalian internal pimpinan Unit Kerja, kekurangcermatan dan belum optimal BPP dalam melaksanakan tanggungjawabnya dan lemahnya pengawasan PPK terkait, sehingga menyebebkan tertib administrasi keuangan tidak tercapai.</p>
 </div>
 
-<div class="box-body menu"><strong>d. Rekomendasi</strong></div>
+<div class="box-body menu"><strong>e. Rekomendasi</strong></div>
 
 <div class="box-body tab1">
 <p>Pimpinan Unit Kerja mengistruksikan BPP terkait untuk segera mlengkapi bukti pertanggungjawaban pembayaran/pembelian barang/jasa sesuai peraturan yang berlaku.</p>
 </div>
 
-<div class="box-body menu"><strong>e. Tanggapan</strong></div>
+<div class="box-body menu"><strong>f. Tanggapan</strong></div>
 
 <div class="box-body tab1">
 <p>(Bisa disampaikan dalam kertas terpisah dan ditandatangani oleh pimpinan Unit Kerja Terkait)</p>
@@ -238,7 +244,7 @@ class Kda_templateSeeder extends Seeder
 
 <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sasaran</label>: Pengelolaan Keuangan</span></strong></p>
 
-<p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sumber Dana</label>: Non PNBP</span></strong></p>
+<p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sumber Dana</label>: jenis_dana$</span></strong></p>
 
 <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Masa Audit</label>: masaaudit$</span></strong></p>
 
@@ -277,7 +283,13 @@ class Kda_templateSeeder extends Seeder
 
 <div>temuan$</div>
 
-<div class="box-body menu"><strong>b. Kriteria</strong></div>
+<div class="box-body menu"><strong>b. Saran</strong></div>
+
+<div class="box-body tab1">
+<p>kda_saran$</p>
+</div>
+
+<div class="box-body menu"><strong>c. Kriteria</strong></div>
 
 <div class="box-body tab2">
 <ol>
@@ -288,19 +300,19 @@ class Kda_templateSeeder extends Seeder
 </ol>
 </div>
 
-<div class="box-body menu"><strong>c. Kesimpulan</strong></div>
+<div class="box-body menu"><strong>d. Kesimpulan</strong></div>
 
 <div class="box-body tab1">
 <p>Pengelolaan administrasi di unit$ belum tertib karena kurangnya pengendalian internal pimpinan Unit Kerja, kekurangcermatan dan belum optimal BPP dalam melaksanakan tanggung jawab nya dan lemahnya pengawasan PPK terkait, sehingga menyebabkan tertib administrasi keuangan tidak tercapai.</p>
 </div>
 
-<div class="box-body menu"><strong>d. Rekomendasi</strong></div>
+<div class="box-body menu"><strong>e. Rekomendasi</strong></div>
 
 <div class="box-body tab1">
 <p>Pimpinan Unit Kerja menginstruksikan BPP terkait untuk segera melengkapi bukti pertanggungjawaban pembayaran/pembelian barang/jasa sesuai peraturan yang berlaku.</p>
 </div>
 
-<div class="box-body menu"><strong>e. Tanggapan</strong></div>
+<div class="box-body menu"><strong>f. Tanggapan</strong></div>
 
 <div class="box-body tab1">
 <p>(Bisa disampaikan dalam kertas terpisah dan ditandatangani oleh pimpinan Unit Kerja Terkait).</p>
@@ -344,7 +356,7 @@ class Kda_templateSeeder extends Seeder
 <div class="box-body biodata">
  <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Unit Kerja</label>: unit$</span></strong></p>
 <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sasaran</label>: Pengelolaan Keuangan</span></strong></p>
-<p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sumber Dana</label>: Non PNBP</span></strong></p>
+<p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Sumber Dana</label>: jenis_dana$</span></strong></p>
 <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Masa Audit</label>: masaaudit$</span></strong></p>
 <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Bulan Audit</label>: bulanaudit$</span></strong></p>
 <p style="text-align: left; line-height: 0.05;"><strong><span style="font-weight: bold; font-size: 12px;"><label class="col-sm-2 control-label">Auditor</label>: auditor$</span></strong></p>
@@ -424,8 +436,8 @@ class Kda_templateSeeder extends Seeder
   </div>
   <div class="row1">
     <label class="col-sm-2 col-form-label">Sumber Dana</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" value="Non PNBP" style="width:170px" readonly>
+    <div class="col-sm-10 jenis_dana">
+      
     </div>
   </div>
   <div class="row1">
@@ -523,7 +535,7 @@ class Kda_templateSeeder extends Seeder
 
 <p style="text-align: justify;"><strong>e. Saran</strong></p>
 
-<p style="text-align: justify;">&nbsp; &nbsp; Untuk dipertahankan agar pengelolaan keuangan tetap tertib.</p>
+<p style="text-align: justify;"><input class="form-control" type="text"  value=" Untuk dipertahankan agar pengelolaan keuangan tetap tertib." style="width:750px" name="kda_saran"/></p>
 
 <p><strong>&nbsp;</strong></p>
 
@@ -565,10 +577,10 @@ class Kda_templateSeeder extends Seeder
       <input type="text" class="form-control" value="Pengelolaan Keuangan" style="width:170px" readonly>
     </div>
   </div>
-  <div class="row1">
+   <div class="row1">
     <label class="col-sm-2 col-form-label">Sumber Dana</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" value="Non PNBP" style="width:170px" readonly>
+    <div class="col-sm-10 jenis_dana">
+      
     </div>
   </div>
   <div class="row1">
@@ -628,11 +640,12 @@ class Kda_templateSeeder extends Seeder
                 <th align="center" width=30%>No. Kwitansi</th>
                 <th align="center" width=20%>Nominal (Rp)</th>
                 <th align="center" width=50%>Uraian Temuan</th>
+                <th</th>
               </thead>
               <tbody>
                 <tr>
                   <td><input class="form-control name_list" name="kwitansi[]" type="text" placeholder="Nomor kwitansi" /></td>
-                  <td><input class="form-control name_list" name="nominal[]" type="text" placeholder="masukkan nominal" /></td>
+                  <td><input class="form-control name_list" name="nominal[]" type="number" placeholder="masukkan nominal" /></td>
                   <td><input class="form-control name_list" name="keterangan[]" type="text" placeholder="masuk keterangan" /></td>
                   <td><button id="add" class="btn btn-success" name="add" type="button">Add More</button></td>
                 </tr>
@@ -640,23 +653,25 @@ class Kda_templateSeeder extends Seeder
             </table>
 <div class="tg-wrap"><strong>&nbsp;</strong></div>
 <p id="temuanlama"></p>
-<p><strong>b. Kriteria</strong></p>
+<p style="text-align: justify;"><strong>b. Saran</strong></p>
+<p style="text-align: justify;"><input class="form-control" type="text" style="width:750px" name="kda_saran"/></p>
+<p><strong>c. Kriteria</strong></p>
 <ol>
     <li style="text-align: justify;">&nbsp;Peraturan Pemerintah RI Nomor 45 Tahun 2013 tanggal 7 juni 2013 tentang Tata Cara Pelaksanaan Anggaran dan Belanja Negara, Pasal 65 ayat (1): &quot;<strong>Penyelesaian tagihan kepada negara atas beban anggaran Belanja Negara yang tertuang dalam APBN dilaksanakan berdasarkan hak dan bukti yang sah untuk memperoleh bayaran&quot;.</strong></li>
     <li style="text-align: justify;">Peraturan Rektor Institut Teknologi Sepuluh Nopember Nomor 5 Tahun 2018 tentang <strong> Pengadaan Bahan Habis Umum dan Barang Inventaris Umum.</strong></li>
     <li style="text-align: justify;">Peraturan Rektor Institut Teknologi Sepuluh Nopember Nomor 1 Tahun 2019 tentang <strong>Pedoman Pengelolaan Keuangan Institut Teknologi Sepuluh Nopember</strong>.</li>
     <li style="text-align: justify;">Peraturan Rektor Institut Teknologi Sepuluh Nopember Nomor 28 Tahun 2018 tentang  <strong>Standar Biaya Institut Teknologi Sepuluh Nopember Tahun Anggaran 2019.</strong></li>
 </ol>
-<p style="text-align: justify;"><strong>c. Kesimpulan</strong></p>
+<p style="text-align: justify;"><strong>d. Kesimpulan</strong></p>
 <p style="text-align: justify;">&nbsp; &nbsp; Pengelolaan administrasi di Unit Kerja : <input class="unit" readonly="readonly" type="text" /> belum tertib karena kurangnya pengendalian internal pimpinan Unit Kerja, kekurangcermatan dan belum optimal BPP dalam melaksanakan tanggungjawabnya dan lemahnya pengawasan PPK terkait, sehingga menyebebkan tertib administrasi keuangan tidak tercapai.</p>
-<p><strong>d. Rekomendasi</strong></p>
+<p><strong>e. Rekomendasi</strong></p>
 <p style="text-align: justify;">&nbsp; &nbsp; Pimpinan Unit Kerja mengistruksikan BPP terkait untuk :</p>
 <ol>
   <li style="text-align: justify;">Lebih teliti dan rapi ketika melengkapi bukti pertanggungjawaban pembayaran/pembelian barang/jasa sesuai peraturan yang berlaku.</li>
   <li style="text-align: justify;">Mematuhi pengelolaan keuangan sesuai dengan peraturan yang berlaku.</li>
 </ol>
 
-<p style="text-align: justify;"><strong>e. Tanggapan</strong></p>
+<p style="text-align: justify;"><strong>f. Tanggapan</strong></p>
 <p style="text-align: justify;">&nbsp; &nbsp; (Bisa disampaikan dalam kertas terpisah dan ditandatangani oleh pimpinan Unit Kerja Terkait)</p>
 <p><strong>&nbsp;</strong></p>
 <p><strong>&nbsp;</strong></p>
@@ -696,8 +711,8 @@ class Kda_templateSeeder extends Seeder
   </div>
   <div class="row1">
     <label class="col-sm-2 col-form-label">Sumber Dana</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" value="Non PNBP" style="width:170px" readonly>
+    <div class="col-sm-10 jenis_dana">
+      
     </div>
   </div>
   <div class="row1">
@@ -774,8 +789,10 @@ class Kda_templateSeeder extends Seeder
             </table>
 
 <div class="tg-wrap">&nbsp;</div>
+<p style="text-align: justify;"><strong>b. Saran</strong></p>
 
-<p><strong>b. Kriteria</strong></p>
+<p style="text-align: justify;">&nbsp; &nbsp; <input class="form-control" type="text"  style="width:750px" name="kda_saran"/></p>
+<p><strong>c. Kriteria</strong></p>
 
 <ol>
     <li style="text-align: justify;">&nbsp;Peraturan Pemerintah RI Nomor 45 Tahun 2013 tanggal 7 juni 2013 tentang Tata Cara Pelaksanaan Anggaran dan Belanja Negara, Pasal 65 ayat (1): &quot;<strong>Penyelesaian tagihan kepada negara atas beban anggaran Belanja Negara yang tertuang dalam APBN dilaksanakan berdasarkan hak dan bukti yang sah untuk memperoleh bayaran&quot;.</strong></li>
@@ -784,14 +801,14 @@ class Kda_templateSeeder extends Seeder
     <li style="text-align: justify;">Peraturan Rektor Institut Teknologi Sepuluh Nopember Nomor 28 Tahun 2018 tentang  <strong>Standar Biaya Institut Teknologi Sepuluh Nopember Tahun Anggaran 2019.</strong></li>
 </ol>
 
-<p style="text-align: justify;"><strong>c. Kesimpulan</strong></p>
+<p style="text-align: justify;"><strong>d. Kesimpulan</strong></p>
 <p style="text-align: justify;">&nbsp; &nbsp; Pengelolaan administrasi di <input class="unit" readonly="readonly" type="text" /> belum tertib karena kurangnya pengendalian internal pimpinan Unit Kerja, kekurangcermatan dan belum optimal BPP dalam melaksanakan tanggung jawab nya dan lemahnya pengawasan PPK terkait, sehingga menyebabkan tertib administrasi keuangan tidak tercapai.</p>
 
-<p><strong>d. Rekomendasi</strong></p>
+<p><strong>e. Rekomendasi</strong></p>
 
 <p style="text-align: justify;">&nbsp; &nbsp; Pimpinan Unit Kerja menginstruksikan BPP terkait untuk segera melengkapi bukti pertanggungjawaban pembayaran/pembelian barang/jasa sesuai peraturan yang berlaku.</p>
 
-<p style="text-align: justify;"><strong>e. Tanggapan</strong></p>
+<p style="text-align: justify;"><strong>f. Tanggapan</strong></p>
 
 <p style="text-align: justify;">&nbsp; &nbsp; (Bisa disampaikan dalam kertas terpisah dan ditandatangani oleh pimpinan Unit Kerja Terkait).</p>
 
@@ -837,8 +854,8 @@ class Kda_templateSeeder extends Seeder
   </div>
   <div class="row1">
     <label class="col-sm-2 col-form-label">Sumber Dana</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" value="Non PNBP" style="width:170px" readonly>
+    <div class="col-sm-10 jenis_dana">
+      
     </div>
   </div>
   <div class="row1">

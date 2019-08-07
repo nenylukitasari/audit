@@ -35,7 +35,7 @@ class KdaController extends Controller
 				                '11' => 'November',
 				                '12' => 'Desember',
 				        );
-		$kda = DB::table('kda')->orderBy('kda.masa_audit','DESC')->get();
+		$kda = DB::table('kda')->where('finalisasi',1)->orderBy('kda.masa_audit','DESC')->get();
 		foreach ($kda as $key => $value) {
 			$tahun = date("y",strtotime($value->masa_audit));
 			$value->bulan = $namabulan[date("m",strtotime($value->masa_audit))];
@@ -169,6 +169,8 @@ class KdaController extends Controller
     	$rules = [];
     	$rules["unit"] = 'required';
     	$rules["masa_audit"] = 'required';
+    	$rules["jenis_dana"] = 'required';
+    	$rules["kda_saran"] = 'required';
     	$rules["bulan_audit"] = 'required';
     	$messages = [
 		    'required' => 'Lengkapi dahulu data :attribute .',
@@ -183,6 +185,8 @@ class KdaController extends Controller
 	        $kda->unit = $input['unit'];
 	        $kda->masa_audit = $tanggaltampung;
 	        $kda->bulan_audit = $input['bulan_audit'];
+	        $kda->jenis_dana = $input['jenis_dana'];
+	        $kda->kda_saran = $input['kda_saran'];
 	        $kda->jenis = 1;
 	        $kda->created_by = $input['auditor'];
 	        $kda->save();
@@ -217,6 +221,8 @@ class KdaController extends Controller
 		    'required' => 'Lengkapi dahulu data :attribute .',
 		];
         $rules["unit"] = 'required';
+        $rules["jenis_dana"] = 'required';
+    	$rules["kda_saran"] = 'required';
         $rules["masa_audit"] = 'required';
     	$rules["bulan_audit"] = 'required';
         foreach($request->input('kwitansi') as $key => $value) {
@@ -239,6 +245,8 @@ class KdaController extends Controller
             $kda->masa_audit = $tanggaltampung;
             $kda->bulan_audit = $input['bulan_audit'];
             $kda->jenis = 2;
+            $kda->jenis_dana = $input['jenis_dana'];
+	        $kda->kda_saran = $input['kda_saran'];
             $kda->kode_temuan = $input['kode_temuan'];
             $kda->created_by = $input['auditor'];
             $kda->save();
@@ -277,6 +285,8 @@ class KdaController extends Controller
     	// dd($input);
     	$rules = [];
     	$rules["unit"] = 'required';
+    	$rules["jenis_dana"] = 'required';
+    	$rules["kda_saran"] = 'required';
     	$rules["masa_audit"] = 'required';
     	$rules["bulan_audit"] = 'required';
     	$messages = [
@@ -293,6 +303,8 @@ if ($validator->passes())
     $kda->masa_audit = $tanggaltampung;
     $kda->bulan_audit = $input['bulan_audit'];
     $kda->jenis = 3;
+    $kda->jenis_dana = $input['jenis_dana'];
+	$kda->kda_saran = $input['kda_saran'];
     $kda->created_by = $input['auditor'];
     $kda->save();
 
@@ -335,6 +347,7 @@ return response()->json(['error'=>$validator->errors()->all()]);
 	        $kda->unit = $input['unit'];
 	        $kda->masa_audit = $tanggaltampung;
 	        $kda->bulan_audit = $input['bulan_audit'];
+	        $kda->jenis_dana = $input['jenis_dana'];
 	        $kda->jenis = 4;
 	        $kda->created_by = $input['auditor'];
 	        $kda->save();
@@ -454,4 +467,41 @@ return response()->json(['error'=>$validator->errors()->all()]);
 		//return redirect('/kda');
 
 	}
+	public function sumberdana()
+	{
+		$sumberdana = DB::table('sumberdana')->get();
+		return view("sumberdana1", compact('sumberdana'));
+	}
+	public function sumberdanaadd(Request $request)
+	{
+		$dana = new Sumberdana;
+        $dana->jenis_dana = $request->jenis_dana;
+        $dana->save();
+		return redirect()->back()->with('message_success',"Berhasil menambah Sumber Dana");
+
+	}
+	public function datasumberdana(Request $request)
+    {
+        $id = $request->input('id');
+        $data = Sumberdana::find($id);
+        return response()->json($data);
+    }
+    public function updatesumberdana(Request $request)
+    {
+        
+            $dana = Sumberdana::find($request->edit_id_dana);
+    	    $dana->jenis_dana = $request->edit_jenis_dana;
+            $dana->save();
+    	    return redirect()->back()->with('message_success',"Berhasil mengubah data Sumber Dana");
+    }
+    public function finalisasi($id)
+    {
+    	kda::where('id_kda', $id)
+        ->update([
+            'finalisasi' => '1'
+        ]);
+        return redirect()->back()->with('message_success',"Berhasil melakukan finalisasi");
+
+    }
+
 }

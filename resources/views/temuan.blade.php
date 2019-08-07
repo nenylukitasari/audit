@@ -82,9 +82,14 @@
                       <td>{{ $kda->bulan}}</td>
                       <td>{{ $kda->tahun}}</td>
                       <td>KDA dengan temuan</td>
+                      @if ($kda->finalisasi == 1)
+                      <td> Telah Difinalisasi</td>
+                      <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-lihat" onclick="temuankonfirmasi('{{ $kda->id_kda }}')">Lihat</button></td>
+                      @else
                       <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-temuan" onclick="temuanupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button>
                       </td>
                       <td><button class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modal-konfirmasi" onclick="temuankonfirmasi('{{ $kda->id_kda }}')">Konfirmasi</button></td>
+                      @endif
                       <td><a href="{{ url('pdf/'.$kda->id_kda) }}"><button class="btn btn-xs btn-primary">Download</button></a> </td>
                     </tr>
                     @endforeach
@@ -170,7 +175,7 @@
                     <th width=50%>Uraian Temuan</th>
                     <th width=5%>Konfirmasi</th>
                   </tr>
-                  <tbody id="temuan">
+                  <tbody id="temuan" class="temuan">
                   </tbody>
                 </thead>
               </table>
@@ -188,6 +193,45 @@
     <!-- /.modal -->
   </div>
   <!-- modal temuan end -->
+
+<div class="modal fade" id="modal-lihat">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="temuanclose()">
+          <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Temuan</h4>
+          <div id="test"></div>
+      </div>
+        <div class="modal-body">
+          <form action="{{url('/temuan/konfirmasi')}}" method="post" id="tambah_kda" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div>
+             <table class="table table-bordered table-striped" style='width:100%'>
+                <thead>
+                  <tr>
+                    <th width=30%>No. Kwitansi</th>
+                    <th width=15%>Nominal</th>
+                    <th width=50%>Uraian Temuan</th>
+                    <th width=5%>Konfirmasi</th>
+                  </tr>
+                  <tbody id="temuan" class="temuan">
+                  </tbody>
+                </thead>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="temuanclose()" >Close</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+  </div>
+  <!-- modal temuan lihat end -->
   
 @endsection
 
@@ -368,13 +412,13 @@
             if (status == 1) {
               temuansemua = 
             `<tr><td name="kwitansi[${i}]">${kwitansi}</td><td name="nominal[${i}]">${nominal}</td><td name="keterangan[${i}]">${keterangan}</td><td>Telah dikonfirmasi</td></tr>`;
-             $("#temuan").append(temuansemua);
+             $(".temuan").append(temuansemua);
             }
             else
             {
               temuansemua= 
               `<tr><td name="kwitansi[${i}]">${kwitansi}</td><td name="nominal[${i}]">${nominal}</td><td name="keterangan[${i}]">${keterangan}</td><td><input type="checkbox" name="checkbox[]" data-id="${id}" value="${id}" id="checkbox[]"></td></tr>`;
-              $("#temuan").append(temuansemua);
+              $(".temuan").append(temuansemua);
             }
           }
         }
@@ -382,7 +426,7 @@
     }
 
     temuanclose = function(){
-      $("#temuan").empty();
+      $(".temuan").empty();
       $("#temuanedit").empty();
     }
     temuanupdate = function(id){

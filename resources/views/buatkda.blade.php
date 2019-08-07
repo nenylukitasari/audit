@@ -327,6 +327,7 @@ td .kanan{
                     <tr id="krow2">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Kwitansi di Rekap SPJ" /></td>
                       <td><select name="kesediaan[]" class="form-control name_list" readonly>
+                      <option selected="selected" value=""></option>
                       </select></td>
                       <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
                       <td><input type="number" name="nom[]" class="form-control name_list" readonly/></td>
@@ -335,6 +336,7 @@ td .kanan{
                     <tr id="krow3">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Fisik kwitansi yang ada" /></td>
                       <td><select name="kesediaan[]" class="form-control name_list" readonly>
+                      <option selected="selected" value=""></option>
                       </select></td>
                       <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
                       <td><input type="number" name="nom[]" class="form-control name_list" readonly/></td>
@@ -343,6 +345,7 @@ td .kanan{
                     <tr id="krow4">
                       <td><input type="text" name="kelengkapan[]" placeholder="jenis Kelengkapan" class="form-control name_list" value="Kwitansi Yang Ada Temuan" /></td>
                       <td><select name="kesediaan[]" class="form-control name_list" readonly>
+                      <option selected="selected" value=""></option>
                       </select></td>
                       <td><input type="number" name="jumlah[]" placeholder="masukkan jumlah" class="form-control name_list" /></td>
                       <td><input type="number" name="nom[]" class="form-control name_list" readonly/></td>

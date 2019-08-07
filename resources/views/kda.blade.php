@@ -80,6 +80,7 @@
                       <th>Pelengkap</th>
                       <th>Edit</th>
                       <th>Aksi</th>
+                      <th>Finalisasi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -92,20 +93,35 @@
                       <td>{{ $kda->tahun}}</td>
                       @if ($kda->jenis == 1)
                       <td>KDA tanpa temuan</td>
-                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-pelengkap" onclick="kelengkapanupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
                       @elseif ($kda->jenis == 2)
                       <td>KDA dengan temuan</td>
-                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-pelengkap" onclick="kelengkapanupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
                       @elseif ($kda->jenis == 3)
                       <td>KDA Unaudited</td>
-                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-pelengkap" onclick="kelengkapanupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
                       @else
                       <td>KDA tanpa pengajuan UMK</td>
-                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-keterangan" onclick="keteranganupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
-
                       @endif
+
+                      @if ($kda->finalisasi == 1)
+                      <td></td>
+                      <td></td>
+                      @elseif ($kda->jenis == 3)
+                      <td></td>
                       <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-edit" onclick="submitUpdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
+                      @elseif ($kda->jenis != 4)
+                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-pelengkap" onclick="kelengkapanupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
+                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-edit" onclick="submitUpdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
+                      @else
+                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-keterangan" onclick="keteranganupdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
+                      <td><button type="button" class="btn btn-info btn-outline btn-circle btn-xs" data-toggle="modal" data-target="#modal-edit" onclick="submitUpdate('{{ $kda->id_kda }}')"><i class="ti-pencil" data-toggle="tooltip" title="Edit Data"></i></button></td>
+                      @endif
+
                       <td><a href="{{ url('pdf/'.$kda->id_kda) }}"><button class="btn btn-xs btn-primary">Download</button></a> </td>
+                        {{-- || <a href="{{ url('word/'.$kda->id_kda) }}"><button class="btn btn-xs btn-primary">Word</button></a>  --}}
+                      @if ($kda->finalisasi == 0)
+                      <td><a href="{{ url('kda/finalisasi/'.$kda->id_kda) }}"><button class="btn btn-xs btn-primary">Finalisasi</button></a></td>
+                      @else
+                      <td>Telah Difinalisasi</td>
+                      @endif
                     </tr>
                     @endforeach
                   </tbody>
@@ -119,6 +135,7 @@
                       <th>Pelengkap</th>
                       <th>Edit</th>
                       <th>Aksi</th>
+                      <th>Finalisasi</th>
                     </tr>
                   </tfoot>
                     </table>    
@@ -319,6 +336,7 @@
         { "width": "10%" },
         { "width": "10%" },
         { "width": "20%" },
+        { "width": "10%" },
         { "width": "10%" },
         { "width": "10%" },
         { "width": "10%" }

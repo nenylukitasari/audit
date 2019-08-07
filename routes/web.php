@@ -30,6 +30,10 @@ Route::group(['middleware' => 'Admin'], function () {
 	Route::post('/berkas/update','KdaController@updateBerkas');
 	Route::get('/berkas/data','KdaController@dataBerkas');
 
+	Route::get('/sumberdana', 'KdaController@sumberdana');
+	Route::post('/sumberdana/add', 'KdaController@sumberdanaadd');
+	Route::post('/sumberdana/data', 'KdaController@datasumberdana');
+	Route::post('/sumberdana/update', 'KdaController@updatesumberdana');
 	Route::get('/users', 'UserController@index');
 	Route::post('/users', 'UserController@store');
 	Route::post('/data/user','UserController@getData');
@@ -105,10 +109,12 @@ Route::group(['middleware' => 'SemuaRole'], function () {
 	Route::post('/temuan/update', 'TemuanController@updatetemuan');
 	Route::post('/temuan/konfirmasi', 'TemuanController@konfirmasitemuan');
 
+	Route::get('word/{id}',  'PdfController@downloadword');
 	Route::get('pdf/{id}',  'PdfController@downloadpdf');
 	Route::get('print',  'PdfController@print');
 
 	Route::get('/kda/sendiri', 'KdaController@indexmember');
+	Route::get('/kda/finalisasi/{id}', 'KdaController@finalisasi');
 	Route::get('/temuankda/sendiri', 'TemuanController@indexmember');
 	Route::post('/kda/temuan', 'TemuanController@gettemuan');
 

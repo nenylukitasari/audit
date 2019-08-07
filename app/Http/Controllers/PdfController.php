@@ -90,7 +90,9 @@ class PdfController extends Controller
 	}
 	public function filepdf($id)
     {
-        $kda = DB::table('kda')->where('id_kda',$id)->first();
+        $kda = DB::table('kda')
+        ->join('sumberdana', 'kda.jenis_dana', '=', 'sumberdana.id')
+        ->where('id_kda',$id)->first();
         // $data = DB::table('kda_data')->where('kda_id',$id)->first();
         $temuan = DB::table('kda_temuan')->where('kda_id',$id)->where('status',0)->get();
         $kda_ket = DB::table('kda_pelengkap')->where('kda_id',$id)->get();
@@ -220,6 +222,8 @@ class PdfController extends Controller
 					$contents = str_replace("tanggapan$", $ket->tanggapan, $contents);
 				}
 
+				$contents = str_replace("jenis_dana$", $kda->jenis_dana, $contents);
+				$contents = str_replace("kda_saran$", $kda->kda_saran, $contents);
 				$contents = str_replace("unit$", $kda->unit, $contents);
 				$contents = str_replace("masaaudit$", "{$namabulan[$masaaudit]} 20{$tahun}", $contents);
 				$contents = str_replace("bulanaudit$", "{$namabulan[$bulan]} 20{$tahun}", $contents);
@@ -398,7 +402,7 @@ class PdfController extends Controller
     	$download = $this->filepdf($id);
     	$file = $download[0];
     	$nama = $download[1];
-    	return response()->download($nama, 'new_name.docx');
+    	//return response()->download($nama, 'new_name.docx');
     	return $file->download($nama);
 
     }
@@ -406,5 +410,17 @@ class PdfController extends Controller
     {
     	$summernotes = DB::table('kda_template')->where('id',2) ->first();
 		return view ("pdf", compact('summernotes'));
+    }
+    public function downloadword($id)
+    {
+    	$phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection();
+        $text = $section->addText("aaaaa");
+        $text = $section->addText("bbbbb");
+        $text = $section->addText("hahaah",array('name'=>'Arial','size' => 20,'bold' => true));
+        //$section->addImage("./images/Krunal.jpg");  
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        $objWriter->save('Appdividend.docx');
+        return response()->download('Appdividend.docx');
     }
 }

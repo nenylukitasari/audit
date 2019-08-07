@@ -22,6 +22,7 @@ class CreateKdasTable extends Migration
             $table->integer('jenis');
             $table->string('kode_temuan')->nullable();
             $table->string('kda_saran')->nullable();
+            $table->integer('finalisasi')->default(0);
             $table->string('created_by');
             $table->timestamps();
         });

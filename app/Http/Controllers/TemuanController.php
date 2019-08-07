@@ -33,7 +33,7 @@ class TemuanController extends Controller
                                 '11' => 'November',
                                 '12' => 'Desember',
                         );
-        $kda = DB::table('kda')->where('kda.jenis', 2)->orderBy('kda.masa_audit','DESC')->get();
+        $kda = DB::table('kda')->where('finalisasi',1)->where('kda.jenis', 2)->orderBy('kda.masa_audit','DESC')->get();
         foreach ($kda as $key => $value) {
             $tahun = date("y",strtotime($value->masa_audit));
             $value->bulan = $namabulan[date("m",strtotime($value->masa_audit))];
