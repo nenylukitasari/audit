@@ -154,7 +154,7 @@ else {
             <li><a href="{{ url('templatekda') }}" class="waves-effect"><i data-icon="&#xe016;" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Template KDA</span></a> </li>
             <li><a href="{{ url('versisbi') }}" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Versi SBI</span></a> </li>
             <li><a href="{{ url('users') }}" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">User Role</span></a> </li>
-            <li><a href="{{ url('sumberdana') }}" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Sumber Dana</span></a> </li>
+            <li><a href="{{ url('sumberdana') }}" class="waves-effect"><i data-icon="&#xe012" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">Sumber Dana</span></a> </li>
         @endif
         @if(Auth::user()->role==3)
              <li> <a href="javascript:void(0)" class="waves-effect"><i data-icon="(" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu">KDA<span class="fa arrow"></span></span></a>

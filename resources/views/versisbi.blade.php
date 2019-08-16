@@ -180,7 +180,7 @@
             </div>              
             </div>
              <div class="modal-footer">  
-              <input type="submit" name="submit" id="submit" class="btn btn-primary" value="Update" /> 
+              <input type="submit" name="submit" id="submit" class="btn btn-primary btn-rounded" value="Update" /> 
             </div>
           </form>
           </div>
